@@ -16,7 +16,6 @@ namespace ManagerStudent.GUI
         {
             InitializeComponent();
             ControlBox = false;
-            btnThem.Paint += btnThem_Paint;
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -117,12 +116,6 @@ namespace ManagerStudent.GUI
         private void pictureBox2_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnThem_Paint(object sender, PaintEventArgs e)
-        {
-           
-            
         }
     }
 }

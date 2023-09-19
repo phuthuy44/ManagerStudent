@@ -44,10 +44,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.panel1.Location = new System.Drawing.Point(-1, 702);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(-1, 570);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(641, 20);
+            this.panel1.Size = new System.Drawing.Size(481, 16);
             this.panel1.TabIndex = 0;
             // 
             // panel2
@@ -60,20 +59,17 @@
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.username);
             this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Location = new System.Drawing.Point(-1, 4);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
+            this.panel2.Location = new System.Drawing.Point(-1, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(641, 698);
+            this.panel2.Size = new System.Drawing.Size(481, 567);
             this.panel2.TabIndex = 1;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(641, 20);
+            this.panel3.Size = new System.Drawing.Size(481, 16);
             this.panel3.TabIndex = 8;
             // 
             // btnLogin
@@ -82,10 +78,9 @@
             this.btnLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(200, 591);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLogin.Location = new System.Drawing.Point(150, 480);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(215, 64);
+            this.btnLogin.Size = new System.Drawing.Size(161, 52);
             this.btnLogin.TabIndex = 7;
             this.btnLogin.Text = "Đăng nhập ";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -96,10 +91,9 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(231, 482);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Location = new System.Drawing.Point(173, 392);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(369, 46);
+            this.textBox1.Size = new System.Drawing.Size(278, 38);
             this.textBox1.TabIndex = 6;
             // 
             // label2
@@ -107,10 +101,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Green;
-            this.label2.Location = new System.Drawing.Point(12, 492);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(9, 400);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 29);
+            this.label2.Size = new System.Drawing.Size(91, 24);
             this.label2.TabIndex = 5;
             this.label2.Text = "Mật khẩu ";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -120,10 +113,9 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Green;
-            this.label1.Location = new System.Drawing.Point(12, 401);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(9, 326);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(175, 29);
+            this.label1.Size = new System.Drawing.Size(141, 24);
             this.label1.TabIndex = 4;
             this.label1.Text = "Tên đăng nhập";
             this.label1.Click += new System.EventHandler(this.label1_Click_1);
@@ -131,20 +123,14 @@
             // username
             // 
             this.username.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.username.Location = new System.Drawing.Point(231, 389);
-            this.username.Margin = new System.Windows.Forms.Padding(4);
+            this.username.Location = new System.Drawing.Point(173, 316);
             this.username.Name = "username";
-            this.username.Size = new System.Drawing.Size(369, 46);
+            this.username.Size = new System.Drawing.Size(278, 38);
             this.username.TabIndex = 3;
             this.username.TextChanged += new System.EventHandler(this.username_TextChanged);
             // 
             // pictureBox1
             // 
-
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(133, 62);
             this.pictureBox1.Image = global::ManagerStudent.Properties.Resources._0af3c9613761d2d2394d99312aeba397;
             this.pictureBox1.Location = new System.Drawing.Point(3, 22);
             this.pictureBox1.Name = "pictureBox1";
@@ -155,12 +141,11 @@
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(641, 720);
+            this.ClientSize = new System.Drawing.Size(481, 585);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "LoginForm";
             this.Text = "Đăng nhập";
             this.Load += new System.EventHandler(this.LoginForm_Load);

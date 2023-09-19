@@ -9,19 +9,4 @@ D:\Phuong Vy\ManagerStudent\obj\Debug\ManagerStudent.csproj.CoreCompileInputs.ca
 D:\Phuong Vy\ManagerStudent\obj\Debug\ManagerStudent.exe
 D:\Phuong Vy\ManagerStudent\obj\Debug\ManagerStudent.pdb
 D:\Phuong Vy\ManagerStudent\obj\Debug\ManagerStudent.GUI.MainForm.resources
-<<<<<<< HEAD
-C:\Users\ADMIN\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.exe.config
-C:\Users\ADMIN\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.exe
-C:\Users\ADMIN\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.pdb
-C:\Users\ADMIN\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.AssemblyReference.cache
-C:\Users\ADMIN\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.LoginForm.resources
-C:\Users\ADMIN\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.MainForm.resources
-C:\Users\ADMIN\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.Properties.Resources.resources
-C:\Users\ADMIN\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.GenerateResource.cache
-C:\Users\ADMIN\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.CoreCompileInputs.cache
-C:\Users\ADMIN\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.exe
-C:\Users\ADMIN\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.pdb
-=======
 D:\Phuong Vy\ManagerStudent\obj\Debug\ManagerStudent.GUI.HocSinhForm.resources
->>>>>>> 10e12ee3efecc2a0b9201477d987104e202ff7b1
-C:\Users\ADMIN\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.HocSinhForm.resources

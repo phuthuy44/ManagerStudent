@@ -17,10 +17,10 @@ namespace ManagerStudent.GUI
         public MainForm()
         {
             InitializeComponent();
-           // this.ClientSize = new System.Drawing.Size(1847, 936);//kich thuoc co dinh
-           // this.FormBorderStyle = FormBorderStyle.FixedDialog; //vo hieu hoa kha nang thay doi kich thuoc
-           //// this.MaximizeBox = false;//vo hieu hoa nut maximize
-          // this.MinimizeBox = false;//vo hieu hoa nut minimum
+            this.ClientSize = new System.Drawing.Size(1847, 936);//kich thuoc co dinh
+            this.FormBorderStyle = FormBorderStyle.FixedDialog; //vo hieu hoa kha nang thay doi kich thuoc
+            this.MaximizeBox = false;//vo hieu hoa nut maximize
+            this.MinimizeBox = false;//vo hieu hoa nut minimum
             panelHocSinh.Click += panelHocSinh_Click;
 
 

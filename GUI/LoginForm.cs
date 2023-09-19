@@ -58,10 +58,5 @@ namespace ManagerStudent.GUI
         {
 
         }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
