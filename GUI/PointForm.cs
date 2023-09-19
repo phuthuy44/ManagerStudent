@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+//Push thử
 namespace ManagerStudent.GUI
 {
     public partial class PointForm : Form
