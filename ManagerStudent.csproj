@@ -67,17 +67,17 @@
     <Compile Include="GUI\HocSinhForm.Designer.cs">
       <DependentUpon>HocSinhForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\PointForm.cs">
       <SubType>Form</SubType>
@@ -171,6 +171,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icon\icon _magnifying glass_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\signal_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\account logout_.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
