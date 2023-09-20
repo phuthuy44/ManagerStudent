@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GUI\DanhMuc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\DanhMuc.Designer.cs">
+      <DependentUpon>DanhMuc.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\HocSinhForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\DanhMuc.resx">
+      <DependentUpon>DanhMuc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\HocSinhForm.resx">
       <DependentUpon>HocSinhForm.cs</DependentUpon>
     </EmbeddedResource>
