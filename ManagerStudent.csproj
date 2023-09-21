@@ -61,17 +61,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GUI\CategoryForm.cs">
+    <Compile Include="GUI\DanhMuc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\CategoryForm.Designer.cs">
-      <DependentUpon>CategoryForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\ClassForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\ClassForm.Designer.cs">
-      <DependentUpon>ClassForm.cs</DependentUpon>
+    <Compile Include="GUI\DanhMuc.Designer.cs">
+      <DependentUpon>DanhMuc.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\HocSinhForm.cs">
       <SubType>Form</SubType>
@@ -97,19 +91,10 @@
     <Compile Include="GUI\PointForm.Designer.cs">
       <DependentUpon>PointForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\TeacherForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\TeacherForm.Designer.cs">
-      <DependentUpon>TeacherForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="GUI\CategoryForm.resx">
-      <DependentUpon>CategoryForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\ClassForm.resx">
-      <DependentUpon>ClassForm.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\DanhMuc.resx">
+      <DependentUpon>DanhMuc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\HocSinhForm.resx">
       <DependentUpon>HocSinhForm.cs</DependentUpon>
@@ -122,9 +107,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\PointForm.resx">
       <DependentUpon>PointForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\TeacherForm.resx">
-      <DependentUpon>TeacherForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -204,9 +186,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icon\account logout_.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icon\Refresh_2%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
