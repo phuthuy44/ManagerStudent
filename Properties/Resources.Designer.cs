@@ -203,6 +203,16 @@ namespace ManagerStudent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Refresh_2_2x {
+            get {
+                object obj = ResourceManager.GetObject("Refresh_2@2x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap signal_ {
             get {
                 object obj = ResourceManager.GetObject("signal_", resourceCulture);

@@ -10,19 +10,19 @@ using System.Windows.Forms;
 
 namespace ManagerStudent.GUI
 {
-    public partial class HocSinhForm : Form
+    public partial class CategoryForm : Form
     {
-        public HocSinhForm()
+        public CategoryForm()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
+        private void label11_Click(object sender, EventArgs e)
         {
 
         }

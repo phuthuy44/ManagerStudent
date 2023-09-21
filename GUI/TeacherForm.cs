@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace ManagerStudent.GUI
 {
-    public partial class HocSinhForm : Form
+    public partial class TeacherForm : Form
     {
-        public HocSinhForm()
+        public TeacherForm()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
