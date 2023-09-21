@@ -73,6 +73,16 @@ namespace ManagerStudent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap account_logout_ {
+            get {
+                object obj = ResourceManager.GetObject("account logout_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap grid_three_up_ {
             get {
                 object obj = ResourceManager.GetObject("grid three up_", resourceCulture);
@@ -186,6 +196,16 @@ namespace ManagerStudent.Properties {
         internal static System.Drawing.Bitmap menu_ {
             get {
                 object obj = ResourceManager.GetObject("menu_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap signal_ {
+            get {
+                object obj = ResourceManager.GetObject("signal_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

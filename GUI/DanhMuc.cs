@@ -10,14 +10,24 @@ using System.Windows.Forms;
 
 namespace ManagerStudent.GUI
 {
-    public partial class HocSinhForm : Form
+    public partial class DanhMuc : Form
     {
-        public HocSinhForm()
+        public DanhMuc()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox17_TextChanged(object sender, EventArgs e)
         {
 
         }

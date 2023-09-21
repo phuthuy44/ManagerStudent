@@ -10,3 +10,16 @@ D:\Phuong Vy\ManagerStudent\obj\Debug\ManagerStudent.exe
 D:\Phuong Vy\ManagerStudent\obj\Debug\ManagerStudent.pdb
 D:\Phuong Vy\ManagerStudent\obj\Debug\ManagerStudent.GUI.MainForm.resources
 D:\Phuong Vy\ManagerStudent\obj\Debug\ManagerStudent.GUI.HocSinhForm.resources
+C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.exe.config
+C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.exe
+C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.pdb
+C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.AssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.PointForm.resources
+C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.Properties.Resources.resources
+C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.GenerateResource.cache
+C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.exe
+C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.pdb
+C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.MainForm.resources
+C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.LoginForm.resources
+C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.HocSinhForm.resources
