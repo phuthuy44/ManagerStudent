@@ -31,5 +31,10 @@ namespace ManagerStudent.GUI
         {
 
         }
+
+        private void pictureBox16_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

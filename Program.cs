@@ -17,7 +17,7 @@ namespace ManagerStudent
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HocSinhForm());
+            Application.Run(new MainForm());
         }
     }
 }
