@@ -229,5 +229,45 @@ namespace ManagerStudent.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap z4728105979320_63d20f2cd18f180d148d2e8ce301ec11 {
+            get {
+                object obj = ResourceManager.GetObject("z4728105979320_63d20f2cd18f180d148d2e8ce301ec11", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap z4728108940515_5e0dc98600acdb5247006facd1e35dd1 {
+            get {
+                object obj = ResourceManager.GetObject("z4728108940515_5e0dc98600acdb5247006facd1e35dd1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap z4728109405040_bf11a9eda4afbcbbf1f33f2ca17a6cfc {
+            get {
+                object obj = ResourceManager.GetObject("z4728109405040_bf11a9eda4afbcbbf1f33f2ca17a6cfc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap z4728109787836_1d99d92d3e8f7a0da94699d30c1e6386 {
+            get {
+                object obj = ResourceManager.GetObject("z4728109787836_1d99d92d3e8f7a0da94699d30c1e6386", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

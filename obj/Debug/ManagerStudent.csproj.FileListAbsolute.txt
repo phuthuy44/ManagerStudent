@@ -24,3 +24,7 @@ C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.Main
 C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.LoginForm.resources
 C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.HocSinhForm.resources
 C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.DanhMuc.resources
+C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.CategoryForm.resources
+C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.ClassForm.resources
+C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.TeacherForm.resources
+C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.TaoLopForm.resources

@@ -61,6 +61,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GUI\CategoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\CategoryForm.Designer.cs">
+      <DependentUpon>CategoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ClassForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ClassForm.Designer.cs">
+      <DependentUpon>ClassForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\DanhMuc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,8 +103,26 @@
     <Compile Include="GUI\PointForm.Designer.cs">
       <DependentUpon>PointForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\TaoLopForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TaoLopForm.Designer.cs">
+      <DependentUpon>TaoLopForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TeacherForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TeacherForm.Designer.cs">
+      <DependentUpon>TeacherForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GUI\CategoryForm.resx">
+      <DependentUpon>CategoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ClassForm.resx">
+      <DependentUpon>ClassForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\DanhMuc.resx">
       <DependentUpon>DanhMuc.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,6 +137,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\PointForm.resx">
       <DependentUpon>PointForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TaoLopForm.resx">
+      <DependentUpon>TaoLopForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TeacherForm.resx">
+      <DependentUpon>TeacherForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -186,6 +222,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icon\account logout_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\z4728105979320_63d20f2cd18f180d148d2e8ce301ec11.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\z4728109405040_bf11a9eda4afbcbbf1f33f2ca17a6cfc.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\z4728108940515_5e0dc98600acdb5247006facd1e35dd1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\z4728109787836_1d99d92d3e8f7a0da94699d30c1e6386.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
