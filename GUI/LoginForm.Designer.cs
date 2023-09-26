@@ -53,9 +53,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(43, 280);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(134, 20);
+            this.label1.Size = new System.Drawing.Size(139, 20);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Tên Đăng Nhập";
+            this.label1.Text = "Tên đăng nhập :";
             // 
             // label2
             // 
@@ -63,9 +63,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(43, 344);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 20);
+            this.label2.Size = new System.Drawing.Size(93, 20);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Mật Khẩu";
+            this.label2.Text = "Mật khẩu :";
             // 
             // textBox1
             // 

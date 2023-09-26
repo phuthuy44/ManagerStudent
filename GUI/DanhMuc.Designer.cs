@@ -187,7 +187,7 @@
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.tabControl1.Location = new System.Drawing.Point(5, 1);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(825, 459);
@@ -202,9 +202,9 @@
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage1.Size = new System.Drawing.Size(817, 429);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Kết quả";
@@ -214,10 +214,10 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.HotTrack;
             this.pictureBox1.Image = global::ManagerStudent.Properties.Resources.icon__magnifying_glass_;
-            this.pictureBox1.Location = new System.Drawing.Point(214, 20);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(205, 25);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(26, 26);
+            this.pictureBox1.Size = new System.Drawing.Size(27, 22);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
@@ -227,7 +227,7 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(330, 5);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -247,7 +247,7 @@
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Location = new System.Drawing.Point(16, 260);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(252, 113);
             this.panel2.TabIndex = 3;
@@ -257,7 +257,7 @@
             this.pictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.pictureBox5.Image = global::ManagerStudent.Properties.Resources.icon__x_letter_;
             this.pictureBox5.Location = new System.Drawing.Point(146, 70);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(26, 26);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -269,7 +269,7 @@
             this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.pictureBox4.Image = global::ManagerStudent.Properties.Resources.icon__arrow_left_;
             this.pictureBox4.Location = new System.Drawing.Point(146, 12);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(28, 28);
             this.pictureBox4.TabIndex = 6;
@@ -280,7 +280,7 @@
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.pictureBox3.Image = global::ManagerStudent.Properties.Resources.icon__pencil_;
             this.pictureBox3.Location = new System.Drawing.Point(26, 70);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(22, 26);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -291,7 +291,7 @@
             // 
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.button5.Location = new System.Drawing.Point(137, 64);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(108, 38);
             this.button5.TabIndex = 0;
@@ -303,7 +303,7 @@
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.pictureBox2.Image = global::ManagerStudent.Properties.Resources.icon__plus_;
             this.pictureBox2.Location = new System.Drawing.Point(26, 14);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(22, 26);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -314,7 +314,7 @@
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button4.Location = new System.Drawing.Point(137, 6);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(108, 41);
             this.button4.TabIndex = 0;
@@ -326,7 +326,7 @@
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.button2.Location = new System.Drawing.Point(12, 6);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(89, 41);
             this.button2.TabIndex = 0;
@@ -338,7 +338,7 @@
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.button3.Location = new System.Drawing.Point(12, 60);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(89, 46);
             this.button3.TabIndex = 0;
@@ -355,7 +355,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(10, 97);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(257, 97);
             this.panel1.TabIndex = 2;
@@ -363,7 +363,7 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(93, 46);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(136, 23);
             this.textBox3.TabIndex = 1;
@@ -371,7 +371,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(93, 12);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(136, 23);
             this.textBox2.TabIndex = 1;
@@ -400,10 +400,10 @@
             // 
             this.button1.BackColor = System.Drawing.SystemColors.HotTrack;
             this.button1.ForeColor = System.Drawing.Color.Transparent;
-            this.button1.Location = new System.Drawing.Point(202, 14);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Location = new System.Drawing.Point(194, 14);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 41);
+            this.button1.Size = new System.Drawing.Size(106, 41);
             this.button1.TabIndex = 1;
             this.button1.Text = "Tìm kiếm";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -413,9 +413,9 @@
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(10, 24);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(188, 23);
+            this.textBox1.Size = new System.Drawing.Size(180, 23);
             this.textBox1.TabIndex = 0;
             // 
             // tabPage2
@@ -427,9 +427,9 @@
             this.tabPage2.Controls.Add(this.button10);
             this.tabPage2.Controls.Add(this.textBox6);
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage2.Size = new System.Drawing.Size(817, 429);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Hạnh kiểm";
@@ -440,7 +440,7 @@
             this.pictureBox6.BackColor = System.Drawing.SystemColors.HotTrack;
             this.pictureBox6.Image = global::ManagerStudent.Properties.Resources.icon__magnifying_glass_;
             this.pictureBox6.Location = new System.Drawing.Point(214, 20);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(26, 26);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -452,7 +452,7 @@
             this.dataGridView2.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(330, 5);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
@@ -472,7 +472,7 @@
             this.panel3.Controls.Add(this.button8);
             this.panel3.Controls.Add(this.button9);
             this.panel3.Location = new System.Drawing.Point(16, 260);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(252, 113);
             this.panel3.TabIndex = 9;
@@ -482,7 +482,7 @@
             this.pictureBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.pictureBox7.Image = global::ManagerStudent.Properties.Resources.icon__x_letter_;
             this.pictureBox7.Location = new System.Drawing.Point(146, 70);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(26, 26);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -494,7 +494,7 @@
             this.pictureBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.pictureBox8.Image = global::ManagerStudent.Properties.Resources.icon__arrow_left_;
             this.pictureBox8.Location = new System.Drawing.Point(146, 12);
-            this.pictureBox8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox8.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(28, 28);
             this.pictureBox8.TabIndex = 6;
@@ -505,7 +505,7 @@
             this.pictureBox9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.pictureBox9.Image = global::ManagerStudent.Properties.Resources.icon__pencil_;
             this.pictureBox9.Location = new System.Drawing.Point(26, 70);
-            this.pictureBox9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox9.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(22, 26);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -516,7 +516,7 @@
             // 
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.button6.Location = new System.Drawing.Point(137, 64);
-            this.button6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button6.Margin = new System.Windows.Forms.Padding(2);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(108, 38);
             this.button6.TabIndex = 0;
@@ -528,7 +528,7 @@
             this.pictureBox10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.pictureBox10.Image = global::ManagerStudent.Properties.Resources.icon__plus_;
             this.pictureBox10.Location = new System.Drawing.Point(26, 14);
-            this.pictureBox10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox10.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(22, 26);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -539,7 +539,7 @@
             // 
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button7.Location = new System.Drawing.Point(137, 6);
-            this.button7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(108, 41);
             this.button7.TabIndex = 0;
@@ -551,7 +551,7 @@
             // 
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.button8.Location = new System.Drawing.Point(12, 6);
-            this.button8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button8.Margin = new System.Windows.Forms.Padding(2);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(89, 41);
             this.button8.TabIndex = 0;
@@ -563,7 +563,7 @@
             // 
             this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.button9.Location = new System.Drawing.Point(12, 60);
-            this.button9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button9.Margin = new System.Windows.Forms.Padding(2);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(89, 46);
             this.button9.TabIndex = 0;
@@ -580,7 +580,7 @@
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Location = new System.Drawing.Point(10, 97);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(257, 97);
             this.panel4.TabIndex = 8;
@@ -589,7 +589,7 @@
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(93, 46);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(136, 23);
             this.textBox4.TabIndex = 1;
@@ -597,7 +597,7 @@
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(93, 12);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(2);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(136, 23);
             this.textBox5.TabIndex = 1;
@@ -627,7 +627,7 @@
             this.button10.BackColor = System.Drawing.SystemColors.HotTrack;
             this.button10.ForeColor = System.Drawing.Color.Transparent;
             this.button10.Location = new System.Drawing.Point(202, 14);
-            this.button10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button10.Margin = new System.Windows.Forms.Padding(2);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(98, 41);
             this.button10.TabIndex = 7;
@@ -639,7 +639,7 @@
             // 
             this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox6.Location = new System.Drawing.Point(10, 24);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(2);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(188, 23);
             this.textBox6.TabIndex = 6;
@@ -654,9 +654,9 @@
             this.tabPage3.Controls.Add(this.button25);
             this.tabPage3.Controls.Add(this.textBox15);
             this.tabPage3.Location = new System.Drawing.Point(4, 26);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage3.Size = new System.Drawing.Size(817, 429);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Học lực";
@@ -667,7 +667,7 @@
             this.pictureBox21.BackColor = System.Drawing.SystemColors.HotTrack;
             this.pictureBox21.Image = global::ManagerStudent.Properties.Resources.icon__magnifying_glass_;
             this.pictureBox21.Location = new System.Drawing.Point(214, 20);
-            this.pictureBox21.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox21.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox21.Name = "pictureBox21";
             this.pictureBox21.Size = new System.Drawing.Size(26, 26);
             this.pictureBox21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -679,7 +679,7 @@
             this.dataGridView5.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView5.Location = new System.Drawing.Point(330, 5);
-            this.dataGridView5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView5.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.RowHeadersWidth = 51;
             this.dataGridView5.RowTemplate.Height = 24;
@@ -699,7 +699,7 @@
             this.panel9.Controls.Add(this.button23);
             this.panel9.Controls.Add(this.button24);
             this.panel9.Location = new System.Drawing.Point(16, 267);
-            this.panel9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel9.Margin = new System.Windows.Forms.Padding(2);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(252, 113);
             this.panel9.TabIndex = 9;
@@ -709,7 +709,7 @@
             this.pictureBox22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.pictureBox22.Image = global::ManagerStudent.Properties.Resources.icon__x_letter_;
             this.pictureBox22.Location = new System.Drawing.Point(146, 70);
-            this.pictureBox22.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox22.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox22.Name = "pictureBox22";
             this.pictureBox22.Size = new System.Drawing.Size(26, 26);
             this.pictureBox22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -721,7 +721,7 @@
             this.pictureBox23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.pictureBox23.Image = global::ManagerStudent.Properties.Resources.icon__arrow_left_;
             this.pictureBox23.Location = new System.Drawing.Point(146, 12);
-            this.pictureBox23.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox23.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox23.Name = "pictureBox23";
             this.pictureBox23.Size = new System.Drawing.Size(28, 28);
             this.pictureBox23.TabIndex = 6;
@@ -732,7 +732,7 @@
             this.pictureBox24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.pictureBox24.Image = global::ManagerStudent.Properties.Resources.icon__pencil_;
             this.pictureBox24.Location = new System.Drawing.Point(26, 70);
-            this.pictureBox24.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox24.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox24.Name = "pictureBox24";
             this.pictureBox24.Size = new System.Drawing.Size(22, 26);
             this.pictureBox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -743,7 +743,7 @@
             // 
             this.button21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.button21.Location = new System.Drawing.Point(137, 64);
-            this.button21.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button21.Margin = new System.Windows.Forms.Padding(2);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(108, 38);
             this.button21.TabIndex = 0;
@@ -755,7 +755,7 @@
             this.pictureBox25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.pictureBox25.Image = global::ManagerStudent.Properties.Resources.icon__plus_;
             this.pictureBox25.Location = new System.Drawing.Point(26, 14);
-            this.pictureBox25.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox25.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox25.Name = "pictureBox25";
             this.pictureBox25.Size = new System.Drawing.Size(22, 26);
             this.pictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -766,7 +766,7 @@
             // 
             this.button22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button22.Location = new System.Drawing.Point(137, 6);
-            this.button22.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button22.Margin = new System.Windows.Forms.Padding(2);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(108, 41);
             this.button22.TabIndex = 0;
@@ -778,7 +778,7 @@
             // 
             this.button23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.button23.Location = new System.Drawing.Point(12, 6);
-            this.button23.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button23.Margin = new System.Windows.Forms.Padding(2);
             this.button23.Name = "button23";
             this.button23.Size = new System.Drawing.Size(89, 41);
             this.button23.TabIndex = 0;
@@ -790,7 +790,7 @@
             // 
             this.button24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.button24.Location = new System.Drawing.Point(12, 60);
-            this.button24.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button24.Margin = new System.Windows.Forms.Padding(2);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(89, 46);
             this.button24.TabIndex = 0;
@@ -813,7 +813,7 @@
             this.panel10.Controls.Add(this.label9);
             this.panel10.Controls.Add(this.label10);
             this.panel10.Location = new System.Drawing.Point(10, 67);
-            this.panel10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel10.Margin = new System.Windows.Forms.Padding(2);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(257, 181);
             this.panel10.TabIndex = 8;
@@ -821,7 +821,7 @@
             // textBox18
             // 
             this.textBox18.Location = new System.Drawing.Point(104, 145);
-            this.textBox18.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox18.Margin = new System.Windows.Forms.Padding(2);
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new System.Drawing.Size(136, 23);
             this.textBox18.TabIndex = 1;
@@ -830,7 +830,7 @@
             // textBox17
             // 
             this.textBox17.Location = new System.Drawing.Point(104, 109);
-            this.textBox17.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox17.Margin = new System.Windows.Forms.Padding(2);
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(136, 23);
             this.textBox17.TabIndex = 1;
@@ -839,7 +839,7 @@
             // textBox16
             // 
             this.textBox16.Location = new System.Drawing.Point(104, 80);
-            this.textBox16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox16.Margin = new System.Windows.Forms.Padding(2);
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new System.Drawing.Size(136, 23);
             this.textBox16.TabIndex = 1;
@@ -847,7 +847,7 @@
             // textBox13
             // 
             this.textBox13.Location = new System.Drawing.Point(104, 46);
-            this.textBox13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox13.Margin = new System.Windows.Forms.Padding(2);
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(136, 23);
             this.textBox13.TabIndex = 1;
@@ -855,7 +855,7 @@
             // textBox14
             // 
             this.textBox14.Location = new System.Drawing.Point(104, 12);
-            this.textBox14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox14.Margin = new System.Windows.Forms.Padding(2);
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(136, 23);
             this.textBox14.TabIndex = 1;
@@ -915,7 +915,7 @@
             this.button25.BackColor = System.Drawing.SystemColors.HotTrack;
             this.button25.ForeColor = System.Drawing.Color.Transparent;
             this.button25.Location = new System.Drawing.Point(202, 14);
-            this.button25.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button25.Margin = new System.Windows.Forms.Padding(2);
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(98, 41);
             this.button25.TabIndex = 7;
@@ -927,7 +927,7 @@
             // 
             this.textBox15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox15.Location = new System.Drawing.Point(10, 24);
-            this.textBox15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox15.Margin = new System.Windows.Forms.Padding(2);
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new System.Drawing.Size(188, 23);
             this.textBox15.TabIndex = 6;
@@ -941,9 +941,9 @@
             this.tabPage4.Controls.Add(this.button15);
             this.tabPage4.Controls.Add(this.textBox9);
             this.tabPage4.Location = new System.Drawing.Point(4, 26);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage4.Size = new System.Drawing.Size(817, 429);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Học kỳ";
@@ -954,7 +954,7 @@
             this.pictureBox11.BackColor = System.Drawing.SystemColors.HotTrack;
             this.pictureBox11.Image = global::ManagerStudent.Properties.Resources.icon__magnifying_glass_;
             this.pictureBox11.Location = new System.Drawing.Point(214, 20);
-            this.pictureBox11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox11.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(26, 26);
             this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -966,7 +966,7 @@
             this.dataGridView3.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(330, 5);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 24;
@@ -986,7 +986,7 @@
             this.panel5.Controls.Add(this.button13);
             this.panel5.Controls.Add(this.button14);
             this.panel5.Location = new System.Drawing.Point(16, 260);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(252, 113);
             this.panel5.TabIndex = 9;
@@ -996,7 +996,7 @@
             this.pictureBox12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.pictureBox12.Image = global::ManagerStudent.Properties.Resources.icon__x_letter_;
             this.pictureBox12.Location = new System.Drawing.Point(146, 70);
-            this.pictureBox12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox12.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(26, 26);
             this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1008,7 +1008,7 @@
             this.pictureBox13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.pictureBox13.Image = global::ManagerStudent.Properties.Resources.icon__arrow_left_;
             this.pictureBox13.Location = new System.Drawing.Point(146, 12);
-            this.pictureBox13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox13.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(28, 28);
             this.pictureBox13.TabIndex = 6;
@@ -1019,7 +1019,7 @@
             this.pictureBox14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.pictureBox14.Image = global::ManagerStudent.Properties.Resources.icon__pencil_;
             this.pictureBox14.Location = new System.Drawing.Point(26, 70);
-            this.pictureBox14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox14.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox14.Name = "pictureBox14";
             this.pictureBox14.Size = new System.Drawing.Size(22, 26);
             this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1030,7 +1030,7 @@
             // 
             this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.button11.Location = new System.Drawing.Point(137, 64);
-            this.button11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button11.Margin = new System.Windows.Forms.Padding(2);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(108, 38);
             this.button11.TabIndex = 0;
@@ -1042,7 +1042,7 @@
             this.pictureBox15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.pictureBox15.Image = global::ManagerStudent.Properties.Resources.icon__plus_;
             this.pictureBox15.Location = new System.Drawing.Point(26, 14);
-            this.pictureBox15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox15.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox15.Name = "pictureBox15";
             this.pictureBox15.Size = new System.Drawing.Size(22, 26);
             this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1053,7 +1053,7 @@
             // 
             this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button12.Location = new System.Drawing.Point(137, 6);
-            this.button12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button12.Margin = new System.Windows.Forms.Padding(2);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(108, 41);
             this.button12.TabIndex = 0;
@@ -1065,7 +1065,7 @@
             // 
             this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.button13.Location = new System.Drawing.Point(12, 6);
-            this.button13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button13.Margin = new System.Windows.Forms.Padding(2);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(89, 41);
             this.button13.TabIndex = 0;
@@ -1077,7 +1077,7 @@
             // 
             this.button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.button14.Location = new System.Drawing.Point(12, 60);
-            this.button14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button14.Margin = new System.Windows.Forms.Padding(2);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(89, 46);
             this.button14.TabIndex = 0;
@@ -1094,7 +1094,7 @@
             this.panel6.Controls.Add(this.label5);
             this.panel6.Controls.Add(this.label6);
             this.panel6.Location = new System.Drawing.Point(10, 97);
-            this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(257, 97);
             this.panel6.TabIndex = 8;
@@ -1102,7 +1102,7 @@
             // textBox7
             // 
             this.textBox7.Location = new System.Drawing.Point(93, 46);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(2);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(136, 23);
             this.textBox7.TabIndex = 1;
@@ -1110,7 +1110,7 @@
             // textBox8
             // 
             this.textBox8.Location = new System.Drawing.Point(93, 12);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(2);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(136, 23);
             this.textBox8.TabIndex = 1;
@@ -1140,7 +1140,7 @@
             this.button15.BackColor = System.Drawing.SystemColors.HotTrack;
             this.button15.ForeColor = System.Drawing.Color.Transparent;
             this.button15.Location = new System.Drawing.Point(202, 14);
-            this.button15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button15.Margin = new System.Windows.Forms.Padding(2);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(98, 41);
             this.button15.TabIndex = 7;
@@ -1152,7 +1152,7 @@
             // 
             this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox9.Location = new System.Drawing.Point(10, 24);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(2);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(188, 23);
             this.textBox9.TabIndex = 6;
@@ -1166,9 +1166,9 @@
             this.tabPage5.Controls.Add(this.button20);
             this.tabPage5.Controls.Add(this.textBox12);
             this.tabPage5.Location = new System.Drawing.Point(4, 26);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage5.Size = new System.Drawing.Size(817, 429);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Loại điểm";
@@ -1179,7 +1179,7 @@
             this.pictureBox16.BackColor = System.Drawing.SystemColors.HotTrack;
             this.pictureBox16.Image = global::ManagerStudent.Properties.Resources.icon__magnifying_glass_;
             this.pictureBox16.Location = new System.Drawing.Point(214, 20);
-            this.pictureBox16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox16.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox16.Name = "pictureBox16";
             this.pictureBox16.Size = new System.Drawing.Size(26, 26);
             this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1192,7 +1192,7 @@
             this.dataGridView4.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Location = new System.Drawing.Point(330, 5);
-            this.dataGridView4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView4.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersWidth = 51;
             this.dataGridView4.RowTemplate.Height = 24;
@@ -1212,7 +1212,7 @@
             this.panel7.Controls.Add(this.button18);
             this.panel7.Controls.Add(this.button19);
             this.panel7.Location = new System.Drawing.Point(16, 260);
-            this.panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(252, 113);
             this.panel7.TabIndex = 9;
@@ -1222,7 +1222,7 @@
             this.pictureBox17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.pictureBox17.Image = global::ManagerStudent.Properties.Resources.icon__x_letter_;
             this.pictureBox17.Location = new System.Drawing.Point(146, 70);
-            this.pictureBox17.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox17.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox17.Name = "pictureBox17";
             this.pictureBox17.Size = new System.Drawing.Size(26, 26);
             this.pictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1234,7 +1234,7 @@
             this.pictureBox18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.pictureBox18.Image = global::ManagerStudent.Properties.Resources.icon__arrow_left_;
             this.pictureBox18.Location = new System.Drawing.Point(146, 12);
-            this.pictureBox18.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox18.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox18.Name = "pictureBox18";
             this.pictureBox18.Size = new System.Drawing.Size(28, 28);
             this.pictureBox18.TabIndex = 6;
@@ -1245,7 +1245,7 @@
             this.pictureBox19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.pictureBox19.Image = global::ManagerStudent.Properties.Resources.icon__pencil_;
             this.pictureBox19.Location = new System.Drawing.Point(26, 70);
-            this.pictureBox19.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox19.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox19.Name = "pictureBox19";
             this.pictureBox19.Size = new System.Drawing.Size(22, 26);
             this.pictureBox19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1256,7 +1256,7 @@
             // 
             this.button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.button16.Location = new System.Drawing.Point(137, 64);
-            this.button16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button16.Margin = new System.Windows.Forms.Padding(2);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(108, 38);
             this.button16.TabIndex = 0;
@@ -1268,7 +1268,7 @@
             this.pictureBox20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.pictureBox20.Image = global::ManagerStudent.Properties.Resources.icon__plus_;
             this.pictureBox20.Location = new System.Drawing.Point(26, 14);
-            this.pictureBox20.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox20.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox20.Name = "pictureBox20";
             this.pictureBox20.Size = new System.Drawing.Size(22, 26);
             this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1279,7 +1279,7 @@
             // 
             this.button17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button17.Location = new System.Drawing.Point(137, 6);
-            this.button17.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button17.Margin = new System.Windows.Forms.Padding(2);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(108, 41);
             this.button17.TabIndex = 0;
@@ -1291,7 +1291,7 @@
             // 
             this.button18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.button18.Location = new System.Drawing.Point(12, 6);
-            this.button18.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button18.Margin = new System.Windows.Forms.Padding(2);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(89, 41);
             this.button18.TabIndex = 0;
@@ -1303,7 +1303,7 @@
             // 
             this.button19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.button19.Location = new System.Drawing.Point(12, 60);
-            this.button19.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button19.Margin = new System.Windows.Forms.Padding(2);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(89, 46);
             this.button19.TabIndex = 0;
@@ -1320,7 +1320,7 @@
             this.panel8.Controls.Add(this.label7);
             this.panel8.Controls.Add(this.label8);
             this.panel8.Location = new System.Drawing.Point(10, 97);
-            this.panel8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel8.Margin = new System.Windows.Forms.Padding(2);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(257, 97);
             this.panel8.TabIndex = 8;
@@ -1328,7 +1328,7 @@
             // textBox10
             // 
             this.textBox10.Location = new System.Drawing.Point(93, 46);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(2);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(136, 23);
             this.textBox10.TabIndex = 1;
@@ -1336,7 +1336,7 @@
             // textBox11
             // 
             this.textBox11.Location = new System.Drawing.Point(93, 12);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox11.Margin = new System.Windows.Forms.Padding(2);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(136, 23);
             this.textBox11.TabIndex = 1;
@@ -1366,7 +1366,7 @@
             this.button20.BackColor = System.Drawing.SystemColors.HotTrack;
             this.button20.ForeColor = System.Drawing.Color.Transparent;
             this.button20.Location = new System.Drawing.Point(202, 14);
-            this.button20.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button20.Margin = new System.Windows.Forms.Padding(2);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(98, 41);
             this.button20.TabIndex = 7;
@@ -1378,7 +1378,7 @@
             // 
             this.textBox12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox12.Location = new System.Drawing.Point(10, 24);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox12.Margin = new System.Windows.Forms.Padding(2);
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(188, 23);
             this.textBox12.TabIndex = 6;
@@ -1389,7 +1389,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(829, 464);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "DanhMuc";
             this.Text = "DanhMuc";
             this.tabControl1.ResumeLayout(false);

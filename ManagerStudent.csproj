@@ -115,6 +115,12 @@
     <Compile Include="GUI\TeacherForm.Designer.cs">
       <DependentUpon>TeacherForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\ThongKeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ThongKeForm.Designer.cs">
+      <DependentUpon>ThongKeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\CategoryForm.resx">
@@ -143,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\TeacherForm.resx">
       <DependentUpon>TeacherForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ThongKeForm.resx">
+      <DependentUpon>ThongKeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
