@@ -172,13 +172,16 @@
   <data name="Refresh_2@2x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icon\Refresh_2@2x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="z4728109787836_1d99d92d3e8f7a0da94699d30c1e6386" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\z4728109787836_1d99d92d3e8f7a0da94699d30c1e6386.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icon_people1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icon\icon_people.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon _plus_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icon\icon _plus_.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="z4728109787836_1d99d92d3e8f7a0da94699d30c1e6386" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icon\z4728109787836_1d99d92d3e8f7a0da94699d30c1e6386.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="tải xuống" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icon\tải xuống.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

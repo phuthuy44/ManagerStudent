@@ -133,10 +133,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(25, 38);
+            this.textBox1.Location = new System.Drawing.Point(25, 31);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(138, 21);
+            this.textBox1.Size = new System.Drawing.Size(138, 36);
             this.textBox1.TabIndex = 4;
             // 
             // button1
@@ -499,10 +499,10 @@
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(9, 39);
+            this.textBox10.Location = new System.Drawing.Point(25, 34);
             this.textBox10.Multiline = true;
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(155, 25);
+            this.textBox10.Size = new System.Drawing.Size(139, 38);
             this.textBox10.TabIndex = 5;
             // 
             // panel3

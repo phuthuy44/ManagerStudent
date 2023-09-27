@@ -73,12 +73,6 @@
     <Compile Include="GUI\ClassForm.Designer.cs">
       <DependentUpon>ClassForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\DanhMuc.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\DanhMuc.Designer.cs">
-      <DependentUpon>DanhMuc.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\HocSinhForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,9 +122,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ClassForm.resx">
       <DependentUpon>ClassForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\DanhMuc.resx">
-      <DependentUpon>DanhMuc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\HocSinhForm.resx">
       <DependentUpon>HocSinhForm.cs</DependentUpon>
@@ -243,6 +234,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icon\z4728109787836_1d99d92d3e8f7a0da94699d30c1e6386.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\tải xuống.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -23,7 +23,6 @@ C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.pdb
 C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.MainForm.resources
 C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.LoginForm.resources
 C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.HocSinhForm.resources
-C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.DanhMuc.resources
 C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.CategoryForm.resources
 C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.ClassForm.resources
 C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.TeacherForm.resources
