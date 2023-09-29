@@ -12,11 +12,16 @@ CREATE TABLE Point(
 	gradeID VARCHAR(6) NOT NULL,
 	typeofpointID VARCHAR(8) NOT NULL,
 	subjectID VARCHAR(8), -- Giá trị này NULL nếu loại điểm là điểm hạnh kiểm
+	typeofsubjectID VARCHAR(8),
 	academicyearID VARCHAR(8) NOT NULL,
 	semesterID VARCHAR(6) NOT NULL,
 	point INT,
+	createDate DATETIME,
+	updateDate DATETIME,
+	finishDate DATETIME,
 	PRIMARY KEY (studentID, classID, typeofpointID, 
-		subjectID, academicyearID, semesterID, gradeID)
+		subjectID, academicyearID, semesterID, gradeID, 
+		typeofsubjectID)
 )
 
 -- Tạo bảng học kì
@@ -24,8 +29,11 @@ CREATE TABLE Semester (
 	ID VARCHAR(6) NOT NULL,
 	semesterName NVARCHAR(100),
 	coefficient INT, -- Hệ số của học kì	
+	startDate DATETIME,
+	finishDate DATETIME,
 	PRIMARY KEY (ID)
 )
+
 
 -- Thêm các khoá chính và khoá ngoại
 ALTER TABLE Point 
@@ -35,8 +43,11 @@ ALTER TABLE Point
 CREATE TABLE AcademicYear (
 	ID VARCHAR(8) NOT NULL,
 	academicyearName NVARCHAR(100),
+	startDate DATETIME,
+	finishDate DATETIME,
 	PRIMARY KEY (ID)
 )
+ 
 -- Thêm các khoá chính và khoá ngoại
 ALTER TABLE Point 
 	ADD CONSTRAINT Point_academicyearID_AcademicYear_ID 
@@ -57,12 +68,13 @@ CREATE TABLE Subject(
 	ID VARCHAR(8) NOT NULL,
 	typeofsubjectID VARCHAR(8),
 	subjectName VARCHAR(100),
-	PRIMARY KEY (ID)
+	PRIMARY KEY (ID, typeofsubjectID)
 )
+
 -- Thêm các khoá chính và khoá ngoại
 ALTER TABLE Point 
-	ADD CONSTRAINT Point_subjectID_Subject_ID 
-	FOREIGN KEY (subjectID) REFERENCES Subject(ID)
+	ADD CONSTRAINT Point_subjectID_typeofsubjectID_Subject_ID_typeofsubjectID 
+	FOREIGN KEY (subjectID, typeofsubjectID) REFERENCES Subject(ID, typeofsubjectID)
 -- Tạo bảng loại môn học
 CREATE TABLE TypeOfSubject(
 	ID VARCHAR(8) NOT NULL,
@@ -74,13 +86,22 @@ CREATE TABLE TypeOfSubject(
 ALTER TABLE [Subject] 
 	ADD CONSTRAINT Subject_typeofsubjectID_TypeOfSubject_ID
 	FOREIGN KEY (typeofsubjectID) REFERENCES TypeOfSubject(ID)
-
+ALTER TABLE Point 
+	ADD CONSTRAINT Point_typeofsubjectID_TypeOfSubject_ID
+	FOREIGN KEY (typeofsubjectID) REFERENCES TypeOfSubject(ID)
 -- Tạo bảng chức vụ
 CREATE TABLE Position(
 	ID VARCHAR(8) NOT NULL,
 	positionName NVARCHAR(100),
+	createDate DATETIME,
+	updateDate DATETIME,
+	finishDate DATETIME,
 	PRIMARY KEY (ID)
 )
+
+
+
+--DELETE [Assignment] 
 --	Tạo bảng phân công
 CREATE TABLE Assignment(
 	teacherID VARCHAR(8) NOT NULL,
@@ -90,10 +111,12 @@ CREATE TABLE Assignment(
 	positionID VARCHAR (8),
 	academicyearID VARCHAR (8),
 	subjectID VARCHAR (8),
+	typeofsubjectID VARCHAR(8),
 	statusID VARCHAR(8),
 	PRIMARY KEY (teacherID, classID, semesterID, 
-	positionID, academicyearID, subjectID, gradeID, statusID)
+	positionID, academicyearID, subjectID, gradeID, statusID, typeofsubjectID)
 )
+
 -- Thêm các khoá chính và khoá ngoại
 ALTER TABLE Assignment 
 	ADD CONSTRAINT Assignment_semesterID_Semester_ID
@@ -102,8 +125,11 @@ ALTER TABLE Assignment
 	ADD CONSTRAINT Assignment_academicyearID_AcademicYear_ID
 	FOREIGN KEY (academicyearID) REFERENCES AcademicYear(ID)
 ALTER TABLE Assignment 
-	ADD CONSTRAINT Assignment_subjectID_Subject_ID
-	FOREIGN KEY (subjectID) REFERENCES Subject(ID)
+	ADD CONSTRAINT Assignment_subjectID_typeofsubjectID_Subject_ID_typeofsubjectID
+	FOREIGN KEY (subjectID, typeofsubjectID) REFERENCES Subject(ID, typeofsubjectID)
+ALTER TABLE Assignment 
+	ADD CONSTRAINT Assignment_typeofsubjectID_TypeOfSubject_ID
+	FOREIGN KEY (typeofsubjectID) REFERENCES TypeOfSubject(ID)
 ALTER TABLE Assignment 
 	ADD CONSTRAINT Assignment_positionID_Position_ID
 	FOREIGN KEY (positionID) REFERENCES Position(ID)
@@ -111,20 +137,37 @@ ALTER TABLE Assignment
 -- Tạo bảng học sinh
 CREATE TABLE Student(
 	ID VARCHAR(8) NOT NULL,
-	semesterID VARCHAR(8) NOT NULL,
 	gender NVARCHAR(50),
-	studentName NVARCHAR(100),
-	studentBirthday DATETIME,	
-	studentPhone VARCHAR (11),
-	studentEmail VARCHAR (100),
-	studentparentName NVARCHAR (100),
-	studentparentBirthday DATETIME,
+	name NVARCHAR(100),
+	birthday DATETIME,	
+	numberPhone VARCHAR (11),
+	email VARCHAR (100),
 	birthplace NVARCHAR(100),
 	[address] NVARCHAR(100),
 	image VARCHAR(100),
+	createDate DATETIME,
+	updateDate DATETIME,
+	finishDate DATETIME,
 	PRIMARY KEY (ID)
 )
 
+-- Tạo bảng cha mẹ học sinh
+CREATE TABLE Parent(
+	studentID VARCHAR(8) NOT NULL,
+	name NVARCHAR(100),
+	birthday DATETIME,
+	gender NVARCHAR(50),
+	numberPhone VARCHAR(11),
+	address NVARCHAR(100),
+	image VARCHAR(100),
+	createDate DATETIME,
+	updateDate DATETIME,
+	finishDate DATETIME,
+	PRIMARY KEY (studentID)
+)
+ALTER TABLE Parent 
+	ADD CONSTRAINT Parent_studentID_Student_ID 
+	FOREIGN KEY (studentID) REFERENCES Student(ID)
 -- Tạo bảng giáo viên
 CREATE TABLE Teacher(
 	ID VARCHAR(8) NOT NULL,
@@ -134,8 +177,11 @@ CREATE TABLE Teacher(
 	birthplace NVARCHAR(8),
 	email VARCHAR(100),
 	phonenumber VARCHAR(11),
-	currentResidence NVARCHAR(100),
+	address NVARCHAR(100),
 	image VARCHAR(100),
+	createDate DATETIME,
+	updateDate DATETIME,
+	finishDate DATETIME,
 	PRIMARY KEY (ID)	
 )
 
@@ -149,8 +195,13 @@ CREATE TABLE Account(
 	username VARCHAR(100) NOT NULL,
 	password VARCHAR(100),
 	teacherID VARCHAR(8),
-	PRIMARY KEY (username)
+	createDate DATETIME,
+	updateDate DATETIME,
+	finishDate DATETIME,
+	statusID VARCHAR(8),
+	PRIMARY KEY (username, statusID, teacherID)
 )
+
 -- Thêm các khoá chính và khoá ngoại
 ALTER TABLE [Account]  
 	ADD CONSTRAINT Account_teacherID_Teacher_ID
@@ -174,6 +225,11 @@ CREATE TABLE Class(
 ALTER TABLE Point 
 	ADD CONSTRAINT Point_studentID_Student_ID
 	FOREIGN KEY (studentID) REFERENCES Student(ID)
+
+ALTER TABLE Point 
+	ADD CONSTRAINT Point_classID_gradeID_Class_ID_gradeID
+	FOREIGN KEY (classID, gradeID) REFERENCES Class(ID, gradeID)
+	
 	
 ALTER TABLE [Assignment]  
 	ADD CONSTRAINT Assignment_classID_gradeID_Class_ID_gradeID
@@ -183,7 +239,7 @@ CREATE TABLE Grade(
 	ID VARCHAR(6) NOT NULL,
 	gradeName NVARCHAR(100),
 	maxclassofGrade INT,
-	quatityclassofGrade INT
+	quantityclassofGrade INT
 	PRIMARY KEY (ID)	
 )
 ALTER TABLE Point 
@@ -215,6 +271,8 @@ CREATE TABLE Capacity(
 	PRIMARY KEY (ID)
 )
 -- Tạo bảng tổng kết cuối mỗi học kỳ
+
+-------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE Summary(
 	studentID VARCHAR(8) NOT NULL,
 	classID VARCHAR(8) NOT NULL,
@@ -223,10 +281,12 @@ CREATE TABLE Summary(
 	academicyearID VARCHAR(8) NOT NULL,
 	semesterID VARCHAR(6) NOT NULL,
 	gradeID VARCHAR(6) NOT NULL,
-	subjectID VARCHAR(8) NOT NULL,
-	point INT,
+	
+	createDate DATETIME,
+	updateDate DATETIME,
+	finishDate DATETIME,
 	PRIMARY KEY (studentID, classID, studentconductID, studentcapacityID, 
-		academicyearID, semesterID, gradeID, subjectID) 
+		academicyearID, semesterID, gradeID) 
 )
 -- ALTER TABLE Summary 
 -- 	ADD CONSTRAINT Summary_capacityID_Capacity_ID
@@ -239,9 +299,7 @@ CREATE TABLE Summary(
 ALTER TABLE Summary  
 	ADD CONSTRAINT Summary_studentID_Student_ID
 	FOREIGN KEY (studentID) REFERENCES Student(ID)
-ALTER TABLE Summary 
-	ADD CONSTRAINT Summary_subjectID_Subject_ID
-	FOREIGN KEY (subjectID) REFERENCES Subject(ID)
+
 ALTER TABLE Summary 
 	ADD CONSTRAINT Summary_semesterID_Semester_ID
 	FOREIGN KEY (semesterID) REFERENCES Semester(ID)
@@ -266,6 +324,9 @@ CREATE TABLE StudentConduct(
 	gradeID VARCHAR(6) NOT NULL,
 	conductName NVARCHAR(100),
 	point INT,
+	createDate DATETIME,
+	updateDate DATETIME,
+	finishDate DATETIME,
 	PRIMARY KEY (studentconductID, studentID, classID, 
 		academicyearID, semesterID, gradeID) 
 )
@@ -304,10 +365,15 @@ CREATE TABLE StudentCapacity(
 	semesterID VARCHAR(6) NOT NULL,
 	gradeID VARCHAR(6) NOT NULL,
 	capacityName NVARCHAR(100),
+	point INT,
+	createDate DATETIME,
+	updateDate DATETIME,
+	finishDate DATETIME,
 	PRIMARY KEY (studentcapacityID, studentID, classID, 
 		academicyearID, semesterID, gradeID) 
 )	
-	
+
+
 ALTER TABLE StudentCapacity
 	ADD CONSTRAINT StudentCapacity_studentID_Student_ID
 	FOREIGN KEY (studentID)
@@ -341,7 +407,12 @@ CREATE TABLE Status (
 	ID VARCHAR(8),
 	statusName NVARCHAR(100),
 	PRIMARY KEY (ID)
-)	
+)
+
+ALTER TABLE [Account]  
+	ADD CONSTRAINT Account_statusID_Status_ID
+	FOREIGN KEY (statusID) REFERENCES Status(ID)
+--
 CREATE TABLE StudentClassSemesterAcademicYear(
 	studentID VARCHAR(8) NOT NULL,
 	classID VARCHAR(8) NOT NULL,
@@ -373,19 +444,27 @@ ALTER TABLE StudentClassSemesterAcademicYear
 	FOREIGN KEY (academicyearID) REFERENCES AcademicYear(ID)
 	
 
+	--
+	-- use StudentManager
 CREATE TABLE SubjectOfTeacher(
 	teacherID VARCHAR(8) NOT NULL,
 	subjectID VARCHAR(8) NOT NULL,
-	PRIMARY KEY (teacherID, subjectID)
+	typeofsubjectID VARCHAR(8) NOT NULL,
+	PRIMARY KEY (teacherID, subjectID, typeofsubjectID)
 )
 ALTER TABLE SubjectOfTeacher 
 	ADD CONSTRAINT SubjectOfTeacher_teacherID_Teacher_ID 
 	FOREIGN KEY (teacherID) 
 	REFERENCES Teacher(ID)
 ALTER TABLE SubjectOfTeacher 
-	ADD CONSTRAINT SubjectOfTeachersubjectID_Subject_ID 
-	FOREIGN KEY (subjectID) 
-	REFERENCES Subject(ID)
+	ADD CONSTRAINT SubjectOfTeacher_subjectID_typeofsubjectID_Subject_ID_typeofsubjectID 
+	FOREIGN KEY (subjectID, typeofsubjectID) 
+	REFERENCES Subject(ID, typeofsubjectID)
+ALTER TABLE SubjectOfTeacher 
+	ADD CONSTRAINT SubjectOfTeacher_typeofsubjectID_TypeOfSubject_ID 
+	FOREIGN KEY (typeofsubjectID) 
+	REFERENCES TypeOfSubject(ID)
+
 
 ALTER TABLE [Assignment] 
 	ADD CONSTRAINT Assignment_statusID_Status_ID
@@ -393,7 +472,23 @@ ALTER TABLE [Assignment]
 	  
 	
 	
+CREATE TRIGGER check_Grade
+ON Grade
+INSTEAD OF INSERT
+AS
+BEGIN
+    IF EXISTS (SELECT * FROM inserted WHERE maxclassofGrade < 0 OR quantityclassofGrade < 0)
+    BEGIN
+        RAISERROR ('Quantity cannot be negative', 16, 1);
+        ROLLBACK TRANSACTION;
+    END
+    ELSE
+    BEGIN
+        INSERT INTO Grade (maxclassofGrade, quantityclassofGrade) 
+        SELECT maxclassofGrade, quantityclassofGrade FROM inserted;
+    END
+END;
 	
+
+
 	
-	
-SELECT * FROM AcademicYear ay 
