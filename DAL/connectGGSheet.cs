@@ -5,7 +5,7 @@ using Google.Apis.Sheets.v4;
 using Google.Apis.Sheets.v4.Data;
 
 
-namespace CSharpProject.DAO
+namespace ManagerStudent.DAL
 {
     public class ConnectGGSheet
     {

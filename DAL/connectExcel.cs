@@ -1,7 +1,7 @@
 ﻿using System;
 using OfficeOpenXml;
 
-namespace CSharpProject.DAO
+namespace ManagerStudent.DAL
 {
 	public class connectExcel
 	{

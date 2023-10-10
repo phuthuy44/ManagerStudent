@@ -259,5 +259,8 @@
   <ItemGroup>
     <None Include="icon\tải xuống.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DAL\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

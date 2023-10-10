@@ -1,5 +1,6 @@
 ﻿using ManagerStudent.GUI;
 using ManagerStudent.DTO;
+using ManagerStudent.DAL;
 using System;
 using System.Windows.Forms;
 
