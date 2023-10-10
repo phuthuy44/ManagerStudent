@@ -8,9 +8,12 @@ namespace CSharpProject.DTO
 {
     public class Point:StudentResult
     {
-        public required string subjectID {  get; set; }
+        /*public required string subjectID {  get; set; }
         public required string typeofsubjectID {  get; set; }
-        public required string typeofpointID {  get; set; }
+        public required string typeofpointID {  get; set; }*/
+        public  string subjectID { get; set; }
+        public  string typeofsubjectID { get; set; }
+        public  string typeofpointID { get; set; }
         public Point(string subjectID, string typeofsubjectID, string typeofpointID, string studentID, string classID, string academicyearID, string semesterID, string gradeID, string name, float point, DateTime createDate, DateTime updateDate, DateTime updateTime)
         {
             this.typeofsubjectID = typeofsubjectID;

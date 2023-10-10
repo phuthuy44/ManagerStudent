@@ -9,13 +9,24 @@ namespace CSharpProject.DTO
 {
     public class People
     {
-        public required string ID
+        /* public required string ID
+         {
+             get;
+             set;
+         }
+
+         public required string Name
+         {
+             get;
+             set;
+         }*/
+        public string ID
         {
             get;
             set;
         }
 
-        public required string Name
+        public  string Name
         {
             get;
             set;
@@ -46,7 +57,12 @@ namespace CSharpProject.DTO
             get;
             set;
         }
-        public required string Phone
+        /* public required string Phone
+         {
+             get;
+             set;
+         }*/
+        public string Phone
         {
             get;
             set;
