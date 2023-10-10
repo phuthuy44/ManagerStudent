@@ -1,5 +1,9 @@
-﻿using System;
+﻿/*using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using OfficeOpenXml;
+
 
 namespace ManagerStudent.DAL
 {
@@ -11,7 +15,7 @@ namespace ManagerStudent.DAL
 			
         }
 		public static void exportDataToExcel(string path, String sheet_name, IList<IList<object>> data) {
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            ExcelPackage. = LicenseContext.NonCommercial;
             // Tạo một tệp Excel mới
             //var newFile = new FileInfo("/CSharpProject/CSharpProject/CSharpProject/DAO/Excel/demo2.xlsx");
             var newFile = new FileInfo(path);
@@ -48,3 +52,4 @@ namespace ManagerStudent.DAL
     }
 }
 
+*/
