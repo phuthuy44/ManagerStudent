@@ -61,6 +61,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\AcademicYear.cs" />
+    <Compile Include="DTO\Account.cs" />
+    <Compile Include="DTO\Capacity.cs" />
+    <Compile Include="DTO\Class.cs" />
+    <Compile Include="DTO\Conduct.cs" />
+    <Compile Include="DTO\Grade.cs" />
+    <Compile Include="DTO\Parent.cs" />
+    <Compile Include="DTO\People.cs" />
+    <Compile Include="DTO\Point.cs" />
+    <Compile Include="DTO\Position.cs" />
+    <Compile Include="DTO\Semester.cs" />
+    <Compile Include="DTO\Status.cs" />
+    <Compile Include="DTO\Student.cs" />
+    <Compile Include="DTO\StudentCapacity.cs" />
+    <Compile Include="DTO\StudentConduct.cs" />
+    <Compile Include="DTO\StudentResult.cs" />
+    <Compile Include="DTO\Subject.cs" />
+    <Compile Include="DTO\Teacher.cs" />
+    <Compile Include="DTO\TypeOfPoint.cs" />
+    <Compile Include="DTO\TypeOfSubject.cs" />
     <Compile Include="GUI\CategoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +169,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

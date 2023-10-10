@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpProject.DTO
+namespace ManagerStudent.DTO
 {
     public class AcademicYear
     {

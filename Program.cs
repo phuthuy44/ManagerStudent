@@ -1,8 +1,6 @@
 ﻿using ManagerStudent.GUI;
+using ManagerStudent.DTO;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ManagerStudent
@@ -15,9 +13,12 @@ namespace ManagerStudent
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
+            /*Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(new MainForm());*/
+            Student student = new Student();
+            student.Name = "123acb";
+            Console.WriteLine(student.Name);
         }
     }
 }

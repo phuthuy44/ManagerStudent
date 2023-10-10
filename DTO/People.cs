@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpProject.DTO
+namespace ManagerStudent.DTO
 
 {
     public class People
     {
-        public required string ID
+        public string ID
         {
             get;
             set;
         }
 
-        public required string Name
+        public string Name
         {
             get;
             set;
@@ -46,7 +46,7 @@ namespace CSharpProject.DTO
             get;
             set;
         }
-        public required string Phone
+        public string Phone
         {
             get;
             set;

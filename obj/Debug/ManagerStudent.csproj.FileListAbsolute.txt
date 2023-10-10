@@ -28,3 +28,21 @@ C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.Clas
 C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.TeacherForm.resources
 C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.TaoLopForm.resources
 C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.ThongKeForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.exe.config
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.exe
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.pdb
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.AssemblyReference.cache
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.CategoryForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.ClassForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.HocSinhForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.LoginForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.MainForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.PointForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.TaoLopForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.TeacherForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.ThongKeForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.Properties.Resources.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.GenerateResource.cache
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.CoreCompileInputs.cache
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.exe
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.pdb
