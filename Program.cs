@@ -19,8 +19,7 @@ namespace ManagerStudent
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new HocSinhForm());*/
             ConnectGGSheet connect;
-            connect = new ConnectGGSheet();
-            connect.
+         
             Student student = new Student();
             student.Name = "123acb";
             log log = new log("C:\\Users\\Minh Thao\\Documents\\GitHub\\ManagerStudent\\file.log");
