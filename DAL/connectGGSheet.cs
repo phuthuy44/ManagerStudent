@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
@@ -12,7 +13,7 @@ namespace ManagerStudent.DAL
         public static SheetsService GetSheetsService()
         {
             // Đường dẫn đến tệp JSON chứa thông tin xác thực OAuth 2.0
-            string credentialFilePath = "./DAO/credentials.json";
+            string credentialFilePath = "./DAL/credentials.json";
 
             // Xác thực với tệp JSON
             GoogleCredential credential;
