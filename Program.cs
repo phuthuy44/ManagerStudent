@@ -15,17 +15,10 @@ namespace ManagerStudent
         [STAThread]
         static void Main()
         {
-            /*Application.EnableVisualStyles();
+           Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HocSinhForm());*/
+            Application.Run(new MainForm());
             ConnectGGSheet connect;
-         
-            Student student = new Student();
-            student.Name = "123acb";
-            log log = new log("C:\\Users\\Minh Thao\\Documents\\GitHub\\ManagerStudent\\file.log");
-            log.writeLog(student.Name);
-            Console.WriteLine(student.Name);
-
 
         }
     }
