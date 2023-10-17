@@ -284,12 +284,13 @@
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox7.TabIndex = 7;
             this.pictureBox7.TabStop = false;
+            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
             // 
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.Cyan;
-            this.panel8.Controls.Add(this.panel2);
             this.panel8.Controls.Add(this.panel7);
+            this.panel8.Controls.Add(this.panel2);
             this.panel8.Controls.Add(this.panel5);
             this.panel8.Controls.Add(this.panel6);
             this.panel8.Controls.Add(this.panel4);
