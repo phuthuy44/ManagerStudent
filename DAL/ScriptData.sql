@@ -165,6 +165,7 @@ ALTER TABLE [Account]
 CREATE TABLE Status (
 	ID INT IDENTITY(1, 1) NOT NULL,
 	statusName NVARCHAR(255),
+	isActive BIT --Dùng để phân biệt trạng thái. VD: 0 là trạng thái sai, 1 là trạng thái đúng
 	PRIMARY KEY (ID)
 )
 
