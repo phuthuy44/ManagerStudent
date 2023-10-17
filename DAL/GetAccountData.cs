@@ -25,22 +25,39 @@ namespace ManagerStudent.DAL
                 while (sqlDataReader.Read())
                 {
                     //Thêm 1 dòng vào danh sách 
+                    DateTime? createDate = null;
+                    DateTime? updateDate = null;
+                    DateTime? finishDate = null;
+                    if (!sqlDataReader.IsDBNull(sqlDataReader.GetOrdinal("createDate")))
+                    {
+                        createDate = sqlDataReader.GetDateTime(sqlDataReader.GetOrdinal("createDate"));
+                    }
+                    if (!sqlDataReader.IsDBNull(sqlDataReader.GetOrdinal("updateDate")))
+                    {
+                        createDate = sqlDataReader.GetDateTime(sqlDataReader.GetOrdinal("updateDate"));
+                    }
+                    if (!sqlDataReader.IsDBNull(sqlDataReader.GetOrdinal("finishDate")))
+                    {
+                        createDate = sqlDataReader.GetDateTime(sqlDataReader.GetOrdinal("finishDate"));
+                    }
                     accountList.Add(
                         new Account(
                             sqlDataReader.GetSqlString(sqlDataReader.GetOrdinal("username")).ToString(),
                             sqlDataReader.GetSqlString(sqlDataReader.GetOrdinal("password")).ToString(),
                             sqlDataReader.GetInt32(sqlDataReader.GetOrdinal("teacherID")),
-                            DateTime.Parse(sqlDataReader.GetString(3)),
-                            DateTime.Parse(sqlDataReader.GetString(4)),
-                            DateTime.Parse(sqlDataReader.GetString(5)),
+                            createDate,
+                            updateDate,
+                            finishDate,
                             1));
-                    Console.WriteLine(
+                    
+                    /*Console.WriteLine(
                         sqlDataReader.GetSqlString(sqlDataReader.GetOrdinal("username"))+" "+
                         sqlDataReader.GetSqlString(sqlDataReader.GetOrdinal("password"))+" "+
-                       sqlDataReader.GetInt32(sqlDataReader.GetOrdinal("teacherID")).ToString());
-                    
+                        sqlDataReader.GetInt32(sqlDataReader.GetOrdinal("teacherID")).ToString()+" "+
+                        createDate.ToString()+" "+ updateDate.ToString()+" "+ finishDate.ToString());
+                */
                 }
-                //initConnect.CloseConnection(conn);
+                initConnect.CloseConnection(conn);
             } catch (Exception e)
             {
                 Console.WriteLine(e.Message);
