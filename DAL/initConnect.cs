@@ -6,7 +6,7 @@ namespace ManagerStudent.DAL {
     public class initConnect
     {
         // "Data Source=<tên_máy_chủ>;Initial Catalog=<tên_cơ_sở_dữ_liệu>;User ID=<tên_người_dùng>;Password=<mật_khẩu>;"
-        static string connectionString = "Data Source=localhost;Initial Catalog=demo;User ID=sa;Password=reallyStrongPwd123;";
+        static string connectionString = "Data Source=localhost;Initial Catalog=StudentManager;User ID=sa;Password=Admin0000;";
 
         public static SqlConnection ConnectToDatabase()
         {

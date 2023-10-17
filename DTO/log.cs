@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,11 @@ namespace ManagerStudent.DTO
             {
                 sw.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss}: {message}");
             }
+        }
+
+        internal void writeLog(SqlString sqlString)
+        {
+            throw new NotImplementedException();
         }
     }
 }

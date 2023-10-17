@@ -21,12 +21,13 @@ namespace ManagerStudent
             ConnectGGSheet connect;
          
             Student student = new Student();
-            student.Name = "123acb";
-            log log = new log("C:\\Users\\Minh Thao\\Documents\\GitHub\\ManagerStudent\\file.log");
+            student.Name = "123eeacb";
+            log log = new log("..\\..\\file.log");
             log.writeLog(student.Name);
             Console.WriteLine(student.Name);
 
-
+            GetAccountData getAccountData = new GetAccountData();
+            getAccountData.GetAllAccount();
         }
     }
 }

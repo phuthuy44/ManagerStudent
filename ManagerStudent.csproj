@@ -111,6 +111,7 @@
   <ItemGroup>
     <Compile Include="DAL\connectExcel.cs" />
     <Compile Include="DAL\connectGGSheet.cs" />
+    <Compile Include="DAL\GetAccountData.cs" />
     <Compile Include="DAL\initConnect.cs" />
     <Compile Include="DTO\AcademicYear.cs" />
     <Compile Include="DTO\Account.cs" />
@@ -222,6 +223,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="DAL\credentials.json" />
+    <None Include="DAL\CSV\Data - Student.csv" />
+    <None Include="DAL\CSV\Data - Teacher.csv" />
     <None Include="file.log" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -315,6 +318,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BLL\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DAL\ScriptData.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
