@@ -67,10 +67,13 @@ namespace ManagerStudent.DAL
             //Trả về danh sách
             return accountList;
         }
-        public Account GetAccountByUsername(string username)
+        public Account GetAccountByUsername(string username, string password)
         {
             Account account = new Account();
-            string sql = "SELECT * FROM Account WHERE username = '"+username+")";
+            string sql = "SELECT * " +
+                "FROM Account " +
+                "WHERE username = '"+username+"'" +
+                "AND password = '"+password+"'";
             try
             {
                 SqlConnection conn = initConnect.ConnectToDatabase();
@@ -78,12 +81,40 @@ namespace ManagerStudent.DAL
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                 while (sqlDataReader.Read())
                 {
-                    account.userName = (string)sqlDataReader.GetSqlString(sqlDataReader.GetOrdinal("username"));
+                    DateTime? createDate = null;
+                    DateTime? updateDate = null;
+                    DateTime? finishDate = null;
+                    if (!sqlDataReader.IsDBNull(sqlDataReader.GetOrdinal("createDate")))
+                    {
+                        createDate = sqlDataReader.GetDateTime(sqlDataReader.GetOrdinal("createDate"));
+                    }
+                    if (!sqlDataReader.IsDBNull(sqlDataReader.GetOrdinal("updateDate")))
+                    {
+                        createDate = sqlDataReader.GetDateTime(sqlDataReader.GetOrdinal("updateDate"));
+                    }
+                    if (!sqlDataReader.IsDBNull(sqlDataReader.GetOrdinal("finishDate")))
+                    {
+                        createDate = sqlDataReader.GetDateTime(sqlDataReader.GetOrdinal("finishDate"));
+                    }
+                    account.finishDate = finishDate;
+                    account.createDate = createDate;
+                    account.updateDate = updateDate;
+                    account.userName = sqlDataReader.GetSqlString(sqlDataReader.GetOrdinal("username")).ToString();
+                    account.password = sqlDataReader.GetSqlString(sqlDataReader.GetOrdinal("password")).ToString();
+                    account.teacherID = (int)sqlDataReader.GetSqlInt32(sqlDataReader.GetOrdinal("teacherID"));
+                    Console.WriteLine(
+                            account.userName+" "+
+                            account.password+" "+
+                            account.teacherID+" "+
+                            account.createDate+" "+
+                            account.updateDate+" "+
+                            account.finishDate
+                        );
                 }
                 initConnect.CloseConnection(conn);
             }catch(Exception e)
             {
-
+                Console.WriteLine(e.Message);
             }
 
             return account;
