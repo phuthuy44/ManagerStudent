@@ -118,6 +118,7 @@
     <Compile Include="DTO\Class.cs" />
     <Compile Include="DTO\Conduct.cs" />
     <Compile Include="DTO\Grade.cs" />
+    <Compile Include="DTO\log.cs" />
     <Compile Include="DTO\Parent.cs" />
     <Compile Include="DTO\People.cs" />
     <Compile Include="DTO\Point.cs" />
@@ -220,6 +221,8 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="DAL\credentials.json" />
+    <None Include="file.log" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
