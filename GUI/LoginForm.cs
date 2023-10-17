@@ -1,4 +1,7 @@
-﻿using ManagerStudent.BLL;
+﻿
+using ManagerStudent.BLL;
+using ManagerStudent.DTO;
+using Newtonsoft.Json;
 using System.Windows.Forms;
 
 namespace ManagerStudent.GUI
@@ -14,17 +17,11 @@ namespace ManagerStudent.GUI
             if (textBox1.Text != "")
             {
                 AccountBLL accountBLL = new AccountBLL();
-                if (accountBLL.CheckAccount(textBox1.Text, textBox2.Text))
+                Response response = JsonConvert.DeserializeObject<Response>(accountBLL.CheckAccount(textBox1.Text, textBox2.Text));
+
+                if (!response.Status)
                 {
-                    MessageBox.Show("Đăng nhập thành công!");
-                    MainForm mainForm = new MainForm();
-                    this.Hide();
-                    mainForm.Show();
-                    
-                }
-                else
-                {
-                    MessageBox.Show("Tên đăng nhập hoặc mật khẩu không chính xác!");
+                    MessageBox.Show(response.Message);
                     if (textBox2.Text == "")
                     {
                         textBox1.Focus();
@@ -33,7 +30,15 @@ namespace ManagerStudent.GUI
                     {
                         textBox2.Focus();
                     }
-                    
+
+                }
+                else
+                {
+                    MessageBox.Show(response.Message);
+                    MainForm mainForm = new MainForm();
+                    this.Hide();
+                    mainForm.Show();
+
                 }
             }
             else

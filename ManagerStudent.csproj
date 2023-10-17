@@ -125,6 +125,7 @@
     <Compile Include="DTO\People.cs" />
     <Compile Include="DTO\Point.cs" />
     <Compile Include="DTO\Position.cs" />
+    <Compile Include="DTO\Response.cs" />
     <Compile Include="DTO\Semester.cs" />
     <Compile Include="DTO\Status.cs" />
     <Compile Include="DTO\Student.cs" />

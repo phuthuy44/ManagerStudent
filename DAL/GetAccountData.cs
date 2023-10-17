@@ -1,17 +1,19 @@
-﻿using ManagerStudent.DTO;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using ManagerStudent.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ManagerStudent.DAL
 {
     internal class GetAccountData
     {
         //Lấy danh sách các tài khoản trong bảng account
-        public IList<Account> GetAllAccount()
+        /*public IList<Account> GetAllAccount()
         {
             log log = new log("..\\..\\file.log");
             //Khởi tạo danh sách 
@@ -50,12 +52,12 @@ namespace ManagerStudent.DAL
                             finishDate,
                             1));
                     
-                    /*Console.WriteLine(
+                    *//*Console.WriteLine(
                         sqlDataReader.GetSqlString(sqlDataReader.GetOrdinal("username"))+" "+
                         sqlDataReader.GetSqlString(sqlDataReader.GetOrdinal("password"))+" "+
                         sqlDataReader.GetInt32(sqlDataReader.GetOrdinal("teacherID")).ToString()+" "+
                         createDate.ToString()+" "+ updateDate.ToString()+" "+ finishDate.ToString());
-                */
+                *//*
                 }
                 initConnect.CloseConnection(conn);
             } catch (Exception e)
@@ -67,13 +69,19 @@ namespace ManagerStudent.DAL
             //Trả về danh sách
             return accountList;
         }
+        */
         public Account GetAccountByUsername(string username, string password)
         {
             Account account = new Account();
-            string sql = "SELECT * " +
-                "FROM Account " +
-                "WHERE username = '"+username+"'" +
-                "AND password = '"+password+"'";
+            string sql = "SELECT ac.username , ac.password, " +
+                "ac.createDate , ac.updateDate , ac.finishDate , " +
+                "s.statusName , s.isActive  " +
+                "FROM Account ac " +
+                "LEFT JOIN AccountStatus as2 ON as2.accountID = ac.username " +
+                "LEFT JOIN Status s ON s.ID = as2.statusID "+
+                "WHERE ac.username = '"+username+"'" +
+                "AND ac.password='"+password+"'"
+                ;
             try
             {
                 SqlConnection conn = initConnect.ConnectToDatabase();
@@ -101,14 +109,16 @@ namespace ManagerStudent.DAL
                     account.updateDate = updateDate;
                     account.userName = sqlDataReader.GetSqlString(sqlDataReader.GetOrdinal("username")).ToString();
                     account.password = sqlDataReader.GetSqlString(sqlDataReader.GetOrdinal("password")).ToString();
-                    account.teacherID = (int)sqlDataReader.GetSqlInt32(sqlDataReader.GetOrdinal("teacherID"));
+                    //account.teacherID = (int)sqlDataReader.GetSqlInt32(sqlDataReader.GetOrdinal("teacherID"));
+                    account.isActive = sqlDataReader.GetBoolean(sqlDataReader.GetOrdinal("isActive"));
                     Console.WriteLine(
                             account.userName+" "+
                             account.password+" "+
-                            account.teacherID+" "+
+                            //account.teacherID+" "+
                             account.createDate+" "+
                             account.updateDate+" "+
-                            account.finishDate
+                            account.finishDate+" "+
+                            account.isActive
                         );
                 }
                 initConnect.CloseConnection(conn);
