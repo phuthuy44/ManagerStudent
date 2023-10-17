@@ -225,6 +225,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="DAL\credentials.json" />
+    <None Include="DAL\CSV\Data - AccountStatus.csv" />
+    <None Include="DAL\CSV\Data - Status.csv" />
     <None Include="DAL\CSV\Data - Student.csv" />
     <None Include="DAL\CSV\Data - Teacher.csv" />
     <None Include="file.log" />
