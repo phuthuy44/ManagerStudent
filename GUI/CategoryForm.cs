@@ -39,15 +39,17 @@ namespace ManagerStudent.GUI
 
                 ConductBLL conductBLL = new ConductBLL();
                 //MessageBox.Show(conductBLL.GetConductData().Message);
+                dataGridView2.ReadOnly = true; // Khoá toàn bộ DataGridView
+
                 dataGridView2.Rows.Clear();
                 dataGridView2.Columns.AddRange(
                     new DataGridViewTextBoxColumn { Name = "ColumnName1", HeaderText = "Xếp loại" },
                     new DataGridViewTextBoxColumn { Name = "ColumnName2", HeaderText = "Điểm cận trên" },
                     new DataGridViewTextBoxColumn { Name = "ColumnName3", HeaderText = "Điểm cận dưới" }
                 );
-                dataGridView2.Columns[0].Width = 150; // Đặt độ rộng của cột 0 là 150 pixel
+                dataGridView2.Columns[0].Width = 200; // Đặt độ rộng của cột 0 là 200 pixel
                 dataGridView2.Columns[1].Width = 150; // Đặt độ rộng của cột 1 là 150 pixel
-                dataGridView2.Columns[2].Width = 120; // Đặt độ rộng của cột 2 là 120 pixel
+                dataGridView2.Columns[2].Width = 150; // Đặt độ rộng của cột 2 là 150 pixel
 
                 IList<Conduct> conducts = (IList<Conduct>)conductBLL.GetConductData().Data;
                 foreach (var i in conducts)
