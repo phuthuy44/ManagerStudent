@@ -93,3 +93,16 @@ C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.cspr
 C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.CopyComplete
 C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.exe
 C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.pdb
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\EPPlus.System.Drawing.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Buffers.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Memory.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Buffers.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.IO.Packaging.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Memory.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
