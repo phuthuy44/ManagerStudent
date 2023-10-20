@@ -178,6 +178,12 @@
     <Compile Include="GUI\ClassForm.Designer.cs">
       <DependentUpon>ClassForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\InOutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\InOutForm.Designer.cs">
+      <DependentUpon>InOutForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\HocSinhForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,6 +237,9 @@
     <EmbeddedResource Include="GUI\HocSinhForm.resx">
       <DependentUpon>HocSinhForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\InOutForm.resx">
+      <DependentUpon>InOutForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -259,6 +268,7 @@
     <None Include="DAL\CSV\Data - Status.csv" />
     <None Include="DAL\CSV\Data - Student.csv" />
     <None Include="DAL\CSV\Data - Teacher.csv" />
+    <None Include="DAL\CSV\Data - TypeOfSubject.csv" />
     <None Include="file.log" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

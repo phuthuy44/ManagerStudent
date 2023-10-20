@@ -28,12 +28,12 @@ namespace ManagerStudent.DAL
                         (float)sqlDataReader.GetSqlDouble(sqlDataReader.GetOrdinal("upperLimit")),
                         (float)sqlDataReader.GetSqlDouble(sqlDataReader.GetOrdinal("lowerLimit"))
                     ));
-                    Console.WriteLine(
+                    /*Console.WriteLine(
                         sqlDataReader.GetSqlInt32(sqlDataReader.GetOrdinal("ID")) + " "+
                         sqlDataReader.GetSqlString(sqlDataReader.GetOrdinal("conductName")).ToString() + " " +
                         (float)sqlDataReader.GetSqlDouble(sqlDataReader.GetOrdinal("upperLimit")) + " " +
                         (float)sqlDataReader.GetSqlDouble(sqlDataReader.GetOrdinal("lowerLimit")) 
-                        );
+                        );*/
                 }
                 connection.Close();
             }catch(Exception ex)

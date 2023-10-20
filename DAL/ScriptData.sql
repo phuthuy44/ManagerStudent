@@ -55,14 +55,14 @@ CREATE TABLE TypeOfPoint(
 -- Tạo bảng môn học
 CREATE TABLE Subject(
 	ID INT IDENTITY(1, 1) NOT NULL,
-	subjectName VARCHAR(255),
+	subjectName NVARCHAR(255),
 	PRIMARY KEY (ID)
 )
 
 -- Tạo bảng loại môn học
 CREATE TABLE TypeOfSubject(
 	ID INT IDENTITY(1, 1) NOT NULL,
-	subjectName VARCHAR(255),
+	subjectName NVARCHAR(255),
 	totalTest INT, -- Tổng bài test thường xuyên của môn học
 	PRIMARY KEY (ID)
 )
@@ -135,7 +135,7 @@ CREATE TABLE Teacher(
 	birthday DATETIME,
 	birthplace NVARCHAR(255),
 	email VARCHAR(255),
-	phonenumber VARCHAR(11),
+	phonenumber INT(11),
 	address NVARCHAR(255),
 	image VARCHAR(255),
 	createDate DATETIME,

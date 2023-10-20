@@ -42,6 +42,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -130,8 +132,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.textBox16 = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
@@ -352,6 +354,23 @@
             this.panel3.Size = new System.Drawing.Size(251, 122);
             this.panel3.TabIndex = 10;
             // 
+            // textBox19
+            // 
+            this.textBox19.Location = new System.Drawing.Point(105, 77);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(129, 20);
+            this.textBox19.TabIndex = 7;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(3, 78);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(92, 16);
+            this.label14.TabIndex = 6;
+            this.label14.Text = "Điểm cận dưới";
+            // 
             // textBox8
             // 
             this.textBox8.Location = new System.Drawing.Point(105, 47);
@@ -534,6 +553,7 @@
             this.button9.Text = "Nhập Excel";
             this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button10
             // 
@@ -1284,23 +1304,6 @@
             this.textBox16.Size = new System.Drawing.Size(139, 34);
             this.textBox16.TabIndex = 8;
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(3, 78);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(92, 16);
-            this.label14.TabIndex = 6;
-            this.label14.Text = "Điểm cận dưới";
-            // 
-            // textBox19
-            // 
-            this.textBox19.Location = new System.Drawing.Point(105, 77);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(129, 20);
-            this.textBox19.TabIndex = 7;
-            // 
             // CategoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1475,5 +1478,7 @@
         private System.Windows.Forms.PictureBox pictureBox25;
         private System.Windows.Forms.TextBox textBox19;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }

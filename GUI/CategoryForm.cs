@@ -1,7 +1,9 @@
-﻿using ManagerStudent.BLL;
+﻿using DocumentFormat.OpenXml.Office.CustomUI;
+using ManagerStudent.BLL;
 using ManagerStudent.DTO;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ManagerStudent.GUI
@@ -66,6 +68,17 @@ namespace ManagerStudent.GUI
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            
+            InOutForm inOutForm = new InOutForm();
+            if (!inOutForm.Visible)
+            {
+                inOutForm.Show();
+            }
+            
         }
     }
 }

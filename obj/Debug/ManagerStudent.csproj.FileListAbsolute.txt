@@ -106,3 +106,4 @@ C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.IO.Packaging
 C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Memory.xml
 C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.InOutForm.resources
