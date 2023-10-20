@@ -39,7 +39,7 @@ namespace ManagerStudent.GUI
 
         private void InOutForm_Resize(object sender, EventArgs e)
         {
-            tableLayoutPanel1.Size = InOutForm.Size;
+/*            tableLayoutPanel1.Size = InOutForm.Size;*/
         }
     }
 }
