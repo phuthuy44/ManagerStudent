@@ -256,7 +256,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(123, 42);
             this.button7.TabIndex = 6;
-            this.button7.Text = "Tìm Kiếm";
+            this.button7.Text = "Tìm kiếm";
             this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button7.UseVisualStyleBackColor = false;
             // 
@@ -639,7 +639,7 @@
             this.pictureBox12.Location = new System.Drawing.Point(27, 22);
             this.pictureBox12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(40, 25);
+            this.pictureBox12.Size = new System.Drawing.Size(33, 27);
             this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox12.TabIndex = 13;
             this.pictureBox12.TabStop = false;
@@ -648,7 +648,7 @@
             // 
             this.pictureBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.pictureBox7.Image = global::ManagerStudent.Properties.Resources.icon__arrow_right_;
-            this.pictureBox7.Location = new System.Drawing.Point(33, 74);
+            this.pictureBox7.Location = new System.Drawing.Point(27, 75);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(33, 23);
@@ -663,10 +663,9 @@
             this.button9.Location = new System.Drawing.Point(16, 65);
             this.button9.Margin = new System.Windows.Forms.Padding(4);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(167, 43);
+            this.button9.Size = new System.Drawing.Size(188, 43);
             this.button9.TabIndex = 5;
             this.button9.Text = "Xuất Excel";
-            this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button9.UseVisualStyleBackColor = false;
             // 
             // button6
@@ -677,7 +676,7 @@
             this.button6.Location = new System.Drawing.Point(16, 12);
             this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(167, 48);
+            this.button6.Size = new System.Drawing.Size(188, 48);
             this.button6.TabIndex = 0;
             this.button6.Text = "Hiển thị";
             this.button6.UseVisualStyleBackColor = false;

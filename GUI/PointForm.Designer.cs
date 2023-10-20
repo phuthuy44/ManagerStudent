@@ -789,7 +789,7 @@
             this.pictureBox10.Location = new System.Drawing.Point(239, 41);
             this.pictureBox10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(29, 26);
+            this.pictureBox10.Size = new System.Drawing.Size(29, 25);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox10.TabIndex = 16;
             this.pictureBox10.TabStop = false;
@@ -1002,7 +1002,7 @@
             this.button7.Location = new System.Drawing.Point(216, 34);
             this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(149, 37);
+            this.button7.Size = new System.Drawing.Size(149, 40);
             this.button7.TabIndex = 1;
             this.button7.Text = "Tìm kiếm";
             this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
