@@ -433,4 +433,5 @@ ALTER TABLE StudentClassSemesterAcademicYear
 
 
 	 
+	--DBCC CHECKIDENT('TypeOfSubject', RESEED, 0);
 	

@@ -132,8 +132,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.textBox16 = new System.Windows.Forms.TextBox();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
@@ -325,7 +323,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 45);
             this.button3.TabIndex = 6;
-            this.button3.Text = "Nhập Excel";
+            this.button3.Text = "Nhập/Xuất";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button3.UseVisualStyleBackColor = false;
             // 
@@ -1478,7 +1476,5 @@
         private System.Windows.Forms.PictureBox pictureBox25;
         private System.Windows.Forms.TextBox textBox19;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }

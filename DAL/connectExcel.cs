@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using DocumentFormat.OpenXml.Spreadsheet;
 using OfficeOpenXml;
 
 namespace ManagerStudent.DAL
@@ -41,7 +42,7 @@ namespace ManagerStudent.DAL
             }
         }
 
-        public static IList<IList<object>> importDataFromExcel(string path, string sheetName)
+        public static IList<IList<string>> importDataFromExcel(string path, string sheetName)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             var existingFile = new FileInfo(path);
@@ -53,14 +54,16 @@ namespace ManagerStudent.DAL
                 int rows = worksheet.Dimension.Rows;
                 int columns = worksheet.Dimension.Columns;
 
-                var importedData = new List<IList<object>>();
+                var importedData = new List<IList<string>>();
 
                 for (int row = 1; row <= rows; row++)
                 {
-                    var rowData = new List<object>();
+                    
+                    var rowData = new List<string>();
                     for (int col = 1; col <= columns; col++)
                     {
-                        var cellValue = worksheet.Cells[row, col].Value;
+                        var cellValue = worksheet.Cells[row, col].Value.ToString();
+                        //Console.WriteLine(cellValue);
                         rowData.Add(cellValue);
                     }
                     importedData.Add(rowData);
