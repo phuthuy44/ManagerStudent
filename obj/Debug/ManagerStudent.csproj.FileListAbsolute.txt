@@ -46,3 +46,125 @@ C:\Users\ADMIN\Documents\GitHub\Hackathon-Edu\ManagerStudent\obj\Debug\ManagerSt
 C:\Users\ADMIN\Documents\GitHub\Hackathon-Edu\ManagerStudent\obj\Debug\ManagerStudent.csproj.CoreCompileInputs.cache
 C:\Users\ADMIN\Documents\GitHub\Hackathon-Edu\ManagerStudent\obj\Debug\ManagerStudent.exe
 C:\Users\ADMIN\Documents\GitHub\Hackathon-Edu\ManagerStudent\obj\Debug\ManagerStudent.pdb
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.exe.config
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.exe
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.pdb
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\EPPlus.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Auth.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Core.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.PlatformServices.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Sheets.v4.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\OfficeOpenXml.Core.ExcelPackage.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\OfficeOpenXml.Extends.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\QuickWord.OpenXml.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Drawing.Common.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.IO.Packaging.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\EPPlus.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.pdb
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Auth.pdb
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Auth.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Core.pdb
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Core.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Sheets.v4.pdb
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Sheets.v4.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\OfficeOpenXml.Core.ExcelPackage.pdb
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\QuickWord.OpenXml.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Drawing.Common.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.AssemblyReference.cache
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.CategoryForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.ClassForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.HocSinhForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.LoginForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.MainForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.PointForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.TaoLopForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.TeacherForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.ThongKeForm.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.Properties.Resources.resources
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.GenerateResource.cache
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.CoreCompileInputs.cache
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.CopyComplete
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.exe
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.pdb
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\EPPlus.System.Drawing.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Buffers.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Memory.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Buffers.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.IO.Packaging.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Memory.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.InOutForm.resources
+C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.AssemblyReference.cache
+C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.CategoryForm.resources
+C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.ClassForm.resources
+C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.HocSinhForm.resources
+C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.InOutForm.resources
+C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.LoginForm.resources
+C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.MainForm.resources
+C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.PointForm.resources
+C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.TaoLopForm.resources
+C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.TeacherForm.resources
+C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.ThongKeForm.resources
+C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.Properties.Resources.resources
+C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.GenerateResource.cache
+C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.CoreCompileInputs.cache
+C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.exe
+C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.pdb
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.exe.config
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.exe
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.pdb
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\EPPlus.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\EPPlus.Interfaces.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\EPPlus.System.Drawing.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Auth.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Core.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.PlatformServices.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Sheets.v4.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Newtonsoft.Json.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\OfficeOpenXml.Core.ExcelPackage.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\OfficeOpenXml.Extends.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\QuickWord.OpenXml.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\System.Buffers.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\System.Drawing.Common.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\System.IO.Packaging.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\System.Memory.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\EPPlus.xml
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.pdb
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.xml
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Auth.pdb
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Auth.xml
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Core.pdb
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Core.xml
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Sheets.v4.pdb
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Sheets.v4.xml
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\Newtonsoft.Json.xml
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\OfficeOpenXml.Core.ExcelPackage.pdb
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\QuickWord.OpenXml.xml
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\System.Buffers.xml
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\System.Drawing.Common.xml
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\System.IO.Packaging.xml
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\System.Memory.xml
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.CopyComplete

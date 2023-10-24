@@ -8,5 +8,10 @@ namespace ManagerStudent.GUI
         {
             InitializeComponent();
         }
+
+        private void label5_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

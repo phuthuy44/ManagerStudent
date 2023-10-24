@@ -70,21 +70,23 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.Cyan;
+            this.panel2.BackColor = System.Drawing.Color.SpringGreen;
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Location = new System.Drawing.Point(4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(87, 62);
+            this.panel2.Size = new System.Drawing.Size(116, 76);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 44);
+            this.label1.Location = new System.Drawing.Point(23, 54);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.Size = new System.Drawing.Size(61, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "Học Sinh";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -93,9 +95,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::ManagerStudent.Properties.Resources.icon_people1;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(84, 38);
+            this.pictureBox1.Size = new System.Drawing.Size(112, 47);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -105,17 +108,19 @@
             // 
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.pictureBox5);
-            this.panel1.Location = new System.Drawing.Point(3, 263);
+            this.panel1.Location = new System.Drawing.Point(4, 324);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(87, 59);
+            this.panel1.Size = new System.Drawing.Size(116, 73);
             this.panel1.TabIndex = 2;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 44);
+            this.label5.Location = new System.Drawing.Point(23, 54);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 13);
+            this.label5.Size = new System.Drawing.Size(54, 16);
             this.label5.TabIndex = 5;
             this.label5.Text = "Kết Quả";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -124,9 +129,10 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::ManagerStudent.Properties.Resources.menu_;
-            this.pictureBox5.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox5.Location = new System.Drawing.Point(4, 4);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(81, 38);
+            this.pictureBox5.Size = new System.Drawing.Size(108, 47);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 5;
             this.pictureBox5.TabStop = false;
@@ -136,17 +142,19 @@
             // 
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.pictureBox4);
-            this.panel3.Location = new System.Drawing.Point(3, 198);
+            this.panel3.Location = new System.Drawing.Point(4, 244);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(87, 59);
+            this.panel3.Size = new System.Drawing.Size(116, 73);
             this.panel3.TabIndex = 2;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(32, 44);
+            this.label4.Location = new System.Drawing.Point(43, 54);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.Size = new System.Drawing.Size(38, 16);
             this.label4.TabIndex = 4;
             this.label4.Text = "Điểm";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -155,9 +163,10 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::ManagerStudent.Properties.Resources.icon__book_;
-            this.pictureBox4.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox4.Location = new System.Drawing.Point(4, 4);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(81, 38);
+            this.pictureBox4.Size = new System.Drawing.Size(108, 47);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 4;
             this.pictureBox4.TabStop = false;
@@ -167,17 +176,19 @@
             // 
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.pictureBox3);
-            this.panel4.Location = new System.Drawing.Point(3, 133);
+            this.panel4.Location = new System.Drawing.Point(4, 164);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(87, 59);
+            this.panel4.Size = new System.Drawing.Size(116, 73);
             this.panel4.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 44);
+            this.label3.Location = new System.Drawing.Point(23, 54);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.Size = new System.Drawing.Size(66, 16);
             this.label3.TabIndex = 3;
             this.label3.Text = "Lớp - Khối";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -186,9 +197,10 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::ManagerStudent.Properties.Resources.grid_three_up_;
-            this.pictureBox3.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox3.Location = new System.Drawing.Point(4, 4);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(81, 38);
+            this.pictureBox3.Size = new System.Drawing.Size(108, 47);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
@@ -198,17 +210,19 @@
             // 
             this.panel5.Controls.Add(this.label2);
             this.panel5.Controls.Add(this.pictureBox2);
-            this.panel5.Location = new System.Drawing.Point(3, 68);
+            this.panel5.Location = new System.Drawing.Point(4, 84);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(87, 59);
+            this.panel5.Size = new System.Drawing.Size(116, 73);
             this.panel5.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 44);
+            this.label2.Location = new System.Drawing.Point(23, 54);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.Size = new System.Drawing.Size(66, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "Giáo Viên";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -217,9 +231,10 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::ManagerStudent.Properties.Resources.Vector;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 3);
+            this.pictureBox2.Location = new System.Drawing.Point(0, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(84, 38);
+            this.pictureBox2.Size = new System.Drawing.Size(112, 47);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
@@ -229,17 +244,19 @@
             // 
             this.panel6.Controls.Add(this.label6);
             this.panel6.Controls.Add(this.pictureBox6);
-            this.panel6.Location = new System.Drawing.Point(3, 328);
+            this.panel6.Location = new System.Drawing.Point(4, 404);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(87, 59);
+            this.panel6.Size = new System.Drawing.Size(116, 73);
             this.panel6.TabIndex = 3;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(17, 44);
+            this.label6.Location = new System.Drawing.Point(23, 54);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 13);
+            this.label6.Size = new System.Drawing.Size(65, 16);
             this.label6.TabIndex = 6;
             this.label6.Text = "Thống Kê";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -248,9 +265,10 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = global::ManagerStudent.Properties.Resources.signal_;
-            this.pictureBox6.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox6.Location = new System.Drawing.Point(4, 4);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(81, 38);
+            this.pictureBox6.Size = new System.Drawing.Size(108, 47);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox6.TabIndex = 6;
             this.pictureBox6.TabStop = false;
@@ -260,17 +278,19 @@
             // 
             this.panel7.Controls.Add(this.label7);
             this.panel7.Controls.Add(this.pictureBox7);
-            this.panel7.Location = new System.Drawing.Point(3, 393);
+            this.panel7.Location = new System.Drawing.Point(4, 484);
+            this.panel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(87, 63);
+            this.panel7.Size = new System.Drawing.Size(116, 78);
             this.panel7.TabIndex = 4;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(17, 43);
+            this.label7.Location = new System.Drawing.Point(23, 53);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(58, 13);
+            this.label7.Size = new System.Drawing.Size(68, 16);
             this.label7.TabIndex = 7;
             this.label7.Text = "Đăng Xuất";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -278,46 +298,52 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = global::ManagerStudent.Properties.Resources.account_logout_;
-            this.pictureBox7.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox7.Location = new System.Drawing.Point(4, 4);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(81, 38);
+            this.pictureBox7.Size = new System.Drawing.Size(108, 47);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox7.TabIndex = 7;
             this.pictureBox7.TabStop = false;
+            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
             // 
             // panel8
             // 
-            this.panel8.BackColor = System.Drawing.Color.Cyan;
-            this.panel8.Controls.Add(this.panel2);
+            this.panel8.BackColor = System.Drawing.Color.SpringGreen;
             this.panel8.Controls.Add(this.panel7);
+            this.panel8.Controls.Add(this.panel2);
             this.panel8.Controls.Add(this.panel5);
             this.panel8.Controls.Add(this.panel6);
             this.panel8.Controls.Add(this.panel4);
             this.panel8.Controls.Add(this.panel1);
             this.panel8.Controls.Add(this.panel3);
-            this.panel8.Location = new System.Drawing.Point(3, 3);
+            this.panel8.Location = new System.Drawing.Point(4, 4);
+            this.panel8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(93, 459);
+            this.panel8.Size = new System.Drawing.Size(124, 565);
             this.panel8.TabIndex = 5;
             // 
             // panel_Right
             // 
-            this.panel_Right.Location = new System.Drawing.Point(96, 3);
+            this.panel_Right.Location = new System.Drawing.Point(128, 4);
+            this.panel_Right.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel_Right.Name = "panel_Right";
-            this.panel_Right.Size = new System.Drawing.Size(824, 457);
+            this.panel_Right.Size = new System.Drawing.Size(1099, 562);
             this.panel_Right.TabIndex = 6;
             this.panel_Right.Paint += new System.Windows.Forms.PaintEventHandler(this.panel9_Paint);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(920, 465);
+            this.ClientSize = new System.Drawing.Size(1227, 572);
             this.Controls.Add(this.panel_Right);
             this.Controls.Add(this.panel8);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
