@@ -17,7 +17,7 @@ CREATE TABLE Conduct(
 -- Tạo bảng học lực 
 CREATE TABLE Capacity(
 	ID VARCHAR(8) NOT NULL,
-	capacitytName NVARCHAR(100),
+	capacityName NVARCHAR(100),
 	upperLimit INT,
 	lowerLimit INT,
 	paraPoint INT,
@@ -29,8 +29,6 @@ CREATE TABLE Semester (
 	ID INT IDENTITY(1,1) NOT NULL,
 	semesterName NVARCHAR(255),
 	coefficient INT, -- Hệ số của học kì	
-	startDate DATETIME,
-	finishDate DATETIME,
 	PRIMARY KEY (ID)
 )
 

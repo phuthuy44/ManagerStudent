@@ -31,33 +31,36 @@ namespace ManagerStudent.GUI
         {
 
         }
-
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void conductTab()
         {
-            if (tabControl1.SelectedIndex == 3)
+            ConductBLL conductBLL = new ConductBLL();
+            Response response = conductBLL.GetConductData();
+
+            //Kiểm tra lấy dữ liệu thành công không
+            if (!response.Status) {
+                MessageBox.Show(response.Message);
+            }
+            else
             {
-                // Create columns first
-                /*dataGridView2.Columns.Add("ColumnName1", "Column Header 1");
-                dataGridView2.Columns.Add("ColumnName2", "Column Header 2");
-                dataGridView2.Columns.Add("ColumnName3", "Column Header 3");*/
-
-                ConductBLL conductBLL = new ConductBLL();
-                //MessageBox.Show(conductBLL.GetConductData().Message);
                 dataGridView2.ReadOnly = true; // Khoá toàn bộ DataGridView
-
+                                               //Xoá bảng để tránh bị chồng dữ liệu
                 dataGridView2.Rows.Clear();
                 dataGridView2.Columns.Clear();
-
+                //Tạo dòng đầu tiên để chứa tên các cột
                 dataGridView2.Columns.AddRange(
                     new DataGridViewTextBoxColumn { Name = "ColumnName1", HeaderText = "Xếp loại" },
                     new DataGridViewTextBoxColumn { Name = "ColumnName2", HeaderText = "Điểm cận trên" },
                     new DataGridViewTextBoxColumn { Name = "ColumnName3", HeaderText = "Điểm cận dưới" }
                 );
+                //Đặt độ rộng cho từng cột
                 dataGridView2.Columns[0].Width = 200; // Đặt độ rộng của cột 0 là 200 pixel
                 dataGridView2.Columns[1].Width = 150; // Đặt độ rộng của cột 1 là 150 pixel
                 dataGridView2.Columns[2].Width = 150; // Đặt độ rộng của cột 2 là 150 pixel
 
-                IList<Conduct> conducts = (IList<Conduct>)conductBLL.GetConductData().Data;
+                //Lấy danh sách dữ liệu
+                IList<Conduct> conducts = (IList<Conduct>)response.Data;
+
+                //Fill dữ liệu vào bảng
                 foreach (var i in conducts)
                 {
                     Console.WriteLine(i);
@@ -65,8 +68,68 @@ namespace ManagerStudent.GUI
                     {
                         i.Name, i.upperLimit.ToString(), i.lowerLimit.ToString()
                     });
-                }    
+                }
+
             }
+            
+            
+        }
+        private void capacityTab()
+        {
+            CapacityBLL capacity = new CapacityBLL();
+            Response response = capacity.GetCapacityData();
+            //Kiểm tra lấy dữ liệu thành công không
+            if (!response.Status)
+            {
+                MessageBox.Show(response.Message);
+            }else {
+                dataGridView3.ReadOnly = true; // Khoá toàn bộ DataGridView
+
+                //Xoá bảng để tránh bị chồng dữ liệu
+                dataGridView3.Rows.Clear();
+                dataGridView3.Columns.Clear();
+
+                //Tạo dòng đầu tiên để chứa tên các cột
+                dataGridView3.Columns.AddRange(
+                    new DataGridViewTextBoxColumn { Name = "ColumnName1", HeaderText = "Xếp loại" },
+                    new DataGridViewTextBoxColumn { Name = "ColumnName2", HeaderText = "Điểm cận trên" },
+                    new DataGridViewTextBoxColumn { Name = "ColumnName3", HeaderText = "Điểm cận dưới" },
+                    new DataGridViewTextBoxColumn { Name = "ColumnName4", HeaderText = "Điểm khống chế" }
+                );
+                //Đặt độ rộng cho từng cột
+                dataGridView3.Columns[0].Width = 150; // Đặt độ rộng của cột 0 là 150 pixel
+                dataGridView3.Columns[1].Width = 100; // Đặt độ rộng của cột 1 là 100 pixel
+                dataGridView3.Columns[2].Width = 100; // Đặt độ rộng của cột 2 là 100 pixel
+                dataGridView3.Columns[3].Width = 120; // Đặt độ rộng của cột 3 là 120 pixel
+
+                //Lấy danh sách dữ liệu
+                IList<Capacity> capacities = (IList<Capacity>)response.Data;
+                //Fill dữ liệu vào bảng
+                foreach (var i in capacities)
+                {
+                    Console.WriteLine(i);
+                    dataGridView3.Rows.Add(new string[]
+                    {
+                        i.Name, i.upperLimit.ToString(), i.lowerLimit.ToString(), i.paraPoint.ToString()
+                    });
+                }
+
+            }
+
+        }
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = tabControl1.SelectedIndex;
+            switch (index)
+            {
+                case 1:
+                    conductTab();
+                    break;
+                case 2:
+                    capacityTab();
+                    break;
+            }
+            
         }
         public void fillCategoryFom(IList<IList<string>> conducts) {
             dataGridView2.ReadOnly = true; // Khoá toàn bộ DataGridView
@@ -108,11 +171,13 @@ namespace ManagerStudent.GUI
         {
             
             InOutForm inOutForm = new InOutForm();
-            if (!inOutForm.Visible)
+            InOutForm form = Application.OpenForms.OfType<InOutForm>().FirstOrDefault();
+            //form.context = "Conduct";
+            if (form == null)
             {
+                inOutForm.context = "Conduct";
                 inOutForm.Show();
             }
-            
         }
     }
 }
