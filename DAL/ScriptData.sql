@@ -17,7 +17,7 @@ CREATE TABLE Conduct(
 -- Tạo bảng học lực 
 CREATE TABLE Capacity(
 	ID VARCHAR(8) NOT NULL,
-	capacityName NVARCHAR(100),
+	capacitytName NVARCHAR(100),
 	upperLimit INT,
 	lowerLimit INT,
 	paraPoint INT,
@@ -29,6 +29,8 @@ CREATE TABLE Semester (
 	ID INT IDENTITY(1,1) NOT NULL,
 	semesterName NVARCHAR(255),
 	coefficient INT, -- Hệ số của học kì	
+	startDate DATETIME,
+	finishDate DATETIME,
 	PRIMARY KEY (ID)
 )
 
@@ -430,6 +432,22 @@ ALTER TABLE StudentClassSemesterAcademicYear
 	FOREIGN KEY (gradeID) REFERENCES Grade(ID)
 
 
-	 
+	--Đánh số lại
 	--DBCC CHECKIDENT('TypeOfSubject', RESEED, 0);
 	
+CREATE PROC GetDataSemester
+AS
+	BEGIN
+		SELECT * FROM Semester s ;
+	END
+	
+CREATE PROC GetDataTypeOfPoint
+AS 
+	Begin
+		SELECT * FROM TypeOfPoint top2 ;
+	END
+	
+
+	
+	EXECUTE GetDataSemester
+	EXEC GetDataTypeOfPoint

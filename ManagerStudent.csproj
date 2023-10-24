@@ -140,12 +140,14 @@
     <Compile Include="BLL\AccountBLL.cs" />
     <Compile Include="BLL\CapacityBLL.cs" />
     <Compile Include="BLL\ConductBLL.cs" />
+    <Compile Include="BLL\SemesterBLL.cs" />
     <Compile Include="DAL\connectExcel.cs" />
     <Compile Include="DAL\connectGGSheet.cs" />
     <Compile Include="DAL\GetAccountData.cs" />
     <Compile Include="DAL\GetCapacityData.cs" />
     <Compile Include="DAL\GetConductData.cs" />
     <Compile Include="DAL\GetSemesterData.cs" />
+    <Compile Include="DAL\GetTypeOfPointData.cs" />
     <Compile Include="DAL\initConnect.cs" />
     <Compile Include="DTO\AcademicYear.cs" />
     <Compile Include="DTO\Account.cs" />

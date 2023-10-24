@@ -117,6 +117,49 @@ namespace ManagerStudent.GUI
             }
 
         }
+        private void SemesterTab()
+        {
+            SemesterBLL semester = new SemesterBLL();
+            Response response = semester.GetDataSemester();
+            //Kiểm tra lấy dữ liệu thành công không
+            if (!response.Status)
+            {
+                MessageBox.Show(response.Message);
+            }
+            else
+            {
+                dataGridView4.ReadOnly = true; // Khoá toàn bộ DataGridView
+
+                //Xoá bảng để tránh bị chồng dữ liệu
+                dataGridView4.Rows.Clear();
+                dataGridView4.Columns.Clear();
+
+                //Tạo dòng đầu tiên để chứa tên các cột
+                dataGridView4.Columns.AddRange(
+                    new DataGridViewTextBoxColumn { Name = "ColumnName1", HeaderText = "Mô tả" },
+                    new DataGridViewTextBoxColumn { Name = "ColumnName2", HeaderText = "Hệ số" }
+                );
+
+                //Đặt độ rộng cho từng cột
+                dataGridView4.Columns[0].Width = 250; // Đặt độ rộng của cột 0 là 250 pixel
+                dataGridView4.Columns[1].Width = 250; // Đặt độ rộng của cột 1 là 250 pixel
+               
+                //Lấy danh sách dữ liệu
+                IList<Semester> semesters = (IList<Semester>)response.Data;
+
+                //Fill dữ liệu vào bảng
+                foreach (var i in semesters)
+                {
+                    Console.WriteLine(i);
+                    dataGridView4.Rows.Add(new string[]
+                    {
+                        i.Name, i.Coefficient.ToString(),
+                    });
+                }
+
+            }
+
+        }
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = tabControl1.SelectedIndex;
@@ -127,6 +170,9 @@ namespace ManagerStudent.GUI
                     break;
                 case 2:
                     capacityTab();
+                    break;
+                case 3:
+                    SemesterTab();
                     break;
             }
             
