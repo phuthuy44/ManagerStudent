@@ -1,6 +1,7 @@
 ﻿using ManagerStudent.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -10,24 +11,22 @@ namespace ManagerStudent.DAL
 {
     internal class GetTypeOfPointData
     {
-        public IList<TypeOfPoint> GetAllTypeOfPoint()
+        public DataTable GetAllTypeOfPoint()
         {
             IList<TypeOfPoint> typeOfPoints = new List<TypeOfPoint>();
             try {
                 SqlConnection sqlConnection = initConnect.ConnectToDatabase();
                 string ssql = "EXEC GetDataTypeOfPoint";
-                SqlCommand cmd = new SqlCommand(ssql, sqlConnection);
-                SqlDataReader sqlDataReader = cmd.ExecuteReader();
-                while (sqlDataReader.Read())
-                {
-                    Console.WriteLine(sqlDataReader.GetString(1));
-                }
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(ssql, sqlConnection);
+                SqlCommandBuilder sqlCommandBuilder = new SqlCommandBuilder(sqlDataAdapter);
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
                 sqlConnection.Close();
             }
             catch (Exception ex) { 
                 Console.WriteLine(ex.Message);
             }
-            return typeOfPoints;
+            return typeOfPoi;
         }
     }
 }
