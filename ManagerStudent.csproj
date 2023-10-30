@@ -110,9 +110,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\AccountBLL.cs" />
+    <Compile Include="BLL\StudentBLL.cs" />
     <Compile Include="DAL\connectExcel.cs" />
     <Compile Include="DAL\connectGGSheet.cs" />
     <Compile Include="DAL\GetAccountData.cs" />
+    <Compile Include="DAL\StudentDAL.cs" />
     <Compile Include="DAL\initConnect.cs" />
     <Compile Include="DTO\AcademicYear.cs" />
     <Compile Include="DTO\Account.cs" />
@@ -192,6 +194,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StudentManagerDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentManagerDataSet.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GUI\CategoryForm.resx">
       <DependentUpon>CategoryForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -245,6 +252,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="StudentManagerDataSet.xsc">
+      <DependentUpon>StudentManagerDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="StudentManagerDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StudentManagerDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="StudentManagerDataSet.xss">
+      <DependentUpon>StudentManagerDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

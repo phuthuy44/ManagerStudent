@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.button8 = new System.Windows.Forms.Button();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataTableStudent = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
@@ -112,11 +113,26 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.studentManagerDataSet = new ManagerStudent.StudentManagerDataSet();
+            this.studentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.studentTableAdapter = new ManagerStudent.StudentManagerDataSetTableAdapters.StudentTableAdapter();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.birthdayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.genderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.birthplaceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numberPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.updateDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.finishDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableStudent)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -141,6 +157,8 @@
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.studentManagerDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -161,7 +179,7 @@
             this.tabPage1.Controls.Add(this.pictureBox13);
             this.tabPage1.Controls.Add(this.button8);
             this.tabPage1.Controls.Add(this.pictureBox11);
-            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.dataTableStudent);
             this.tabPage1.Controls.Add(this.comboBox1);
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.button7);
@@ -172,7 +190,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(816, 431);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Danh Sách";
+            this.tabPage1.Text = "Học sinh";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // pictureBox13
@@ -210,13 +228,28 @@
             this.pictureBox11.TabIndex = 12;
             this.pictureBox11.TabStop = false;
             // 
-            // dataGridView1
+            // dataTableStudent
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 227);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(790, 198);
-            this.dataGridView1.TabIndex = 9;
+            this.dataTableStudent.AutoGenerateColumns = false;
+            this.dataTableStudent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataTableStudent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.birthdayDataGridViewTextBoxColumn,
+            this.genderDataGridViewTextBoxColumn,
+            this.birthplaceDataGridViewTextBoxColumn,
+            this.addressDataGridViewTextBoxColumn,
+            this.emailDataGridViewTextBoxColumn,
+            this.numberPhoneDataGridViewTextBoxColumn,
+            this.imageDataGridViewTextBoxColumn,
+            this.createDateDataGridViewTextBoxColumn,
+            this.updateDateDataGridViewTextBoxColumn,
+            this.finishDateDataGridViewTextBoxColumn});
+            this.dataTableStudent.DataSource = this.studentBindingSource;
+            this.dataTableStudent.Location = new System.Drawing.Point(17, 227);
+            this.dataTableStudent.Name = "dataTableStudent";
+            this.dataTableStudent.Size = new System.Drawing.Size(790, 198);
+            this.dataTableStudent.TabIndex = 9;
             // 
             // comboBox1
             // 
@@ -566,7 +599,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(816, 431);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Học Sinh";
+            this.tabPage2.Text = "Tra cứu";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
@@ -585,7 +618,7 @@
             this.panel4.Controls.Add(this.pictureBox7);
             this.panel4.Controls.Add(this.button9);
             this.panel4.Controls.Add(this.button6);
-            this.panel4.Location = new System.Drawing.Point(595, 18);
+            this.panel4.Location = new System.Drawing.Point(602, 18);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(160, 100);
             this.panel4.TabIndex = 1;
@@ -597,7 +630,7 @@
             this.pictureBox12.Location = new System.Drawing.Point(20, 18);
             this.pictureBox12.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(30, 20);
+            this.pictureBox12.Size = new System.Drawing.Size(18, 22);
             this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox12.TabIndex = 13;
             this.pictureBox12.TabStop = false;
@@ -628,6 +661,7 @@
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.Blue;
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.White;
             this.button6.Location = new System.Drawing.Point(12, 10);
             this.button6.Name = "button6";
@@ -635,6 +669,7 @@
             this.button6.TabIndex = 0;
             this.button6.Text = "Hiển Thị";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // panel3
             // 
@@ -780,6 +815,7 @@
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label14.Location = new System.Drawing.Point(524, 14);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(226, 32);
@@ -790,7 +826,8 @@
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(55, 14);
+            this.label13.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label13.Location = new System.Drawing.Point(57, 14);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(226, 32);
             this.label13.TabIndex = 3;
@@ -843,62 +880,66 @@
             this.panel8.Controls.Add(this.label18);
             this.panel8.Controls.Add(this.label19);
             this.panel8.Controls.Add(this.label20);
-            this.panel8.Location = new System.Drawing.Point(45, 3);
+            this.panel8.Location = new System.Drawing.Point(0, -1);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(269, 124);
+            this.panel8.Size = new System.Drawing.Size(348, 117);
             this.panel8.TabIndex = 6;
             // 
             // comboBox9
             // 
+            this.comboBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Location = new System.Drawing.Point(97, 71);
+            this.comboBox9.Location = new System.Drawing.Point(148, 76);
             this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(121, 21);
+            this.comboBox9.Size = new System.Drawing.Size(161, 28);
             this.comboBox9.TabIndex = 5;
+            this.comboBox9.SelectedIndexChanged += new System.EventHandler(this.comboBox9_SelectedIndexChanged);
             // 
             // comboBox10
             // 
+            this.comboBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Location = new System.Drawing.Point(97, 44);
+            this.comboBox10.Location = new System.Drawing.Point(148, 43);
             this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(121, 21);
+            this.comboBox10.Size = new System.Drawing.Size(161, 28);
             this.comboBox10.TabIndex = 4;
             // 
             // comboBox11
             // 
+            this.comboBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox11.FormattingEnabled = true;
-            this.comboBox11.Location = new System.Drawing.Point(97, 14);
+            this.comboBox11.Location = new System.Drawing.Point(148, 7);
             this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(121, 21);
+            this.comboBox11.Size = new System.Drawing.Size(161, 28);
             this.comboBox11.TabIndex = 3;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(16, 76);
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(58, 82);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(30, 16);
+            this.label18.Size = new System.Drawing.Size(36, 20);
             this.label18.TabIndex = 2;
             this.label18.Text = "Lớp";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(13, 45);
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(55, 48);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(33, 16);
+            this.label19.Size = new System.Drawing.Size(40, 20);
             this.label19.TabIndex = 1;
             this.label19.Text = "Khối";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(13, 15);
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(55, 10);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(61, 16);
+            this.label20.Size = new System.Drawing.Size(72, 20);
             this.label20.TabIndex = 0;
             this.label20.Text = "Năm học";
             // 
@@ -948,64 +989,154 @@
             this.panel6.Controls.Add(this.label17);
             this.panel6.Controls.Add(this.label16);
             this.panel6.Controls.Add(this.label15);
-            this.panel6.Location = new System.Drawing.Point(40, 3);
+            this.panel6.Location = new System.Drawing.Point(4, -1);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(269, 124);
+            this.panel6.Size = new System.Drawing.Size(344, 117);
             this.panel6.TabIndex = 0;
             // 
             // comboBox8
             // 
+            this.comboBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Location = new System.Drawing.Point(97, 71);
+            this.comboBox8.Location = new System.Drawing.Point(136, 77);
             this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(121, 21);
+            this.comboBox8.Size = new System.Drawing.Size(156, 28);
             this.comboBox8.TabIndex = 5;
             // 
             // comboBox7
             // 
+            this.comboBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(97, 44);
+            this.comboBox7.Location = new System.Drawing.Point(136, 42);
             this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(121, 21);
+            this.comboBox7.Size = new System.Drawing.Size(156, 28);
             this.comboBox7.TabIndex = 4;
             // 
             // comboBox6
             // 
+            this.comboBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(97, 14);
+            this.comboBox6.Location = new System.Drawing.Point(136, 7);
             this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(121, 21);
+            this.comboBox6.Size = new System.Drawing.Size(156, 28);
             this.comboBox6.TabIndex = 3;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(16, 76);
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(55, 82);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(30, 16);
+            this.label17.Size = new System.Drawing.Size(36, 20);
             this.label17.TabIndex = 2;
             this.label17.Text = "Lớp";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(13, 45);
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(52, 46);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(33, 16);
+            this.label16.Size = new System.Drawing.Size(40, 20);
             this.label16.TabIndex = 1;
             this.label16.Text = "Khối";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(13, 15);
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(52, 8);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(61, 16);
+            this.label15.Size = new System.Drawing.Size(72, 20);
             this.label15.TabIndex = 0;
             this.label15.Text = "Năm học";
+            // 
+            // studentManagerDataSet
+            // 
+            this.studentManagerDataSet.DataSetName = "StudentManagerDataSet";
+            this.studentManagerDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // studentBindingSource
+            // 
+            this.studentBindingSource.DataMember = "Student";
+            this.studentBindingSource.DataSource = this.studentManagerDataSet;
+            // 
+            // studentTableAdapter
+            // 
+            this.studentTableAdapter.ClearBeforeFill = true;
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "Mã học sinh";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Họ tên";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // birthdayDataGridViewTextBoxColumn
+            // 
+            this.birthdayDataGridViewTextBoxColumn.DataPropertyName = "birthday";
+            this.birthdayDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
+            this.birthdayDataGridViewTextBoxColumn.Name = "birthdayDataGridViewTextBoxColumn";
+            // 
+            // genderDataGridViewTextBoxColumn
+            // 
+            this.genderDataGridViewTextBoxColumn.DataPropertyName = "gender";
+            this.genderDataGridViewTextBoxColumn.HeaderText = "Giới tính";
+            this.genderDataGridViewTextBoxColumn.Name = "genderDataGridViewTextBoxColumn";
+            // 
+            // birthplaceDataGridViewTextBoxColumn
+            // 
+            this.birthplaceDataGridViewTextBoxColumn.DataPropertyName = "birthplace";
+            this.birthplaceDataGridViewTextBoxColumn.HeaderText = "Nơi sinh";
+            this.birthplaceDataGridViewTextBoxColumn.Name = "birthplaceDataGridViewTextBoxColumn";
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            // 
+            // numberPhoneDataGridViewTextBoxColumn
+            // 
+            this.numberPhoneDataGridViewTextBoxColumn.DataPropertyName = "numberPhone";
+            this.numberPhoneDataGridViewTextBoxColumn.HeaderText = "Số điện thoại";
+            this.numberPhoneDataGridViewTextBoxColumn.Name = "numberPhoneDataGridViewTextBoxColumn";
+            // 
+            // imageDataGridViewTextBoxColumn
+            // 
+            this.imageDataGridViewTextBoxColumn.DataPropertyName = "image";
+            this.imageDataGridViewTextBoxColumn.HeaderText = "Hình ảnh";
+            this.imageDataGridViewTextBoxColumn.Name = "imageDataGridViewTextBoxColumn";
+            // 
+            // createDateDataGridViewTextBoxColumn
+            // 
+            this.createDateDataGridViewTextBoxColumn.DataPropertyName = "createDate";
+            this.createDateDataGridViewTextBoxColumn.HeaderText = "Ngày tạo";
+            this.createDateDataGridViewTextBoxColumn.Name = "createDateDataGridViewTextBoxColumn";
+            // 
+            // updateDateDataGridViewTextBoxColumn
+            // 
+            this.updateDateDataGridViewTextBoxColumn.DataPropertyName = "updateDate";
+            this.updateDateDataGridViewTextBoxColumn.HeaderText = "Ngày chỉnh sửa";
+            this.updateDateDataGridViewTextBoxColumn.Name = "updateDateDataGridViewTextBoxColumn";
+            // 
+            // finishDateDataGridViewTextBoxColumn
+            // 
+            this.finishDateDataGridViewTextBoxColumn.DataPropertyName = "finishDate";
+            this.finishDateDataGridViewTextBoxColumn.HeaderText = "Ngày kết thúc";
+            this.finishDateDataGridViewTextBoxColumn.Name = "finishDateDataGridViewTextBoxColumn";
             // 
             // HocSinhForm
             // 
@@ -1017,12 +1148,13 @@
             this.Name = "HocSinhForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HocSinhForm";
+            this.Load += new System.EventHandler(this.HocSinhForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableStudent)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -1051,8 +1183,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.studentManagerDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource)).EndInit();
             this.ResumeLayout(false);
-    
 
         }
 
@@ -1088,7 +1221,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataTableStudent;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label12;
@@ -1142,5 +1275,20 @@
         private System.Windows.Forms.PictureBox pictureBox12;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.PictureBox pictureBox13;
+        private StudentManagerDataSet studentManagerDataSet;
+        private System.Windows.Forms.BindingSource studentBindingSource;
+        private StudentManagerDataSetTableAdapters.StudentTableAdapter studentTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn birthdayDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn genderDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn birthplaceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numberPhoneDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn imageDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn createDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn updateDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn finishDateDataGridViewTextBoxColumn;
     }
 }
