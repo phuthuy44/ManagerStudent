@@ -8,11 +8,11 @@ namespace ManagerStudent.DTO
 {
     public class Conduct
     {
-        public string ID {  get; set; }
+        public int ID {  get; set; }
         public string Name { get; set; }
         public float upperLimit {  get; set; }
         public float lowerLimit { get; set; }
-        public Conduct(string iD, string name, float upperLimit, float lowerLimit)
+        public Conduct(int iD, string name, float upperLimit, float lowerLimit)
         {
             ID = iD;
             Name = name;

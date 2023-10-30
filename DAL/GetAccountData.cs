@@ -126,7 +126,6 @@ namespace ManagerStudent.DAL
             {
                 Console.WriteLine(e.Message);
             }
-
             return account;
         }
         
