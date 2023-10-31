@@ -1,10 +1,6 @@
-﻿using DocumentFormat.OpenXml.Office.CustomUI;
-using ManagerStudent.BLL;
-using ManagerStudent.DTO;
-using OfficeOpenXml.LoadFunctions.Params;
+﻿using ManagerStudent.DTO;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
