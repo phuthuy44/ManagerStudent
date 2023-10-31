@@ -36,14 +36,14 @@ namespace ManagerStudent.GUI
         private void HocSinhForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'studentManagerDataSet.Student' table. You can move, or remove it, as needed.
-            this.studentTableAdapter.Fill(this.studentManagerDataSet.Student);
+            //this.studentTableAdapter.Fill(this.studentManagerDataSet.Student);
 
 
         }
         //Xu ly fill dataTable lên dataGridView
         public void GetListStudent()
         {
-            dataTableStudent.DataSource = studentBLL.GetListStudent();
+            //dataTableStudent.DataSource = studentBLL.GetListStudent();
         }
 
         private void comboBox9_SelectedIndexChanged(object sender, EventArgs e)

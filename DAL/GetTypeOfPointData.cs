@@ -26,7 +26,7 @@ namespace ManagerStudent.DAL
             catch (Exception ex) { 
                 Console.WriteLine(ex.Message);
             }
-            return typeOfPoi;
+            return (DataTable)typeOfPoints;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.IO;
 using DocumentFormat.OpenXml.Spreadsheet;
 using OfficeOpenXml;
 
+
 namespace ManagerStudent.DAL
 {
     public class connectExcel
@@ -58,7 +59,7 @@ namespace ManagerStudent.DAL
 
                 for (int row = 1; row <= rows; row++)
                 {
-                    
+
                     var rowData = new List<string>();
                     for (int col = 1; col <= columns; col++)
                     {
