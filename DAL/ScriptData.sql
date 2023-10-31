@@ -431,8 +431,19 @@ ALTER TABLE StudentClassSemesterAcademicYear
 	ADD CONSTRAINT StudentClassSemesterAcademicYear_gradeID_Grade_ID
 	FOREIGN KEY (gradeID) REFERENCES Grade(ID)
 
+CREATE TABLE ClassGrade(
+	classID INT,
+	gradeID INT
+	PRIMARY KEY (classID, gradeID)
+)
 
-	--Đánh số lại
+ALTER TABLE ClassGrade 
+	ADD CONSTRAINT ClassGrade_classID_Class_ID
+	FOREIGN KEY (classID) REFERENCES Class(ID)
+
+ALTER TABLE ClassGrade 
+	ADD CONSTRAINT ClassGrade_gradeID_Grade_ID
+	FOREIGN KEY (gradeID) REFERENCES Grade(ID)
 	--DBCC CHECKIDENT('TypeOfSubject', RESEED, 0);
 	
 CREATE PROC GetDataSemester
