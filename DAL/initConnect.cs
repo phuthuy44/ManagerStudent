@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
+using System.Windows.Forms;
+
 namespace ManagerStudent.DAL {
 
     public class initConnect
     {
         // "Data Source=<tên_máy_chủ>;Initial Catalog=<tên_cơ_sở_dữ_liệu>;User ID=<tên_người_dùng>;Password=<mật_khẩu>;"
         static string connectionString = "Data Source=localhost;Initial Catalog=StudentManager;User ID=sa;Password=Admin0000;";
-
+        /*    static string connectionString = @"Data Source=DESKTOP-TSRRPEV\SQLEXPRESS;Initial Catalog=StudentManager;Integrated Security=True";*/
+        private SqlDataAdapter myDataAdapter;
         public static SqlConnection ConnectToDatabase()
         {
             SqlConnection connection = new SqlConnection(connectionString);
@@ -45,6 +50,34 @@ namespace ManagerStudent.DAL {
             }
 
         }
+
+        public DataTable Runquery(string Sql)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                 myDataAdapter = new SqlDataAdapter(Sql, connectionString);
+                myDataAdapter.Fill(dt);
+            }catch(SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Error " + ex.Number.ToString());
+                return null;
+            }
+            return dt;
+        }
+
+        public void Update(DataTable dt)
+        {
+            try
+            {
+                myDataAdapter.Update(dt);
+            }
+            catch(SqlException ex)
+            {
+                throw (ex);
+            }
+        }
+
     }
 
 }
