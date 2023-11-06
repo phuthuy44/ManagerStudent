@@ -8,11 +8,11 @@ namespace ManagerStudent.DTO
 {
     public class AcademicYear
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public DateTime startDate { get; set; }
         public DateTime finishDate { get; set; }
-        public AcademicYear(string iD, string name, DateTime startDate, DateTime finishDate)
+        public AcademicYear(int iD, string name, DateTime startDate, DateTime finishDate)
         {
             ID = iD;
             Name = name;

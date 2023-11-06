@@ -130,6 +130,7 @@
     <Compile Include="BLL\Class1.cs" />
     <Compile Include="BLL\ConductBLL.cs" />
     <Compile Include="BLL\GradeBLL.cs" />
+    <Compile Include="BLL\PointBLL.cs" />
     <Compile Include="BLL\SemesterBLL.cs" />
     <Compile Include="BLL\StudentBLL.cs" />
     <Compile Include="DAL\connectExcel.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="DAL\GetTypeOfPointData.cs" />
     <Compile Include="DAL\GradeDAL.cs" />
     <Compile Include="DAL\initConnect.cs" />
+    <Compile Include="DAL\PointDAL.cs" />
     <Compile Include="DAL\StudentDAL.cs" />
     <Compile Include="DTO\AcademicYear.cs" />
     <Compile Include="DTO\Account.cs" />

@@ -8,10 +8,10 @@ namespace ManagerStudent.DTO
 {
     public class Subject
     {
-        public string ID {  get; set; }
+        public int ID {  get; set; }
         public string typeofsubjectID {  get; set; }
         public string Name { get; set; }
-        public Subject(string iD, string typeofsubjectID, string name)
+        public Subject(int iD, string typeofsubjectID, string name)
         {
             ID = iD;
             this.typeofsubjectID = typeofsubjectID;

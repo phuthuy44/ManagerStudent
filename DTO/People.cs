@@ -9,7 +9,7 @@ namespace ManagerStudent.DTO
 {
     public class People
     {
-        public string ID
+        public int ID
         {
             get;
             set;
@@ -56,7 +56,7 @@ namespace ManagerStudent.DTO
             get;
             set;
         }
-        public People(string id, string name, string gender, string address, DateTime birthday, string birthplace, string email, string phone, string image)
+        public People(int id, string name, string gender, string address, DateTime birthday, string birthplace, string email, string phone, string image)
         {
             ID = id;
             Name = name;
