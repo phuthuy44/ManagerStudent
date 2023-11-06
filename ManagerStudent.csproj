@@ -235,6 +235,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="StudentManagerDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentManagerDataSet1.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GUI\CategoryForm.resx">
       <DependentUpon>CategoryForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -337,6 +342,17 @@
     </None>
     <None Include="StudentManagerDataSet.xss">
       <DependentUpon>StudentManagerDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="StudentManagerDataSet1.xsc">
+      <DependentUpon>StudentManagerDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="StudentManagerDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StudentManagerDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="StudentManagerDataSet1.xss">
+      <DependentUpon>StudentManagerDataSet1.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

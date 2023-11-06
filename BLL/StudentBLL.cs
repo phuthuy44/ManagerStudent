@@ -24,6 +24,21 @@ namespace ManagerStudent.BLL
         {
             return studentDAL.GetListStudent();
         }
+        //insert
+        public bool insertStudent(Student student)
+        {
+            bool success = studentDAL.insertStudent(student);
+            if (success)
+            {
+                Console.WriteLine("Student record inserted successfully");
+                return true;
+            }
+            else
+            {
+                return false;
+
+            }
+        }
 
     }
 }

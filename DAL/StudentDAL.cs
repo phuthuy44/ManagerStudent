@@ -17,10 +17,11 @@ namespace ManagerStudent.DAL
         {
             DataTable dataTable = new DataTable();
             string sql = " SELECT * FROM Student";
+            SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {
 
-                SqlCommand cmd = new SqlCommand(sql, initConnect.ConnectToDatabase());
+                SqlCommand cmd = new SqlCommand(sql, conn);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dataTable);
 
@@ -29,13 +30,35 @@ namespace ManagerStudent.DAL
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error! Can not fill data.");
                 Console.WriteLine(ex.Message);
             }
             finally {
-                initConnect.CloseConnection(initConnect.ConnectToDatabase());
+                conn.Close();
             }
             return dataTable;
+        }
+        public bool insertStudent(Student student)
+        {
+            string sql= "INSERT INTO Student (name,birthday,gender,address, email, numberPhone, image) Values(@Hoten,@NgaySinh,@gioitinh,@diaChi,@email,@soDienThoai,@HinhAnh)";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Hoten", student.Name);
+                cmd.Parameters.AddWithValue("@NgaySinh", student.Birthday);
+                cmd.Parameters.AddWithValue("gioitinh", student.Gender);
+                cmd.Parameters.AddWithValue("@diaChi", student.Address);
+                cmd.Parameters.AddWithValue("@email", student.Email);
+                cmd.Parameters.AddWithValue("@soDienThoai", student.Phone);
+                cmd.Parameters.AddWithValue("@HinhAnh", student.Image);
+                cmd.ExecuteNonQuery();
+                return true;
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally { conn.Close(); }
         }
     }
 }

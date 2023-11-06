@@ -72,5 +72,16 @@ namespace ManagerStudent.DTO
         {
 
         }
+
+        public People(string name, string gender, string address, DateTime birthday, string email, string phone, string image)
+        {
+            Name = name;
+            Gender = gender;
+            Address = address;
+            Birthday = birthday;
+            Email = email;
+            Phone = phone;
+            Image = image;
+        }
     }
 }
