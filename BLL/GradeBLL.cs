@@ -21,5 +21,15 @@ namespace ManagerStudent.BLL
         {
              gradeDAL.InsertGrade(grade);
         }
+
+        public int GetLastGradeId()
+        {
+            return gradeDAL.getlastgradeid();
+        }
+
+        public void updateGrade(Grade grade)
+        {
+            gradeDAL.UpdateGrade(grade);
+        }
     }
 }

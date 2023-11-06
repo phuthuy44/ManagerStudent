@@ -363,13 +363,15 @@
             // 
             // dgvGrade
             // 
-            this.dgvGrade.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dgvGrade.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvGrade.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGrade.Location = new System.Drawing.Point(313, 9);
             this.dgvGrade.Name = "dgvGrade";
             this.dgvGrade.RowHeadersWidth = 51;
+            this.dgvGrade.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGrade.Size = new System.Drawing.Size(503, 425);
             this.dgvGrade.TabIndex = 8;
+            this.dgvGrade.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrade_CellClick);
             // 
             // panel4
             // 
@@ -450,6 +452,7 @@
             this.btnEdit.TabIndex = 7;
             this.btnEdit.Text = "Sửa";
             this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // button9
             // 
