@@ -14,7 +14,7 @@ namespace ManagerStudent.BLL
         
         public List<Grade> getAll()
         {
-            return gradeDAL.getAll();
+            return gradeDAL.GetAll();
         }
 
         public void insertGrade(Grade grade)
@@ -30,6 +30,10 @@ namespace ManagerStudent.BLL
         public void updateGrade(Grade grade)
         {
             gradeDAL.UpdateGrade(grade);
+        }
+
+        public void deleteGrade(Grade grade) {
+            gradeDAL.DeleteGrade(grade);
         }
     }
 }

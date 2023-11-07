@@ -73,6 +73,7 @@
             this.txtMaKhoi = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnHienThi = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
@@ -334,6 +335,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnHienThi);
             this.tabPage2.Controls.Add(this.pictureBox9);
             this.tabPage2.Controls.Add(this.dgvGrade);
             this.tabPage2.Controls.Add(this.panel4);
@@ -372,6 +374,7 @@
             this.dgvGrade.Size = new System.Drawing.Size(503, 425);
             this.dgvGrade.TabIndex = 8;
             this.dgvGrade.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrade_CellClick);
+            this.dgvGrade.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrade_CellContentClick);
             // 
             // panel4
             // 
@@ -442,6 +445,7 @@
             this.btnDelete.TabIndex = 8;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnEdit
             // 
@@ -581,6 +585,17 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "Mã khối";
             // 
+            // btnHienThi
+            // 
+            this.btnHienThi.BackColor = System.Drawing.Color.SpringGreen;
+            this.btnHienThi.Location = new System.Drawing.Point(101, 245);
+            this.btnHienThi.Name = "btnHienThi";
+            this.btnHienThi.Size = new System.Drawing.Size(100, 45);
+            this.btnHienThi.TabIndex = 14;
+            this.btnHienThi.Text = "Hiển thị";
+            this.btnHienThi.UseVisualStyleBackColor = false;
+            this.btnHienThi.Click += new System.EventHandler(this.btnHienThi_Click);
+            // 
             // ClassForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -664,5 +679,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtSoLuongKhoi;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnHienThi;
     }
 }
