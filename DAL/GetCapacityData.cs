@@ -1,47 +1,54 @@
-﻿using ManagerStudent.DTO;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ManagerStudent.DAL
 {
     internal class GetCapacityData
     {
-        public IList<Capacity> GetAllCapacity() {
-            IList<Capacity> capacities = new List<Capacity>();
+        public DataTable GetAllCapacity()
+        {
+            DataTable dataTable = new DataTable();
             try
             {
-               
                 SqlConnection connection = initConnect.ConnectToDatabase();
                 string sql = "SELECT * FROM Capacity";
                 SqlCommand sqlCommand = new SqlCommand(sql, connection);
-                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 
-                while (sqlDataReader.Read())
-                {
-                    capacities.Add(new Capacity(
-                        (int)sqlDataReader.GetSqlInt32(sqlDataReader.GetOrdinal("ID")),
-                        sqlDataReader.GetSqlString(sqlDataReader.GetOrdinal("capacityName")).ToString(),
-                        (float)sqlDataReader.GetSqlDouble(sqlDataReader.GetOrdinal("upperLimit")),
-                        (float)sqlDataReader.GetSqlDouble(sqlDataReader.GetOrdinal("lowerLimit")),
-                        (float)sqlDataReader.GetSqlDouble(sqlDataReader.GetOrdinal("paraPoint"))
-                    ));
-                    Console.WriteLine(
-                        sqlDataReader.GetSqlInt32(sqlDataReader.GetOrdinal("ID")) + " "+
-                        sqlDataReader.GetSqlString(sqlDataReader.GetOrdinal("capacityName")).ToString() + " " +
-                        (float)sqlDataReader.GetSqlDouble(sqlDataReader.GetOrdinal("upperLimit")) + " " +
-                        (float)sqlDataReader.GetSqlDouble(sqlDataReader.GetOrdinal("lowerLimit")) 
-                        );
-                }
+                SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+                adapter.Fill(dataTable);
+
                 connection.Close();
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            return capacities;
+            return dataTable;
+        }
+
+        public DataTable FindCapacity(string str)
+        {
+            DataTable dataTable = new DataTable();
+
+            try
+            {
+                SqlConnection connection = initConnect.ConnectToDatabase();
+
+                string sql = "EXEC FindCapacity @STR";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@STR", str);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dataTable);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return dataTable;
         }
     }
 }

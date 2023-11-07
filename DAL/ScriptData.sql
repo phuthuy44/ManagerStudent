@@ -460,8 +460,8 @@ AS
 	
 
 	
-	EXECUTE GetDataSemester
-	EXEC GetDataTypeOfPoint
+--	EXECUTE GetDataSemester
+--	EXEC GetDataTypeOfPoint
 
-select * from student
-INSERT INTO Student (name, gender,birthday,address, email, numberPhone, image) VALUES ('Tran', 'Nu', '2009-02-11', 'HCM', null, null, null)
+--select * from student
+--INSERT INTO Student (name, gender,birthday,address, email, numberPhone, image) VALUES ('Tran', 'Nu', '2009-02-11', 'HCM', null, null, null)

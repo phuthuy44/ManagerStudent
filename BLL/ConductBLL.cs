@@ -2,6 +2,7 @@
 using ManagerStudent.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,14 +11,18 @@ namespace ManagerStudent.BLL
 {
     internal class ConductBLL
     {
-        public Response GetConductData()
+        private GetConductData ConductData;
+        public ConductBLL()
         {
-            GetConductData getConductData = new GetConductData();
-            if (getConductData.GetAllConduct().Count == 0)
-            {
-                return new Response(false, "Lấy dữ liệu thất bại.", null);
-            }
-            return new Response(true, "Lấy dữ liệu thành công.", getConductData.GetAllConduct());
+            ConductData = new GetConductData();
+        }
+        public DataTable GetConductData()
+        {
+            return ConductData.GetallConduct();
+        }
+
+        public DataTable FindConduct(string str) {
+            return ConductData.FindConduct(str);
         }
     }
 }
