@@ -1,6 +1,7 @@
 ﻿using ManagerStudent.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,26 @@ namespace ManagerStudent.DAL
 {
     internal class GetSemesterData
     {
-        public IList<Semester> GetAllSemester()
+        public DataTable GetAllSemester()
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                SqlConnection conn = initConnect.ConnectToDatabase();
+                string sql = "EXEC GetDataSemester";
+                SqlCommand sqlCommand = new SqlCommand(sql, conn);
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                sqlDataAdapter.Fill(dataTable);
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return dataTable;
+        }
+        /*public IList<Semester> GetAllSemester()
         {
             IList<Semester> semesters = new List<Semester>();
             try
@@ -35,6 +55,6 @@ namespace ManagerStudent.DAL
                 Console.WriteLine(e.Message);
             }
             return semesters;
-        }
+        }*/
     }
 }

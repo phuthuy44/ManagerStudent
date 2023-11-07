@@ -1,23 +1,24 @@
 ﻿using ManagerStudent.DAL;
-using ManagerStudent.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 
 namespace ManagerStudent.BLL
 {
-    internal class CapacityBLL
+    public class CapacityManager
     {
-        public Response GetCapacityData()
+        private GetCapacityData capacityData;
+
+        public CapacityManager()
         {
-            GetCapacityData getCapacityData = new DAL.GetCapacityData();
-            if (getCapacityData.GetAllCapacity().Count == 0)
-            {
-                return new Response(false, "Lấy dữ liệu thất bại.", null);
-            }
-            return new Response(true, "Lấy dữ liệu thành công.", getCapacityData.GetAllCapacity());
+            capacityData = new GetCapacityData();
+        }
+
+        public DataTable GetAllCapacity()
+        {
+            return capacityData.GetAllCapacity();
+        }
+
+        public DataTable FindCapacity(string sql) {
+            return capacityData.FindCapacity(sql);
         }
     }
 }

@@ -121,7 +121,7 @@ namespace ManagerStudent.DAL
                             account.isActive
                         );
                 }
-                initConnect.CloseConnection(conn);
+                conn.Close();
             }catch(Exception e)
             {
                 Console.WriteLine(e.Message);

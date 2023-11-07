@@ -2,15 +2,50 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 
 namespace ManagerStudent.DAL
 {
     internal class GetConductData
     {
-        public IList<Conduct> GetAllConduct() {
+
+        public DataTable GetallConduct()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                SqlConnection conn = initConnect.ConnectToDatabase();
+                string sql = "SELECT * FROM Conduct";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd);
+                sqlDataAdapter.Fill(dt);
+                conn.Close();
+            }catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return dt;
+        }
+
+        public DataTable FindConduct(string str)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                SqlConnection connection = initConnect.ConnectToDatabase();
+                string sql = "EXEC FindConduct @STR";
+                SqlCommand sqlCommand = new SqlCommand(sql, connection);
+                sqlCommand.Parameters.AddWithValue("@STR", str);
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                sqlDataAdapter.Fill(dt);
+                connection.Close();
+            }catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return dt;
+        }
+       /* public IList<Conduct> GetAllConduct() {
             IList<Conduct> conducts = new List<Conduct>();
             try
             {
@@ -28,12 +63,12 @@ namespace ManagerStudent.DAL
                         (float)sqlDataReader.GetSqlDouble(sqlDataReader.GetOrdinal("upperLimit")),
                         (float)sqlDataReader.GetSqlDouble(sqlDataReader.GetOrdinal("lowerLimit"))
                     ));
-                    /*Console.WriteLine(
+                    *//*Console.WriteLine(
                         sqlDataReader.GetSqlInt32(sqlDataReader.GetOrdinal("ID")) + " "+
                         sqlDataReader.GetSqlString(sqlDataReader.GetOrdinal("conductName")).ToString() + " " +
                         (float)sqlDataReader.GetSqlDouble(sqlDataReader.GetOrdinal("upperLimit")) + " " +
                         (float)sqlDataReader.GetSqlDouble(sqlDataReader.GetOrdinal("lowerLimit")) 
-                        );*/
+                        );*//*
                 }
                 connection.Close();
             }catch(Exception ex)
@@ -41,6 +76,6 @@ namespace ManagerStudent.DAL
                 Console.WriteLine(ex.Message);
             }
             return conducts;
-        }
+        }*/
     }
 }

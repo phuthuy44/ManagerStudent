@@ -133,6 +133,7 @@
     <Compile Include="BLL\PointBLL.cs" />
     <Compile Include="BLL\SemesterBLL.cs" />
     <Compile Include="BLL\StudentBLL.cs" />
+    <Compile Include="BLL\TypeOfPointBLL.cs" />
     <Compile Include="DAL\connectExcel.cs" />
     <Compile Include="DAL\connectGGSheet.cs" />
     <Compile Include="DAL\GetAccountData.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="DAL\initConnect.cs" />
     <Compile Include="DAL\PointDAL.cs" />
     <Compile Include="DAL\StudentDAL.cs" />
+    <Compile Include="DAL\TypeOfPointDAL.cs" />
     <Compile Include="DTO\AcademicYear.cs" />
     <Compile Include="DTO\Account.cs" />
     <Compile Include="DTO\Capacity.cs" />
@@ -183,12 +185,6 @@
     </Compile>
     <Compile Include="GUI\HocSinhForm.Designer.cs">
       <DependentUpon>HocSinhForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\InOutForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\InOutForm.Designer.cs">
-      <DependentUpon>InOutForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\LoginForm.cs">
       <SubType>Form</SubType>
@@ -249,9 +245,6 @@
     <EmbeddedResource Include="GUI\HocSinhForm.resx">
       <DependentUpon>HocSinhForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\InOutForm.resx">
-      <DependentUpon>InOutForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUI\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,7 +266,6 @@
     <EmbeddedResource Include="obj\Debug\ManagerStudent.GUI.CategoryForm.resources" />
     <EmbeddedResource Include="obj\Debug\ManagerStudent.GUI.ClassForm.resources" />
     <EmbeddedResource Include="obj\Debug\ManagerStudent.GUI.HocSinhForm.resources" />
-    <EmbeddedResource Include="obj\Debug\ManagerStudent.GUI.InOutForm.resources" />
     <EmbeddedResource Include="obj\Debug\ManagerStudent.GUI.LoginForm.resources" />
     <EmbeddedResource Include="obj\Debug\ManagerStudent.GUI.MainForm.resources" />
     <EmbeddedResource Include="obj\Debug\ManagerStudent.GUI.PointForm.resources" />
@@ -443,7 +435,9 @@
     <Content Include="bin\Debug\System.Numerics.Vectors.xml" />
     <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.dll" />
     <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="BLL\StoreProcedure.sql" />
     <Content Include="DAL\ScriptData.sql" />
+    <Content Include="DAL\Trigger.sql" />
     <Content Include="obj\Debug\ManagerStudent.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
     <Content Include="obj\Debug\TempPE\StudentManagerDataSet.Designer.cs.dll" />

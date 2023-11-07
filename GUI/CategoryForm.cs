@@ -1,7 +1,9 @@
-﻿using ManagerStudent.BLL;
+﻿using Google.Apis.Sheets.v4.Data;
+using ManagerStudent.BLL;
 using ManagerStudent.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,6 +14,7 @@ namespace ManagerStudent.GUI
         public CategoryForm()
         {
             InitializeComponent();
+            conductTab();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -30,174 +33,47 @@ namespace ManagerStudent.GUI
         }
         private void conductTab()
         {
-            ConductBLL conductBLL = new ConductBLL();
-            Response response = conductBLL.GetConductData();
-
-            //Kiểm tra lấy dữ liệu thành công không
-            if (!response.Status) {
-                MessageBox.Show(response.Message);
-            }
-            else
-            {
-                dataGridView2.ReadOnly = true; // Khoá toàn bộ DataGridView
-                                               //Xoá bảng để tránh bị chồng dữ liệu
-                dataGridView2.Rows.Clear();
-                dataGridView2.Columns.Clear();
-                //Tạo dòng đầu tiên để chứa tên các cột
-                dataGridView2.Columns.AddRange(
-                    new DataGridViewTextBoxColumn { Name = "ColumnName1", HeaderText = "Xếp loại" },
-                    new DataGridViewTextBoxColumn { Name = "ColumnName2", HeaderText = "Điểm cận trên" },
-                    new DataGridViewTextBoxColumn { Name = "ColumnName3", HeaderText = "Điểm cận dưới" }
-                );
-                //Đặt độ rộng cho từng cột
-                dataGridView2.Columns[0].Width = 200; // Đặt độ rộng của cột 0 là 200 pixel
-                dataGridView2.Columns[1].Width = 150; // Đặt độ rộng của cột 1 là 150 pixel
-                dataGridView2.Columns[2].Width = 150; // Đặt độ rộng của cột 2 là 150 pixel
-
-                //Lấy danh sách dữ liệu
-                IList<Conduct> conducts = (IList<Conduct>)response.Data;
-
-                //Fill dữ liệu vào bảng
-                foreach (var i in conducts)
-                {
-                    Console.WriteLine(i);
-                    dataGridView2.Rows.Add(new string[]
-                    {
-                        i.Name, i.upperLimit.ToString(), i.lowerLimit.ToString()
-                    });
-                }
-
-            }
+            conductBLL = new ConductBLL();
+            dataGridView2.DataSource=conductBLL.GetConductData();
             
             
         }
         private void capacityTab()
         {
-            CapacityBLL capacity = new CapacityBLL();
-            Response response = capacity.GetCapacityData();
-            //Kiểm tra lấy dữ liệu thành công không
-            if (!response.Status)
-            {
-                MessageBox.Show(response.Message);
-            }else {
-                dataGridView3.ReadOnly = true; // Khoá toàn bộ DataGridView
+            capacity = new CapacityManager();
 
-                //Xoá bảng để tránh bị chồng dữ liệu
-                dataGridView3.Rows.Clear();
-                dataGridView3.Columns.Clear();
-
-                //Tạo dòng đầu tiên để chứa tên các cột
-                dataGridView3.Columns.AddRange(
-                    new DataGridViewTextBoxColumn { Name = "ColumnName1", HeaderText = "Xếp loại" },
-                    new DataGridViewTextBoxColumn { Name = "ColumnName2", HeaderText = "Điểm cận trên" },
-                    new DataGridViewTextBoxColumn { Name = "ColumnName3", HeaderText = "Điểm cận dưới" },
-                    new DataGridViewTextBoxColumn { Name = "ColumnName4", HeaderText = "Điểm khống chế" }
-                );
-                //Đặt độ rộng cho từng cột
-                dataGridView3.Columns[0].Width = 150; // Đặt độ rộng của cột 0 là 150 pixel
-                dataGridView3.Columns[1].Width = 100; // Đặt độ rộng của cột 1 là 100 pixel
-                dataGridView3.Columns[2].Width = 100; // Đặt độ rộng của cột 2 là 100 pixel
-                dataGridView3.Columns[3].Width = 120; // Đặt độ rộng của cột 3 là 120 pixel
-
-                //Lấy danh sách dữ liệu
-                IList<Capacity> capacities = (IList<Capacity>)response.Data;
-                //Fill dữ liệu vào bảng
-                foreach (var i in capacities)
-                {
-                    Console.WriteLine(i);
-                    dataGridView3.Rows.Add(new string[]
-                    {
-                        i.Name, i.upperLimit.ToString(), i.lowerLimit.ToString(), i.paraPoint.ToString()
-                    });
-                }
-
-            }
+            // Đặt DataTable làm nguồn dữ liệu của DataGridView
+            dataGridView3.DataSource = capacity.GetAllCapacity();
 
         }
         private void SemesterTab()
         {
             SemesterBLL semester = new SemesterBLL();
-            Response response = semester.GetDataSemester();
-            //Kiểm tra lấy dữ liệu thành công không
-            if (!response.Status)
-            {
-                MessageBox.Show(response.Message);
-            }
-            else
-            {
-                dataGridView4.ReadOnly = true; // Khoá toàn bộ DataGridView
+            dataGridView4.DataSource = semester.SemesterData();
 
-                //Xoá bảng để tránh bị chồng dữ liệu
-                dataGridView4.Rows.Clear();
-                dataGridView4.Columns.Clear();
-
-                //Tạo dòng đầu tiên để chứa tên các cột
-                dataGridView4.Columns.AddRange(
-                    new DataGridViewTextBoxColumn { Name = "ColumnName1", HeaderText = "Mô tả" },
-                    new DataGridViewTextBoxColumn { Name = "ColumnName2", HeaderText = "Hệ số" }
-                );
-
-                //Đặt độ rộng cho từng cột
-                dataGridView4.Columns[0].Width = 250; // Đặt độ rộng của cột 0 là 250 pixel
-                dataGridView4.Columns[1].Width = 250; // Đặt độ rộng của cột 1 là 250 pixel
-               
-                //Lấy danh sách dữ liệu
-                IList<Semester> semesters = (IList<Semester>)response.Data;
-
-                //Fill dữ liệu vào bảng
-                foreach (var i in semesters)
-                {
-                    Console.WriteLine(i);
-                    dataGridView4.Rows.Add(new string[]
-                    {
-                        i.Name, i.Coefficient.ToString(),
-                    });
-                }
-
-            }
-
+        }
+        private void TypeOfPointTab()
+        {
+            TypeOfPointBLL pointBLL = new TypeOfPointBLL();
+            dataGridView5.DataSource = pointBLL.TypeOfPointData();
         }
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = tabControl1.SelectedIndex;
             switch (index)
             {
-                case 1:
+                case 0:
                     conductTab();
                     break;
-                case 2:
+                case 1:
                     capacityTab();
                     break;
-                case 3:
+                case 2:
                     SemesterTab();
                     break;
-            }
-            
-        }
-        public void fillCategoryFom(IList<IList<string>> conducts) {
-            dataGridView2.ReadOnly = true; // Khoá toàn bộ DataGridView
-
-            dataGridView2.Rows.Clear();
-            dataGridView2.Columns.Clear();
-
-            dataGridView2.Columns.AddRange(
-                new DataGridViewTextBoxColumn { Name = "ColumnName1", HeaderText = "Xếp loại" },
-                new DataGridViewTextBoxColumn { Name = "ColumnName2", HeaderText = "Điểm cận trên" },
-                new DataGridViewTextBoxColumn { Name = "ColumnName3", HeaderText = "Điểm cận dưới" }
-            );
-            dataGridView2.Columns[0].Width = 200; // Đặt độ rộng của cột 0 là 200 pixel
-            dataGridView2.Columns[1].Width = 150; // Đặt độ rộng của cột 1 là 150 pixel
-            dataGridView2.Columns[2].Width = 150; // Đặt độ rộng của cột 2 là 150 pixel
-
-            bool is_first_row = false;
-            foreach (var i in conducts)
-            {
-                if (!is_first_row)
-                {
-                    is_first_row = true;
-                    continue;
-                }
-                dataGridView2.Rows.Add(i.ToArray());
+                case 3:
+                    TypeOfPointTab();
+                    break;
             }
             
         }
@@ -213,13 +89,72 @@ namespace ManagerStudent.GUI
         private void button9_Click(object sender, EventArgs e)
         {
             
-            InOutForm inOutForm = new InOutForm();
-            InOutForm form = Application.OpenForms.OfType<InOutForm>().FirstOrDefault();
-            //form.context = "Conduct";
-            if (form == null)
+        }
+
+        private void FindConductData()
+        {
+            conductBLL = new ConductBLL();
+            dataGridView2.DataSource = conductBLL.FindConduct(textBox2.Text.Trim());
+        }
+
+        private void FindCapacityData()
+        {
+            capacity = new CapacityManager();
+            dataGridView3.DataSource = capacity.FindCapacity(textBox5.Text.Trim());
+        }
+        private void button6_Click(object sender, EventArgs e)
+        {
+            FindConductData();
+            }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            FindCapacityData();
+        }
+
+        private ConductBLL conductBLL;
+        private CapacityManager capacity;
+
+        private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        
+            if (e.RowIndex>=0)
             {
-                inOutForm.context = "Conduct";
-                inOutForm.Show();
+                DataGridViewRow row = dataGridView3.Rows[e.RowIndex];
+                textBox11.Text = row.Cells[0].Value.ToString();
+                textBox10.Text = row.Cells[1].Value.ToString();
+                textBox7.Text = row.Cells[2].Value.ToString();
+                textBox6.Text = row.Cells[3].Value.ToString();
+                textBox12.Text = row.Cells[4].Value.ToString();
+            }
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                // Thực hiện các xử lý khi nhấn phím Enter tại đây
+
+                // Ví dụ: Gọi phương thức tìm kiếm
+                FindConductData();
+
+                // Ngăn không cho phím Enter được hiển thị trong textBox2
+                e.Handled = true;
+            }
+        }
+
+        private void tabControl1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                // Thực hiện các xử lý khi nhấn phím Enter tại đây
+
+                // Ví dụ: Gọi phương thức tìm kiếm
+                FindCapacityData();
+
+                // Ngăn không cho phím Enter được hiển thị trong textBox2
+                e.Handled = true;
             }
         }
     }
