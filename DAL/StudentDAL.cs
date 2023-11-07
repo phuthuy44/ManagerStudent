@@ -25,8 +25,7 @@ namespace ManagerStudent.DAL
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dataTable);
 
-                
-
+               
             }
             catch (Exception ex)
             {

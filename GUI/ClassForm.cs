@@ -35,6 +35,18 @@ namespace ManagerStudent.GUI
             txtSoLuongLop.Text = "";
         }
 
+        public void SetControl(bool edit)
+        {
+            txtMaKhoi.Enabled =  false;
+            txtTenKhoi.Enabled = edit;
+            txtSoLuongKhoi.Enabled = edit;
+            txtSoLuongLop.Enabled = edit;
+            btnAdd.Enabled =edit;
+            btnEdit.Enabled =!edit;
+            btnDelete.Enabled = !edit;
+
+        }
+
         private void label3_Click(object sender, EventArgs e)
         {
 
@@ -42,7 +54,7 @@ namespace ManagerStudent.GUI
 
         private void ClassForm_Load(object sender, EventArgs e)
         {
-
+            SetControl(true);
         }
 
         private void tabPage2_Click(object sender, EventArgs e)
@@ -59,6 +71,7 @@ namespace ManagerStudent.GUI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+         
           if(string.IsNullOrEmpty(txtTenKhoi.Text))
             {
                 MessageBox.Show("Vui lòng nhập tên khối");
@@ -117,6 +130,42 @@ namespace ManagerStudent.GUI
             {
                 MessageBox.Show("Vui lòng chọn một khối để sửa đổi");
             }
+        }
+
+        private void btnHienThi_Click(object sender, EventArgs e)
+        {
+            loadData();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvGrade.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dgvGrade.SelectedRows[0].Index;
+                Grade gradeDTO = grade[selectedIndex];
+                gradeDTO.Name = txtTenKhoi.Text;
+                gradeDTO.maxClassOfGrade = Convert.ToInt32(txtSoLuongKhoi.Text);
+                gradeDTO.realClassOfGrade = Convert.ToInt32(txtSoLuongLop.Text);
+
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa khối này?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    gradeBll.deleteGrade(gradeDTO);
+                    MessageBox.Show("Bạn đã xóa thành công");
+                    loadData(); // Cập nhật dữ liệu trên DataGridView
+                    Reset();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một khối để xóa");
+            }
+        }
+
+        private void dgvGrade_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
