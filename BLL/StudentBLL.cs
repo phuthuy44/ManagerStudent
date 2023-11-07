@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ManagerStudent.BLL
 {
@@ -30,7 +31,7 @@ namespace ManagerStudent.BLL
             bool success = studentDAL.insertStudent(student);
             if (success)
             {
-                Console.WriteLine("Student record inserted successfully");
+                Console.WriteLine("Thêm học sinh thành công!");
                 return true;
             }
             else
@@ -39,6 +40,33 @@ namespace ManagerStudent.BLL
 
             }
         }
-
+        public bool deleteStudent(string idStudent,out bool isLoiKhoaNgoai)
+        {
+            bool success = studentDAL.deleteStudent(idStudent,out isLoiKhoaNgoai);
+            if(success)
+            {
+                Console.WriteLine("Xóa học sinh thành công");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Hệ thống lỗi! Không thể xóa!");
+                return false;
+            }
+        }
+        public bool updateStudent(Student student)
+        {
+            bool success=studentDAL.updateStudent(student);
+            if (success)
+            {
+                Console.WriteLine("Cập nhật thông tin thành công!");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Hệ thống lỗi! Không thể cập nhật thông tin");
+                return false;
+            }
+        }
     }
 }

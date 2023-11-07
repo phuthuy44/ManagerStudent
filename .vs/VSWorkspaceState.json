@@ -2,7 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\BLL",
-    "\\DAL"
+    "\\DAL",
+    "\\GUI"
   ],
   "SelectedNode": "\\ManagerStudent.sln",
   "PreviewInSolutionExplorer": false

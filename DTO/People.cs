@@ -56,6 +56,27 @@ namespace ManagerStudent.DTO
             get;
             set;
         }
+        public DateTime createDate
+        {
+            set{
+                this.createDate = value;
+            }
+            get
+            {
+                return this.createDate;
+            }
+        }
+        public DateTime updateDate
+        {
+            set
+            {
+                this.updateDate = value;
+            }
+            get
+            {
+                return this.updateDate;
+}
+        }
         public People(int id, string name, string gender, string address, DateTime birthday, string birthplace, string email, string phone, string image)
         {
             ID = id;
@@ -68,6 +89,7 @@ namespace ManagerStudent.DTO
             Phone = phone;
             Image = image;
         }
+        
         public People()
         {
 
@@ -75,6 +97,24 @@ namespace ManagerStudent.DTO
 
         public People(string name, string gender, string address, DateTime birthday, string email, string phone, string image)
         {
+            Name = name;
+            Gender = gender;
+            Address = address;
+            Birthday = birthday;
+            Email = email;
+            Phone = phone;
+            Image = image;
+        }
+
+        public People(string name, string gender, string address, DateTime birthday, string email, string phone, string image, DateTime createDate, DateTime updateDate) : this(name, gender, address, birthday, email, phone, image)
+        {
+            this.createDate = createDate;
+            this.updateDate = updateDate;
+        }
+
+        public People(int iD, string name, string gender, string address, DateTime birthday, string email, string phone, string image)
+        {
+            ID = iD;
             Name = name;
             Gender = gender;
             Address = address;

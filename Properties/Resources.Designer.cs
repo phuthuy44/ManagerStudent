@@ -213,6 +213,26 @@ namespace ManagerStudent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Reset {
+            get {
+                object obj = ResourceManager.GetObject("Reset", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap reset_button_icon_15 {
+            get {
+                object obj = ResourceManager.GetObject("reset-button-icon-15", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap signal_ {
             get {
                 object obj = ResourceManager.GetObject("signal_", resourceCulture);
