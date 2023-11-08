@@ -51,6 +51,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnHienThi = new System.Windows.Forms.Button();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.dgvGrade = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -62,8 +63,8 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.btnTimKiem = new System.Windows.Forms.Button();
+            this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtSoLuongLop = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -73,7 +74,6 @@
             this.txtMaKhoi = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnHienThi = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
@@ -339,8 +339,8 @@
             this.tabPage2.Controls.Add(this.pictureBox9);
             this.tabPage2.Controls.Add(this.dgvGrade);
             this.tabPage2.Controls.Add(this.panel4);
-            this.tabPage2.Controls.Add(this.button6);
-            this.tabPage2.Controls.Add(this.textBox10);
+            this.tabPage2.Controls.Add(this.btnTimKiem);
+            this.tabPage2.Controls.Add(this.txtTimKiem);
             this.tabPage2.Controls.Add(this.panel3);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -350,6 +350,17 @@
             this.tabPage2.Text = "Khối";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // btnHienThi
+            // 
+            this.btnHienThi.BackColor = System.Drawing.Color.SpringGreen;
+            this.btnHienThi.Location = new System.Drawing.Point(101, 245);
+            this.btnHienThi.Name = "btnHienThi";
+            this.btnHienThi.Size = new System.Drawing.Size(100, 45);
+            this.btnHienThi.TabIndex = 14;
+            this.btnHienThi.Text = "Hiển thị";
+            this.btnHienThi.UseVisualStyleBackColor = false;
+            this.btnHienThi.Click += new System.EventHandler(this.btnHienThi_Click);
             // 
             // pictureBox9
             // 
@@ -480,26 +491,27 @@
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // button6
+            // btnTimKiem
             // 
-            this.button6.BackColor = System.Drawing.Color.MediumBlue;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(170, 34);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(106, 38);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "Tìm Kiếm";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button6.UseVisualStyleBackColor = false;
+            this.btnTimKiem.BackColor = System.Drawing.Color.MediumBlue;
+            this.btnTimKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTimKiem.ForeColor = System.Drawing.Color.White;
+            this.btnTimKiem.Location = new System.Drawing.Point(170, 34);
+            this.btnTimKiem.Name = "btnTimKiem";
+            this.btnTimKiem.Size = new System.Drawing.Size(106, 38);
+            this.btnTimKiem.TabIndex = 6;
+            this.btnTimKiem.Text = "Tìm Kiếm";
+            this.btnTimKiem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTimKiem.UseVisualStyleBackColor = false;
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
-            // textBox10
+            // txtTimKiem
             // 
-            this.textBox10.Location = new System.Drawing.Point(8, 34);
-            this.textBox10.Multiline = true;
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(156, 38);
-            this.textBox10.TabIndex = 5;
+            this.txtTimKiem.Location = new System.Drawing.Point(8, 34);
+            this.txtTimKiem.Multiline = true;
+            this.txtTimKiem.Name = "txtTimKiem";
+            this.txtTimKiem.Size = new System.Drawing.Size(156, 38);
+            this.txtTimKiem.TabIndex = 5;
             // 
             // panel3
             // 
@@ -585,17 +597,6 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "Mã khối";
             // 
-            // btnHienThi
-            // 
-            this.btnHienThi.BackColor = System.Drawing.Color.SpringGreen;
-            this.btnHienThi.Location = new System.Drawing.Point(101, 245);
-            this.btnHienThi.Name = "btnHienThi";
-            this.btnHienThi.Size = new System.Drawing.Size(100, 45);
-            this.btnHienThi.TabIndex = 14;
-            this.btnHienThi.Text = "Hiển thị";
-            this.btnHienThi.UseVisualStyleBackColor = false;
-            this.btnHienThi.Click += new System.EventHandler(this.btnHienThi_Click);
-            // 
             // ClassForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -658,8 +659,8 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Button btnTimKiem;
+        private System.Windows.Forms.TextBox txtTimKiem;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtTenKhoi;
         private System.Windows.Forms.TextBox txtMaKhoi;

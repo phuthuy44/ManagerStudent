@@ -4,6 +4,7 @@ using ManagerStudent.DAL;
 using ManagerStudent.DTO;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ManagerStudent.GUI
@@ -38,12 +39,12 @@ namespace ManagerStudent.GUI
         public void SetControl(bool edit)
         {
             txtMaKhoi.Enabled =  false;
-            txtTenKhoi.Enabled = edit;
+         /*   txtTenKhoi.Enabled = edit;
             txtSoLuongKhoi.Enabled = edit;
             txtSoLuongLop.Enabled = edit;
             btnAdd.Enabled =edit;
             btnEdit.Enabled =!edit;
-            btnDelete.Enabled = !edit;
+            btnDelete.Enabled = !edit;*/
 
         }
 
@@ -71,17 +72,36 @@ namespace ManagerStudent.GUI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-         
-          if(string.IsNullOrEmpty(txtTenKhoi.Text))
+
+            if (string.IsNullOrEmpty(txtTenKhoi.Text))
             {
                 MessageBox.Show("Vui lòng nhập tên khối");
-            } else if(string.IsNullOrEmpty(txtSoLuongKhoi.Text))
+            }
+            else if (string.IsNullOrEmpty(txtSoLuongKhoi.Text))
             {
                 MessageBox.Show("Vui lòng nhập số lượng trong khối");
-            } else if(string.IsNullOrEmpty(txtSoLuongLop.Text))
+            }
+            else if (string.IsNullOrEmpty(txtSoLuongLop.Text))
             {
                 MessageBox.Show("Vui lòng nhập số lượng lớp trong khối");
-            } else
+            }
+            else if (!txtTenKhoi.Text.All(char.IsDigit))
+            {
+                MessageBox.Show("Tên khối chỉ được nhập số từ 0-9");
+            }
+            else if (!txtSoLuongKhoi.Text.All(char.IsDigit))
+            {
+                MessageBox.Show("Số lượng khối chỉ được nhập số từ 0-9");
+            }
+            else if (!txtSoLuongLop.Text.All(char.IsDigit))
+            {
+                MessageBox.Show("Số lượng lớp chỉ được nhập số từ 0-9");
+            }
+            else if (Convert.ToInt32(txtSoLuongLop.Text) > Convert.ToInt32(txtSoLuongKhoi.Text))
+            {
+                MessageBox.Show("Số lượng lớp không được lớn hơn số lượng trong khối");
+            }
+            else
             {
                 row = dgvGrade.Rows.Count;
                 Grade gradeDTO = new Grade();
@@ -95,10 +115,10 @@ namespace ManagerStudent.GUI
                 gradeDTO.realClassOfGrade = Convert.ToInt32(txtSoLuongLop.Text);
                 gradeBll.insertGrade(gradeDTO);
                 MessageBox.Show("Bạn đã thêm thành công");
-           
+
                 loadData();
                 Reset();
-              
+
             }
         }
 
@@ -118,13 +138,46 @@ namespace ManagerStudent.GUI
             {
                 int selectedIndex = dgvGrade.SelectedRows[0].Index;
                 Grade gradeDTO = grade[selectedIndex];
-                gradeDTO.Name = txtTenKhoi.Text;
-                gradeDTO.maxClassOfGrade = Convert.ToInt32(txtSoLuongKhoi.Text);
-                gradeDTO.realClassOfGrade = Convert.ToInt32(txtSoLuongLop.Text);
-                gradeBll.updateGrade(gradeDTO);
-                MessageBox.Show("Bạn đã sửa thành công");
-                loadData(); // Cập nhật dữ liệu trên DataGridView
-                Reset();
+
+                if (string.IsNullOrEmpty(txtTenKhoi.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập tên khối");
+                }
+                else if (string.IsNullOrEmpty(txtSoLuongKhoi.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập số lượng trong khối");
+                }
+                else if (string.IsNullOrEmpty(txtSoLuongLop.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập số lượng lớp trong khối");
+                }
+                else if (!txtTenKhoi.Text.All(char.IsDigit))
+                {
+                    MessageBox.Show("Số lượng trong khối chỉ được nhập số từ 0-9");
+                }
+                else if (!txtSoLuongKhoi.Text.All(char.IsDigit))
+                {
+                    MessageBox.Show("Số lượng trong khối chỉ được nhập số từ 0-9");
+                }
+                else if (!txtSoLuongLop.Text.All(char.IsDigit))
+                {
+                    MessageBox.Show("Số lượng lớp trong khối chỉ được nhập số từ 0-9");
+                }
+                else if (Convert.ToInt32(txtSoLuongLop.Text) > Convert.ToInt32(txtSoLuongKhoi.Text))
+                {
+                    MessageBox.Show("Số lượng lớp không được lớn hơn số lượng trong khối");
+                }
+                else
+                {
+
+                    gradeDTO.Name = txtTenKhoi.Text;
+                    gradeDTO.maxClassOfGrade = Convert.ToInt32(txtSoLuongKhoi.Text);
+                    gradeDTO.realClassOfGrade = Convert.ToInt32(txtSoLuongLop.Text);
+                    gradeBll.updateGrade(gradeDTO);
+                    MessageBox.Show("Bạn đã sửa thành công");
+                    loadData(); // Cập nhật dữ liệu trên DataGridView
+                    Reset();
+                }
             }
             else
             {
@@ -165,6 +218,33 @@ namespace ManagerStudent.GUI
 
         private void dgvGrade_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+        /*    string searchTerm = txtTimKiem.Text;
+
+            try
+            {
+                // Gọi hàm SearchGrades để tìm kiếm dữ liệu
+                List<Grade> searchResults = gradeBll.searchGrades(searchTerm);
+
+                if (searchResults.Count > 0)
+                {
+                    // Cập nhật nguồn dữ liệu của DataGridView
+                    dgvGrade.DataSource = searchResults;
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy kết quả tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }*/
+
 
         }
     }

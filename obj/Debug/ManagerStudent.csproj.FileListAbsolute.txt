@@ -96,12 +96,6 @@ C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\QuickWord.OpenXml.dll
 C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\System.CodeDom.dll
 C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\System.ComponentModel.Annotations.dll
 C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\System.Drawing.Common.dll
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\EPPlus.Interfaces.dll
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\EPPlus.System.Drawing.dll
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\System.Memory.dll
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\System.Numerics.Vectors.dll
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\System.Buffers.dll
 C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.xml
 C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\EPPlus.xml
 C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.pdb
@@ -117,14 +111,6 @@ C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\OfficeOpenXml.Core.Exce
 C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\QuickWord.OpenXml.xml
 C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\System.CodeDom.xml
 C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\System.Drawing.Common.xml
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\System.Memory.xml
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\System.Numerics.Vectors.xml
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\System.Buffers.xml
-C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.SuggestedBindingRedirects.cache
-C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.exe.config
-C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.InOutForm.resources
 C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.CopyComplete
 C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.exe.config
 C:\Users\thede\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.exe

@@ -17,9 +17,15 @@ namespace ManagerStudent.BLL
             return gradeDAL.GetAll();
         }
 
-        public void insertGrade(Grade grade)
+     /*   public List<Grade> searchGrades(String searchTerm)
+        {
+            return gradeDAL.SearchGrades(searchTerm);
+        }*/
+
+        public string insertGrade(Grade grade)
         {
              gradeDAL.InsertGrade(grade);
+            return "Thêm thành công";
         }
 
         public int GetLastGradeId()
@@ -27,9 +33,10 @@ namespace ManagerStudent.BLL
             return gradeDAL.getlastgradeid();
         }
 
-        public void updateGrade(Grade grade)
+        public string updateGrade(Grade grade)
         {
             gradeDAL.UpdateGrade(grade);
+            return "Cập nhập thành công";
         }
 
         public void deleteGrade(Grade grade) {
