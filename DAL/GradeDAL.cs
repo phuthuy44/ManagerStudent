@@ -13,8 +13,7 @@ namespace ManagerStudent.DAL
     {
         DataTable dt;
         initConnect init = new initConnect();
-        List<Grade> dsgrade = new List<Grade> ();
-
+       
         public List<Grade> GetAll()
         {
             List<Grade> dsgrade = new List<Grade>();

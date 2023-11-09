@@ -13,7 +13,10 @@ namespace ManagerStudent.GUI
     {
         List<Grade> grade;
         GradeBLL gradeBll = new GradeBLL();
+        List<Class> dscls;
+        ClassBLL clsBll = new ClassBLL();
         private int row;
+        
 
         public ClassForm()
         {
@@ -21,19 +24,33 @@ namespace ManagerStudent.GUI
             InitializeComponent();
         }
 
-        public void loadData()
+        public void loadDataGrade()
         {
            
             grade = gradeBll.getAll();        
             dgvGrade.DataSource =  grade;
         }
 
-        public void Reset()
+        public void loadDataClass()
+        {
+            dscls = clsBll.getAll();
+            dgvClass.DataSource = dscls;
+        }
+
+        public void ResetGrade()
         {
             txtMaKhoi.Text = "";
             txtTenKhoi.Text = "";
             txtSoLuongKhoi.Text = "";
             txtSoLuongLop.Text = "";
+        }
+
+        public void ResetClass()
+        {
+            txtMaLop.Text = "";
+            txtTenLop.Text = "";
+            txtMaxHocSinh.Text = "";
+            txtSoLuongHocSinh.Text = "";
         }
 
         public void SetControl(bool edit)
@@ -64,11 +81,6 @@ namespace ManagerStudent.GUI
         }
 
       
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -115,9 +127,8 @@ namespace ManagerStudent.GUI
                 gradeDTO.realClassOfGrade = Convert.ToInt32(txtSoLuongLop.Text);
                 gradeBll.insertGrade(gradeDTO);
                 MessageBox.Show("Bạn đã thêm thành công");
-
-                loadData();
-                Reset();
+                loadDataGrade();
+                ResetGrade();
 
             }
         }
@@ -163,7 +174,7 @@ namespace ManagerStudent.GUI
                 {
                     MessageBox.Show("Số lượng lớp trong khối chỉ được nhập số từ 0-9");
                 }
-                else if (Convert.ToInt32(txtSoLuongLop.Text) > Convert.ToInt32(txtSoLuongKhoi.Text))
+                else if (Convert.ToInt32(txtSoLuongLop.Text) >= Convert.ToInt32(txtSoLuongKhoi.Text))
                 {
                     MessageBox.Show("Số lượng lớp không được lớn hơn số lượng trong khối");
                 }
@@ -175,8 +186,8 @@ namespace ManagerStudent.GUI
                     gradeDTO.realClassOfGrade = Convert.ToInt32(txtSoLuongLop.Text);
                     gradeBll.updateGrade(gradeDTO);
                     MessageBox.Show("Bạn đã sửa thành công");
-                    loadData(); // Cập nhật dữ liệu trên DataGridView
-                    Reset();
+                    loadDataGrade(); // Cập nhật dữ liệu trên DataGridView
+                    ResetGrade();
                 }
             }
             else
@@ -187,7 +198,7 @@ namespace ManagerStudent.GUI
 
         private void btnHienThi_Click(object sender, EventArgs e)
         {
-            loadData();
+            loadDataGrade();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -206,8 +217,8 @@ namespace ManagerStudent.GUI
                 {
                     gradeBll.deleteGrade(gradeDTO);
                     MessageBox.Show("Bạn đã xóa thành công");
-                    loadData(); // Cập nhật dữ liệu trên DataGridView
-                    Reset();
+                    loadDataGrade(); // Cập nhật dữ liệu trên DataGridView
+                    ResetGrade();
                 }
             }
             else
@@ -247,5 +258,113 @@ namespace ManagerStudent.GUI
 
 
         }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+          
+                if (string.IsNullOrEmpty(txtTenLop.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập tên lớp");
+                }
+                else if (string.IsNullOrEmpty(txtMaxHocSinh.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập max học sinh");
+                }
+                else if (string.IsNullOrEmpty(txtSoLuongHocSinh.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập số lượng học sinh");
+                }
+                else if (!txtMaxHocSinh.Text.All(char.IsDigit))
+                {
+                    MessageBox.Show("Max hoc sinh chỉ nhập được số từ 0-9");
+                }
+                else if (!txtSoLuongHocSinh.Text.All(char.IsDigit))
+                {
+                    MessageBox.Show("Số lượng hoc sinh chỉ nhập được số từ 0-9");
+                }
+                else if (Convert.ToInt32(txtSoLuongHocSinh.Text) >= Convert.ToInt32(txtMaxHocSinh.Text))
+                {
+                    MessageBox.Show("Số lượng hoc sinh không được lớn hơn max học sinh");
+                }
+                else
+                {
+                    row = dgvClass.Rows.Count;
+                  Class clsDTO = new Class();
+                    int lastId = clsBll.getlastclassid();
+                    int newId = lastId + 1;
+                    clsDTO.ID = newId;
+                    clsDTO.Name = txtTenLop.Text;
+                    clsDTO.maxStudent = Convert.ToInt32(txtMaxHocSinh.Text);
+                    clsDTO.realStudent = Convert.ToInt32(txtSoLuongHocSinh.Text);
+                    clsBll.insertClass(clsDTO);
+                    MessageBox.Show("Bạn đã thêm thành công");
+                    loadDataClass();
+                    ResetClass();
+                }
+            
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            loadDataClass();
+        }
+
+        private void dgvClass_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1) return;
+            DataGridViewRow row = dgvClass.Rows[e.RowIndex];
+            txtMaLop.Text = row.Cells[0].Value.ToString();
+            txtTenLop.Text = row.Cells[1].Value.ToString();
+            txtMaxHocSinh.Text = row.Cells[2].Value.ToString();
+            txtSoLuongHocSinh.Text = row.Cells[3].Value.ToString();
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (dgvClass.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dgvClass.SelectedRows[0].Index;
+                Class clsDTO = dscls[selectedIndex];
+                if (string.IsNullOrEmpty(txtTenLop.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập tên lớp");
+                }
+                else if (string.IsNullOrEmpty(txtMaxHocSinh.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập max học sinh");
+                }
+                else if (string.IsNullOrEmpty(txtSoLuongHocSinh.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập số lượng học sinh");
+                }
+                else if (!txtMaxHocSinh.Text.All(char.IsDigit))
+                {
+                    MessageBox.Show("Max hoc sinh chỉ nhập được số từ 0-9");
+                }
+                else if (!txtSoLuongHocSinh.Text.All(char.IsDigit))
+                {
+                    MessageBox.Show("Số lượng hoc sinh chỉ nhập được số từ 0-9");
+                }
+                else if (Convert.ToInt32(txtSoLuongHocSinh.Text) >= Convert.ToInt32(txtMaxHocSinh.Text))
+                {
+                    MessageBox.Show("Số lượng hoc sinh không được lớn hơn max học sinh");
+                }
+                else
+                {
+
+                    clsDTO.Name = txtTenLop.Text;
+                    clsDTO.maxStudent = Convert.ToInt32(txtMaxHocSinh.Text);
+                    clsDTO.realStudent = Convert.ToInt32(txtSoLuongHocSinh.Text);
+                    clsBll.updateClass(clsDTO);
+                    MessageBox.Show("Bạn đã sửa thành công");
+                    loadDataClass();
+                    ResetClass();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một khối để sửa đổi");
+            }
+          }
     }
 }

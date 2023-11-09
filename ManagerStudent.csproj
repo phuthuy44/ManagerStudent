@@ -128,12 +128,14 @@
     <Compile Include="BLL\AccountBLL.cs" />
     <Compile Include="BLL\CapacityBLL.cs" />
     <Compile Include="BLL\Class1.cs" />
+    <Compile Include="BLL\ClassBLL.cs" />
     <Compile Include="BLL\ConductBLL.cs" />
     <Compile Include="BLL\GradeBLL.cs" />
     <Compile Include="BLL\PointBLL.cs" />
     <Compile Include="BLL\SemesterBLL.cs" />
     <Compile Include="BLL\StudentBLL.cs" />
     <Compile Include="BLL\TypeOfPointBLL.cs" />
+    <Compile Include="DAL\ClassDAL.cs" />
     <Compile Include="DAL\connectExcel.cs" />
     <Compile Include="DAL\connectGGSheet.cs" />
     <Compile Include="DAL\GetAccountData.cs" />
