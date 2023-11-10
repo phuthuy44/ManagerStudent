@@ -2,6 +2,7 @@
 using ManagerStudent.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,38 @@ namespace ManagerStudent.BLL
         private PointDAL semesterDAL;
         private PointDAL subjectDAL;
         private PointDAL studentDAL;
+        private PointDAL subjectPointDAL;
+
+        public bool UpdateStudentPoint(string studentName, int regularPoint, int midtermPoint, int finalPoint)
+        {
+            // Gọi hàm DAL để cập nhật điểm
+            PointDAL dal = new PointDAL();
+            return dal.UpdateStudentPoint(studentName, regularPoint, midtermPoint, finalPoint);
+        }
+        public DataTable GetStudentPoints(int academicYearID, int semesterID, int classID, int subjectID)
+        {
+            subjectPointDAL = new PointDAL();
+            return subjectPointDAL.GetStudentPoints(academicYearID, semesterID, classID, subjectID);
+        }
+
+        public DataTable GetClassesData()
+        {
+            classDAL = new PointDAL();
+            return classDAL.GetallClasses();
+        }
+
+        public DataTable GetSemesterData()
+        {
+            semesterDAL = new PointDAL();
+            return semesterDAL.GetallSemester();
+        }
+
+        public DataTable GetSujectData()
+        {
+            subjectDAL = new PointDAL();
+            return subjectDAL.GetallSuject();
+        }
+
         public void LoadAcademicYearsIntoComboBox(ComboBox comboBox)
         {
             academicYearDAL = new PointDAL();
@@ -38,52 +71,6 @@ namespace ManagerStudent.BLL
                     break;
                 }
             }
-        }
-
-        public void LoadClassesIntoComboBox(ComboBox comboBox)
-        {
-            classDAL = new PointDAL();
-            List<Class> classes = classDAL.GetClasses();
-
-            comboBox.DisplayMember = "Name";
-            comboBox.ValueMember = "ID";
-            comboBox.DataSource = classes;
-
-            //ComboBox không chỉnh sửa được và chỉ cho phép chọn giá trị
-            comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            //Để trống Combobox lớp học
-            comboBox.SelectedIndex = -1;
-        }
-
-        public void LoadSemestersIntoComboBox(ComboBox comboBox)
-        {
-            semesterDAL = new PointDAL();
-            List<Semester> semesters = semesterDAL.GetSemesters();
-
-            comboBox.DisplayMember = "Name";
-            comboBox.ValueMember = "ID";
-            comboBox.DataSource = semesters;
-
-            //ComboBox không chỉnh sửa được và chỉ cho phép chọn giá trị
-            comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-
-        }
-
-        public void LoadSubjectsIntoComboBox(ComboBox comboBox)
-        {
-            subjectDAL = new PointDAL();
-            List<Subject> subjects = subjectDAL.GetSubjects();
-
-            comboBox.DisplayMember = "Name";
-            comboBox.ValueMember = "ID";
-            comboBox.DataSource = subjects;
-
-            //ComboBox không chỉnh sửa được và chỉ cho phép chọn giá trị
-            comboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            //Để trống Combobox lớp học
-            comboBox.SelectedIndex = -1;
         }
 
         public void LoadStudentsNameAndIdIntoComboBox(ComboBox comboBoxID, ComboBox comboBoxName)
