@@ -100,6 +100,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -610,6 +611,7 @@
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel5.Controls.Add(this.label17);
             this.panel5.Controls.Add(this.comboBox13);
             this.panel5.Controls.Add(this.comboBox12);
             this.panel5.Controls.Add(this.comboBox11);
@@ -623,7 +625,7 @@
             this.panel5.Location = new System.Drawing.Point(20, 18);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(351, 347);
+            this.panel5.Size = new System.Drawing.Size(351, 350);
             this.panel5.TabIndex = 0;
             // 
             // comboBox13
@@ -980,6 +982,16 @@
             this.textBox1.Size = new System.Drawing.Size(184, 25);
             this.textBox1.TabIndex = 0;
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.Red;
+            this.label17.Location = new System.Drawing.Point(45, 318);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(0, 16);
+            this.label17.TabIndex = 10;
+            // 
             // PointForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1102,5 +1114,6 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.Label label17;
     }
 }

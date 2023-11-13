@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using ManagerStudent.DTO;
 using System.Data;
+using System.Reflection.Emit;
 
 namespace ManagerStudent.GUI
 {
@@ -13,6 +14,7 @@ namespace ManagerStudent.GUI
     {
         private DataTable studentPointsData;
         private int messageBoxCount = 0;
+        private DataTable studentIdNameData;
         public PointForm()
         {
             InitializeComponent();
@@ -134,9 +136,14 @@ namespace ManagerStudent.GUI
                 comboBox12.Enabled = true;
                 comboBox13.Enabled = true;
 
-                // Hiển thị dữ liệu trong ComboBox "Mã học sinh" và "Tên học sinh"
+                int academicYearID = (int)comboBox9.SelectedValue;
+                int semesterID = (int)comboBox11.SelectedValue;
+                int classID = (int)comboBox10.SelectedValue;
+
                 PointBLL studentIdNameBLL = new PointBLL();
-                studentIdNameBLL.LoadStudentsNameAndIdIntoComboBox(comboBox12, comboBox13);
+                studentIdNameData = studentIdNameBLL.LoadStudentsNameAndIdIntoComboBox(academicYearID, semesterID, classID);
+
+                comboBoxStudentIdName();
             }
             else
             {
@@ -147,7 +154,39 @@ namespace ManagerStudent.GUI
                 // Xóa dữ liệu trong ComboBox "Mã học sinh" và "Tên học sinh"
                 comboBox12.DataSource = null;
                 comboBox13.DataSource = null;
+
             }
+        }
+
+        private void comboBoxStudentIdName()
+        {
+            if (studentIdNameData != null && studentIdNameData.Rows.Count > 0)
+            {
+                //Đổ dữ liệu vào comboBox ID và Tên học sinh
+                comboBox12.ValueMember = "studentID";
+                comboBox12.DisplayMember = "studentID";
+                comboBox12.DataSource = studentIdNameData;
+
+                comboBox13.ValueMember = "studentID";
+                comboBox13.DisplayMember = "name";
+                comboBox13.DataSource = studentIdNameData;
+
+                comboBox12.DropDownStyle = ComboBoxStyle.DropDownList;
+                comboBox13.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                label17.Text = "";
+            }
+            else
+            {
+                label17.Text = "Không có dữ liệu để hiển thị trên ComboBox";
+
+                comboBox12.Enabled = false;
+                comboBox13.Enabled = false;
+
+                comboBox12.DataSource = null;
+                comboBox13.DataSource = null;
+            }
+
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -207,15 +246,23 @@ namespace ManagerStudent.GUI
                 foreach (DataRow row in updatedData.Rows)
                 {
                     // Lấy thông tin cần thiết từ mỗi dòng
-                    string studentName = row["Tên học sinh"].ToString();
-                    int regularPoint = Convert.ToInt32(row["Điểm thường xuyên"]);
-                    int midtermPoint = Convert.ToInt32(row["Điểm giữa kì"]);
-                    int finalPoint = Convert.ToInt32(row["Điểm cuối kì"]);
+                    int studentID = Convert.ToInt32(row["Mã học sinh"]);
+                    /*int regularPoint = Convert.ToInt32(row["Điểm đánh giá thường xuyên"]);
+                    int midtermPoint = Convert.ToInt32(row["Điểm giữa kỳ"]);
+                    int finalPoint = Convert.ToInt32(row["Điểm cuối kỳ"]);*/
+                    int regularPoint = Convert.IsDBNull(row["Điểm đánh giá thường xuyên"]) ? 0 : Convert.ToInt32(row["Điểm đánh giá thường xuyên"]);
+                    int midtermPoint = Convert.IsDBNull(row["Điểm giữa kỳ"]) ? 0 : Convert.ToInt32(row["Điểm giữa kỳ"]);
+                    int finalPoint = Convert.IsDBNull(row["Điểm cuối kỳ"]) ? 0 : Convert.ToInt32(row["Điểm cuối kỳ"]);
 
+
+                    string academicYearName = comboBox1.Text;
+                    string semesterName = comboBox3.Text;
+                    string subjectName = comboBox4.Text;
 
                     // Gọi hàm BLL để cập nhật điểm
                     PointBLL bll = new PointBLL();
-                    bool result = bll.UpdateStudentPoint(studentName, regularPoint, midtermPoint, finalPoint);
+                    bool result = bll.UpdateStudentPoint(studentID, academicYearName, semesterName, 
+                    subjectName, regularPoint, midtermPoint, finalPoint);
 
                     if (result)
                     {
@@ -240,6 +287,20 @@ namespace ManagerStudent.GUI
         }
         private void UpdateDataGridView1()
         {
+            string academicYearName = comboBox1.Text;
+            string semesterName = comboBox3.Text;
+            string className = comboBox2.Text;
+            string subjectName = comboBox4.Text;
+
+            /*Console.WriteLine(academicYearName);
+            Console.WriteLine($"{academicYearName}");
+            Console.WriteLine(className);
+            Console.WriteLine(academicYearName, semesterName, className, subjectName);*/
+
+            PointBLL bll = new PointBLL();
+            studentPointsData = bll.GetStudentPoints(academicYearName, semesterName, className, subjectName);
+
+            /*            dataGridView1.DataSource = studentPointsData;*/
             if (studentPointsData != null && studentPointsData.Rows.Count > 0)
             {
                 // Tạo một DataTable mới để chứa dữ liệu với cột STT
@@ -252,7 +313,6 @@ namespace ManagerStudent.GUI
                 {
                     updatedData.Rows[i]["STT"] = i + 1; // Giá trị STT
                 }
-
                 dataGridView1.DataSource = updatedData;
                 dataGridView1.Columns["STT"].DisplayIndex = 0; // Đặt vị trí hiển thị cho cột STT
             }
@@ -262,7 +322,7 @@ namespace ManagerStudent.GUI
                 //Set cho comboBox Lớp học và Môn học trống
                 comboBox2.SelectedIndex = -1;
                 comboBox4.SelectedIndex = -1;
-                dataGridView1.DataSource = -1;
+                dataGridView1.DataSource = null;
             }
 
         }
@@ -283,13 +343,6 @@ namespace ManagerStudent.GUI
             }
             else
             {
-                PointBLL bll = new PointBLL();
-                int academicYearID = (int)comboBox1.SelectedValue;
-                int semesterID = (int)comboBox3.SelectedValue;
-                int classID = (int)comboBox2.SelectedValue;
-                int subjectID = (int)comboBox4.SelectedValue;
-
-                studentPointsData = bll.GetStudentPoints(academicYearID, semesterID, classID, subjectID);
                 UpdateDataGridView1();
             }
         }
@@ -317,12 +370,12 @@ namespace ManagerStudent.GUI
             else
             {
                 PointBLL bll = new PointBLL();
-                int academicYearID = (int)comboBox6.SelectedValue;
-                int semesterID = (int)comboBox8.SelectedValue;
-                int classID = (int)comboBox7.SelectedValue;
-                int subjectID = (int)comboBox5.SelectedValue;
+                string academicYearName = comboBox6.Text;
+                string semesterName = comboBox8.Text;
+                string className = comboBox7.Text;
+                string subjectName = comboBox5.Text;
 
-                studentPointsData = bll.GetStudentPoints(academicYearID, semesterID, classID, subjectID);
+                studentPointsData = bll.GetStudentPoints(academicYearName, semesterName, className, subjectName);
                 UpdateDataGridView2();
             }
         }
@@ -331,6 +384,7 @@ namespace ManagerStudent.GUI
         {
             // Kiểm tra nếu đang chỉnh sửa cột "STT" hoặc cột "Tên học sinh"
             if (e.ColumnIndex == dataGridView1.Columns["STT"].Index ||
+                e.ColumnIndex == dataGridView1.Columns["Mã học sinh"].Index ||
                 e.ColumnIndex == dataGridView1.Columns["Tên học sinh"].Index)
             {
                 // Ngăn chặn chỉnh sửa trên cột "STT" và cột "Tên học sinh"
@@ -340,9 +394,9 @@ namespace ManagerStudent.GUI
 
         private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (dataGridView1.Columns[e.ColumnIndex].Name == "Điểm thường xuyên" ||
-                dataGridView1.Columns[e.ColumnIndex].Name == "Điểm giữa kì" ||
-                dataGridView1.Columns[e.ColumnIndex].Name == "Điểm cuối kì")
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Điểm đánh giá thường xuyên" ||
+                dataGridView1.Columns[e.ColumnIndex].Name == "Điểm giữa kỳ" ||
+                dataGridView1.Columns[e.ColumnIndex].Name == "Điểm cuối kỳ")
             {
                 if (!string.IsNullOrEmpty(e.FormattedValue?.ToString()))
                 {

@@ -16,19 +16,26 @@ namespace ManagerStudent.BLL
         private PointDAL classDAL;
         private PointDAL semesterDAL;
         private PointDAL subjectDAL;
-        private PointDAL studentDAL;
         private PointDAL subjectPointDAL;
+        private PointDAL studentIdNameDAL;
 
-        public bool UpdateStudentPoint(string studentName, int regularPoint, int midtermPoint, int finalPoint)
+        public bool UpdateStudentPoint(int studentID, string academicYearName, string semesterName,
+                                        string subjectName, int regularPoint, int midtermPoint, int finalPoint)
         {
             // Gọi hàm DAL để cập nhật điểm
-            PointDAL dal = new PointDAL();
-            return dal.UpdateStudentPoint(studentName, regularPoint, midtermPoint, finalPoint);
+            PointDAL updatePointDAL = new PointDAL();
+            return updatePointDAL.UpdateStudentPoint(studentID, academicYearName, semesterName, subjectName,
+                regularPoint, midtermPoint, finalPoint);
         }
-        public DataTable GetStudentPoints(int academicYearID, int semesterID, int classID, int subjectID)
+        public DataTable GetStudentPoints(string academicYearName, string semesterName, string className, string subjectName)
         {
             subjectPointDAL = new PointDAL();
-            return subjectPointDAL.GetStudentPoints(academicYearID, semesterID, classID, subjectID);
+            return subjectPointDAL.GetStudentPoints(academicYearName, semesterName, className, subjectName);
+        }
+        public DataTable LoadStudentsNameAndIdIntoComboBox(int academicYearID, int semesterID, int classID)
+        {
+            studentIdNameDAL = new PointDAL();
+            return studentIdNameDAL.GetStudentsNameandID(academicYearID, semesterID, classID);
         }
 
         public DataTable GetClassesData()
@@ -73,27 +80,6 @@ namespace ManagerStudent.BLL
             }
         }
 
-        public void LoadStudentsNameAndIdIntoComboBox(ComboBox comboBoxID, ComboBox comboBoxName)
-        {
-            studentDAL = new PointDAL();
-            List<Student> students = studentDAL.GetStudentsNameandID();
 
-
-            comboBoxID.DisplayMember = "ID";
-            comboBoxID.ValueMember = "ID";
-            comboBoxID.DataSource = students;
-
-            comboBoxName.DisplayMember = "Name";
-            comboBoxName.ValueMember = "ID";
-            comboBoxName.DataSource = students;
-
-            //ComboBox không chỉnh sửa được và chỉ cho phép chọn giá trị
-            comboBoxID.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxName.DropDownStyle = ComboBoxStyle.DropDownList;
-
-            //Để trống Combobox ID học sinh, Tên học sinh khi Enable = True (thuộc tính của comboBox)
-            comboBoxID.SelectedIndex = -1;
-            comboBoxName.SelectedIndex = -1;
-        }
     }
 }
