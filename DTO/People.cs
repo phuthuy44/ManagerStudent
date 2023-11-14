@@ -123,5 +123,10 @@ namespace ManagerStudent.DTO
             Phone = phone;
             Image = image;
         }
+
+        public People(int iD, string name, string gender, string address, DateTime birthday, string email, string phone, string image, DateTime createDate) : this(iD, name, gender, address, birthday, email, phone, image)
+        {
+            this.createDate = createDate;
+        }
     }
 }

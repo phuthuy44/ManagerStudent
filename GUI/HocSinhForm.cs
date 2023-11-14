@@ -1,7 +1,9 @@
 ﻿using DocumentFormat.OpenXml.Drawing;
+using DocumentFormat.OpenXml.Spreadsheet;
 using ManagerStudent.BLL;
 using ManagerStudent.DTO;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Runtime.CompilerServices;
@@ -29,18 +31,22 @@ namespace ManagerStudent.GUI
             string diaChi = txtDiaChi.Text;
             string email = txtEmail.Text;
             string soDienThoai = txtSoDienThoai.Text;
-            string image = System.IO.Path.GetFileName(openFileDialog1.FileName);
+            string image = System.IO.Path.GetFileName(txtImage.Text);
             //string path = Application.StartupPath.Substring(0, (Application.StartupPath.Length - 10));
            // string destinationPath = path + "//Image//HocSinh//" + image;
             //System.IO.File.Copy(openFileDialog1.FileName, image);
 
             if (string.IsNullOrEmpty(hoTen))
             {
-                MessageBox.Show("Trường Họ tên không thể bỏ trống");
+                MessageBox.Show("Trường Họ tên không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (string.IsNullOrEmpty(gioiTinh))
             {
-                MessageBox.Show("Trường Giới tính không thể bỏ trống");
+                MessageBox.Show("Trường Giới tính không thể bỏ trống","Lỗi",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            else if(!string.IsNullOrEmpty(soDienThoai)&& soDienThoai.Length != 10)
+            {
+                MessageBox.Show("Số điện thoại phải chứa đúng 10 số", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -55,7 +61,7 @@ namespace ManagerStudent.GUI
                 }
                 else
                 {
-                    MessageBox.Show("Lỗi! Hãy thử lại sau");
+                    MessageBox.Show("Lỗi! Hãy thử lại sau", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             //GetListStudent();
@@ -81,6 +87,19 @@ namespace ManagerStudent.GUI
             // TODO: This line of code loads data into the 'studentManagerDataSet.Student' table. You can move, or remove it, as needed.
             //this.studentTableAdapter.Fill(this.studentManagerDataSet.Student);
             GetListStudent();
+            /*PhanLop*/
+            List<AcademicYear> academicYears = studentBLL.GetAcademicYears();
+            foreach(AcademicYear a in academicYears)
+            {
+                txtYearOld.Items.Add(a.Name);
+                txtYearNew.Items.Add(a.Name);
+            }
+            List<Grade> grades = studentBLL.GetGrades();
+            foreach(Grade g in grades)
+            {
+                txtKhoiOld.Items.Add(g.Name);
+                txtKhoiNew.Items.Add(g.Name);
+            }
 
         }
         //Xu ly fill dataTable lên dataGridView
@@ -99,12 +118,12 @@ namespace ManagerStudent.GUI
 
         }
 
-        private void HocSinhForm_Load_1(object sender, EventArgs e)
+        /*private void HocSinhForm_Load_1(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'studentManagerDataSet1.Student' table. You can move, or remove it, as needed.
             this.studentTableAdapter.Fill(this.studentManagerDataSet1.Student);
 
-        }
+        }*/
 
         private void cboxGioiTinh_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -119,11 +138,15 @@ namespace ManagerStudent.GUI
             txtEmail.Text = string.Empty;
             txtSoDienThoai.Text = string.Empty;
             picStudent.Image = null;
+            txtImage.Text = null;
         }
         //Upload Image
         private void button8_Click(object sender, EventArgs e)
         {
-           // openFileDialog1.InitialDirectory = "D://ManagerStudent//Image//Student";
+            string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string folderPath = System.IO.Path.Combine(appDirectory, "image", "HocSinh");
+            //openFileDialog1.InitialDirectory = "D://ManagerStudent//Image//Student";
+            openFileDialog1.InitialDirectory = folderPath;
             openFileDialog1.Title = "Chọn hình ảnh để tải lên";
             openFileDialog1.Filter = "Các định dạng(*.jpg;*.jpeg;*.gif;*.bmp;*.png)|*.jpg;*.jpeg;*.gif;*.bmp;*.png";
             openFileDialog1.FilterIndex = 1;
@@ -131,12 +154,17 @@ namespace ManagerStudent.GUI
             {
                 if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    if (openFileDialog1.CheckFileExists)
+                    /*if (openFileDialog1.CheckFileExists)
                     {
                         string path = System.IO.Path.GetFullPath(openFileDialog1.FileName);
+                        //txtImage.Text = path;
                         picStudent.Image = new Bitmap(openFileDialog1.FileName);
                         picStudent.SizeMode = PictureBoxSizeMode.StretchImage;
-                    }
+                    }*/
+                    string path = System.IO.Path.GetFullPath(openFileDialog1.FileName);
+                    txtImage.Text = path;
+                    picStudent.Image = new Bitmap(openFileDialog1.FileName);
+                    picStudent.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
             }catch(Exception ex)
             {
@@ -151,6 +179,7 @@ namespace ManagerStudent.GUI
 
         private void dataTableStudent_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            pictureBox1_Click(sender, e);
             if(e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataTableStudent.Rows[e.RowIndex];
@@ -198,15 +227,19 @@ namespace ManagerStudent.GUI
                 if (row.Cells[7].Value != null && !string.IsNullOrEmpty(row.Cells[7].Value.ToString()))
                 {
                     string fileName = row.Cells[7].Value.ToString();
-                   // string rootDirectory = Application.StartupPath;
+                    // string rootDirectory = Application.StartupPath;
                     //string fullImagePath = Path.Combine(rootDirectory, imagePath);
-                    string folderPath = "D:\\ManagerStudent";
-                    string fullImagePath =folderPath+fileName;
+                    picStudent.Image = null;
+                    string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+                    //string folderPath = "D:\\ManagerStudent";
+                    string fullImagePath =appDirectory+fileName;
+                    txtImage.Text = fileName;
                     Console.WriteLine(fullImagePath);
                     if (File.Exists(fullImagePath))
                     {
                         try
                         {
+                            
                             Image image = Image.FromFile(fullImagePath);
                             picStudent.Image = image;
                             //File.Copy(fileName,fullImagePath, true);
@@ -221,10 +254,7 @@ namespace ManagerStudent.GUI
                         MessageBox.Show("Lỗi!Không tìm thấy ảnh.");
                     }
                 }
-                else
-                {
-                    picStudent.Image = null;
-                }
+                
             }
         }
         //DeleteStudent
@@ -258,58 +288,129 @@ namespace ManagerStudent.GUI
                         MessageBox.Show("Hệ thống lỗi! Vui lòng thử lại sau!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Vui lòng chọn một hàng để xóa", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-           if (dataTableStudent != null && dataTableStudent.SelectedRows.Count > 0)
-            {
-             int id = int.Parse(txtMaStudent.Text);
-            string hoTen = txtHoTen.Text;
-            DateTime ngaySinh = txtDate.Value;
-            string gioiTinh = cboxGioiTinh.SelectedItem.ToString();
-            string diaChi = txtDiaChi.Text;
-            string email = txtEmail.Text;
-            string soDienThoai = txtSoDienThoai.Text;
-            string folderPath = "D:\\ManagerStudent";
-            // string imageFilePath = string.Empty;
-            string fullImagePath = folderPath + picStudent.Text;
-            // string image = System.IO.Path.GetFileName(openFileDialog1.FileName);
-            string image = string.IsNullOrEmpty(fullImagePath) ? null : System.IO.Path.GetFileName(openFileDialog1.FileName);
-            student = new Student(id, hoTen, gioiTinh, diaChi, ngaySinh, email, soDienThoai, image);
-            bool result = studentBLL.updateStudent(student);
-            
-                if (result)
-                {
-                    GetListStudent();
-                    MessageBox.Show("Cập nhật thông tin thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    pictureBox1_Click(sender, e);
-                    // Di chuyển đến hàng đã sửa trong bảng
-                    foreach (DataGridViewRow row in dataTableStudent.Rows)
-                    {
-                        if (int.Parse(row.Cells[0].Value.ToString()) == id)
-                        {
-                            dataTableStudent.CurrentCell = row.Cells[0];
-                            dataTableStudent.FirstDisplayedScrollingRowIndex = row.Index;
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Hệ thống lỗi!Hãy thử lại vào lần sau!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
 
             }
             else
             {
+                MessageBox.Show("Vui lòng chọn một hàng để xóa", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        //update Student
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (dataTableStudent != null && dataTableStudent.SelectedRows.Count > 0)
+            {
+                int id = int.Parse(txtMaStudent.Text);
+                string hoTen = txtHoTen.Text;
+                DateTime ngaySinh = txtDate.Value;
+                string gioiTinh = cboxGioiTinh.SelectedItem.ToString();
+                string diaChi = txtDiaChi.Text;
+                string email = txtEmail.Text;
+                string soDienThoai = txtSoDienThoai.Text;
+                string txtImg = txtImage.Text;
+                if (!string.IsNullOrEmpty(soDienThoai) && soDienThoai.Length != 10)
+                {
+                    MessageBox.Show("Số điện thoại phải chứa đúng 10 số", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+                }
+                
+                else
+                {
+                    // string folderPath = "D:\\ManagerStudent";
+                    // string imageFilePath = string.Empty;
+                    //string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+                    //string fullImagePath = appDirectory + txtImage.Text ;
+                   
+                    string image = System.IO.Path.GetFileName(txtImg);
+                    //string image = string.IsNullOrEmpty(fullImagePath) ? null : System.IO.Path.GetFileName(openFileDialog1.FileName);
+                    student = new Student(id, hoTen, gioiTinh, diaChi, ngaySinh, email, soDienThoai, image);
+                    bool result = studentBLL.updateStudent(student);
+                    if (result)
+                    {
+                        GetListStudent();
+                        MessageBox.Show("Cập nhật thông tin thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //pictureBox1_Click(sender, e);
+                        // Di chuyển đến hàng đã sửa trong bảng
+                        foreach (DataGridViewRow row in dataTableStudent.Rows)
+                        {
+                            if (int.Parse(row.Cells[0].Value.ToString()) == id)
+                            {
+                                dataTableStudent.CurrentCell = row.Cells[0];
+                                dataTableStudent.FirstDisplayedScrollingRowIndex = row.Index;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hệ thống lỗi!Hãy thử lại vào lần sau!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
+            }
+            else
+            {
                 MessageBox.Show("Vui lòng chọn một hàng để chỉnh sửa thông tin", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void pictureBox10_Click(object sender, EventArgs e)
+        {
+            TaoLopForm taoLopForm = new TaoLopForm();
+            taoLopForm.Show();
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label23_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label24_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel9_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtKhoiOld_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = txtKhoiOld.SelectedItem.ToString();
+            string gradeID = studentBLL.getMaKhoi(selected);
+            List<Class> cls = studentBLL.getClassInGrade(gradeID);
+            txtClassOld.Items.Clear();
+            foreach (Class c in cls)
+            {
+                txtClassOld.Items.Add(c.Name);
+            }
+        }
+
+        private void txtKhoiNew_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = txtKhoiNew.SelectedItem.ToString();
+            string gradeID = studentBLL.getMaKhoi(selected);
+            List<Class> cls = studentBLL.getClassInGrade(gradeID);
+            txtClassNew.Items.Clear();
+            foreach(Class c in cls)
+            {
+                txtClassNew.Items.Add(c.Name);
             }
         }
     }

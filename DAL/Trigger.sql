@@ -87,3 +87,23 @@ VALUES
         
 Update Parent set gender = N'Nữ' where studentID = 204 and name = 'John Doe'
 */
+CREATE TRIGGER INSERT_NEW_STUDENT
+ON Student
+AFTER INSERT
+AS
+BEGIN
+    UPDATE Student 
+    SET createDate = DATEADD(HOUR, 7, GETUTCDATE()) 
+    WHERE ID IN (SELECT ID FROM inserted);
+END;
+
+CREATE TRIGGER UPDATE_STUDENT
+ON Student
+AFTER UPDATE
+AS
+BEGIN
+    UPDATE Student
+    SET updateDate = DATEADD(HOUR, 7, GETUTCDATE())
+    FROM Student
+    INNER JOIN inserted ON Student.ID = inserted.ID;    
+END;
