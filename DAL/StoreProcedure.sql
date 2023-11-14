@@ -148,9 +148,9 @@ FROM
   @academicyearName NVARCHAR(255),
   @semesterName NVARCHAR(255),
   @subjectName NVARCHAR(255),
-  @regularPoint INT,
-  @midtermPoint INT,
-  @finalPoint INT
+  @regularPoint FLOAT,
+  @midtermPoint FLOAT,
+  @finalPoint FLOAT
 AS
 BEGIN
   UPDATE Point
@@ -181,7 +181,7 @@ CREATE PROC InsertPoint
   @semesterName NVARCHAR(255),
   @subjectName NVARCHAR(255),
   @pointName NVARCHAR(255),
-  @point INT
+  @point FLOAT
 AS
 BEGIN
     DECLARE @academicYearID INT

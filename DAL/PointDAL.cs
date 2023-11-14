@@ -12,7 +12,7 @@ namespace ManagerStudent.DAL
     internal class PointDAL
     {
         public bool UpdateStudentPoint(int studentID, string academicyearName, string semesterName,
-                                        string subjectName, int regularPoint, int midtermPoint, int finalPoint)
+                                        string subjectName, double regularPoint, double midtermPoint, double finalPoint)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace ManagerStudent.DAL
         }
 
         public bool InsertStudentPoint(int studentID, string academicyearName, string semesterName,
-                                string subjectName, string pointName, int point)
+                                string subjectName, string pointName, double point)
         {
             try
             {

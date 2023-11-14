@@ -258,7 +258,7 @@ namespace ManagerStudent.GUI
                     if (!Convert.IsDBNull(row["Điểm đánh giá thường xuyên"]))
                     {
                         string pointName = "Điểm đánh giá thường xuyên";
-                        int point = Convert.ToInt32(row["Điểm đánh giá thường xuyên"]);
+                        double point = Convert.ToDouble(row["Điểm đánh giá thường xuyên"]);
 
                         // Gọi hàm BLL để cập nhật điểm
                         PointBLL bll = new PointBLL();
@@ -275,7 +275,7 @@ namespace ManagerStudent.GUI
                     if (!Convert.IsDBNull(row["Điểm giữa kỳ"]))
                     {
                         string pointName = "Điểm giữa kỳ";
-                        int point = Convert.ToInt32(row["Điểm giữa kỳ"]);
+                        double point = Convert.ToDouble(row["Điểm giữa kỳ"]);
 
                         // Gọi hàm BLL để cập nhật điểm
                         PointBLL bll = new PointBLL();
@@ -292,7 +292,7 @@ namespace ManagerStudent.GUI
                     if (!Convert.IsDBNull(row["Điểm cuối kỳ"]))
                     {
                         string pointName = "Điểm cuối kỳ";
-                        int point = Convert.ToInt32(row["Điểm cuối kỳ"]);
+                        double point = Convert.ToDouble(row["Điểm cuối kỳ"]);
 
                         // Gọi hàm BLL để cập nhật điểm
                         PointBLL bll = new PointBLL();
@@ -309,7 +309,7 @@ namespace ManagerStudent.GUI
                 // Kiểm tra số lượng điểm đã được thêm thành công
                 if (successCount > 0)
                 {
-                    MessageBox.Show("Đã thêm thành công" + successCount + " điểm.");
+                    MessageBox.Show("Đã thêm thành công " + successCount + " điểm.");
                 }
                 else
                 {
@@ -335,9 +335,9 @@ namespace ManagerStudent.GUI
                     /*int regularPoint = Convert.ToInt32(row["Điểm đánh giá thường xuyên"]);
                     int midtermPoint = Convert.ToInt32(row["Điểm giữa kỳ"]);
                     int finalPoint = Convert.ToInt32(row["Điểm cuối kỳ"]);*/
-                    int regularPoint = Convert.IsDBNull(row["Điểm đánh giá thường xuyên"]) ? 0 : Convert.ToInt32(row["Điểm đánh giá thường xuyên"]);
-                    int midtermPoint = Convert.IsDBNull(row["Điểm giữa kỳ"]) ? 0 : Convert.ToInt32(row["Điểm giữa kỳ"]);
-                    int finalPoint = Convert.IsDBNull(row["Điểm cuối kỳ"]) ? 0 : Convert.ToInt32(row["Điểm cuối kỳ"]);
+                    double regularPoint = Convert.IsDBNull(row["Điểm đánh giá thường xuyên"]) ? 0 : Convert.ToDouble(row["Điểm đánh giá thường xuyên"]);
+                    double midtermPoint = Convert.IsDBNull(row["Điểm giữa kỳ"]) ? 0 : Convert.ToDouble(row["Điểm giữa kỳ"]);
+                    double finalPoint = Convert.IsDBNull(row["Điểm cuối kỳ"]) ? 0 : Convert.ToDouble(row["Điểm cuối kỳ"]);
 
 
                     string academicYearName = comboBox1.Text;
@@ -487,9 +487,9 @@ namespace ManagerStudent.GUI
             {
                 if (!string.IsNullOrEmpty(e.FormattedValue?.ToString()))
                 {
-                    if (!int.TryParse(e.FormattedValue.ToString(), out int point))
+                    if (!float.TryParse(e.FormattedValue.ToString(), out float point))
                     {
-                        MessageBox.Show("Điểm vừa nhập không hợp lệ! Điểm phải là một số nguyên!");
+                        MessageBox.Show("Điểm vừa nhập không hợp lệ!");
                         dataGridView1.CancelEdit();
                     }
                     else if (point < 0)
