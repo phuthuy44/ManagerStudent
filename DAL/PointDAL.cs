@@ -1,6 +1,7 @@
 ﻿using ManagerStudent.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,91 @@ namespace ManagerStudent.DAL
 {
     internal class PointDAL
     {
-        private SqlConnection connection;
+        public bool UpdateStudentPoint(int studentID, string academicyearName, string semesterName,
+                                        string subjectName, double regularPoint, double midtermPoint, double finalPoint)
+        {
+            try
+            {
+                SqlConnection connection = initConnect.ConnectToDatabase();
+                string query = @"EXEC UpdatePoint @studentID, @academicyearName, @semesterName, 
+                                      @subjectName, @regularPoint, @midtermPoint, @finalPoint";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@studentID", studentID);
+                command.Parameters.AddWithValue("@academicyearName", academicyearName);
+                command.Parameters.AddWithValue("@semesterName", semesterName);
+                command.Parameters.AddWithValue("@subjectName", subjectName);
+                command.Parameters.AddWithValue("@regularPoint", regularPoint);
+                command.Parameters.AddWithValue("@midtermPoint", midtermPoint);
+                command.Parameters.AddWithValue("@finalPoint", finalPoint);
+                int rowsAffected = command.ExecuteNonQuery();
+                // Trả về true nếu cập nhật thành công
+                /*return rowsAffected > 0;*/
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi: " + ex.Message);
+                return false;
+            }
+            return true;
+        }
+
+        public bool InsertStudentPoint(int studentID, string academicyearName, string semesterName,
+                                string subjectName, string pointName, double point)
+        {
+            try
+            {
+                SqlConnection connection = initConnect.ConnectToDatabase();
+                string query = @"EXEC InsertPoint @studentID, @academicyearName, @semesterName, 
+                    @subjectName, @pointName, @point";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@studentID", studentID);
+                command.Parameters.AddWithValue("@academicyearName", academicyearName);
+                command.Parameters.AddWithValue("@semesterName", semesterName);
+                command.Parameters.AddWithValue("@subjectName", subjectName);
+                command.Parameters.AddWithValue("@pointName", pointName);
+                command.Parameters.AddWithValue("@point", point);
+
+                int rowsAffected = command.ExecuteNonQuery();
+                // Trả về true nếu cập nhật thành công
+                /*return rowsAffected > 0;*/
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi: " + ex.Message);
+                return false;
+            }
+            return true;
+        }
+
+        public DataTable GetStudentPoints(string academicYearName, string semesterName, string className, string subjectName)
+        {
+            DataTable dataTable = new DataTable();
+            {
+                try
+                {
+                    SqlConnection connection = initConnect.ConnectToDatabase();
+                    string query = "EXEC DATA_POINT @academicYearName, @semesterName, @className, @subjectName";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@subjectName", subjectName);
+                    command.Parameters.AddWithValue("@academicYearName", academicYearName);
+                    command.Parameters.AddWithValue("@semesterName", semesterName);
+                    command.Parameters.AddWithValue("@className", className);
+                    Console.WriteLine("vo chua?");
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                return dataTable;
+            }
+        }
 
         public List<AcademicYear> GetAcademicYears()
         {
@@ -54,122 +139,91 @@ namespace ManagerStudent.DAL
             }
             return academicYears;
         }
-        public List<Class> GetClasses()
+        public DataTable GetallClasses()
         {
-            List<Class> classes = new List<Class>();
+            DataTable dt = new DataTable();
             try
             {
-                SqlConnection connection = initConnect.ConnectToDatabase();
+                SqlConnection conn = initConnect.ConnectToDatabase();
                 string query = "SELECT * FROM Class";
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                Console.WriteLine("Lop hoc vao combobox");
-                while (reader.Read())
-                {
-                    Class classObj = new Class();
-                    classObj.ID = (int)reader["ID"];
-                    classObj.Name = (string)reader["className"];
-                    classObj.maxStudent = (int)reader["maxStudent"];
-                    classObj.realStudent = (int)reader["quantityStudent"];
-                    classObj.quantityMale = (int)reader["quantityMale"];
-                    classObj.quantityFemale = (int)reader["quantityFemale"];
-
-                    classes.Add(classObj);
-                }
-                reader.Close();
-                connection.Close();
+                SqlCommand command = new SqlCommand(query, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dt);
+                conn.Close();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            return classes;
+            return dt;
         }
 
-        public List<Semester> GetSemesters()
+        public DataTable GetallSemester()
         {
-            List<Semester> semesters = new List<Semester>();
+            DataTable dt = new DataTable();
             try
             {
-                SqlConnection connection = initConnect.ConnectToDatabase();
+                SqlConnection conn = initConnect.ConnectToDatabase();
                 string query = "SELECT * FROM Semester";
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                Console.WriteLine("Hoc ki vao combobox");
-                while (reader.Read())
-                {
-                    Semester semester = new Semester();
-                    semester.ID = (int)reader["ID"];
-                    semester.Name = (string)reader["semesterName"];
-                    semester.Coefficient = (int)reader["coefficient"];
-                    semesters.Add(semester);
-                }
-                reader.Close();
-                connection.Close();
+                SqlCommand command = new SqlCommand(query, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dt);
+                conn.Close();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            return semesters;
+            return dt;
         }
 
-        public List<Subject> GetSubjects()
+        public DataTable GetallSuject()
         {
-            List<Subject> subjects = new List<Subject>();
+            DataTable dt = new DataTable();
             try
             {
-                SqlConnection connection = initConnect.ConnectToDatabase();
+                SqlConnection conn = initConnect.ConnectToDatabase();
                 string query = "SELECT * FROM Subject";
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                Console.WriteLine("Mon hoc vao combobox");
-                while (reader.Read())
-                {
-                    Subject subject = new Subject();
-                    subject.ID = (int)reader["ID"];
-                    subject.Name = (string)reader["subjectName"];
-
-                    subjects.Add(subject);
-                }
-                reader.Close();
-                connection.Close();
+                SqlCommand command = new SqlCommand(query, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dt);
+                conn.Close();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            return subjects;
+            return dt;
         }
-
-        public List<Student> GetStudentsNameandID()
+        public DataTable GetStudentsNameandID(int academicYearID, int semesterID, int classID)
         {
-            List<Student> students = new List<Student>();
-
-            try
+            DataTable dataTable = new DataTable();
             {
-                SqlConnection connection = initConnect.ConnectToDatabase();
-                string query = "SELECT ID, name FROM Student";
-                SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                Console.WriteLine("Ma hs, Ten hs vao comboBox");
-                while (reader.Read())
+                try
                 {
-                    Student student = new Student();
-                    student.ID = (int)reader["ID"];
-                    student.Name = (string)reader["name"];
+                    SqlConnection connection = initConnect.ConnectToDatabase();
+                    string query = @"SELECT studentID, name FROM StudentClassSemesterAcademicYear
+                                    INNER JOIN Student s ON s.ID = studentID
+                                        WHERE classID = @classID 
+                                            AND semesterID = @semesterID 
+                                            AND academicyearID = @academicyearID";
 
-                    students.Add(student);
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@academicyearID", academicYearID);
+                    command.Parameters.AddWithValue("@semesterID", semesterID);
+                    command.Parameters.AddWithValue("@classID", classID);
+                    Console.WriteLine("ma hoc sinh, ten hoc sinh vao combobox");
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+                    connection.Close();
                 }
-                reader.Close();
-                connection.Close();
-
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                return dataTable;
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return students;
         }
     }
 }

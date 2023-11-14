@@ -1,11 +1,20 @@
 ﻿using ManagerStudent.BLL;
+using System.Collections.Generic;
 using System;
 using System.Windows.Forms;
-//Push thử
+using System.Data.SqlClient;
+using System.Linq;
+using ManagerStudent.DTO;
+using System.Data;
+using System.Reflection.Emit;
+
 namespace ManagerStudent.GUI
 {
     public partial class PointForm : Form
     {
+        private DataTable studentPointsData;
+        private int messageBoxCount = 0;
+        private DataTable studentIdNameData;
         public PointForm()
         {
             InitializeComponent();
@@ -22,37 +31,90 @@ namespace ManagerStudent.GUI
             PointBLL academicYearPointBLL = new PointBLL();
             academicYearPointBLL.LoadAcademicYearsIntoComboBox(comboBox1);
 
-            PointBLL classPointBLL = new PointBLL();
-            classPointBLL.LoadClassesIntoComboBox(comboBox2);
+            PointBLL classesBLL = new PointBLL();
+            DataTable classData = classesBLL.GetClassesData();
+            comboBox2.ValueMember = "ID";
+            comboBox2.DisplayMember = "className";
+            comboBox2.DataSource = classData;
 
-            PointBLL semesterPointBLL = new PointBLL();
-            semesterPointBLL.LoadSemestersIntoComboBox(comboBox3);
+            //Chỉ chọn, không chỉnh sửa & set combobox trống
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.SelectedIndex = -1;
 
-            PointBLL subjectPointBLL = new PointBLL();
-            subjectPointBLL.LoadSubjectsIntoComboBox(comboBox4);
+            PointBLL semestersBLL = new PointBLL();
+            DataTable semesterData = semestersBLL.GetSemesterData();
+            comboBox3.ValueMember = "ID";
+            comboBox3.DisplayMember = "semesterName";
+            comboBox3.DataSource = semesterData;
+
+            //Chỉ chọn, không chỉnh sửa
+            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            PointBLL sujectBLL = new PointBLL();
+            DataTable sujectData = sujectBLL.GetSujectData();
+            comboBox4.ValueMember = "ID";
+            comboBox4.DisplayMember = "subjectName";
+            comboBox4.DataSource = sujectData;
+
+            //Chỉ chọn, không chỉnh sửa & set combobox trống
+            comboBox4.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox4.SelectedIndex = -1;
 
             //Đổ dữ liệu vào combobox tab Điểm lớp
-            PointBLL academicYearClassPointBLL = new PointBLL();
-            academicYearClassPointBLL.LoadAcademicYearsIntoComboBox(comboBox6);
+            PointBLL academicYearPointClasseBLL = new PointBLL();
+            academicYearPointClasseBLL.LoadAcademicYearsIntoComboBox(comboBox6);
 
-            PointBLL classClassPointBLL = new PointBLL();
-            classClassPointBLL.LoadClassesIntoComboBox(comboBox7);
+            PointBLL classesClassBLL = new PointBLL();
+            DataTable classDataClass = classesClassBLL.GetClassesData();
+            comboBox7.ValueMember = "ID";
+            comboBox7.DisplayMember = "className";
+            comboBox7.DataSource = classDataClass;
 
-            PointBLL semesterClassPointBLL = new PointBLL();
-            semesterClassPointBLL.LoadSemestersIntoComboBox(comboBox8);
+            //Chỉ chọn, không chỉnh sửa & set combobox trống
+            comboBox7.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox7.SelectedIndex = -1;
 
-            PointBLL subjectClassPointBLL = new PointBLL();
-            subjectClassPointBLL.LoadSubjectsIntoComboBox(comboBox5);
+            PointBLL semestersClassBLL = new PointBLL();
+            DataTable semesterDataClass = semestersClassBLL.GetSemesterData();
+            comboBox8.ValueMember = "ID";
+            comboBox8.DisplayMember = "semesterName";
+            comboBox8.DataSource = semesterDataClass;
+
+            //Chỉ chọn, không chỉnh sửa
+            comboBox8.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            PointBLL sujectClassBLL = new PointBLL();
+            DataTable sujectDataClass = sujectClassBLL.GetSujectData();
+            comboBox5.ValueMember = "ID";
+            comboBox5.DisplayMember = "subjectName";
+            comboBox5.DataSource = sujectDataClass;
+
+            //Chỉ chọn, không chỉnh sửa & set combobox trống
+            comboBox5.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox5.SelectedIndex = -1;
 
             //Đổ dữ liệu vào combobox tab Điểm học sinh
-            PointBLL academicYearStudentPointBLL = new PointBLL();
-            academicYearStudentPointBLL.LoadAcademicYearsIntoComboBox(comboBox9);
+            PointBLL academicYearPointStudentBLL = new PointBLL();
+            academicYearPointStudentBLL.LoadAcademicYearsIntoComboBox(comboBox9);
 
-            PointBLL classStudentPointBLL = new PointBLL();
-            classStudentPointBLL.LoadClassesIntoComboBox(comboBox10);
+            PointBLL classesStudentBLL = new PointBLL();
+            DataTable classDataStudent = classesStudentBLL.GetClassesData();
+            comboBox10.ValueMember = "ID";
+            comboBox10.DisplayMember = "className";
+            comboBox10.DataSource = classDataStudent;
 
-            PointBLL semesterStudentPointBLL = new PointBLL();
-            semesterStudentPointBLL.LoadSemestersIntoComboBox(comboBox11);
+            //Chỉ chọn, không chỉnh sửa & set combobox trống
+            comboBox10.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox10.SelectedIndex = -1;
+
+            PointBLL semestersStudentBLL = new PointBLL();
+            DataTable semesterDataStudent = semestersStudentBLL.GetSemesterData();
+            comboBox11.ValueMember = "ID";
+            comboBox11.DisplayMember = "semesterName";
+            comboBox11.DataSource = semesterDataStudent;
+
+            //Chỉ chọn, không chỉnh sửa
+            comboBox11.DropDownStyle = ComboBoxStyle.DropDownList;
 
             /*PointBLL studentIdNameBLL = new PointBLL();
             studentIdNameBLL.LoadStudentsNameAndIdIntoComboBox(comboBox12, comboBox13);*/
@@ -74,9 +136,14 @@ namespace ManagerStudent.GUI
                 comboBox12.Enabled = true;
                 comboBox13.Enabled = true;
 
-                // Hiển thị dữ liệu trong ComboBox "Mã học sinh" và "Tên học sinh"
+                int academicYearID = (int)comboBox9.SelectedValue;
+                int semesterID = (int)comboBox11.SelectedValue;
+                int classID = (int)comboBox10.SelectedValue;
+
                 PointBLL studentIdNameBLL = new PointBLL();
-                studentIdNameBLL.LoadStudentsNameAndIdIntoComboBox(comboBox12, comboBox13);
+                studentIdNameData = studentIdNameBLL.LoadStudentsNameAndIdIntoComboBox(academicYearID, semesterID, classID);
+
+                comboBoxStudentIdName();
             }
             else
             {
@@ -87,7 +154,39 @@ namespace ManagerStudent.GUI
                 // Xóa dữ liệu trong ComboBox "Mã học sinh" và "Tên học sinh"
                 comboBox12.DataSource = null;
                 comboBox13.DataSource = null;
+
             }
+        }
+
+        private void comboBoxStudentIdName()
+        {
+            if (studentIdNameData != null && studentIdNameData.Rows.Count > 0)
+            {
+                //Đổ dữ liệu vào comboBox ID và Tên học sinh
+                comboBox12.ValueMember = "studentID";
+                comboBox12.DisplayMember = "studentID";
+                comboBox12.DataSource = studentIdNameData;
+
+                comboBox13.ValueMember = "studentID";
+                comboBox13.DisplayMember = "name";
+                comboBox13.DataSource = studentIdNameData;
+
+                comboBox12.DropDownStyle = ComboBoxStyle.DropDownList;
+                comboBox13.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                label17.Text = "";
+            }
+            else
+            {
+                label17.Text = "Không có dữ liệu để hiển thị trên ComboBox";
+
+                comboBox12.Enabled = false;
+                comboBox13.Enabled = false;
+
+                comboBox12.DataSource = null;
+                comboBox13.DataSource = null;
+            }
+
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -108,6 +207,304 @@ namespace ManagerStudent.GUI
         private void comboBox10_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+        private void UpdateDataGridView2()
+        {
+            if (studentPointsData != null && studentPointsData.Rows.Count > 0)
+            {
+                // Tạo một DataTable mới để chứa dữ liệu với cột STT
+                DataTable updatedData = new DataTable();
+                updatedData.Columns.Add("STT", typeof(int));
+                updatedData.Merge(studentPointsData);
+
+                // Tính giá trị STT cho từng dòng
+                for (int i = 0; i < updatedData.Rows.Count; i++)
+                {
+                    updatedData.Rows[i]["STT"] = i + 1; // Giá trị STT
+                }
+                //Không chỉnh sửa được trên DataGridView
+                dataGridView2.ReadOnly = true;
+                dataGridView2.DataSource = updatedData;
+                dataGridView2.Columns["STT"].DisplayIndex = 0; // Đặt vị trí hiển thị cho cột STT
+            }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu để hiển thị");
+                //Set cho comboBox Lớp học, Môn học và dataGridView trống khi không có dữ liệu
+                comboBox7.SelectedIndex = -1;
+                comboBox5.SelectedIndex = -1;
+                dataGridView2.DataSource = -1;
+            }
+        }
+        private void saveInsertPoints()
+        {
+            if (dataGridView1.DataSource != null)
+            {
+                DataTable updatedData = (DataTable)dataGridView1.DataSource;
+
+                int successCount = 0; // Số điểm đã được thêm thành công
+
+                // Lặp qua từng dòng của DataTable
+                foreach (DataRow row in updatedData.Rows)
+                {
+                    // Lấy thông tin cần thiết từ mỗi dòng
+                    int studentID = Convert.ToInt32(row["Mã học sinh"]);
+
+                    string academicyearName = comboBox1.Text;
+                    string semesterName = comboBox3.Text;
+                    string subjectName = comboBox4.Text;
+
+                    // Thêm điểm đánh giá thường xuyên
+                    if (!Convert.IsDBNull(row["Điểm đánh giá thường xuyên"]))
+                    {
+                        string pointName = "Điểm đánh giá thường xuyên";
+                        double point = Convert.ToDouble(row["Điểm đánh giá thường xuyên"]);
+
+                        // Gọi hàm BLL để cập nhật điểm
+                        PointBLL bll = new PointBLL();
+                        bool result = bll.InsertStudentPoint(studentID, academicyearName, semesterName,
+                            subjectName, pointName, point);
+
+                        if (result)
+                        {
+                            successCount++;
+                        }
+                    }
+
+                    // Thêm điểm giữa kỳ
+                    if (!Convert.IsDBNull(row["Điểm giữa kỳ"]))
+                    {
+                        string pointName = "Điểm giữa kỳ";
+                        double point = Convert.ToDouble(row["Điểm giữa kỳ"]);
+
+                        // Gọi hàm BLL để cập nhật điểm
+                        PointBLL bll = new PointBLL();
+                        bool result = bll.InsertStudentPoint(studentID, academicyearName, semesterName,
+                            subjectName, pointName, point);
+
+                        if (result)
+                        {
+                            successCount++;
+                        }
+                    }
+
+                    // Thêm điểm cuối kỳ
+                    if (!Convert.IsDBNull(row["Điểm cuối kỳ"]))
+                    {
+                        string pointName = "Điểm cuối kỳ";
+                        double point = Convert.ToDouble(row["Điểm cuối kỳ"]);
+
+                        // Gọi hàm BLL để cập nhật điểm
+                        PointBLL bll = new PointBLL();
+                        bool result = bll.InsertStudentPoint(studentID, academicyearName, semesterName,
+                            subjectName, pointName, point);
+
+                        if (result)
+                        {
+                            successCount++;
+                        }
+                    }
+                }
+
+                // Kiểm tra số lượng điểm đã được thêm thành công
+                if (successCount > 0)
+                {
+                    MessageBox.Show("Đã thêm thành công " + successCount + " điểm.");
+                }
+                else
+                {
+                    MessageBox.Show("Không có điểm nào được thêm.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu để lưu.");
+            }
+        }
+        private void saveUpdatePoints()
+        {
+            if (dataGridView1.DataSource != null)
+            {
+                DataTable updatedData = (DataTable)dataGridView1.DataSource;
+
+                // Lặp qua từng dòng của DataTable
+                foreach (DataRow row in updatedData.Rows)
+                {
+                    // Lấy thông tin cần thiết từ mỗi dòng
+                    int studentID = Convert.ToInt32(row["Mã học sinh"]);
+                    /*int regularPoint = Convert.ToInt32(row["Điểm đánh giá thường xuyên"]);
+                    int midtermPoint = Convert.ToInt32(row["Điểm giữa kỳ"]);
+                    int finalPoint = Convert.ToInt32(row["Điểm cuối kỳ"]);*/
+                    double regularPoint = Convert.IsDBNull(row["Điểm đánh giá thường xuyên"]) ? 0 : Convert.ToDouble(row["Điểm đánh giá thường xuyên"]);
+                    double midtermPoint = Convert.IsDBNull(row["Điểm giữa kỳ"]) ? 0 : Convert.ToDouble(row["Điểm giữa kỳ"]);
+                    double finalPoint = Convert.IsDBNull(row["Điểm cuối kỳ"]) ? 0 : Convert.ToDouble(row["Điểm cuối kỳ"]);
+
+
+                    string academicYearName = comboBox1.Text;
+                    string semesterName = comboBox3.Text;
+                    string subjectName = comboBox4.Text;
+
+                    // Gọi hàm BLL để cập nhật điểm
+                    PointBLL bll = new PointBLL();
+                    bool result = bll.UpdateStudentPoint(studentID, academicYearName, semesterName, 
+                    subjectName, regularPoint, midtermPoint, finalPoint);
+
+                    if (result)
+                    {
+                        // Nếu cập nhật thành công và MessageBox chưa được hiển thị, thông báo cho người dùng
+                        if (messageBoxCount == 0)
+                        {
+                            MessageBox.Show("Điểm đã được cập nhật thành công.");
+                            messageBoxCount++;
+                        }
+                    }
+                    else
+                    {
+                        // Nếu cập nhật không thành công và MessageBox chưa được hiển thị, thông báo cho người dùng
+                        if (messageBoxCount == 0)
+                        {
+                            MessageBox.Show("Có lỗi xảy ra khi cập nhật điểm.");
+                            messageBoxCount++;
+                        }
+                    }
+                }
+            }
+        }
+        private void UpdateDataGridView1()
+        {
+            string academicYearName = comboBox1.Text;
+            string semesterName = comboBox3.Text;
+            string className = comboBox2.Text;
+            string subjectName = comboBox4.Text;
+
+            /*Console.WriteLine(academicYearName);
+            Console.WriteLine($"{academicYearName}");
+            Console.WriteLine(className);
+            Console.WriteLine(academicYearName, semesterName, className, subjectName);*/
+
+            PointBLL bll = new PointBLL();
+            studentPointsData = bll.GetStudentPoints(academicYearName, semesterName, className, subjectName);
+
+            /*            dataGridView1.DataSource = studentPointsData;*/
+            if (studentPointsData != null && studentPointsData.Rows.Count > 0)
+            {
+                // Tạo một DataTable mới để chứa dữ liệu với cột STT
+                DataTable updatedData = new DataTable();
+                updatedData.Columns.Add("STT", typeof(int));
+                updatedData.Merge(studentPointsData);
+
+                // Tính giá trị STT cho từng dòng
+                for (int i = 0; i < updatedData.Rows.Count; i++)
+                {
+                    updatedData.Rows[i]["STT"] = i + 1; // Giá trị STT
+                }
+                dataGridView1.DataSource = updatedData;
+                dataGridView1.Columns["STT"].DisplayIndex = 0; // Đặt vị trí hiển thị cho cột STT
+            }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu để hiển thị");
+                //Set cho comboBox Lớp học và Môn học trống
+                comboBox2.SelectedIndex = -1;
+                comboBox4.SelectedIndex = -1;
+                dataGridView1.DataSource = null;
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (comboBox2.SelectedIndex == -1 && comboBox4.SelectedIndex == -1)
+            {
+                MessageBox.Show("Bạn chưa chọn lớp và môn học");
+            }
+            else if (comboBox2.SelectedIndex == -1)
+            {
+                MessageBox.Show("Bạn chưa chọn lớp học");
+            }
+            else if (comboBox4.SelectedIndex == -1)
+            {
+                MessageBox.Show("Bạn chưa chọn môn học");
+            }
+            else
+            {
+                UpdateDataGridView1();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            /*saveUpdatePoints();*/
+            saveInsertPoints();
+            messageBoxCount = 0;
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            if (comboBox7.SelectedIndex == -1 && comboBox5.SelectedIndex == -1)
+            {
+                MessageBox.Show("Bạn chưa chọn lớp và môn học");
+            }
+            else if (comboBox7.SelectedIndex == -1)
+            {
+                MessageBox.Show("Bạn chưa chọn lớp học");
+            }
+            else if (comboBox5.SelectedIndex == -1)
+            {
+                MessageBox.Show("Bạn chưa chọn môn học");
+            }
+            else
+            {
+                PointBLL bll = new PointBLL();
+                string academicYearName = comboBox6.Text;
+                string semesterName = comboBox8.Text;
+                string className = comboBox7.Text;
+                string subjectName = comboBox5.Text;
+
+                studentPointsData = bll.GetStudentPoints(academicYearName, semesterName, className, subjectName);
+                UpdateDataGridView2();
+            }
+        }
+
+        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            //Không cho chỉnh sửa 3 cột bên dưới
+            // Kiểm tra nếu đang chỉnh sửa cột "STT" hoặc cột "Tên học sinh"
+            if (e.ColumnIndex == dataGridView1.Columns["STT"].Index ||
+                e.ColumnIndex == dataGridView1.Columns["Mã học sinh"].Index ||
+                e.ColumnIndex == dataGridView1.Columns["Tên học sinh"].Index)
+            {
+                // Ngăn chặn chỉnh sửa trên cột "STT" và cột "Tên học sinh"
+                e.Cancel = true;
+            }
+        }
+
+        private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Điểm đánh giá thường xuyên" ||
+                dataGridView1.Columns[e.ColumnIndex].Name == "Điểm giữa kỳ" ||
+                dataGridView1.Columns[e.ColumnIndex].Name == "Điểm cuối kỳ")
+            {
+                if (!string.IsNullOrEmpty(e.FormattedValue?.ToString()))
+                {
+                    if (!float.TryParse(e.FormattedValue.ToString(), out float point))
+                    {
+                        MessageBox.Show("Điểm vừa nhập không hợp lệ!");
+                        dataGridView1.CancelEdit();
+                    }
+                    else if (point < 0)
+                    {
+                        MessageBox.Show("Điểm không được âm!");
+                        dataGridView1.CancelEdit();
+                    }
+                    else if (point > 10)
+                    {
+                        MessageBox.Show("Điểm không được lớn hơn 10!");
+                        dataGridView1.CancelEdit();
+                    }
+
+                }
+            }
         }
     }
 }
