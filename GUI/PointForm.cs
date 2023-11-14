@@ -236,7 +236,92 @@ namespace ManagerStudent.GUI
                 dataGridView2.DataSource = -1;
             }
         }
-        private void SavePoints()
+        private void saveInsertPoints()
+        {
+            if (dataGridView1.DataSource != null)
+            {
+                DataTable updatedData = (DataTable)dataGridView1.DataSource;
+
+                int successCount = 0; // Số điểm đã được thêm thành công
+
+                // Lặp qua từng dòng của DataTable
+                foreach (DataRow row in updatedData.Rows)
+                {
+                    // Lấy thông tin cần thiết từ mỗi dòng
+                    int studentID = Convert.ToInt32(row["Mã học sinh"]);
+
+                    string academicyearName = comboBox1.Text;
+                    string semesterName = comboBox3.Text;
+                    string subjectName = comboBox4.Text;
+
+                    // Thêm điểm đánh giá thường xuyên
+                    if (!Convert.IsDBNull(row["Điểm đánh giá thường xuyên"]))
+                    {
+                        string pointName = "Điểm đánh giá thường xuyên";
+                        int point = Convert.ToInt32(row["Điểm đánh giá thường xuyên"]);
+
+                        // Gọi hàm BLL để cập nhật điểm
+                        PointBLL bll = new PointBLL();
+                        bool result = bll.InsertStudentPoint(studentID, academicyearName, semesterName,
+                            subjectName, pointName, point);
+
+                        if (result)
+                        {
+                            successCount++;
+                        }
+                    }
+
+                    // Thêm điểm giữa kỳ
+                    if (!Convert.IsDBNull(row["Điểm giữa kỳ"]))
+                    {
+                        string pointName = "Điểm giữa kỳ";
+                        int point = Convert.ToInt32(row["Điểm giữa kỳ"]);
+
+                        // Gọi hàm BLL để cập nhật điểm
+                        PointBLL bll = new PointBLL();
+                        bool result = bll.InsertStudentPoint(studentID, academicyearName, semesterName,
+                            subjectName, pointName, point);
+
+                        if (result)
+                        {
+                            successCount++;
+                        }
+                    }
+
+                    // Thêm điểm cuối kỳ
+                    if (!Convert.IsDBNull(row["Điểm cuối kỳ"]))
+                    {
+                        string pointName = "Điểm cuối kỳ";
+                        int point = Convert.ToInt32(row["Điểm cuối kỳ"]);
+
+                        // Gọi hàm BLL để cập nhật điểm
+                        PointBLL bll = new PointBLL();
+                        bool result = bll.InsertStudentPoint(studentID, academicyearName, semesterName,
+                            subjectName, pointName, point);
+
+                        if (result)
+                        {
+                            successCount++;
+                        }
+                    }
+                }
+
+                // Kiểm tra số lượng điểm đã được thêm thành công
+                if (successCount > 0)
+                {
+                    MessageBox.Show("Đã thêm thành công" + successCount + " điểm.");
+                }
+                else
+                {
+                    MessageBox.Show("Không có điểm nào được thêm.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu để lưu.");
+            }
+        }
+        private void saveUpdatePoints()
         {
             if (dataGridView1.DataSource != null)
             {
@@ -349,7 +434,8 @@ namespace ManagerStudent.GUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SavePoints();
+            /*saveUpdatePoints();*/
+            saveInsertPoints();
             messageBoxCount = 0;
         }
 
@@ -382,6 +468,7 @@ namespace ManagerStudent.GUI
 
         private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
+            //Không cho chỉnh sửa 3 cột bên dưới
             // Kiểm tra nếu đang chỉnh sửa cột "STT" hoặc cột "Tên học sinh"
             if (e.ColumnIndex == dataGridView1.Columns["STT"].Index ||
                 e.ColumnIndex == dataGridView1.Columns["Mã học sinh"].Index ||

@@ -140,3 +140,88 @@ FROM
 
    
   --EXEC DATA_POINT N'Năm học 2023 - 2024', N'Học kỳ 1', N'Lớp 10A2', N'Toán'
+
+
+
+  CREATE PROCEDURE UpdatePoint
+  @studentID INT,
+  @academicyearName NVARCHAR(255),
+  @semesterName NVARCHAR(255),
+  @subjectName NVARCHAR(255),
+  @regularPoint INT,
+  @midtermPoint INT,
+  @finalPoint INT
+AS
+BEGIN
+  UPDATE Point
+  SET point = CASE
+                WHEN TypeOfPoint.pointName = N'Điểm đánh giá thường xuyên' THEN @regularPoint
+                WHEN TypeOfPoint.pointName = N'Điểm giữa kỳ' THEN @midtermPoint
+                WHEN TypeOfPoint.pointName = N'Điểm cuối kỳ' THEN @finalPoint
+              END
+  FROM Point
+  INNER JOIN TypeOfPoint ON Point.typeofpointID = TypeOfPoint.ID
+  INNER JOIN AcademicYear ON Point.academicyearID = AcademicYear.ID AND AcademicYear.academicyearName = @academicyearName
+  INNER JOIN Semester ON Point.semesterID = Semester.ID AND Semester.semesterName = @semesterName
+  INNER JOIN Subject ON Point.subjectID = Subject.ID AND Subject.subjectName = @subjectName
+  WHERE Point.studentID = @studentID
+END
+
+
+--Sửa 1 trong 3 cột điểm
+
+--SELECT * FROM Point WHERE studentID = 44
+
+--EXEC UpdatePoint 44, N'2023-2024', N'Học kỳ 1', N'Tiếng anh', 4, 5, 6
+
+
+CREATE PROC InsertPoint
+  @studentID INT,
+  @academicyearName NVARCHAR(255),
+  @semesterName NVARCHAR(255),
+  @subjectName NVARCHAR(255),
+  @pointName NVARCHAR(255),
+  @point INT
+AS
+BEGIN
+    DECLARE @academicYearID INT
+    DECLARE @semesterID INT
+    DECLARE @subjectID INT
+    DECLARE @pointTypeID INT
+
+    -- Lấy ID của AcademicYear
+    SELECT @academicYearID = ID
+    FROM AcademicYear
+    WHERE academicyearName = @academicyearName
+
+    -- Lấy ID của Semester
+    SELECT @semesterID = ID
+    FROM Semester
+    WHERE semesterName = @semesterName
+
+    -- Lấy ID của Subject
+    SELECT @subjectID = ID
+    FROM Subject
+    WHERE subjectName = @subjectName
+
+    -- Lấy ID của TypeOfPoint
+    SELECT @pointTypeID = ID
+    FROM TypeOfPoint
+    WHERE pointName = @pointName
+
+    -- Kiểm tra xem có tồn tại loại điểm tương ứng không
+    IF @pointTypeID IS NULL
+    BEGIN
+        RAISERROR('Invalid point type: %s', 16, 1, @pointName)
+        RETURN
+    END
+
+    -- Thực hiện việc chèn điểm vào bảng Point
+    INSERT INTO Point (studentID, academicyearID, semesterID, subjectID, typeofpointID, point)
+    VALUES (@studentID, @academicYearID, @semesterID, @subjectID, @pointTypeID, @point)
+END
+
+
+--EXEC InsertPoint @studentID, @academicyearName, @semesterName, @subjectName, @pointName, @point 
+
+--EXEC InsertPoint 26, N'2023-2024', N'Học kỳ 1', N'Toán', N'Điểm giữa kỳ', 8
