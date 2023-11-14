@@ -135,8 +135,6 @@ namespace ManagerStudent.GUI
             if (e.KeyChar == (char)Keys.Enter)
             {
                 // Thực hiện các xử lý khi nhấn phím Enter tại đây
-
-                // Ví dụ: Gọi phương thức tìm kiếm
                 FindConductData();
 
                 // Ngăn không cho phím Enter được hiển thị trong textBox2
@@ -149,8 +147,6 @@ namespace ManagerStudent.GUI
             if (e.KeyChar == (char)Keys.Enter)
             {
                 // Thực hiện các xử lý khi nhấn phím Enter tại đây
-
-                // Ví dụ: Gọi phương thức tìm kiếm
                 FindCapacityData();
 
                 // Ngăn không cho phím Enter được hiển thị trong textBox2
