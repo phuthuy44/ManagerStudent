@@ -88,6 +88,13 @@ namespace ManagerStudent.BLL
             }
         }
 
+        private PointDAL pointDAL; 
+
+        public PointBLL() {  pointDAL = new PointDAL(); }
+        public DataTable StudentPoint(int studentID, string academicyearName, string semesterName, string className)
+        {
+            return pointDAL.StudentPoint(studentID, academicyearName, semesterName, className);
+        }
 
     }
 }

@@ -69,6 +69,7 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.button4 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label17 = new System.Windows.Forms.Label();
             this.comboBox13 = new System.Windows.Forms.ComboBox();
             this.comboBox12 = new System.Windows.Forms.ComboBox();
             this.comboBox11 = new System.Windows.Forms.ComboBox();
@@ -100,7 +101,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -607,6 +607,7 @@
             this.button4.TabIndex = 4;
             this.button4.Text = "Hiển Thị";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // panel5
             // 
@@ -627,6 +628,16 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(351, 350);
             this.panel5.TabIndex = 0;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.Red;
+            this.label17.Location = new System.Drawing.Point(45, 318);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(0, 15);
+            this.label17.TabIndex = 10;
             // 
             // comboBox13
             // 
@@ -981,16 +992,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(184, 25);
             this.textBox1.TabIndex = 0;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.Red;
-            this.label17.Location = new System.Drawing.Point(45, 318);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(0, 16);
-            this.label17.TabIndex = 10;
             // 
             // PointForm
             // 

@@ -506,5 +506,12 @@ namespace ManagerStudent.GUI
                 }
             }
         }
+
+        private PointBLL pointBLL;
+        private void button4_Click(object sender, EventArgs e)
+        {
+            pointBLL = new PointBLL();
+            dataGridView3.DataSource = pointBLL.StudentPoint(int.Parse(comboBox12.Text), comboBox9.Text, comboBox11.Text, comboBox10.Text);
+        }
     }
 }
