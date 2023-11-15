@@ -99,12 +99,12 @@ namespace ManagerStudent.GUI
 
         }
 
-        private void HocSinhForm_Load_1(object sender, EventArgs e)
+      /*  private void HocSinhForm_Load_1(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'studentManagerDataSet1.Student' table. You can move, or remove it, as needed.
-            this.studentTableAdapter.Fill(this.studentManagerDataSet1.Student);
-
-        }
+           // this.studentTableAdapter.Fill(this.studentManagerDataSet1.Student);
+           // GetListStudent();
+        }*/
 
         private void cboxGioiTinh_SelectedIndexChanged(object sender, EventArgs e)
         {
