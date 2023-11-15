@@ -164,6 +164,7 @@
     <Compile Include="DTO\Status.cs" />
     <Compile Include="DTO\Student.cs" />
     <Compile Include="DTO\StudentCapacity.cs" />
+    <Compile Include="DTO\StudentClassSemesterAcademicYear.cs" />
     <Compile Include="DTO\StudentConduct.cs" />
     <Compile Include="DTO\StudentResult.cs" />
     <Compile Include="DTO\Subject.cs" />
@@ -224,6 +225,16 @@
     <Compile Include="GUI\ThongKeForm.Designer.cs">
       <DependentUpon>ThongKeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManagerStudentDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ManagerStudentDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ManagerStudentDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ManagerStudentDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Program.cs" />
@@ -238,6 +249,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StudentManagerDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="StudentManagerDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentManagerDataSet2.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GUI\CategoryForm.resx">
       <DependentUpon>CategoryForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,6 +262,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\HocSinhForm.resx">
       <DependentUpon>HocSinhForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -305,6 +322,28 @@
     <None Include="DAL\CSV\Data - Teacher.csv" />
     <None Include="DAL\CSV\Data - TypeOfSubject.csv" />
     <None Include="file.log" />
+    <None Include="ManagerStudentDataSet.xsc">
+      <DependentUpon>ManagerStudentDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ManagerStudentDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ManagerStudentDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ManagerStudentDataSet.xss">
+      <DependentUpon>ManagerStudentDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ManagerStudentDataSet1.xsc">
+      <DependentUpon>ManagerStudentDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="ManagerStudentDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ManagerStudentDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ManagerStudentDataSet1.xss">
+      <DependentUpon>ManagerStudentDataSet1.xsd</DependentUpon>
+    </None>
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\Debug\ManagerStudent.csproj.AssemblyReference.cache" />
@@ -347,6 +386,17 @@
     </None>
     <None Include="StudentManagerDataSet1.xss">
       <DependentUpon>StudentManagerDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="StudentManagerDataSet2.xsc">
+      <DependentUpon>StudentManagerDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="StudentManagerDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StudentManagerDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="StudentManagerDataSet2.xss">
+      <DependentUpon>StudentManagerDataSet2.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -437,7 +487,7 @@
     <Content Include="bin\Debug\System.Numerics.Vectors.xml" />
     <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.dll" />
     <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.xml" />
-    <Content Include="DAL\StoreProcedure.sql" />
+    <Content Include="BLL\StoreProcedure.sql" />
     <Content Include="DAL\ScriptData.sql" />
     <Content Include="DAL\Trigger.sql" />
     <Content Include="obj\Debug\ManagerStudent.csproj.FileListAbsolute.txt" />

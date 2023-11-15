@@ -33,5 +33,16 @@ namespace ManagerStudent.Properties {
                 return ((string)(this["StudentManagerConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-VRVBMT3M;Initial Catalog=ManagerStudent;Integrated Security=Tr" +
+            "ue")]
+        public string ManagerStudentConnectionString {
+            get {
+                return ((string)(this["ManagerStudentConnectionString"]));
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@
 
 --USE StudentManager;
 -- 1
+--CREATE DATABASE ManagerStudent;
 
 -- Tạo bảng hạnh kiểm
 CREATE TABLE Conduct(
@@ -77,6 +78,7 @@ ALTER TABLE SubjectTypeOfSubject
 	ADD CONSTRAINT SubjectTypeOfSubject_subjectID_Subject_ID
 	FOREIGN KEY (subjectID)
 	REFERENCES Subject(ID)
+
 
 
 ALTER TABLE SubjectTypeOfSubject 
@@ -446,19 +448,18 @@ ALTER TABLE ClassGrade
 	FOREIGN KEY (gradeID) REFERENCES Grade(ID)
 	--DBCC CHECKIDENT('TypeOfSubject', RESEED, 0);
 	
-CREATE PROC GetDataSemester
-AS
-	BEGIN
-		SELECT * FROM Semester s ;
-	END
+/*CREATE PROC GetDataSemester
+/*AS
+/*	BEGIN
+/*		SELECT * FROM Semester s ;
+/*	END
 	
-CREATE PROC GetDataTypeOfPoint
-AS 
-	Begin
-		SELECT * FROM TypeOfPoint top2 ;
-	END
+/*CREATE PROC GetDataTypeOfPoint
+/*AS 
+/*	Begin
+	/*	SELECT * FROM TypeOfPoint top2 ;
+/*	END
 	
-
 	
 --	EXECUTE GetDataSemester
 --	EXEC GetDataTypeOfPoint
