@@ -135,7 +135,7 @@ CREATE TABLE Teacher(
 	birthday DATETIME,
 	birthplace NVARCHAR(255),
 	email VARCHAR(255),
-	phonenumber INT(11),
+	phonenumber INT,
 	address NVARCHAR(255),
 	image VARCHAR(255),
 	createDate DATETIME,
