@@ -105,10 +105,7 @@ namespace ManagerStudent.GUI
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataTableClassNew = new System.Windows.Forms.DataGridView();
             this.panel8 = new System.Windows.Forms.Panel();
             this.txtClassNew = new System.Windows.Forms.ComboBox();
             this.txtKhoiNew = new System.Windows.Forms.ComboBox();
@@ -117,10 +114,9 @@ namespace ManagerStudent.GUI
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataTableClassOld = new System.Windows.Forms.DataGridView();
+            this.studentBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.studentManagerDataSet3 = new ManagerStudent.StudentManagerDataSet3();
             this.panel6 = new System.Windows.Forms.Panel();
             this.txtClassOld = new System.Windows.Forms.ComboBox();
             this.txtKhoiOld = new System.Windows.Forms.ComboBox();
@@ -203,6 +199,7 @@ namespace ManagerStudent.GUI
             this.managerStudentDataSet1 = new ManagerStudent.ManagerStudentDataSet1();
             this.managerStudentDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.studentTableAdapter = new ManagerStudent.StudentManagerDataSet2TableAdapters.StudentTableAdapter();
+            this.studentTableAdapter1 = new ManagerStudent.StudentManagerDataSet3TableAdapters.StudentTableAdapter();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
@@ -230,10 +227,12 @@ namespace ManagerStudent.GUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableClassNew)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableClassOld)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentManagerDataSet3)).BeginInit();
             this.panel6.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
@@ -1049,44 +1048,22 @@ namespace ManagerStudent.GUI
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.dataGridView4);
+            this.panel7.Controls.Add(this.dataTableClassNew);
             this.panel7.Controls.Add(this.panel8);
             this.panel7.Location = new System.Drawing.Point(462, 60);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(348, 365);
             this.panel7.TabIndex = 2;
             // 
-            // dataGridView4
+            // dataTableClassNew
             // 
-            this.dataGridView4.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
-            this.dataGridView4.Location = new System.Drawing.Point(0, 133);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.RowHeadersWidth = 51;
-            this.dataGridView4.Size = new System.Drawing.Size(348, 229);
-            this.dataGridView4.TabIndex = 2;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "STT";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Mã học sinh";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Tên học sinh";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataTableClassNew.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataTableClassNew.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataTableClassNew.Location = new System.Drawing.Point(0, 133);
+            this.dataTableClassNew.Name = "dataTableClassNew";
+            this.dataTableClassNew.RowHeadersWidth = 51;
+            this.dataTableClassNew.Size = new System.Drawing.Size(348, 229);
+            this.dataTableClassNew.TabIndex = 2;
             // 
             // panel8
             // 
@@ -1111,6 +1088,7 @@ namespace ManagerStudent.GUI
             this.txtClassNew.Size = new System.Drawing.Size(144, 21);
             this.txtClassNew.TabIndex = 5;
             this.txtClassNew.Text = "Chọn lớp";
+            this.txtClassNew.SelectedIndexChanged += new System.EventHandler(this.txtClassNew_SelectedIndexChanged);
             // 
             // txtKhoiNew
             // 
@@ -1164,44 +1142,32 @@ namespace ManagerStudent.GUI
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.dataGridView3);
+            this.panel5.Controls.Add(this.dataTableClassOld);
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Location = new System.Drawing.Point(6, 60);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(348, 365);
             this.panel5.TabIndex = 1;
             // 
-            // dataGridView3
+            // dataTableClassOld
             // 
-            this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3});
-            this.dataGridView3.Location = new System.Drawing.Point(4, 133);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.Size = new System.Drawing.Size(341, 229);
-            this.dataGridView3.TabIndex = 1;
+            this.dataTableClassOld.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataTableClassOld.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataTableClassOld.Location = new System.Drawing.Point(4, 133);
+            this.dataTableClassOld.Name = "dataTableClassOld";
+            this.dataTableClassOld.RowHeadersWidth = 51;
+            this.dataTableClassOld.Size = new System.Drawing.Size(341, 229);
+            this.dataTableClassOld.TabIndex = 1;
             // 
-            // Column1
+            // studentBindingSource1
             // 
-            this.Column1.HeaderText = "STT";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
+            this.studentBindingSource1.DataMember = "Student";
+            this.studentBindingSource1.DataSource = this.studentManagerDataSet3;
             // 
-            // Column2
+            // studentManagerDataSet3
             // 
-            this.Column2.HeaderText = "Mã học sinh";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Tên học sinh";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
+            this.studentManagerDataSet3.DataSetName = "StudentManagerDataSet3";
+            this.studentManagerDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // panel6
             // 
@@ -1226,6 +1192,7 @@ namespace ManagerStudent.GUI
             this.txtClassOld.Size = new System.Drawing.Size(136, 21);
             this.txtClassOld.TabIndex = 5;
             this.txtClassOld.Text = "Chọn lớp";
+            this.txtClassOld.SelectedIndexChanged += new System.EventHandler(this.txtClassOld_SelectedIndexChanged);
             // 
             // txtKhoiOld
             // 
@@ -2207,6 +2174,10 @@ namespace ManagerStudent.GUI
             // 
             this.studentTableAdapter.ClearBeforeFill = true;
             // 
+            // studentTableAdapter1
+            // 
+            this.studentTableAdapter1.ClearBeforeFill = true;
+            // 
             // HocSinhForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2248,11 +2219,13 @@ namespace ManagerStudent.GUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.panel7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableClassNew)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTableClassOld)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentManagerDataSet3)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.tabPage4.ResumeLayout(false);
@@ -2351,15 +2324,9 @@ namespace ManagerStudent.GUI
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridView dataTableClassOld;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.DataGridView dataGridView4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridView dataTableClassNew;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.ComboBox txtClassNew;
         private System.Windows.Forms.ComboBox txtKhoiNew;
@@ -2462,5 +2429,8 @@ namespace ManagerStudent.GUI
         private System.Windows.Forms.DataGridViewTextBoxColumn imageDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn createDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn updateDateDataGridViewTextBoxColumn;
+        private StudentManagerDataSet3 studentManagerDataSet3;
+        private System.Windows.Forms.BindingSource studentBindingSource1;
+        private StudentManagerDataSet3TableAdapters.StudentTableAdapter studentTableAdapter1;
     }
 }

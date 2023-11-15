@@ -3,6 +3,7 @@ using ManagerStudent.BLL;
 using ManagerStudent.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -87,6 +88,8 @@ namespace ManagerStudent.GUI
 
         private void HocSinhForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'studentManagerDataSet3.Student' table. You can move, or remove it, as needed.
+            this.studentTableAdapter1.Fill(this.studentManagerDataSet3.Student);
             // TODO: This line of code loads data into the 'studentManagerDataSet2.Student' table. You can move, or remove it, as needed.
             this.studentTableAdapter.Fill(this.studentManagerDataSet2.Student);
             // TODO: This line of code loads data into the 'managerStudentDataSet1._Student_' table. You can move, or remove it, as needed.
@@ -447,30 +450,82 @@ namespace ManagerStudent.GUI
         private void txtKhoiOld_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selected = txtKhoiOld.SelectedItem.ToString();
-            string gradeID = studentBLL.getMaKhoi(selected);
-            List<Class> cls = studentBLL.getClassInGrade(gradeID);
+            int gradeID = studentBLL.getGradeID(selected);
+            List<StudentClassSemesterAcademicYear> cls = studentBLL.getClass(gradeID);
             txtClassOld.Items.Clear();
-            foreach (Class c in cls)
+            List< StudentClassSemesterAcademicYear> distinctClass = cls.GroupBy(a => a.classID).Select(g => g.First()).ToList();
+            foreach (StudentClassSemesterAcademicYear c in distinctClass)
             {
-                txtClassOld.Items.Add(c.Name);
+                string className = studentBLL.getClassName(c.classID);
+                txtClassOld.Items.Add(className);
             }
         }
 
         private void txtKhoiNew_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selected = txtKhoiNew.SelectedItem.ToString();
+            /*string selected = txtKhoiNew.SelectedItem.ToString();
             string gradeID = studentBLL.getMaKhoi(selected);
             List<Class> cls = studentBLL.getClassInGrade(gradeID);
             txtClassNew.Items.Clear();
             foreach(Class c in cls)
             {
                 txtClassNew.Items.Add(c.Name);
+            }*/
+            string selected = txtKhoiNew.SelectedItem.ToString();
+            int gradeID = studentBLL.getGradeID(selected);
+            List<StudentClassSemesterAcademicYear> cls = studentBLL.getClass(gradeID);
+            txtClassNew.Items.Clear();
+            List<StudentClassSemesterAcademicYear> distinctClass = cls.GroupBy(a => a.classID).Select(g => g.First()).ToList();
+            foreach (StudentClassSemesterAcademicYear c in distinctClass)
+            {
+                string className = studentBLL.getClassName(c.classID);
+                txtClassNew.Items.Add(className);
             }
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void txtClassOld_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = txtClassOld.SelectedItem.ToString();
+            int  classID = studentBLL.getClassID(selected);
+            Console.WriteLine(classID);
+            DataTable dataTable = studentBLL.getListStudentInClass(classID);
+            DataView dataView = new DataView(dataTable);
+            dataTableClassOld.Columns.Clear();
+            dataTableClassOld.Columns.Add("ID", "Mã học sinh");
+            dataTableClassOld.Columns.Add("Name", "Tên học sinh");
+            dataTableClassOld.Columns.Add("Gender", "Giới tính");
+
+            // Map the columns to the corresponding columns in the DataTable
+            dataTableClassOld.Columns["ID"].DataPropertyName = "ID";
+            dataTableClassOld.Columns["Name"].DataPropertyName = "name";
+            dataTableClassOld.Columns["Gender"].DataPropertyName = "gender";
+            dataTableClassOld.DataSource = dataView;
+            dataTableClassOld.DataBindings.Clear();
+        }
+
+        private void txtClassNew_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = txtClassNew.SelectedItem.ToString();
+            int classID = studentBLL.getClassID(selected);
+            Console.WriteLine(classID);
+            DataTable dataTable = studentBLL.getListStudentInClass(classID);
+            DataView dataView = new DataView(dataTable);
+            dataTableClassNew.Columns.Clear();
+            dataTableClassNew.Columns.Add("ID", "Mã học sinh");
+            dataTableClassNew.Columns.Add("Name", "Tên học sinh");
+            dataTableClassNew.Columns.Add("Gender", "Giới tính");
+
+            // Map the columns to the corresponding columns in the DataTable
+            dataTableClassNew.Columns["ID"].DataPropertyName = "ID";
+            dataTableClassNew.Columns["Name"].DataPropertyName = "name";
+            dataTableClassNew.Columns["Gender"].DataPropertyName = "gender";
+            dataTableClassNew.DataSource = dataView;
+            dataTableClassNew.DataBindings.Clear();
         }
     }
 }
