@@ -225,3 +225,122 @@ END
 --EXEC InsertPoint @studentID, @academicyearName, @semesterName, @subjectName, @pointName, @point 
 
 --EXEC InsertPoint 26, N'2023-2024', N'Học kỳ 1', N'Toán', N'Điểm giữa kỳ', 8
+
+
+
+--##########################################################################################################################
+
+
+SELECT * from AcademicYear ay 
+SELECT * FROM Student s 
+select * from TypeOfPoint top2 
+select * from Semester s2 
+select * from Class c 
+
+
+	
+	
+	
+-----------------------------------------------------------------------------------------------------
+CREATE ALTER PROC DATA_POINT_STUDENT
+    @academicyearName NVARCHAR(255),
+    @semesterName NVARCHAR(255),
+    @className NVARCHAR(255),
+    @studentID INT
+AS
+BEGIN
+
+    SELECT s.subjectName AS N'Môn Học',
+           p.point AS N'Điểm đánh giá thường xuyên',
+           p2.point AS N'Điểm giữa kỳ',
+           p3.point AS N'Điểm cuối kỳ'
+    FROM Subject s
+        INNER JOIN Student s2
+            ON s2.ID = @studentID
+        LEFT JOIN Point p
+            ON p.subjectID = s.ID
+               AND p.typeofpointID =
+               (
+                   SELECT TOP 1
+                       top2.ID
+                   FROM TypeOfPoint top2
+                   WHERE top2.pointName = N'Điểm đánh giá thường xuyên'
+               )
+               AND p.academicyearID =
+               (
+                   SELECT TOP 1
+                       ay.ID
+                   FROM AcademicYear ay
+                   WHERE ay.academicyearName = @academicyearName
+               )
+               AND p.semesterID =
+               (
+                   SELECT TOP 1 s3.ID FROM Semester s3 WHERE s3.semesterName = @semesterName
+               )
+               AND p.classID = 
+               (
+               		SELECT TOP 1 c.ID FROM Class c WHERE c.className = @className
+               )
+               AND p.studentID = s2.ID
+        LEFT JOIN Point p2
+            ON p2.subjectID = s.ID
+               AND p2.typeofpointID =
+               (
+                   SELECT TOP 1
+                       top2.ID
+                   FROM TypeOfPoint top2
+                   WHERE top2.pointName = N'Điểm giữa kỳ'
+               )
+               AND p2.academicyearID =
+               (
+                   SELECT TOP 1
+                       ay.ID
+                   FROM AcademicYear ay
+                   WHERE ay.academicyearName = @academicyearName
+               )
+               
+               AND p2.classID = 
+               (
+               		SELECT TOP 1 c.ID FROM Class c WHERE c.className = @className
+               )
+               AND p2.semesterID =
+               (
+                   SELECT TOP 1 s3.ID FROM Semester s3 WHERE s3.semesterName = @semesterName
+               )
+               AND p2.studentID = s2.ID
+        LEFT JOIN Point p3
+            ON p3.subjectID = s.ID
+               AND p3.typeofpointID =
+               (
+                   SELECT TOP 1
+                       top2.ID
+                   FROM TypeOfPoint top2
+                   WHERE top2.pointName = N'Điểm cuối kỳ'
+               )
+               AND p3.academicyearID =
+               (
+                   SELECT TOP 1
+                       ay.ID
+                   FROM AcademicYear ay
+                   WHERE ay.academicyearName = @academicyearName
+               )
+               AND p3.semesterID =
+               (
+                   SELECT TOP 1 s3.ID FROM Semester s3 WHERE s3.semesterName = @semesterName
+               )
+               
+               AND p3.classID = 
+               (
+               		SELECT TOP 1 c.ID FROM Class c WHERE c.className = @className
+               )
+               AND p3.studentID = s2.ID
+
+END
+
+EXEC DATA_POINT_STUDENT N'Năm học 2023 - 2024', N'Học kỳ 2', N'Lớp 10A1', 1
+
+
+-----------------------------------------------------------------------------------------------------
+
+INSERT INTO Point  (studentID, typeofpointID, subjectID, academicyearID, semesterID, point)
+VALUES (1, 1, 1, 1, 1, 9);

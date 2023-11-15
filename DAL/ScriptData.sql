@@ -271,12 +271,13 @@ CREATE TABLE Point(
 	subjectID INT, -- Giá trị này NULL nếu loại điểm là điểm hạnh kiểm
 	academicyearID INT NOT NULL,
 	semesterID INT NOT NULL,
+	classID INT,
 	point INT,
 	createDate DATETIME,
 	updateDate DATETIME,
 	finishDate DATETIME,
 	PRIMARY KEY (studentID, typeofpointID, 
-		subjectID, academicyearID, semesterID)
+		subjectID, academicyearID, semesterID, classID)
 )	
 
 -- Thêm các khoá chính và khoá ngoại
@@ -284,6 +285,10 @@ ALTER TABLE Point
 	ADD CONSTRAINT Point_semesterID_Semester_ID 
 	FOREIGN KEY (semesterID) REFERENCES Semester(ID)
 
+ALTER TABLE Point 
+	ADD CONSTRAINT Point_classID_Class_ID 
+	FOREIGN KEY (classID) REFERENCES Class(ID)
+	
 ALTER TABLE Point 
 	ADD CONSTRAINT Point_academicyearID_AcademicYear_ID 
 	FOREIGN KEY (academicyearID) REFERENCES AcademicYear(ID)
