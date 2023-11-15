@@ -14,7 +14,7 @@ namespace ManagerStudent.DAL {
       static string connectionString = "Data Source=localhost;Initial Catalog=StudentManager;User ID=sa;Password=Admin0000;";
         /*        static string connectionString = "Data Source = DESKTOP-A4AI66N\\THLUC; Initial Catalog = StudentManager; Persist Security Info=True;User ID=sa; Password=123;";*/
         /*  static string connectionString = @"Data Source=DESKTOP-TSRRPEV\SQLEXPRESS;Initial Catalog=StudentManager;Integrated Security=True";*/
-        //static string connectionString = "Data Source=LAPTOP-VRVBMT3M;Initial Catalog=StudentManager;Integrated Security=True";
+       // static string connectionString = "Data Source=LAPTOP-VRVBMT3M;Initial Catalog=StudentManager;Integrated Security=True";
        // static string connectionString = @"Data Source=DESKTOP-TSRRPEV\SQLEXPRESS;Initial Catalog=StudentManager;Integrated Security=True";
         private SqlDataAdapter myDataAdapter;
         public static SqlConnection ConnectToDatabase()

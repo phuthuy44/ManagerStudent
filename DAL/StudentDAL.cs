@@ -119,10 +119,10 @@ namespace ManagerStudent.DAL
         /*Danh cho View Quan he*/
         /*Fill khoi*/
         /*PhanLop */
-        public List<AcademicYear> getAcademicYearsInAssignmentClass()
+        public List<StudentClassSemesterAcademicYear> getAcademicYearsInAssignmentClass()
         {
-            List<AcademicYear> academicYears = new List<AcademicYear>();
-            string sql = "select * from AcademicYear";//AcademicYear$
+            List<StudentClassSemesterAcademicYear> academicYears = new List<StudentClassSemesterAcademicYear>();
+            string sql = "select academicYearID from StudentClassSemesterAcademicYear";//AcademicYear$
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {
@@ -130,8 +130,8 @@ namespace ManagerStudent.DAL
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    AcademicYear academic = new AcademicYear();
-                    academic.Name = reader["academicyearName"].ToString();
+                    StudentClassSemesterAcademicYear academic = new StudentClassSemesterAcademicYear();
+                    academic.academicyearID = reader.GetInt32(0);
                     academicYears.Add(academic);
                 }
             }catch(Exception ex)
@@ -143,19 +143,69 @@ namespace ManagerStudent.DAL
             }
             return academicYears;
         }
-        public List<Grade> getGrade()
+        //Chuyen maNam thanh tenNam
+        public string getAcademicName(int idAcademic)
         {
-            List<Grade> grade = new List<Grade>();
-            string sql = "select * from Grade";//Grade$
+            string getAcademicName = null;
+            string sql = "Select AcademicyearName from AcademicYear where ID = @ID ";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@ID", idAcademic);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    getAcademicName = reader.GetString(0);
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+            finally { conn.Close(); }
+            return getAcademicName;
+        }
+        //Chuyen teNam thanh maNam
+        public int getIDAcademic(string name)
+        {
+            int idAcademic = 0 ;
+            string sql = "Select ID from AcademicYear where AcademicyearName = @name";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@name", name);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    idAcademic = reader.GetInt32(0);
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return idAcademic;
+        }
+        public List<StudentClassSemesterAcademicYear> getGrade(int idYear)
+        {
+            List<StudentClassSemesterAcademicYear> grade = new List<StudentClassSemesterAcademicYear>();
+            string sql = "select gradeID from StudentClassSemesterAcademicYear where academicyearID = @id"; ;
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {
                 SqlCommand command = new SqlCommand(sql, conn);
+                command.Parameters.AddWithValue("@id", idYear);
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    Grade grades = new Grade();
-                    grades.Name = reader["gradeName"].ToString();
+                    StudentClassSemesterAcademicYear grades = new StudentClassSemesterAcademicYear();
+                    grades.gradeID = reader.GetInt32(0);
                     grade.Add(grades);
                 }
             }
@@ -169,10 +219,29 @@ namespace ManagerStudent.DAL
             }
             return grade;
         }
+        public string namGrade(int id)
+        {
+            string name = null;
+            string sql = "select gradeName from grade where ID = @id";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", id);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    name = reader.GetString(0);
+                }
+            }
+            catch(Exception ex) { return null; }
+            finally { conn.Close(); }
+            return name;
+        }
         public List<Class> getClassInGrade(string maKhoi)
         {
             List <Class> classes = new List<Class>();
-            string sql = "SELECT * FROM class where gradeID= @maKhoi";//class$
+            string sql = "SELECT * FROM class$ where gradeID= @maKhoi";//class$
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {
@@ -197,7 +266,7 @@ namespace ManagerStudent.DAL
         public string getMaGrade(string tenKhoi)
         {
             string gradeID = null;
-            string sql = "select ID from grade where gradeName = @tenKhoi";//grade$
+            string sql = "select ID from grade$ where gradeName = @tenKhoi";//grade$
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {

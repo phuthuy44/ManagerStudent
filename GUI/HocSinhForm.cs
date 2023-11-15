@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Forms;
@@ -84,22 +85,34 @@ namespace ManagerStudent.GUI
 
         private void HocSinhForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'studentManagerDataSet2.Student' table. You can move, or remove it, as needed.
+            this.studentTableAdapter.Fill(this.studentManagerDataSet2.Student);
+            // TODO: This line of code loads data into the 'managerStudentDataSet1._Student_' table. You can move, or remove it, as needed.
             // TODO: This line of code loads data into the 'studentManagerDataSet.Student' table. You can move, or remove it, as needed.
             //this.studentTableAdapter.Fill(this.studentManagerDataSet.Student);
             GetListStudent();
             /*PhanLop*/
-            List<AcademicYear> academicYears = studentBLL.GetAcademicYears();
-            foreach(AcademicYear a in academicYears)
+            List<StudentClassSemesterAcademicYear> academicYears = studentBLL.GetAcademicYears();
+            List<StudentClassSemesterAcademicYear> distinctAcademicYears = academicYears
+                .GroupBy(a => a.academicyearID)
+                .Select(g => g.First())
+                .ToList();
+
+           /* txtYearOld.Items.Clear();
+            txtYearNew.Items.Clear();*/
+
+            foreach (StudentClassSemesterAcademicYear a in distinctAcademicYears)
             {
-                txtYearOld.Items.Add(a.Name);
-                txtYearNew.Items.Add(a.Name);
+                string AcademicName = studentBLL.getAcademicName(a.academicyearID);
+                txtYearOld.Items.Add(AcademicName);
+                txtYearNew.Items.Add(AcademicName);
             }
-            List<Grade> grades = studentBLL.GetGrades();
+            /*List<Grade> grades = studentBLL.GetGrades();
             foreach(Grade g in grades)
             {
                 txtKhoiOld.Items.Add(g.Name);
                 txtKhoiNew.Items.Add(g.Name);
-            }
+            }*/
 
         }
         //Xu ly fill dataTable lên dataGridView
@@ -387,7 +400,25 @@ namespace ManagerStudent.GUI
 
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string selected = txtYearOld.SelectedItem.ToString();
+            int getIDAc = studentBLL.getIdAca(selected);
+            Console.WriteLine(getIDAc);
+            List<StudentClassSemesterAcademicYear> grades = studentBLL.GetGrades(getIDAc);
+            Console.WriteLine(grades);
+            txtKhoiOld.Items.Clear();
+            List<StudentClassSemesterAcademicYear> distinctGrades = grades
+                .GroupBy(a => a.gradeID)
+                .Select(g => g.First())
+                .ToList();
 
+            /* txtYearOld.Items.Clear();
+             txtYearNew.Items.Clear();*/
+
+            foreach (StudentClassSemesterAcademicYear a in distinctGrades)
+            {
+                string grade = studentBLL.getNameGrade(a.gradeID);
+                txtKhoiOld.Items.Add(grade);
+            }
         }
 
         private void txtKhoiOld_SelectedIndexChanged(object sender, EventArgs e)
@@ -411,6 +442,29 @@ namespace ManagerStudent.GUI
             foreach(Class c in cls)
             {
                 txtClassNew.Items.Add(c.Name);
+            }
+        }
+
+        private void txtYearNew_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = txtYearNew.SelectedItem.ToString();
+            int getIDAc = studentBLL.getIdAca(selected);
+            Console.WriteLine(getIDAc);
+            List<StudentClassSemesterAcademicYear> grades = studentBLL.GetGrades(getIDAc);
+            Console.WriteLine(grades);
+            txtKhoiNew.Items.Clear();
+            List<StudentClassSemesterAcademicYear> distinctGrades = grades
+                .GroupBy(a => a.gradeID)
+                .Select(g => g.First())
+                .ToList();
+
+            /* txtYearOld.Items.Clear();
+             txtYearNew.Items.Clear();*/
+
+            foreach (StudentClassSemesterAcademicYear a in distinctGrades)
+            {
+                string grade = studentBLL.getNameGrade(a.gradeID);
+                txtKhoiNew.Items.Add(grade);
             }
         }
     }
