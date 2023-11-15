@@ -68,5 +68,22 @@ namespace ManagerStudent.BLL
                 return false;
             }
         }
+        /*PhanLop*/
+        public List<AcademicYear> GetAcademicYears()
+        {
+            return studentDAL.getAcademicYearsInAssignmentClass();
+        }
+        public List<Grade> GetGrades()
+        {
+            return studentDAL.getGrade();
+        }
+        public List<Class> getClassInGrade(string maKhoi)
+        {
+            return studentDAL.getClassInGrade(maKhoi);
+        }
+        public string getMaKhoi(string tenKhoi)
+        {
+            return studentDAL.getMaGrade(tenKhoi);
+        }
     }
 }

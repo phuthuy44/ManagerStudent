@@ -12,7 +12,7 @@ namespace ManagerStudent.DAL
     internal class PointDAL
     {
         public bool UpdateStudentPoint(int studentID, string academicyearName, string semesterName,
-                                        string subjectName, int regularPoint, int midtermPoint, int finalPoint)
+                                        string subjectName, double regularPoint, double midtermPoint, double finalPoint)
         {
             try
             {
@@ -28,6 +28,35 @@ namespace ManagerStudent.DAL
                 command.Parameters.AddWithValue("@regularPoint", regularPoint);
                 command.Parameters.AddWithValue("@midtermPoint", midtermPoint);
                 command.Parameters.AddWithValue("@finalPoint", finalPoint);
+                int rowsAffected = command.ExecuteNonQuery();
+                // Trả về true nếu cập nhật thành công
+                /*return rowsAffected > 0;*/
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi: " + ex.Message);
+                return false;
+            }
+            return true;
+        }
+
+        public bool InsertStudentPoint(int studentID, string academicyearName, string semesterName,
+                                string subjectName, string pointName, double point)
+        {
+            try
+            {
+                SqlConnection connection = initConnect.ConnectToDatabase();
+                string query = @"EXEC InsertPoint @studentID, @academicyearName, @semesterName, 
+                    @subjectName, @pointName, @point";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@studentID", studentID);
+                command.Parameters.AddWithValue("@academicyearName", academicyearName);
+                command.Parameters.AddWithValue("@semesterName", semesterName);
+                command.Parameters.AddWithValue("@subjectName", subjectName);
+                command.Parameters.AddWithValue("@pointName", pointName);
+                command.Parameters.AddWithValue("@point", point);
+
                 int rowsAffected = command.ExecuteNonQuery();
                 // Trả về true nếu cập nhật thành công
                 /*return rowsAffected > 0;*/

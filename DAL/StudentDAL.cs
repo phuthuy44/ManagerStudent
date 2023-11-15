@@ -1,5 +1,6 @@
 ﻿using ManagerStudent.DTO;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -27,7 +28,7 @@ namespace ManagerStudent.DAL
                 SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
                 adapter.Fill(dataTable);
 
-               
+
             }
             catch (Exception ex)
             {
@@ -114,6 +115,107 @@ namespace ManagerStudent.DAL
             }
             finally { conn.Close(); }  
 
+        }
+        /*Danh cho View Quan he*/
+        /*Fill khoi*/
+        /*PhanLop */
+        public List<AcademicYear> getAcademicYearsInAssignmentClass()
+        {
+            List<AcademicYear> academicYears = new List<AcademicYear>();
+            string sql = "select * from AcademicYear";//AcademicYear$
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    AcademicYear academic = new AcademicYear();
+                    academic.Name = reader["academicyearName"].ToString();
+                    academicYears.Add(academic);
+                }
+            }catch(Exception ex)
+            {
+                return null;
+            }
+            finally { 
+                conn.Close(); 
+            }
+            return academicYears;
+        }
+        public List<Grade> getGrade()
+        {
+            List<Grade> grade = new List<Grade>();
+            string sql = "select * from Grade";//Grade$
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand command = new SqlCommand(sql, conn);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Grade grades = new Grade();
+                    grades.Name = reader["gradeName"].ToString();
+                    grade.Add(grades);
+                }
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return grade;
+        }
+        public List<Class> getClassInGrade(string maKhoi)
+        {
+            List <Class> classes = new List<Class>();
+            string sql = "SELECT * FROM class where gradeID= @maKhoi";//class$
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand command = new SqlCommand(sql, conn);
+                command.Parameters.AddWithValue("@maKhoi", maKhoi);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                   Class cls = new Class();
+                    cls.Name = reader["className"].ToString();
+                    cls.gradeID = reader["gradeID"].ToString() ;
+                    classes.Add(cls);
+
+                }
+            }catch(Exception ex)
+            {
+                return null;
+            }
+            finally { conn.Close(); }
+            return classes;
+        }
+        public string getMaGrade(string tenKhoi)
+        {
+            string gradeID = null;
+            string sql = "select ID from grade where gradeName = @tenKhoi";//grade$
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@tenKhoi", tenKhoi);
+                SqlDataReader r = cmd.ExecuteReader();
+                if(r.Read())
+                {
+                    gradeID = r.GetString(0);
+                }
+
+            }
+            catch(Exception ex) { return null; }
+            finally
+            {
+                conn.Close();
+            }
+            return gradeID;
         }
     }
 }

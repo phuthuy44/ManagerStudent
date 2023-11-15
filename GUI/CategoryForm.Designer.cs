@@ -175,7 +175,7 @@
             this.tabPage2.Controls.Add(this.textBox2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(822, 438);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Hạnh kiểm";
@@ -186,7 +186,7 @@
             this.pictureBox22.BackColor = System.Drawing.Color.MediumBlue;
             this.pictureBox22.Image = global::ManagerStudent.Properties.Resources.icon__magnifying_glass_;
             this.pictureBox22.Location = new System.Drawing.Point(181, 41);
-            this.pictureBox22.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox22.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox22.Name = "pictureBox22";
             this.pictureBox22.Size = new System.Drawing.Size(30, 20);
             this.pictureBox22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -218,16 +218,16 @@
             this.panel4.Controls.Add(this.button8);
             this.panel4.Controls.Add(this.button9);
             this.panel4.Controls.Add(this.button10);
-            this.panel4.Location = new System.Drawing.Point(24, 256);
+            this.panel4.Location = new System.Drawing.Point(6, 224);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(251, 118);
+            this.panel4.Size = new System.Drawing.Size(287, 118);
             this.panel4.TabIndex = 14;
             // 
             // pictureBox5
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.pictureBox5.Image = global::ManagerStudent.Properties.Resources.icon__x_letter_;
-            this.pictureBox5.Location = new System.Drawing.Point(143, 78);
+            this.pictureBox5.Location = new System.Drawing.Point(159, 78);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(25, 20);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -238,7 +238,7 @@
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.pictureBox6.Image = global::ManagerStudent.Properties.Resources.icon__pencil_;
-            this.pictureBox6.Location = new System.Drawing.Point(28, 78);
+            this.pictureBox6.Location = new System.Drawing.Point(14, 78);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(25, 20);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -249,7 +249,7 @@
             // 
             this.pictureBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.pictureBox7.Image = global::ManagerStudent.Properties.Resources.icon__arrow_left_;
-            this.pictureBox7.Location = new System.Drawing.Point(143, 27);
+            this.pictureBox7.Location = new System.Drawing.Point(159, 27);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(25, 20);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -260,7 +260,7 @@
             // 
             this.pictureBox8.BackColor = System.Drawing.Color.SpringGreen;
             this.pictureBox8.Image = global::ManagerStudent.Properties.Resources.icon__plus_;
-            this.pictureBox8.Location = new System.Drawing.Point(28, 27);
+            this.pictureBox8.Location = new System.Drawing.Point(14, 27);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(25, 20);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -270,9 +270,10 @@
             // button7
             // 
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.button7.Location = new System.Drawing.Point(134, 65);
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.Location = new System.Drawing.Point(148, 65);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(100, 45);
+            this.button7.Size = new System.Drawing.Size(133, 45);
             this.button7.TabIndex = 8;
             this.button7.Text = "Xóa";
             this.button7.UseVisualStyleBackColor = false;
@@ -280,9 +281,10 @@
             // button8
             // 
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.button8.Location = new System.Drawing.Point(18, 65);
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button8.Location = new System.Drawing.Point(3, 65);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(100, 45);
+            this.button8.Size = new System.Drawing.Size(139, 45);
             this.button8.TabIndex = 7;
             this.button8.Text = "Sửa";
             this.button8.UseVisualStyleBackColor = false;
@@ -290,9 +292,10 @@
             // button9
             // 
             this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.button9.Location = new System.Drawing.Point(134, 14);
+            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button9.Location = new System.Drawing.Point(148, 14);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(100, 45);
+            this.button9.Size = new System.Drawing.Size(133, 45);
             this.button9.TabIndex = 6;
             this.button9.Text = "Nhập Excel";
             this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -303,9 +306,10 @@
             // 
             this.button10.BackColor = System.Drawing.Color.SpringGreen;
             this.button10.Cursor = System.Windows.Forms.Cursors.Default;
-            this.button10.Location = new System.Drawing.Point(18, 14);
+            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button10.Location = new System.Drawing.Point(3, 14);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(100, 45);
+            this.button10.Size = new System.Drawing.Size(139, 45);
             this.button10.TabIndex = 5;
             this.button10.Text = "Thêm";
             this.button10.UseVisualStyleBackColor = false;
@@ -322,6 +326,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.textBox3);
             this.panel1.Controls.Add(this.textBox4);
@@ -329,7 +334,7 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(24, 98);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(251, 130);
+            this.panel1.Size = new System.Drawing.Size(251, 97);
             this.panel1.TabIndex = 11;
             // 
             // textBox3
@@ -342,7 +347,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(103, 13);
+            this.textBox4.Location = new System.Drawing.Point(108, 13);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(129, 20);
             this.textBox4.TabIndex = 4;
@@ -369,10 +374,10 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(24, 32);
+            this.textBox2.Location = new System.Drawing.Point(6, 32);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(143, 34);
+            this.textBox2.Size = new System.Drawing.Size(161, 34);
             this.textBox2.TabIndex = 6;
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
@@ -386,7 +391,7 @@
             this.tabPage3.Controls.Add(this.textBox5);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(822, 438);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Học lực";
@@ -397,7 +402,7 @@
             this.pictureBox23.BackColor = System.Drawing.Color.MediumBlue;
             this.pictureBox23.Image = global::ManagerStudent.Properties.Resources.icon__magnifying_glass_;
             this.pictureBox23.Location = new System.Drawing.Point(189, 43);
-            this.pictureBox23.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox23.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox23.Name = "pictureBox23";
             this.pictureBox23.Size = new System.Drawing.Size(30, 20);
             this.pictureBox23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -429,9 +434,9 @@
             this.panel6.Controls.Add(this.button13);
             this.panel6.Controls.Add(this.button14);
             this.panel6.Controls.Add(this.button15);
-            this.panel6.Location = new System.Drawing.Point(22, 314);
+            this.panel6.Location = new System.Drawing.Point(6, 314);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(251, 118);
+            this.panel6.Size = new System.Drawing.Size(278, 118);
             this.panel6.TabIndex = 15;
             // 
             // pictureBox9
@@ -440,7 +445,7 @@
             this.pictureBox9.Image = global::ManagerStudent.Properties.Resources.icon__x_letter_;
             this.pictureBox9.Location = new System.Drawing.Point(143, 78);
             this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(25, 20);
+            this.pictureBox9.Size = new System.Drawing.Size(33, 20);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox9.TabIndex = 12;
             this.pictureBox9.TabStop = false;
@@ -449,7 +454,7 @@
             // 
             this.pictureBox10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.pictureBox10.Image = global::ManagerStudent.Properties.Resources.icon__pencil_;
-            this.pictureBox10.Location = new System.Drawing.Point(28, 78);
+            this.pictureBox10.Location = new System.Drawing.Point(15, 78);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(25, 20);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -462,7 +467,7 @@
             this.pictureBox11.Image = global::ManagerStudent.Properties.Resources.icon__arrow_left_;
             this.pictureBox11.Location = new System.Drawing.Point(143, 27);
             this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(25, 20);
+            this.pictureBox11.Size = new System.Drawing.Size(33, 20);
             this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox11.TabIndex = 10;
             this.pictureBox11.TabStop = false;
@@ -471,7 +476,7 @@
             // 
             this.pictureBox12.BackColor = System.Drawing.Color.SpringGreen;
             this.pictureBox12.Image = global::ManagerStudent.Properties.Resources.icon__plus_;
-            this.pictureBox12.Location = new System.Drawing.Point(28, 27);
+            this.pictureBox12.Location = new System.Drawing.Point(15, 27);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(25, 20);
             this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -481,9 +486,10 @@
             // button12
             // 
             this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button12.Location = new System.Drawing.Point(134, 65);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(100, 45);
+            this.button12.Size = new System.Drawing.Size(137, 45);
             this.button12.TabIndex = 8;
             this.button12.Text = "Xóa";
             this.button12.UseVisualStyleBackColor = false;
@@ -491,9 +497,10 @@
             // button13
             // 
             this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.button13.Location = new System.Drawing.Point(18, 65);
+            this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button13.Location = new System.Drawing.Point(5, 65);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(100, 45);
+            this.button13.Size = new System.Drawing.Size(123, 45);
             this.button13.TabIndex = 7;
             this.button13.Text = "Sửa";
             this.button13.UseVisualStyleBackColor = false;
@@ -501,9 +508,10 @@
             // button14
             // 
             this.button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.button14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button14.Location = new System.Drawing.Point(134, 14);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(100, 45);
+            this.button14.Size = new System.Drawing.Size(137, 45);
             this.button14.TabIndex = 6;
             this.button14.Text = "Nhập Excel";
             this.button14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -513,9 +521,10 @@
             // 
             this.button15.BackColor = System.Drawing.Color.SpringGreen;
             this.button15.Cursor = System.Windows.Forms.Cursors.Default;
-            this.button15.Location = new System.Drawing.Point(18, 14);
+            this.button15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button15.Location = new System.Drawing.Point(3, 14);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(100, 45);
+            this.button15.Size = new System.Drawing.Size(125, 45);
             this.button15.TabIndex = 5;
             this.button15.Text = "Thêm";
             this.button15.UseVisualStyleBackColor = false;
@@ -532,6 +541,7 @@
             // 
             // panel5
             // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel5.Controls.Add(this.textBox12);
             this.panel5.Controls.Add(this.label9);
@@ -543,7 +553,7 @@
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.label6);
-            this.panel5.Location = new System.Drawing.Point(22, 86);
+            this.panel5.Location = new System.Drawing.Point(13, 86);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(262, 217);
             this.panel5.TabIndex = 9;
@@ -652,7 +662,7 @@
             this.tabPage4.Controls.Add(this.textBox13);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(822, 438);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Học kỳ";
@@ -663,7 +673,7 @@
             this.pictureBox24.BackColor = System.Drawing.Color.MediumBlue;
             this.pictureBox24.Image = global::ManagerStudent.Properties.Resources.icon__magnifying_glass_;
             this.pictureBox24.Location = new System.Drawing.Point(178, 49);
-            this.pictureBox24.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox24.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox24.Name = "pictureBox24";
             this.pictureBox24.Size = new System.Drawing.Size(30, 20);
             this.pictureBox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -859,7 +869,7 @@
             this.tabPage5.Controls.Add(this.textBox16);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage5.Size = new System.Drawing.Size(822, 438);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Loại điểm";
@@ -870,7 +880,7 @@
             this.pictureBox25.BackColor = System.Drawing.Color.MediumBlue;
             this.pictureBox25.Image = global::ManagerStudent.Properties.Resources.icon__magnifying_glass_;
             this.pictureBox25.Location = new System.Drawing.Point(182, 47);
-            this.pictureBox25.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox25.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox25.Name = "pictureBox25";
             this.pictureBox25.Size = new System.Drawing.Size(30, 20);
             this.pictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
