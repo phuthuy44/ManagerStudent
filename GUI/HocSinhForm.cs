@@ -89,9 +89,9 @@ namespace ManagerStudent.GUI
         private void HocSinhForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'studentManagerDataSet3.Student' table. You can move, or remove it, as needed.
-            this.studentTableAdapter1.Fill(this.studentManagerDataSet3.Student);
+           // studentTableAdapter1.Fill(this.studentManagerDataSet3.Student);
             // TODO: This line of code loads data into the 'studentManagerDataSet2.Student' table. You can move, or remove it, as needed.
-            this.studentTableAdapter.Fill(this.studentManagerDataSet2.Student);
+            //this.studentTableAdapter.Fill(this.studentManagerDataSet2.Student);
             // TODO: This line of code loads data into the 'managerStudentDataSet1._Student_' table. You can move, or remove it, as needed.
             // TODO: This line of code loads data into the 'studentManagerDataSet.Student' table. You can move, or remove it, as needed.
             //this.studentTableAdapter.Fill(this.studentManagerDataSet.Student);
@@ -119,6 +119,7 @@ namespace ManagerStudent.GUI
                 string AcademicName = studentBLL.getAcademicName(a.academicyearID);
                 txtYearOld.Items.Add(AcademicName);
                 txtYearNew.Items.Add(AcademicName);
+                txtNamHocInQuanHe.Items.Add(AcademicName);
             }
         }
         //Xu ly fill dataTable lên dataGridView
@@ -249,14 +250,14 @@ namespace ManagerStudent.GUI
                     string diaChi = row.Cells[4].Value.ToString();
                     txtDiaChi.Text = diaChi;
                 }
-                if (row.Cells[5].Value != null)
-                {
-                    string email = row.Cells[5].Value.ToString();
-                    txtEmail.Text = email;
-                }
                 if (row.Cells[6].Value != null)
                 {
-                    string soDienThoai = row.Cells[6].Value.ToString();
+                    string email = row.Cells[6].Value.ToString();
+                    txtEmail.Text = email;
+                }
+                if (row.Cells[5].Value != null)
+                {
+                    string soDienThoai = row.Cells[5].Value.ToString();
                     txtSoDienThoai.Text = soDienThoai;
                 }
                 if (row.Cells[7].Value != null && !string.IsNullOrEmpty(row.Cells[7].Value.ToString()))
@@ -527,5 +528,98 @@ namespace ManagerStudent.GUI
             dataTableClassNew.DataSource = dataView;
             dataTableClassNew.DataBindings.Clear();
         }
+
+        private void comboBox12_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = txtNamHocInQuanHe.SelectedItem.ToString();
+            int getNamID = studentBLL.getIdAca(selected);
+            List<StudentClassSemesterAcademicYear> grades = studentBLL.GetGrades(getNamID);
+            cbGradeInQuanHe.Items.Clear();
+            List<StudentClassSemesterAcademicYear> distinctGrades = grades
+                .GroupBy(a => a.gradeID)
+                .Select(g => g.First())
+                .ToList();
+            /* txtYearOld.Items.Clear();
+             txtYearNew.Items.Clear();*/
+            foreach (StudentClassSemesterAcademicYear a in distinctGrades)
+            {
+                string grade = studentBLL.getNameGrade(a.gradeID);
+                cbGradeInQuanHe.Items.Add(grade);
+            }
+        }
+
+        private void cbGradeInQuanHe_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = cbGradeInQuanHe.SelectedItem.ToString();
+            int gradeID = studentBLL.getGradeID(selected);
+            List<StudentClassSemesterAcademicYear> cls = studentBLL.getClass(gradeID);
+            cbClassInQuanhe.Items.Clear();
+            List<StudentClassSemesterAcademicYear> distinClass = cls.GroupBy(a => a.classID).Select(g => g.First()).ToList();
+            foreach(StudentClassSemesterAcademicYear a in distinClass)
+            {
+                string classes = studentBLL.getClassName(a.classID);
+                cbClassInQuanhe.Items.Add(classes);
+            }
+        }
+
+        private void cbClassInQuanhe_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = cbClassInQuanhe.SelectedItem.ToString();
+            int classID = studentBLL.getClassID(selected);
+            Console.WriteLine(classID);
+            List<StudentClassSemesterAcademicYear> stu = studentBLL.getStudentIdFromPhanLop(classID);
+            cbStudentIDInQuanHe.Items.Clear();
+            List<StudentClassSemesterAcademicYear> distinStudent = stu
+                .GroupBy(a => a.studentID)
+                .Select(g => g.First())
+                .ToList();
+            foreach(StudentClassSemesterAcademicYear s in distinStudent)
+            {
+                cbStudentIDInQuanHe.Items.Add(s.studentID);
+                //Console.WriteLine(s.studentID);
+            }
+            
+            
+;        }
+
+        private void cbStudentIDInQuanHe_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selected = int.Parse(cbStudentIDInQuanHe.SelectedItem.ToString());
+            List<Student> stu = studentBLL.getStudentInformFromID(selected);
+            if (stu.Count > 0)
+            {
+                txtHoTenStudent.Text = null;
+                txtNgaySinhStudent.Text = null;
+                txtGioiTinhStudent.Text = null;
+                txtSoDienThoaiStudent.Text = null;
+                txtDiaChiStudent.Text = null;
+                txtNgayTaoStudent.Text = null;
+                pictureBox17.Image = null;
+                Student student = stu[0];
+                string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+                //string folderPath = "D:\\ManagerStudent";
+                string fullImagePath = appDirectory + student.Image;
+                txtHoTenStudent.Text = student.Name;
+                txtNgaySinhStudent.Text = student.Birthday.ToString();
+                txtGioiTinhStudent.Text = student.Gender;
+                txtSoDienThoaiStudent.Text = student.Phone;
+                txtDiaChiStudent.Text = student.Address;
+                txtNgayTaoStudent.Text = student.createDate.ToString();
+                if (File.Exists(fullImagePath))
+                {
+                    try
+                    {
+                        Image image = Image.FromFile(fullImagePath);
+                        pictureBox17.Image = image;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi!Không thể tải ảnh: " + ex.Message);
+                    }
+                }
+               
+            }
+        }
+
     }
 }

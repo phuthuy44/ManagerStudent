@@ -115,8 +115,6 @@ namespace ManagerStudent.GUI
             this.label20 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dataTableClassOld = new System.Windows.Forms.DataGridView();
-            this.studentBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.studentManagerDataSet3 = new ManagerStudent.StudentManagerDataSet3();
             this.panel6 = new System.Windows.Forms.Panel();
             this.txtClassOld = new System.Windows.Forms.ComboBox();
             this.txtKhoiOld = new System.Windows.Forms.ComboBox();
@@ -127,18 +125,17 @@ namespace ManagerStudent.GUI
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.txtNgayTaoStudent = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.txtDiaChiStudent = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.txtSoDienThoaiStudent = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.comboBox18 = new System.Windows.Forms.ComboBox();
+            this.txtHoTenStudent = new System.Windows.Forms.TextBox();
+            this.txtGioiTinhStudent = new System.Windows.Forms.TextBox();
             this.pictureBox17 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl2 = new System.Windows.Forms.TabControl();
@@ -191,15 +188,18 @@ namespace ManagerStudent.GUI
             this.button15 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox15 = new System.Windows.Forms.ComboBox();
-            this.comboBox14 = new System.Windows.Forms.ComboBox();
-            this.comboBox13 = new System.Windows.Forms.ComboBox();
-            this.comboBox12 = new System.Windows.Forms.ComboBox();
+            this.cbStudentIDInQuanHe = new System.Windows.Forms.ComboBox();
+            this.cbClassInQuanhe = new System.Windows.Forms.ComboBox();
+            this.cbGradeInQuanHe = new System.Windows.Forms.ComboBox();
+            this.txtNamHocInQuanHe = new System.Windows.Forms.ComboBox();
+            this.studentBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.studentManagerDataSet3 = new ManagerStudent.StudentManagerDataSet3();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.managerStudentDataSet1 = new ManagerStudent.ManagerStudentDataSet1();
             this.managerStudentDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.studentTableAdapter = new ManagerStudent.StudentManagerDataSet2TableAdapters.StudentTableAdapter();
             this.studentTableAdapter1 = new ManagerStudent.StudentManagerDataSet3TableAdapters.StudentTableAdapter();
+            this.txtNgaySinhStudent = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
@@ -231,8 +231,6 @@ namespace ManagerStudent.GUI
             this.panel8.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableClassOld)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.studentManagerDataSet3)).BeginInit();
             this.panel6.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
@@ -253,6 +251,8 @@ namespace ManagerStudent.GUI
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentManagerDataSet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.managerStudentDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.managerStudentDataSet1BindingSource)).BeginInit();
             this.SuspendLayout();
@@ -1159,16 +1159,6 @@ namespace ManagerStudent.GUI
             this.dataTableClassOld.Size = new System.Drawing.Size(341, 229);
             this.dataTableClassOld.TabIndex = 1;
             // 
-            // studentBindingSource1
-            // 
-            this.studentBindingSource1.DataMember = "Student";
-            this.studentBindingSource1.DataSource = this.studentManagerDataSet3;
-            // 
-            // studentManagerDataSet3
-            // 
-            this.studentManagerDataSet3.DataSetName = "StudentManagerDataSet3";
-            this.studentManagerDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
@@ -1277,20 +1267,20 @@ namespace ManagerStudent.GUI
             // tableLayoutPanel10
             // 
             this.tableLayoutPanel10.ColumnCount = 2;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.8247F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.1753F));
-            this.tableLayoutPanel10.Controls.Add(this.textBox10, 1, 5);
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel10.Controls.Add(this.txtNgayTaoStudent, 1, 5);
             this.tableLayoutPanel10.Controls.Add(this.label33, 0, 5);
-            this.tableLayoutPanel10.Controls.Add(this.textBox11, 1, 4);
+            this.tableLayoutPanel10.Controls.Add(this.txtDiaChiStudent, 1, 4);
             this.tableLayoutPanel10.Controls.Add(this.label34, 0, 4);
-            this.tableLayoutPanel10.Controls.Add(this.textBox12, 1, 3);
+            this.tableLayoutPanel10.Controls.Add(this.txtSoDienThoaiStudent, 1, 3);
             this.tableLayoutPanel10.Controls.Add(this.label35, 0, 3);
             this.tableLayoutPanel10.Controls.Add(this.label36, 0, 2);
-            this.tableLayoutPanel10.Controls.Add(this.dateTimePicker3, 1, 1);
             this.tableLayoutPanel10.Controls.Add(this.label37, 0, 1);
             this.tableLayoutPanel10.Controls.Add(this.label38, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.textBox13, 1, 0);
-            this.tableLayoutPanel10.Controls.Add(this.comboBox18, 1, 2);
+            this.tableLayoutPanel10.Controls.Add(this.txtHoTenStudent, 1, 0);
+            this.tableLayoutPanel10.Controls.Add(this.txtGioiTinhStudent, 1, 2);
+            this.tableLayoutPanel10.Controls.Add(this.txtNgaySinhStudent, 1, 1);
             this.tableLayoutPanel10.Location = new System.Drawing.Point(122, 6);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 6;
@@ -1300,68 +1290,75 @@ namespace ManagerStudent.GUI
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(240, 279);
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(240, 311);
             this.tableLayoutPanel10.TabIndex = 2;
             // 
-            // textBox10
+            // txtNgayTaoStudent
             // 
-            this.textBox10.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox10.Location = new System.Drawing.Point(108, 242);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(129, 24);
-            this.textBox10.TabIndex = 26;
+            this.txtNgayTaoStudent.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.txtNgayTaoStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtNgayTaoStudent.Enabled = false;
+            this.txtNgayTaoStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNgayTaoStudent.Location = new System.Drawing.Point(80, 274);
+            this.txtNgayTaoStudent.Name = "txtNgayTaoStudent";
+            this.txtNgayTaoStudent.Size = new System.Drawing.Size(157, 24);
+            this.txtNgayTaoStudent.TabIndex = 26;
             // 
             // label33
             // 
             this.label33.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(3, 245);
+            this.label33.Location = new System.Drawing.Point(3, 268);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(67, 18);
+            this.label33.Size = new System.Drawing.Size(46, 36);
             this.label33.TabIndex = 25;
             this.label33.Text = "Ngày tạo";
             this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox11
+            // txtDiaChiStudent
             // 
-            this.textBox11.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox11.Location = new System.Drawing.Point(108, 194);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(129, 24);
-            this.textBox11.TabIndex = 24;
+            this.txtDiaChiStudent.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.txtDiaChiStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtDiaChiStudent.Enabled = false;
+            this.txtDiaChiStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDiaChiStudent.Location = new System.Drawing.Point(80, 226);
+            this.txtDiaChiStudent.Name = "txtDiaChiStudent";
+            this.txtDiaChiStudent.Size = new System.Drawing.Size(157, 24);
+            this.txtDiaChiStudent.TabIndex = 24;
             // 
             // label34
             // 
             this.label34.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(3, 197);
+            this.label34.Location = new System.Drawing.Point(3, 229);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(53, 18);
             this.label34.TabIndex = 23;
             this.label34.Text = "Địa chỉ";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox12
+            // txtSoDienThoaiStudent
             // 
-            this.textBox12.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.textBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox12.Location = new System.Drawing.Point(108, 146);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(129, 24);
-            this.textBox12.TabIndex = 22;
+            this.txtSoDienThoaiStudent.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.txtSoDienThoaiStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtSoDienThoaiStudent.Enabled = false;
+            this.txtSoDienThoaiStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSoDienThoaiStudent.Location = new System.Drawing.Point(80, 178);
+            this.txtSoDienThoaiStudent.Name = "txtSoDienThoaiStudent";
+            this.txtSoDienThoaiStudent.Size = new System.Drawing.Size(157, 24);
+            this.txtSoDienThoaiStudent.TabIndex = 22;
             // 
             // label35
             // 
             this.label35.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(3, 149);
+            this.label35.Location = new System.Drawing.Point(3, 172);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(94, 18);
+            this.label35.Size = new System.Drawing.Size(62, 36);
             this.label35.TabIndex = 21;
             this.label35.Text = "Số điện thoại";
             this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1371,31 +1368,21 @@ namespace ManagerStudent.GUI
             this.label36.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(3, 99);
+            this.label36.Location = new System.Drawing.Point(3, 131);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(62, 18);
             this.label36.TabIndex = 19;
             this.label36.Text = "Giới tính";
             this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dateTimePicker3
-            // 
-            this.dateTimePicker3.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.dateTimePicker3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker3.Location = new System.Drawing.Point(108, 49);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(129, 24);
-            this.dateTimePicker3.TabIndex = 18;
-            // 
             // label37
             // 
             this.label37.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(3, 52);
+            this.label37.Location = new System.Drawing.Point(3, 67);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(73, 18);
+            this.label37.Size = new System.Drawing.Size(46, 36);
             this.label37.TabIndex = 2;
             this.label37.Text = "Ngày sinh";
             this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1405,35 +1392,34 @@ namespace ManagerStudent.GUI
             this.label38.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(3, 11);
+            this.label38.Location = new System.Drawing.Point(3, 19);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(52, 18);
             this.label38.TabIndex = 0;
             this.label38.Text = "Họ tên";
             this.label38.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox13
+            // txtHoTenStudent
             // 
-            this.textBox13.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.textBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox13.Location = new System.Drawing.Point(108, 8);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(129, 24);
-            this.textBox13.TabIndex = 1;
+            this.txtHoTenStudent.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.txtHoTenStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtHoTenStudent.Enabled = false;
+            this.txtHoTenStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHoTenStudent.Location = new System.Drawing.Point(80, 16);
+            this.txtHoTenStudent.Name = "txtHoTenStudent";
+            this.txtHoTenStudent.Size = new System.Drawing.Size(157, 24);
+            this.txtHoTenStudent.TabIndex = 1;
             // 
-            // comboBox18
+            // txtGioiTinhStudent
             // 
-            this.comboBox18.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.comboBox18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox18.FormattingEnabled = true;
-            this.comboBox18.Items.AddRange(new object[] {
-            "Nam",
-            "Nữ"});
-            this.comboBox18.Location = new System.Drawing.Point(108, 95);
-            this.comboBox18.Name = "comboBox18";
-            this.comboBox18.Size = new System.Drawing.Size(116, 26);
-            this.comboBox18.TabIndex = 20;
-            this.comboBox18.Text = "Chọn giới tính";
+            this.txtGioiTinhStudent.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.txtGioiTinhStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtGioiTinhStudent.Enabled = false;
+            this.txtGioiTinhStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGioiTinhStudent.Location = new System.Drawing.Point(80, 128);
+            this.txtGioiTinhStudent.Name = "txtGioiTinhStudent";
+            this.txtGioiTinhStudent.Size = new System.Drawing.Size(157, 24);
+            this.txtGioiTinhStudent.TabIndex = 27;
             // 
             // pictureBox17
             // 
@@ -2100,10 +2086,10 @@ namespace ManagerStudent.GUI
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.comboBox15, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.comboBox14, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.comboBox13, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.comboBox12, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.cbStudentIDInQuanHe, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.cbClassInQuanhe, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.cbGradeInQuanHe, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtNamHocInQuanHe, 0, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
@@ -2112,49 +2098,63 @@ namespace ManagerStudent.GUI
             this.tableLayoutPanel2.Size = new System.Drawing.Size(368, 91);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // comboBox15
+            // cbStudentIDInQuanHe
             // 
-            this.comboBox15.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.comboBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox15.FormattingEnabled = true;
-            this.comboBox15.Location = new System.Drawing.Point(188, 54);
-            this.comboBox15.Name = "comboBox15";
-            this.comboBox15.Size = new System.Drawing.Size(174, 26);
-            this.comboBox15.TabIndex = 3;
-            this.comboBox15.Text = "Chọn Mã học sinh";
+            this.cbStudentIDInQuanHe.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbStudentIDInQuanHe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbStudentIDInQuanHe.FormattingEnabled = true;
+            this.cbStudentIDInQuanHe.Location = new System.Drawing.Point(188, 54);
+            this.cbStudentIDInQuanHe.Name = "cbStudentIDInQuanHe";
+            this.cbStudentIDInQuanHe.Size = new System.Drawing.Size(174, 26);
+            this.cbStudentIDInQuanHe.TabIndex = 3;
+            this.cbStudentIDInQuanHe.Text = "Chọn Mã học sinh";
+            this.cbStudentIDInQuanHe.SelectedIndexChanged += new System.EventHandler(this.cbStudentIDInQuanHe_SelectedIndexChanged);
             // 
-            // comboBox14
+            // cbClassInQuanhe
             // 
-            this.comboBox14.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.comboBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox14.FormattingEnabled = true;
-            this.comboBox14.Location = new System.Drawing.Point(6, 54);
-            this.comboBox14.Name = "comboBox14";
-            this.comboBox14.Size = new System.Drawing.Size(173, 26);
-            this.comboBox14.TabIndex = 2;
-            this.comboBox14.Text = "Chọn lớp";
+            this.cbClassInQuanhe.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbClassInQuanhe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbClassInQuanhe.FormattingEnabled = true;
+            this.cbClassInQuanhe.Location = new System.Drawing.Point(6, 54);
+            this.cbClassInQuanhe.Name = "cbClassInQuanhe";
+            this.cbClassInQuanhe.Size = new System.Drawing.Size(173, 26);
+            this.cbClassInQuanhe.TabIndex = 2;
+            this.cbClassInQuanhe.Text = "Chọn lớp";
+            this.cbClassInQuanhe.SelectedIndexChanged += new System.EventHandler(this.cbClassInQuanhe_SelectedIndexChanged);
             // 
-            // comboBox13
+            // cbGradeInQuanHe
             // 
-            this.comboBox13.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.comboBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox13.FormattingEnabled = true;
-            this.comboBox13.Location = new System.Drawing.Point(188, 10);
-            this.comboBox13.Name = "comboBox13";
-            this.comboBox13.Size = new System.Drawing.Size(174, 26);
-            this.comboBox13.TabIndex = 1;
-            this.comboBox13.Text = "Chọn khối";
+            this.cbGradeInQuanHe.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbGradeInQuanHe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbGradeInQuanHe.FormattingEnabled = true;
+            this.cbGradeInQuanHe.Location = new System.Drawing.Point(188, 10);
+            this.cbGradeInQuanHe.Name = "cbGradeInQuanHe";
+            this.cbGradeInQuanHe.Size = new System.Drawing.Size(174, 26);
+            this.cbGradeInQuanHe.TabIndex = 1;
+            this.cbGradeInQuanHe.Text = "Chọn khối";
+            this.cbGradeInQuanHe.SelectedIndexChanged += new System.EventHandler(this.cbGradeInQuanHe_SelectedIndexChanged);
             // 
-            // comboBox12
+            // txtNamHocInQuanHe
             // 
-            this.comboBox12.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.comboBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox12.FormattingEnabled = true;
-            this.comboBox12.Location = new System.Drawing.Point(6, 10);
-            this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(173, 26);
-            this.comboBox12.TabIndex = 0;
-            this.comboBox12.Text = "Chọn năm học";
+            this.txtNamHocInQuanHe.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtNamHocInQuanHe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNamHocInQuanHe.FormattingEnabled = true;
+            this.txtNamHocInQuanHe.Location = new System.Drawing.Point(6, 10);
+            this.txtNamHocInQuanHe.Name = "txtNamHocInQuanHe";
+            this.txtNamHocInQuanHe.Size = new System.Drawing.Size(173, 26);
+            this.txtNamHocInQuanHe.TabIndex = 0;
+            this.txtNamHocInQuanHe.Text = "Chọn năm học";
+            this.txtNamHocInQuanHe.SelectedIndexChanged += new System.EventHandler(this.comboBox12_SelectedIndexChanged);
+            // 
+            // studentBindingSource1
+            // 
+            this.studentBindingSource1.DataMember = "Student";
+            this.studentBindingSource1.DataSource = this.studentManagerDataSet3;
+            // 
+            // studentManagerDataSet3
+            // 
+            this.studentManagerDataSet3.DataSetName = "StudentManagerDataSet3";
+            this.studentManagerDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // openFileDialog1
             // 
@@ -2177,6 +2177,17 @@ namespace ManagerStudent.GUI
             // studentTableAdapter1
             // 
             this.studentTableAdapter1.ClearBeforeFill = true;
+            // 
+            // txtNgaySinhStudent
+            // 
+            this.txtNgaySinhStudent.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.txtNgaySinhStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtNgaySinhStudent.Enabled = false;
+            this.txtNgaySinhStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNgaySinhStudent.Location = new System.Drawing.Point(80, 73);
+            this.txtNgaySinhStudent.Name = "txtNgaySinhStudent";
+            this.txtNgaySinhStudent.Size = new System.Drawing.Size(157, 24);
+            this.txtNgaySinhStudent.TabIndex = 28;
             // 
             // HocSinhForm
             // 
@@ -2224,8 +2235,6 @@ namespace ManagerStudent.GUI
             this.panel8.PerformLayout();
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataTableClassOld)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.studentManagerDataSet3)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.tabPage4.ResumeLayout(false);
@@ -2250,6 +2259,8 @@ namespace ManagerStudent.GUI
             this.tableLayoutPanel7.PerformLayout();
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentManagerDataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.managerStudentDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.managerStudentDataSet1BindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -2346,10 +2357,10 @@ namespace ManagerStudent.GUI
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.ComboBox comboBox13;
-        private System.Windows.Forms.ComboBox comboBox12;
-        private System.Windows.Forms.ComboBox comboBox15;
-        private System.Windows.Forms.ComboBox comboBox14;
+        private System.Windows.Forms.ComboBox cbGradeInQuanHe;
+        private System.Windows.Forms.ComboBox txtNamHocInQuanHe;
+        private System.Windows.Forms.ComboBox cbStudentIDInQuanHe;
+        private System.Windows.Forms.ComboBox cbClassInQuanhe;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
@@ -2397,18 +2408,16 @@ namespace ManagerStudent.GUI
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox txtNgayTaoStudent;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox txtDiaChiStudent;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox txtSoDienThoaiStudent;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.ComboBox comboBox18;
+        private System.Windows.Forms.TextBox txtHoTenStudent;
         private System.Windows.Forms.PictureBox pictureBox17;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.TextBox textBox15;
@@ -2432,5 +2441,7 @@ namespace ManagerStudent.GUI
         private StudentManagerDataSet3 studentManagerDataSet3;
         private System.Windows.Forms.BindingSource studentBindingSource1;
         private StudentManagerDataSet3TableAdapters.StudentTableAdapter studentTableAdapter1;
+        private System.Windows.Forms.TextBox txtGioiTinhStudent;
+        private System.Windows.Forms.TextBox txtNgaySinhStudent;
     }
 }

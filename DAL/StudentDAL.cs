@@ -40,6 +40,38 @@ namespace ManagerStudent.DAL
             }
             return dataTable;
         }
+        public List<Student> getDataIntoText(int id)
+        {
+            List<Student> data = new List<Student>();
+            string sql = "select Name,birthday,gender,numberPhone,address,image,createDate from student where ID = @id";
+            SqlConnection con = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@id", id);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Student st = new Student();
+                    st.Name =reader["Name"].ToString();
+                    st.Birthday = (DateTime)reader["birthday"];
+                    st.Gender = reader["gender"].ToString();
+                    st.Phone = reader["numberPhone"].ToString();
+                    st.Address = reader["address"].ToString();
+                    st.Image = reader["image"].ToString();
+                    st.createDate = (DateTime)reader["createDate"];
+                    data.Add(st);
+                }
+            }catch(Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return data;
+        }
         public DataTable getListStudentInClass(int classID)
         {
             DataTable data = new DataTable();
@@ -142,7 +174,7 @@ namespace ManagerStudent.DAL
         public List<StudentClassSemesterAcademicYear> getAcademicYearsInAssignmentClass()
         {
             List<StudentClassSemesterAcademicYear> academicYears = new List<StudentClassSemesterAcademicYear>();
-            string sql = "select academicYearID from StudentClassSemesterAcademicYear";//AcademicYear$
+            string sql = "select academicyearID from StudentClassSemesterAcademicYear";//AcademicYear$
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {
@@ -151,7 +183,7 @@ namespace ManagerStudent.DAL
                 while (reader.Read())
                 {
                     StudentClassSemesterAcademicYear academic = new StudentClassSemesterAcademicYear();
-                    academic.academicyearID = reader.GetInt32(0);
+                    academic.academicyearID = (int)reader.GetSqlInt32(0);
                     academicYears.Add(academic);
                 }
             }catch(Exception ex)
@@ -378,6 +410,36 @@ namespace ManagerStudent.DAL
             }
             return gradeID;
         }*/
+        public List<StudentClassSemesterAcademicYear> getIDStudentFromPhanLop(int id)
+        {
+            List<StudentClassSemesterAcademicYear> student = new List<StudentClassSemesterAcademicYear>();
+            string sql = "select studentID from StudentClassSemesterAcademicYear where classID =@id";
+            SqlConnection con = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@id", id);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    StudentClassSemesterAcademicYear students = new StudentClassSemesterAcademicYear();
+                    students.studentID= (int)reader.GetSqlInt32(0);
+                    student.Add(students);
+                    
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                con.Close();
+            }
+            return student;
+
+        }
+        
 
     }
 }

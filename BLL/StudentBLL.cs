@@ -117,5 +117,13 @@ namespace ManagerStudent.BLL
         {
             return studentDAL.getListStudentInClass(classID);
         }
+        public List<StudentClassSemesterAcademicYear> getStudentIdFromPhanLop(int id)
+        {
+            return studentDAL.getIDStudentFromPhanLop(id);
+        }
+        public List<Student> getStudentInformFromID(int id)
+        {
+            return studentDAL.getDataIntoText(id);
+        }
     }
 }
