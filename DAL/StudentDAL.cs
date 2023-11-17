@@ -1,4 +1,5 @@
-﻿using ManagerStudent.DTO;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using ManagerStudent.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -38,6 +39,25 @@ namespace ManagerStudent.DAL
                 conn.Close();
             }
             return dataTable;
+        }
+        public DataTable getListStudentInClass(int classID)
+        {
+            DataTable data = new DataTable();
+            string sql = "Select Student.ID,Student.name,Student.gender  FROM Student,StudentClassSemesterAcademicYear as phanlop,Class where phanlop.studentID = Student.ID and phanlop.classID = Class.ID and phanlop.ClassID = @id";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", classID);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                adapter.Fill(data);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine ("?"+ex.Message);
+            }finally { conn.Close(); }
+            return data;
         }
         public bool insertStudent(Student student)
         {
@@ -238,21 +258,49 @@ namespace ManagerStudent.DAL
             finally { conn.Close(); }
             return name;
         }
-        public List<Class> getClassInGrade(string maKhoi)
+        public int getGradeID (string nameGrade)
         {
-            List <Class> classes = new List<Class>();
-            string sql = "SELECT * FROM class$ where gradeID= @maKhoi";//class$
+            int idGrade = 0;
+            string sql = "Select ID from grade where gradeName = @name";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@name", nameGrade);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    idGrade = reader.GetInt32(0);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return idGrade;
+        }
+        public List<StudentClassSemesterAcademicYear> getClassInGrade(int gradeID)
+        {
+            List <StudentClassSemesterAcademicYear> classes = new List<StudentClassSemesterAcademicYear>();
+            string sql = "SELECT classID FROM StudentClassSemesterAcademicYear where gradeID= @maKhoi";
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {
                 SqlCommand command = new SqlCommand(sql, conn);
-                command.Parameters.AddWithValue("@maKhoi", maKhoi);
+                command.Parameters.AddWithValue("@maKhoi", gradeID);
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                   Class cls = new Class();
-                    cls.Name = reader["className"].ToString();
-                    cls.gradeID = reader["gradeID"].ToString() ;
+                    /* Class cls = new Class();
+                      cls.Name = reader["className"].ToString();
+                      cls.gradeID = reader["gradeID"].ToString() ;
+                      classes.Add(cls);*/
+                    StudentClassSemesterAcademicYear cls = new StudentClassSemesterAcademicYear();
+                    cls.classID = reader.GetInt32(0);
                     classes.Add(cls);
 
                 }
@@ -263,10 +311,54 @@ namespace ManagerStudent.DAL
             finally { conn.Close(); }
             return classes;
         }
-        public string getMaGrade(string tenKhoi)
+        public string namClass(int id)
+        {
+            string name = null;
+            string sql = "select className from class where ID = @id";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", id);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    name = reader.GetString(0);
+                }
+            }
+            catch (Exception ex) { return null; }
+            finally { conn.Close(); }
+            return name;
+        }
+        public int getClassID(string nameClass)
+        {
+            int idGrade = 0;
+            string sql = "Select ID from class where className= @name";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@name", nameClass);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    idGrade = reader.GetInt32(0);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return idGrade;
+        }
+        /*public string getMaGrade(string tenKhoi)
         {
             string gradeID = null;
-            string sql = "select ID from grade$ where gradeName = @tenKhoi";//grade$
+            string sql = "select ID from grade where gradeName = @tenKhoi";
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {
@@ -285,6 +377,7 @@ namespace ManagerStudent.DAL
                 conn.Close();
             }
             return gradeID;
-        }
+        }*/
+
     }
 }

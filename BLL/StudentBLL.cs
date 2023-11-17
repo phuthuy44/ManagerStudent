@@ -89,13 +89,33 @@ namespace ManagerStudent.BLL
         {
             return studentDAL.namGrade(id);
         }
-        public List<Class> getClassInGrade(string maKhoi)
+        public int getGradeID(string name)
+        {
+            return studentDAL.getGradeID(name);
+        }
+        /*public List<Class> getClassInGrade(string maKhoi)
         {
             return studentDAL.getClassInGrade(maKhoi);
         }
         public string getMaKhoi(string tenKhoi)
         {
             return studentDAL.getMaGrade(tenKhoi);
+        }*/
+        public List<StudentClassSemesterAcademicYear> getClass(int id)
+        {
+            return studentDAL.getClassInGrade(id);
+        }
+        public string getClassName(int id)
+        {
+            return studentDAL.namClass(id);
+        }
+        public int getClassID(string name)
+        {
+            return studentDAL.getClassID(name);
+        }
+        public DataTable getListStudentInClass(int classID)
+        {
+            return studentDAL.getListStudentInClass(classID);
         }
     }
 }
