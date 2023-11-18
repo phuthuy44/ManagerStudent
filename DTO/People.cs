@@ -58,13 +58,15 @@ namespace ManagerStudent.DTO
         }
         public DateTime createDate
         {
-            set{
+            /*set{
                 this.createDate = value;
             }
             get
             {
                 return this.createDate;
-            }
+            }*/
+            get;
+            set;
         }
         public DateTime updateDate
         {

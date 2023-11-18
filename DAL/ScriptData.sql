@@ -123,8 +123,9 @@ CREATE TABLE Parent(
 	address NVARCHAR(255),
 	image VARCHAR(255),
 	createDate DATETIME,
-	PRIMARY KEY (studentID)
+	PRIMARY KEY (studentID, gender)
 )
+
 ALTER TABLE Parent 
 	ADD CONSTRAINT Parent_studentID_Student_ID 
 	FOREIGN KEY (studentID) REFERENCES Student(ID)
@@ -272,10 +273,9 @@ CREATE TABLE Point(
 	academicyearID INT NOT NULL,
 	semesterID INT NOT NULL,
 	classID INT,
-	point INT,
+	point DECIMAL(10,2),
 	createDate DATETIME,
 	updateDate DATETIME,
-	finishDate DATETIME,
 	PRIMARY KEY (studentID, typeofpointID, 
 		subjectID, academicyearID, semesterID, classID)
 )	
@@ -328,7 +328,7 @@ CREATE TABLE StudentConduct(
 	academicyearID INT NOT NULL,
 	semesterID INT NOT NULL,
 	conductName NVARCHAR(255),
-	point INT,
+	point DECIMAL(10, 2),
 	createDate DATETIME,
 	updateDate DATETIME,
 	finishDate DATETIME,
