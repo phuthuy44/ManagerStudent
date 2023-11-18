@@ -125,6 +125,7 @@ CREATE TABLE Parent(
 	createDate DATETIME,
 	PRIMARY KEY (studentID, gender)
 )
+
 ALTER TABLE Parent 
 	ADD CONSTRAINT Parent_studentID_Student_ID 
 	FOREIGN KEY (studentID) REFERENCES Student(ID)

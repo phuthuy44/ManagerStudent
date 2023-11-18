@@ -131,6 +131,7 @@
     <Compile Include="BLL\ClassBLL.cs" />
     <Compile Include="BLL\ConductBLL.cs" />
     <Compile Include="BLL\GradeBLL.cs" />
+    <Compile Include="BLL\ParentBLL.cs" />
     <Compile Include="BLL\PointBLL.cs" />
     <Compile Include="BLL\SemesterBLL.cs" />
     <Compile Include="BLL\StudentBLL.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="DAL\GetTypeOfPointData.cs" />
     <Compile Include="DAL\GradeDAL.cs" />
     <Compile Include="DAL\initConnect.cs" />
+    <Compile Include="DAL\ParentDAL.cs" />
     <Compile Include="DAL\PointDAL.cs" />
     <Compile Include="DAL\StudentDAL.cs" />
     <Compile Include="DAL\TypeOfPointDAL.cs" />
@@ -519,6 +521,7 @@
     <Content Include="bin\Debug\System.Numerics.Vectors.xml" />
     <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.dll" />
     <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="BLL\StoreProcedure.sql" />
     <Content Include="DAL\ScriptData.sql" />
     <Content Include="DAL\StoreProcedure.sql" />
     <Content Include="DAL\Trigger.sql" />
