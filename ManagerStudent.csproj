@@ -519,7 +519,6 @@
     <Content Include="bin\Debug\System.Numerics.Vectors.xml" />
     <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.dll" />
     <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.xml" />
-    <Content Include="BLL\StoreProcedure.sql" />
     <Content Include="DAL\ScriptData.sql" />
     <Content Include="DAL\StoreProcedure.sql" />
     <Content Include="DAL\Trigger.sql" />

@@ -272,7 +272,8 @@ CREATE TABLE Point(
 	academicyearID INT NOT NULL,
 	semesterID INT NOT NULL,
 	classID INT,
-	point INT,
+	point 
+	point DECIMAL(10,2),
 	createDate DATETIME,
 	updateDate DATETIME,
 	finishDate DATETIME,
