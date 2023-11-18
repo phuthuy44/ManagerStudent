@@ -134,7 +134,9 @@
     <Compile Include="BLL\PointBLL.cs" />
     <Compile Include="BLL\SemesterBLL.cs" />
     <Compile Include="BLL\StudentBLL.cs" />
+    <Compile Include="BLL\TeacherBLL.cs" />
     <Compile Include="BLL\TypeOfPointBLL.cs" />
+    <Compile Include="DAL\TeacherDAL.cs" />
     <Compile Include="DAL\ClassDAL.cs" />
     <Compile Include="DAL\connectExcel.cs" />
     <Compile Include="DAL\connectGGSheet.cs" />
