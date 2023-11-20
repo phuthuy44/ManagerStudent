@@ -1,4 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Drawing;
+using DocumentFormat.OpenXml.Office2010.Excel;
+using Google.Apis.Util;
 using ManagerStudent.BLL;
 using ManagerStudent.DTO;
 using System;
@@ -16,11 +18,14 @@ namespace ManagerStudent.GUI
     public partial class HocSinhForm : Form
     {
         private StudentBLL studentBLL;
+        private ParentBLL parentBLL;
+        private Parent parent;
         private Student student;
         public HocSinhForm()
         {
             InitializeComponent();
             studentBLL = new StudentBLL();
+            parentBLL = new ParentBLL();
         }
         //InsertStudent
         private void button1_Click(object sender, EventArgs e)
@@ -618,8 +623,58 @@ namespace ManagerStudent.GUI
                     }
                 }
                
+                
+            }
+            getDataCha(selected);
+            getDataMe(selected);
+            
+        }
+        public void getDataCha(int id)
+        {
+            List<Parent> parents = parentBLL.getDataCha(id);
+            if(parents.Count > 0)
+            {
+                Parent p = parents[0];
+                txtHoTenCha.Text = p.Name;
+                dateTimeCha.Text = p.Birthday.ToString();
+                txtGioiTinhCha.Text = p.Gender;
+                txtSDTCha.Text = p.Phone;
+                txtImageCha.Text = p.Image;
+                txtCreateCha.Text = p.createDate.ToString();
+
+
+            }
+        }
+        public void getDataMe(int id)
+        {
+            List<Parent> parents = parentBLL.getDataMe(id);
+            if(parents.Count > 0)
+            {
+                Parent p = parents[0];
+                txtHoTenMe.Text = p.Name;
+                dateTimeMe.Text = p.Birthday.ToString();
+                txtGioiTinhMe.Text = p.Gender;
+                txtSDTMe.Text = p.Phone;
+                txtImageMe.Text = p.Image;
+                txtNgayTaoMe.Text = p.createDate.ToString();
             }
         }
 
+        private void pictureBox14_Click(object sender, EventArgs e)
+        {
+            txtHoTenCha.Text = "";
+            txtSDTCha.Text = "";
+            txtImageCha.Text = " ";
+            picCha.Image = null;
+        }
+
+        private void pictureBox15_Click(object sender, EventArgs e)
+        {
+            txtHoTenMe.Text = "";
+            txtSDTMe.Text = "";
+            txtImageMe.Text = "";
+            picMe.Image = null;
+
+        }
     }
 }

@@ -61,7 +61,7 @@ BEGIN
     UPDATE Parent 
     SET createDate = DATEADD(HOUR, 7, GETUTCDATE())
     FROM Parent
-    INNER JOIN inserted ON Parent.studentID = inserted.studentID;
+    INNER JOIN inserted ON Parent.studentID = inserted.studentID AND Parent.gender = inserted.gender;
 END;
 
 CREATE TRIGGER UPDATE_PARENT
@@ -72,7 +72,7 @@ BEGIN
     UPDATE Parent
     SET updateDate = DATEADD(HOUR, 7, GETUTCDATE())
     FROM Parent
-    INNER JOIN inserted ON Parent.studentID = inserted.studentID;
+    INNER JOIN inserted ON Parent.studentID = inserted.studentID AND Parent.gender = inserted.gender;
 END;
 
 
