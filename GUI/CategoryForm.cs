@@ -677,7 +677,7 @@ namespace ManagerStudent.GUI
             if (dataGridView3.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dataGridView3.SelectedRows[0];
-                ID = Convert.ToInt32(selectedRow.Cells["ID"].Value);
+                ID = Convert.ToInt32(selectedRow.Cells["Mã học lực"].Value);
             }
 
             else
