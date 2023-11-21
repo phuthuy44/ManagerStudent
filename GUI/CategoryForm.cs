@@ -828,6 +828,7 @@ namespace ManagerStudent.GUI
             if (string.IsNullOrEmpty(pointName))
             {
                 MessageBox.Show("Vui lòng nhập tên học kỳ.");
+                
                 return;
             }
 

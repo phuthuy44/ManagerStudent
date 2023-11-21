@@ -74,6 +74,8 @@ namespace ManagerStudent.GUI
         private void ClassForm_Load(object sender, EventArgs e)
         {
             SetControl(true);
+            loadDataGrade();
+            loadDataClass();
         }
 
         private void tabPage2_Click(object sender, EventArgs e)

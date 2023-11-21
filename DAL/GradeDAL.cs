@@ -59,6 +59,7 @@ namespace ManagerStudent.DAL
 
             }
         }
+
         public int getlastgradeid()
         {
             ConnectToDatabase();
