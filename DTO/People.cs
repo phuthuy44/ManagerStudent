@@ -130,5 +130,17 @@ namespace ManagerStudent.DTO
         {
             this.createDate = createDate;
         }
+
+        public People(int iD, string name, string gender, string address, DateTime birthday, string phone, string image)
+        {
+            ID = iD;
+            Name = name;
+            Gender = gender;
+            Address = address;
+            Birthday = birthday;
+            Phone = phone;
+            Image = image;
+          
+        }
     }
 }

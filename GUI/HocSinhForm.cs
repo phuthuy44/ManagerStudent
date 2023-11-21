@@ -126,6 +126,8 @@ namespace ManagerStudent.GUI
                 txtYearNew.Items.Add(AcademicName);
                 txtNamHocInQuanHe.Items.Add(AcademicName);
             }
+            txtGioiTinhCha.Text = "Nam";
+            txtGioiTinhMe.Text = "Nữ";
         }
         //Xu ly fill dataTable lên dataGridView
         public void GetListStudent()
@@ -593,13 +595,17 @@ namespace ManagerStudent.GUI
             List<Student> stu = studentBLL.getStudentInformFromID(selected);
             if (stu.Count > 0)
             {
-                txtHoTenStudent.Text = null;
-                txtNgaySinhStudent.Text = null;
-                txtGioiTinhStudent.Text = null;
-                txtSoDienThoaiStudent.Text = null;
-                txtDiaChiStudent.Text = null;
-                txtNgayTaoStudent.Text = null;
+                txtHoTenStudent.Text = "";
+                txtNgaySinhStudent.Text = "";
+                txtGioiTinhStudent.Text = "";
+                txtSoDienThoaiStudent.Text = "";
+                txtDiaChiStudent.Text = "";
+                txtNgayTaoStudent.Text = "";
                 pictureBox17.Image = null;
+                //Cha
+                pictureBox14_Click(sender, e);
+                pictureBox15_Click(sender, e);
+
                 Student student = stu[0];
                 string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
                 //string folderPath = "D:\\ManagerStudent";
@@ -632,14 +638,34 @@ namespace ManagerStudent.GUI
         public void getDataCha(int id)
         {
             List<Parent> parents = parentBLL.getDataCha(id);
+
             if(parents.Count > 0)
             {
-                Parent p = parents[0];
+                string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+                Parent p = parents[0]; 
                 txtHoTenCha.Text = p.Name;
                 dateTimeCha.Text = p.Birthday.ToString();
                 txtGioiTinhCha.Text = p.Gender;
+                txtDiaChiCha.Text = p.Address;
                 txtSDTCha.Text = p.Phone;
                 txtImageCha.Text = p.Image;
+                Console.WriteLine(txtImageCha.Text);
+                string fullImagePath = appDirectory + "\\Image\\HocSinh-Cha\\"+txtImageCha.Text;
+                //string fullImagePath =folderPath+fileName;
+                Console.WriteLine(fullImagePath);
+                if (File.Exists(fullImagePath))
+                {
+                    try
+                    {
+                        Image image = Image.FromFile(fullImagePath);
+                        picCha.Image = image;
+                        //File.Copy(fileName,fullImagePath, true);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi!Không thể tải ảnh: " + ex.Message);
+                    }
+                }
                 txtCreateCha.Text = p.createDate.ToString();
 
 
@@ -650,12 +676,30 @@ namespace ManagerStudent.GUI
             List<Parent> parents = parentBLL.getDataMe(id);
             if(parents.Count > 0)
             {
+                string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
                 Parent p = parents[0];
                 txtHoTenMe.Text = p.Name;
                 dateTimeMe.Text = p.Birthday.ToString();
+                txtDiaChiMe.Text = p.Address;
                 txtGioiTinhMe.Text = p.Gender;
                 txtSDTMe.Text = p.Phone;
                 txtImageMe.Text = p.Image;
+                string fullImagePath = appDirectory + "\\Image\\HocSinh-Cha\\" + txtImageMe.Text;
+                //string fullImagePath =folderPath+fileName;
+                Console.WriteLine(fullImagePath);
+                if (File.Exists(fullImagePath))
+                {
+                    try
+                    {
+                        Image image = Image.FromFile(fullImagePath);
+                        picMe.Image = image;
+                        //File.Copy(fileName,fullImagePath, true);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi!Không thể tải ảnh: " + ex.Message);
+                    }
+                }
                 txtNgayTaoMe.Text = p.createDate.ToString();
             }
         }
@@ -664,7 +708,9 @@ namespace ManagerStudent.GUI
         {
             txtHoTenCha.Text = "";
             txtSDTCha.Text = "";
-            txtImageCha.Text = " ";
+            txtDiaChiCha.Text = "";
+            dateTimeCha.Text = "";
+            txtImageCha.Text = "";
             picCha.Image = null;
         }
 
@@ -672,9 +718,134 @@ namespace ManagerStudent.GUI
         {
             txtHoTenMe.Text = "";
             txtSDTMe.Text = "";
+            dateTimeMe.Text = "";
+            txtDiaChiMe.Text = "";
             txtImageMe.Text = "";
             picMe.Image = null;
 
+        }
+        //Upload Image - Cha In View Quan he
+        private void button12_Click(object sender, EventArgs e)
+        {
+            string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string folderPath = System.IO.Path.Combine(appDirectory, "Image", "HocSinh-Cha");
+            openFileDialog2.InitialDirectory = folderPath;
+            openFileDialog2.Title = "Chọn hình ảnh để tải lên";
+            openFileDialog2.Filter = "Các định dạng(*.jpg;*.jpeg;*.gif;*.bmp;*.png)|*.jpg;*.jpeg;*.gif;*.bmp;*.png";
+            openFileDialog2.FilterIndex = 1;
+            try
+            {
+                if (openFileDialog2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    /*if (openFileDialog1.CheckFileExists)
+                    {
+                        string path = System.IO.Path.GetFullPath(openFileDialog1.FileName);
+                        picStudent.Image = new Bitmap(openFileDialog1.FileName);
+                        picStudent.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }*/
+                    string path = System.IO.Path.GetFullPath(openFileDialog2.FileName);
+                    txtImageCha.Text = path;
+                    picCha.Image = new Bitmap(openFileDialog2.FileName);
+                    picCha.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            int selected = int.Parse(cbStudentIDInQuanHe.SelectedItem.ToString());
+            string txttenCha = txtHoTenCha.Text;
+            DateTime ngaySinh = dateTimeCha.Value;
+            string gioiTinh = txtGioiTinhCha.Text;
+            string soDT = txtSDTCha.Text;
+            string diachi = txtDiaChiCha.Text;
+            string image = System.IO.Path.GetFileName(txtImageCha.Text);
+            if (!string.IsNullOrEmpty(soDT) && soDT.Length != 10)
+            {
+                MessageBox.Show("Lỗi! Số điện thoại phải là 10 chữ số!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                parent = new Parent(selected, txttenCha, gioiTinh, diachi, ngaySinh, soDT, image);
+                bool result = parentBLL.insertParent(parent);
+                if (result)
+                {
+                    MessageBox.Show("Thêm thông tin thành công!");
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi! Hãy thử lại sau", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+        }
+
+        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+        //UploadImage-Me
+        private void button13_Click(object sender, EventArgs e)
+        {
+            string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string folderPath = System.IO.Path.Combine(appDirectory, "Image", "HocSinh-Cha");
+            openFileDialog2.InitialDirectory = folderPath;
+            openFileDialog2.Title = "Chọn hình ảnh để tải lên";
+            openFileDialog2.Filter = "Các định dạng(*.jpg;*.jpeg;*.gif;*.bmp;*.png)|*.jpg;*.jpeg;*.gif;*.bmp;*.png";
+            openFileDialog2.FilterIndex = 1;
+            try
+            {
+                if (openFileDialog2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    /*if (openFileDialog1.CheckFileExists)
+                    {
+                        string path = System.IO.Path.GetFullPath(openFileDialog1.FileName);
+                        picStudent.Image = new Bitmap(openFileDialog1.FileName);
+                        picStudent.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }*/
+                    string path = System.IO.Path.GetFullPath(openFileDialog2.FileName);
+                    txtImageMe.Text = path;
+                    picMe.Image = new Bitmap(openFileDialog2.FileName);
+                    picMe.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        //Insert-Me
+        private void button15_Click(object sender, EventArgs e)
+        {
+            int selected = int.Parse(cbStudentIDInQuanHe.SelectedItem.ToString());
+            string txtten = txtHoTenMe.Text;
+            DateTime ngaySinh = dateTimeMe.Value;
+            string gioiTinh = txtGioiTinhMe.Text;
+            string soDT = txtSDTMe.Text;
+            string diachi = txtDiaChiMe.Text;
+            string image = System.IO.Path.GetFileName(txtImageMe.Text);
+            if (!string.IsNullOrEmpty(soDT) && soDT.Length != 10)
+            {
+                MessageBox.Show("Lỗi! Số điện thoại phải là 10 chữ số!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                parent = new Parent(selected, txtten, gioiTinh, diachi, ngaySinh, soDT, image);
+                bool result = parentBLL.insertParent(parent);
+                if (result)
+                {
+                    MessageBox.Show("Thêm thông tin thành công!");
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi! Hãy thử lại sau", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
         }
     }
 }
