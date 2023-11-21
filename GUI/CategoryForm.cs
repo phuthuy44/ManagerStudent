@@ -59,9 +59,9 @@ namespace ManagerStudent.GUI
         private void conductTab()
         {
             conductBLL = new ConductBLL();
-            dataGridView2.DataSource=conductBLL.GetConductData();
-            
-            
+            dataGridView2.DataSource = conductBLL.GetConductData();
+
+
         }
         private void capacityTab()
         {
