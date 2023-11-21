@@ -113,9 +113,9 @@ namespace ManagerStudent.BLL
         {
             return studentDAL.getClassID(name);
         }
-        public DataTable getListStudentInClass(int classID)
+        public DataTable getListStudentInClass(int classID, int idSe)
         {
-            return studentDAL.getListStudentInClass(classID);
+            return studentDAL.getListStudentInClass(classID, idSe);
         }
         public List<StudentClassSemesterAcademicYear> getStudentIdFromPhanLop(int id)
         {
@@ -124,6 +124,28 @@ namespace ManagerStudent.BLL
         public List<Student> getStudentInformFromID(int id)
         {
             return studentDAL.getDataIntoText(id);
+        }
+        public List<Semester> getSemester()
+        {
+            return studentDAL.getSemester();
+        }
+        public int getIDSemester(string name)
+        {
+            return studentDAL.getSemesterID(name);
+        }
+        public bool updateStudentInPhanLop(StudentClassSemesterAcademicYear student)
+        {
+            bool result = studentDAL.updateStudentInPhanLop(student);
+            if(result)
+            {
+                Console.WriteLine("Success!");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Faild");
+                return false;
+            }
         }
     }
 }

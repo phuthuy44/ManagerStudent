@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Drawing;
 using DocumentFormat.OpenXml.Office2010.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Google.Apis.Util;
 using ManagerStudent.BLL;
 using ManagerStudent.DTO;
@@ -21,6 +22,7 @@ namespace ManagerStudent.GUI
         private ParentBLL parentBLL;
         private Parent parent;
         private Student student;
+        private BindingSource bindingSourceClassNew, bindingSourceClassOld;
         public HocSinhForm()
         {
             InitializeComponent();
@@ -125,9 +127,23 @@ namespace ManagerStudent.GUI
                 txtYearOld.Items.Add(AcademicName);
                 txtYearNew.Items.Add(AcademicName);
                 txtNamHocInQuanHe.Items.Add(AcademicName);
+                txtYearOld.SelectedItem= AcademicName ;
+                txtYearNew.SelectedItem = AcademicName ;
+                txtNamHocInQuanHe.SelectedItem = AcademicName;
+            }
+
+            List<Semester> semester = studentBLL.getSemester();
+            foreach(Semester s in semester)
+            {
+                string semesterName = s.Name;
+                txtSemesterOld.Items.Add(semesterName);
+                txtSemesterNew.Items.Add(semesterName);
+                txtSemesterOld.SelectedItem = semesterName;
+                txtSemesterNew.SelectedItem = semesterName;
             }
             txtGioiTinhCha.Text = "Nam";
             txtGioiTinhMe.Text = "Nữ";
+
         }
         //Xu ly fill dataTable lên dataGridView
         public void GetListStudent()
@@ -153,7 +169,9 @@ namespace ManagerStudent.GUI
             {
                 string grade = studentBLL.getNameGrade(a.gradeID);
                 txtKhoiNew.Items.Add(grade);
+                txtKhoiNew.SelectedItem = grade;
             }
+            
         
     }
 
@@ -452,6 +470,7 @@ namespace ManagerStudent.GUI
             {
                 string grade = studentBLL.getNameGrade(a.gradeID);
                 txtKhoiOld.Items.Add(grade);
+                txtKhoiOld.SelectedItem = grade;
             }
         }
 
@@ -466,6 +485,7 @@ namespace ManagerStudent.GUI
             {
                 string className = studentBLL.getClassName(c.classID);
                 txtClassOld.Items.Add(className);
+                txtClassOld.SelectedItem = className;
             }
         }
 
@@ -488,6 +508,7 @@ namespace ManagerStudent.GUI
             {
                 string className = studentBLL.getClassName(c.classID);
                 txtClassNew.Items.Add(className);
+                txtClassNew.SelectedItem = className;
             }
         }
 
@@ -499,30 +520,38 @@ namespace ManagerStudent.GUI
         private void txtClassOld_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selected = txtClassOld.SelectedItem.ToString();
-            int  classID = studentBLL.getClassID(selected);
+            string selectedSe = txtSemesterOld.Text;
+            int classID = studentBLL.getClassID(selected);
+            int semesID = studentBLL.getIDSemester(selectedSe);
             Console.WriteLine(classID);
-            DataTable dataTable = studentBLL.getListStudentInClass(classID);
-            DataView dataView = new DataView(dataTable);
+            DataTable dataTable = studentBLL.getListStudentInClass(classID, semesID);
+            // DataView dataView = new DataView(dataTable);
             dataTableClassOld.Columns.Clear();
             dataTableClassOld.Columns.Add("ID", "Mã học sinh");
             dataTableClassOld.Columns.Add("Name", "Tên học sinh");
             dataTableClassOld.Columns.Add("Gender", "Giới tính");
-
             // Map the columns to the corresponding columns in the DataTable
+
             dataTableClassOld.Columns["ID"].DataPropertyName = "ID";
             dataTableClassOld.Columns["Name"].DataPropertyName = "name";
             dataTableClassOld.Columns["Gender"].DataPropertyName = "gender";
-            dataTableClassOld.DataSource = dataView;
+            dataTableClassOld.DataSource = dataTable;
             dataTableClassOld.DataBindings.Clear();
+
+
+
+
         }
 
         private void txtClassNew_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selected = txtClassNew.SelectedItem.ToString();
+            string selectedSe = txtSemesterNew.Text;
             int classID = studentBLL.getClassID(selected);
+            int semesID = studentBLL.getIDSemester(selectedSe);
             Console.WriteLine(classID);
-            DataTable dataTable = studentBLL.getListStudentInClass(classID);
-            DataView dataView = new DataView(dataTable);
+            DataTable dataTable = studentBLL.getListStudentInClass(classID, semesID);
+           // DataView dataView = new DataView(dataTable);
             dataTableClassNew.Columns.Clear();
             dataTableClassNew.Columns.Add("ID", "Mã học sinh");
             dataTableClassNew.Columns.Add("Name", "Tên học sinh");
@@ -532,8 +561,9 @@ namespace ManagerStudent.GUI
             dataTableClassNew.Columns["ID"].DataPropertyName = "ID";
             dataTableClassNew.Columns["Name"].DataPropertyName = "name";
             dataTableClassNew.Columns["Gender"].DataPropertyName = "gender";
-            dataTableClassNew.DataSource = dataView;
-            dataTableClassNew.DataBindings.Clear();
+           dataTableClassNew.DataSource = dataTable;
+            // dataTableClassNew.DataBindings.Clear();*/
+            
         }
 
         private void comboBox12_SelectedIndexChanged(object sender, EventArgs e)
@@ -552,6 +582,7 @@ namespace ManagerStudent.GUI
             {
                 string grade = studentBLL.getNameGrade(a.gradeID);
                 cbGradeInQuanHe.Items.Add(grade);
+                cbGradeInQuanHe.SelectedItem = grade;
             }
         }
 
@@ -566,6 +597,7 @@ namespace ManagerStudent.GUI
             {
                 string classes = studentBLL.getClassName(a.classID);
                 cbClassInQuanhe.Items.Add(classes);
+                cbClassInQuanhe.SelectedItem= classes;
             }
         }
 
@@ -584,6 +616,7 @@ namespace ManagerStudent.GUI
             {
                 cbStudentIDInQuanHe.Items.Add(s.studentID);
                 //Console.WriteLine(s.studentID);
+                cbStudentIDInQuanHe.SelectedItem= s.studentID;
             }
             
             
@@ -846,6 +879,65 @@ namespace ManagerStudent.GUI
                 }
 
             }
+        }
+
+        private void dataTableClassOld_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            
+            int idNH = studentBLL.getIdAca(txtYearNew.SelectedItem.ToString());
+            int idKhoi = studentBLL.getGradeID(txtKhoiNew.SelectedItem.ToString());
+            int idClass = studentBLL.getClassID(txtClassNew.SelectedItem.ToString());
+            int idSes = studentBLL.getIDSemester(txtSemesterNew.Text);
+            List<int> selectedStudentIDs = new List<int>();//tao mot danh sach cac id cua hoc sinh duoc chon de chuyen lop
+
+            //lay du lieu nguon cua hai doi tuong va gan lan luot cho oldDataTable và new DataTable 
+            DataTable oldDataTable = dataTableClassOld.DataSource as DataTable;
+            DataTable newDataTable = dataTableClassNew.DataSource as DataTable;
+
+            // If either DataTable is null, return
+            if (oldDataTable == null || newDataTable == null)
+            {
+                return;
+            }
+            string selectedCurrentClass = txtClassOld.SelectedItem.ToString();
+            string selectedSemester = txtSemesterOld.SelectedItem.ToString();
+            string selectedSemesterNew = txtSemesterNew.SelectedItem.ToString();
+            string selectedNewClass = txtClassNew.SelectedItem.ToString();
+            if (selectedCurrentClass == selectedNewClass && selectedSemester == selectedSemesterNew )
+            {
+                MessageBox.Show("Vui lòng chọn một lớp khác với lớp hiện tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            //Lap qua cac hang da chon trong dataTableClassOld
+            foreach (DataGridViewRow item in dataTableClassOld.SelectedRows)
+            {
+                int studentID = Convert.ToInt32(item.Cells["ID"].Value);//Lay ID cua hoc sinh tu cot "ID" cua hang do va them vao danh sach 
+                selectedStudentIDs.Add(studentID);
+                
+                //Them mot hang moi trong newDataTable 
+                DataRow newRow = newDataTable.NewRow();
+                newRow["ID"] = item.Cells["ID"].Value;
+                newRow["Name"] = item.Cells["Name"].Value;
+                newRow["Gender"] = item.Cells["Gender"].Value;
+                newDataTable.Rows.Add(newRow);
+
+                StudentClassSemesterAcademicYear p = new StudentClassSemesterAcademicYear(studentID, idClass, idSes, idNH, idKhoi);
+
+                studentBLL.updateStudentInPhanLop(p);
+            }
+
+            //Xoa cac hang da chon tu dataTable
+            foreach (DataGridViewRow item in dataTableClassOld.SelectedRows)
+            {
+                oldDataTable.Rows.RemoveAt(item.Index);
+            }
+            MessageBox.Show("Chuyển lớp thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
     }
 }

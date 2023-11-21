@@ -18,16 +18,16 @@ namespace ManagerStudent.DTO
         public int academicyearID { get; set; }
         
         public int gradeID { get; set; }
-        public int stateID { get; set; }
+       // public int stateID { get; set; }
 
-        public StudentClassSemesterAcademicYear(int studentID, int classID, int semesterID, int academicyearID, int gradeID, int stateID)
+        public StudentClassSemesterAcademicYear(int studentID, int classID, int semesterID, int academicyearID, int gradeID)
         {
             this.studentID = studentID;
             this.classID = classID;
             this.semesterID = semesterID;
             this.academicyearID = academicyearID;
             this.gradeID = gradeID;
-            this.stateID = stateID;
+           // this.stateID = stateID;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿
+using DocumentFormat.OpenXml.Bibliography;
 using DocumentFormat.OpenXml.Wordprocessing;
 using ManagerStudent.DTO;
 using System;
@@ -73,15 +74,16 @@ namespace ManagerStudent.DAL
             }
             return data;
         }
-        public DataTable getListStudentInClass(int classID)
+        public DataTable getListStudentInClass(int classID, int idSemester)
         {
             DataTable data = new DataTable();
-            string sql = "Select Student.ID,Student.name,Student.gender  FROM Student,StudentClassSemesterAcademicYear as phanlop,Class where phanlop.studentID = Student.ID and phanlop.classID = Class.ID and phanlop.ClassID = @id";
+            string sql = "Select Student.ID,Student.name,Student.gender  FROM Student,StudentClassSemesterAcademicYear as phanlop,Semester  where phanlop.studentID = Student.ID and phanlop.semesterID=Semester.ID and phanlop.ClassID = @id and phanlop.semesterID = @idSe";
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@id", classID);
+                cmd.Parameters.AddWithValue("@idSe", idSemester);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
                 adapter.Fill(data);
@@ -440,7 +442,77 @@ namespace ManagerStudent.DAL
             return student;
 
         }
-        
+        public List<Semester> getSemester()
+        {
+            List<Semester> semester = new List<Semester>();
+            string sql = "SELECT * FROM Semester";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand command = new SqlCommand(sql, conn);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Semester academic = new Semester();
+                    academic.Name = reader["semesterName"].ToString();
+                    semester.Add(academic);
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally { conn.Close(); }
+            return semester;
+        }
+        public int getSemesterID(string name)
+        {
+            int idGrade = 0;
+            string sql = "Select ID from semester where semesterName = @name";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@name", name);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    idGrade = reader.GetInt32(0);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return idGrade;
+        }
+        public bool updateStudentInPhanLop(StudentClassSemesterAcademicYear p)
+        {
+            string sql = "update StudentClassSemesterAcademicYear set classID=@classID,semesterID=@semesterID,academicyearID=@academicyearID,gradeID=@gradeID WHERE studentID = @id";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@classID", p.classID );
+                cmd.Parameters.AddWithValue("@semesterID", p.semesterID);
+                cmd.Parameters.AddWithValue("@academicyearID", p.academicyearID);
+                cmd.Parameters.AddWithValue("@gradeID", p.gradeID);
+                cmd.Parameters.AddWithValue("@id", p.studentID);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi:" + ex.Message);
+                return false;
+            }
+            finally { conn.Close(); }
+
+        }
 
     }
 }
