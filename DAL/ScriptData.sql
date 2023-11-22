@@ -230,9 +230,8 @@ CREATE TABLE Assignment(
 	positionID INT,
 	academicyearID INT,
 	subjectID INT,
-	statusID INT,
 	PRIMARY KEY (teacherID, classID, semesterID, 
-	positionID, academicyearID, subjectID, statusID)
+	positionID, academicyearID, subjectID)
 )
 
 -- Thêm các khoá chính và khoá ngoại
@@ -261,9 +260,6 @@ ALTER TABLE Assignment
 	ADD CONSTRAINT Assignment_subjectID_Subject_ID
 	FOREIGN KEY (subjectID) REFERENCES Subject(ID)
 	
-ALTER TABLE [Assignment] 
-	ADD CONSTRAINT Assignment_statusID_Status_ID
-	FOREIGN KEY (statusID) REFERENCES Status(ID)
 
 -- Tạo bảng điểm
 CREATE TABLE Point(
