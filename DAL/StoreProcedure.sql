@@ -6,8 +6,8 @@ AS
             semesterName as N'Tên học kỳ', 
             coefficient as N'Hệ số' 
 		FROM Semester s ;
-	END
-
+	END;
+GO
 
 
     CREATE PROCEDURE FindSemester
@@ -17,9 +17,9 @@ AS
 		SELECT ID as N'Mã học kỳ', semesterName as N'Tên học kỳ', coefficient as N'Hệ số' 
 		FROM Semester s
     WHERE semesterName LIKE '%' + @STR + '%'
-END
+END;
 
-
+GO
 	
 CREATE PROC GetDataTypeOfPoint
 AS 
@@ -30,7 +30,7 @@ AS
 		FROM TypeOfPoint;
 	END
 
-
+GO
 
     CREATE PROCEDURE FindTypeOfPoint
     @STR NVARCHAR(100)
@@ -43,7 +43,7 @@ BEGIN
     WHERE pointName LIKE '%' + @STR + '%'
 END
 	
-
+    GO
 	
 --	EXECUTE GetDataSemester
 --	EXEC GetDataTypeOfPoint
@@ -65,6 +65,7 @@ END
 
 --EXEC FindCapacity 'k' 
 
+GO 
 
 CREATE PROCEDURE FindConduct
     @STR NVARCHAR(100)
@@ -106,7 +107,7 @@ SELECT * FROM TypeOfPoint top2 WHERE top2.pointName = N'Điểm đánh giá thư
 --        ELSE gradeID
 --END
 
-
+GO
 
 CREATE  PROC DATA_POINT
   @academicyearName NVARCHAR(255),
@@ -178,7 +179,7 @@ FROM
    
   --EXEC DATA_POINT N'Năm học 2023 - 2024', N'Học kỳ 1', N'Lớp 10A2', N'Toán'
 
-
+  GO
 
   CREATE PROCEDURE UpdatePoint
   @studentID INT,
@@ -211,6 +212,7 @@ END
 
 --EXEC UpdatePoint 44, N'2023-2024', N'Học kỳ 1', N'Tiếng anh', 4, 5, 6
 
+GO
 
 CREATE PROC InsertPoint
   @studentID INT,
@@ -275,11 +277,11 @@ select * from Semester s2
 select * from Class c 
 
 
-	
+GO	
 	
 	
 -----------------------------------------------------------------------------------------------------
-CREATE ALTER PROC DATA_POINT_STUDENT
+CREATE OR ALTER  PROC DATA_POINT_STUDENT
     @academicyearName NVARCHAR(255),
     @semesterName NVARCHAR(255),
     @className NVARCHAR(255),
@@ -287,10 +289,11 @@ CREATE ALTER PROC DATA_POINT_STUDENT
 AS
 BEGIN
 
-    SELECT s.subjectName AS N'Môn Học',
-           p.point AS N'Điểm đánh giá thường xuyên',
-           p2.point AS N'Điểm giữa kỳ',
-           p3.point AS N'Điểm cuối kỳ'
+    SELECT  s.subjectName AS N'Môn Học',
+        p.point AS N'Điểm đánh giá thường xuyên',
+        p2.point AS N'Điểm giữa kỳ',
+        p3.point AS N'Điểm cuối kỳ',
+        p4.point AS N'Điểm trung bình môn'
     FROM Subject s
         INNER JOIN Student s2
             ON s2.ID = @studentID
@@ -344,36 +347,52 @@ BEGIN
                (
                    SELECT TOP 1 s3.ID FROM Semester s3 WHERE s3.semesterName = @semesterName
                )
-               AND p2.studentID = s2.ID
-        LEFT JOIN Point p3
-            ON p3.subjectID = s.ID
-               AND p3.typeofpointID =
-               (
-                   SELECT TOP 1
-                       top2.ID
-                   FROM TypeOfPoint top2
-                   WHERE top2.pointName = N'Điểm cuối kỳ'
-               )
-               AND p3.academicyearID =
-               (
-                   SELECT TOP 1
-                       ay.ID
-                   FROM AcademicYear ay
-                   WHERE ay.academicyearName = @academicyearName
-               )
-               AND p3.semesterID =
-               (
-                   SELECT TOP 1 s3.ID FROM Semester s3 WHERE s3.semesterName = @semesterName
-               )
-               
-               AND p3.classID = 
-               (
-               		SELECT TOP 1 c.ID FROM Class c WHERE c.className = @className
-               )
-               AND p3.studentID = s2.ID
-
+               AND p2.studentID = s2.ID 
+        LEFT JOIN Point p3 ON p3.subjectID = s.ID
+        AND p3.typeofpointID = (
+            SELECT TOP 1 top2.ID
+            FROM TypeOfPoint top2
+            WHERE top2.pointName = N'Điểm cuối kỳ'
+        )
+        AND p3.academicyearID = (
+            SELECT TOP 1 ay.ID
+            FROM AcademicYear ay
+            WHERE ay.academicyearName = @academicyearName
+        )
+        AND p3.semesterID = (
+            SELECT TOP 1 s3.ID
+            FROM Semester s3
+            WHERE s3.semesterName = @semesterName
+        )
+        AND p3.classID = (
+            SELECT TOP 1 c.ID
+            FROM Class c
+            WHERE c.className = @className
+        )
+        AND p3.studentID = s2.ID
+    LEFT JOIN Point p4 ON p4.subjectID = s.ID
+        AND p4.typeofpointID = (
+            SELECT TOP 1 top2.ID
+            FROM TypeOfPoint top2
+            WHERE top2.pointName = N'Điểm trung bình môn'
+        )
+        AND p4.academicyearID = (
+            SELECT TOP 1 ay.ID
+            FROM AcademicYear ay
+            WHERE ay.academicyearName = @academicyearName
+        )
+        AND p4.semesterID = (
+            SELECT TOP 1 s3.ID
+            FROM Semester s3
+            WHERE s3.semesterName = @semesterName
+        )
+        AND p4.classID = (
+            SELECT TOP 1 c.ID
+            FROM Class c
+            WHERE c.className = @className
+        )
+        AND p4.studentID = s2.ID
 END
-
 EXEC DATA_POINT_STUDENT N'Năm học 2023 - 2024', N'Học kỳ 2', N'Lớp 10A1', 1
 
 

@@ -470,13 +470,13 @@ namespace ManagerStudent.GUI
         {
             //Không cho chỉnh sửa 3 cột bên dưới
             // Kiểm tra nếu đang chỉnh sửa cột "STT" hoặc cột "Tên học sinh"
-            if (e.ColumnIndex == dataGridView1.Columns["STT"].Index ||
+            /*if (e.ColumnIndex == dataGridView1.Columns["STT"].Index ||
                 e.ColumnIndex == dataGridView1.Columns["Mã học sinh"].Index ||
                 e.ColumnIndex == dataGridView1.Columns["Tên học sinh"].Index)
             {
                 // Ngăn chặn chỉnh sửa trên cột "STT" và cột "Tên học sinh"
                 e.Cancel = true;
-            }
+            }*/
         }
 
         private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
