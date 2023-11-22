@@ -76,7 +76,7 @@ namespace ManagerStudent.GUI
 
         private void label3_Click(object sender, EventArgs e)
         {
-            //OpenFormChild(new ClassForm());
+            OpenFormChild(new ClassForm());
             btnChangeTabColor(panel4, null);
 
         }

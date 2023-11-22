@@ -13,13 +13,13 @@ namespace ManagerStudent.DAL
     {
         DataTable dt;
         initConnect init = new initConnect();
-       
+
         public List<Grade> GetAll()
         {
             List<Grade> dsgrade = new List<Grade>();
             try
             {
-               ConnectToDatabase();
+                ConnectToDatabase();
                 string sql = "select * from Grade";
                 dt = init.Runquery(sql);
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -39,12 +39,11 @@ namespace ManagerStudent.DAL
             }
             return dsgrade;
         }
-
         public void InsertGrade(Grade grade)
         {
             try
             {
-              ConnectToDatabase();
+                ConnectToDatabase();
                 int ma = grade.ID;
                 string name = grade.Name;
                 int maxClassOfGrade = grade.maxClassOfGrade;
@@ -57,28 +56,27 @@ namespace ManagerStudent.DAL
             {
                 // Xử lý ngoại lệ tại đây
                 Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
-              
+
             }
         }
 
         public int getlastgradeid()
         {
-           ConnectToDatabase();
+            ConnectToDatabase();
             int lastId = 0;
-                string sql = "SELECT TOP 1 ID FROM Grade ORDER BY ID DESC";
-                dt = init.Runquery(sql);
-                if (dt.Rows.Count > 0)
-                {
-                    lastId = Convert.ToInt32(dt.Rows[0]["ID"]);
-                }
-                return lastId;
+            string sql = "SELECT TOP 1 ID FROM Grade ORDER BY ID DESC";
+            dt = init.Runquery(sql);
+            if (dt.Rows.Count > 0)
+            {
+                lastId = Convert.ToInt32(dt.Rows[0]["ID"]);
+            }
+            return lastId;
         }
-
         public void UpdateGrade(Grade grade)
         {
             try
             {
-              ConnectToDatabase();
+                ConnectToDatabase();
                 int ma = grade.ID;
                 string name = grade.Name;
                 int maxClassOfGrade = grade.maxClassOfGrade;
@@ -93,12 +91,11 @@ namespace ManagerStudent.DAL
                 Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
             }
         }
-
         public void DeleteGrade(Grade grade)
         {
             try
             {
-               ConnectToDatabase();
+                ConnectToDatabase();
                 int ma = grade.ID;
                 string sql = "DELETE FROM Grade WHERE ID = " + ma;
                 dt = init.Runquery(sql);
@@ -107,17 +104,15 @@ namespace ManagerStudent.DAL
             catch (Exception ex)
             {
                 // Xử lý ngoại lệ tại đây
-                Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);       
+                Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
             }
         }
-
         /*public List<Grade> SearchGrades(string searchTerm)
         {
             List<Grade> searchResults = new List<Grade>();
             try
             {
                 SqlConnection connection = ConnectToDatabase();
-
                 string sql = "SELECT * FROM Grade WHERE gradeName LIKE @searchTerm";
                 SqlCommand cmd = new SqlCommand(sql, connection);
                 cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
@@ -126,7 +121,6 @@ namespace ManagerStudent.DAL
                 {
                     adapter.Fill(dt);
                 }
-
                 foreach (DataRow row in dt.Rows)
                 {
                     Grade grade = new Grade();
@@ -144,9 +138,5 @@ namespace ManagerStudent.DAL
             }
             return searchResults;
         }*/
-
-
-
-
     }
 }

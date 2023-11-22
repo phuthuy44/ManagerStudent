@@ -203,7 +203,7 @@ namespace ManagerStudent.DAL
                 {
                     SqlConnection connection = initConnect.ConnectToDatabase();
                     string query = @"SELECT studentID, name FROM StudentClassSemesterAcademicYear
-                                    INNER JOIN Student s ON s.ID = studentID
+                                    LEFT JOIN Student s ON s.ID = studentID
                                         WHERE classID = @classID 
                                             AND semesterID = @semesterID 
                                             AND academicyearID = @academicyearID";
