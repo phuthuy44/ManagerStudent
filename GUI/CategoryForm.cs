@@ -59,9 +59,9 @@ namespace ManagerStudent.GUI
         private void conductTab()
         {
             conductBLL = new ConductBLL();
-            dataGridView2.DataSource=conductBLL.GetConductData();
-            
-            
+            dataGridView2.DataSource = conductBLL.GetConductData();
+
+
         }
         private void capacityTab()
         {
@@ -677,7 +677,7 @@ namespace ManagerStudent.GUI
             if (dataGridView3.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dataGridView3.SelectedRows[0];
-                ID = Convert.ToInt32(selectedRow.Cells["ID"].Value);
+                ID = Convert.ToInt32(selectedRow.Cells["Mã học lực"].Value);
             }
 
             else
@@ -828,6 +828,7 @@ namespace ManagerStudent.GUI
             if (string.IsNullOrEmpty(pointName))
             {
                 MessageBox.Show("Vui lòng nhập tên học kỳ.");
+                
                 return;
             }
 

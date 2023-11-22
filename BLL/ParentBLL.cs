@@ -23,5 +23,15 @@ namespace ManagerStudent.BLL
         {
             return parent.getDataMe(id);
         }
+        public bool insertParent(Parent p)
+        {
+            if (parent.checkExistCha(p.ID, p.Gender)){
+                return parent.updateParentCha(p);
+            }
+            else
+            {
+                return parent.insertParent(p);
+            }
+        }
     }
 }
