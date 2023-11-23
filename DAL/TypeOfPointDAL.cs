@@ -98,7 +98,7 @@ namespace ManagerStudent.DAL
             try
             {
                 SqlConnection sqlConnection = initConnect.ConnectToDatabase();
-                string sql = "";
+                string sql = "EXEC DeleteTypeOfPoint @pointName";
                 SqlCommand command = new SqlCommand(sql, sqlConnection);
                 command.Parameters.AddWithValue("@pointName", pointName);
                 int rowsAffected = command.ExecuteNonQuery();

@@ -147,5 +147,13 @@ namespace ManagerStudent.BLL
                 return false;
             }
         }
+        public int getQuantity(int classID,int se)
+        {
+            return studentDAL.getQuantity(classID,se);
+        }
+        public int getCurrentStudent(int classID, int se)
+        {
+            return studentDAL.getCurrentStudentInClass(classID,se);
+        }
     }
 }

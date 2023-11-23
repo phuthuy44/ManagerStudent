@@ -59,32 +59,6 @@ CREATE TABLE Subject(
 	subjectName NVARCHAR(255),
 	PRIMARY KEY (ID)
 )
-
--- Tạo bảng loại môn học
-CREATE TABLE TypeOfSubject(
-	ID INT IDENTITY(1, 1) NOT NULL,
-	subjectName NVARCHAR(255),
-	totalTest INT, -- Tổng bài test thường xuyên của môn học
-	PRIMARY KEY (ID)
-)
-
-CREATE TABLE SubjectTypeOfSubject(
-	subjectID INT NOT NULL,
-	typeofsubjectID INT NOT NULL,
-	PRIMARY KEY (subjectID, typeofsubjectID)
-)
-
-ALTER TABLE SubjectTypeOfSubject 
-	ADD CONSTRAINT SubjectTypeOfSubject_subjectID_Subject_ID
-	FOREIGN KEY (subjectID)
-	REFERENCES Subject(ID)
-
-
-
-ALTER TABLE SubjectTypeOfSubject 
-	ADD CONSTRAINT SubjectTypeOfSubject_typeofsubjectID_TypeOfSubject_ID
-	FOREIGN KEY (typeofsubjectID)
-	REFERENCES TypeOfSubject(ID)
 	
 -- Tạo bảng chức vụ
 CREATE TABLE Position(
@@ -217,8 +191,6 @@ CREATE TABLE Class(
 	className NVARCHAR(255),
 	maxStudent INT,
 	quantityStudent INT,
-	quantityMale INT,
-	quantityFemale INT,
 	PRIMARY KEY (ID)
 )
 
@@ -230,8 +202,9 @@ CREATE TABLE Assignment(
 	positionID INT,
 	academicyearID INT,
 	subjectID INT,
+	statusID INT,
 	PRIMARY KEY (teacherID, classID, semesterID, 
-	positionID, academicyearID, subjectID)
+	positionID, academicyearID, subjectID, statusID)
 )
 
 -- Thêm các khoá chính và khoá ngoại
@@ -260,6 +233,9 @@ ALTER TABLE Assignment
 	ADD CONSTRAINT Assignment_subjectID_Subject_ID
 	FOREIGN KEY (subjectID) REFERENCES Subject(ID)
 	
+ALTER TABLE [Assignment] 
+	ADD CONSTRAINT Assignment_statusID_Status_ID
+	FOREIGN KEY (statusID) REFERENCES Status(ID)
 
 -- Tạo bảng điểm
 CREATE TABLE Point(
