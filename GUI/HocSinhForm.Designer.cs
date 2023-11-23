@@ -107,6 +107,8 @@ namespace ManagerStudent.GUI
             this.panel7 = new System.Windows.Forms.Panel();
             this.dataTableClassNew = new System.Windows.Forms.DataGridView();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.txtSemesterNew = new System.Windows.Forms.ComboBox();
+            this.label42 = new System.Windows.Forms.Label();
             this.txtClassNew = new System.Windows.Forms.ComboBox();
             this.txtKhoiNew = new System.Windows.Forms.ComboBox();
             this.txtYearNew = new System.Windows.Forms.ComboBox();
@@ -116,6 +118,8 @@ namespace ManagerStudent.GUI
             this.panel5 = new System.Windows.Forms.Panel();
             this.dataTableClassOld = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.txtSemesterOld = new System.Windows.Forms.ComboBox();
+            this.label41 = new System.Windows.Forms.Label();
             this.txtClassOld = new System.Windows.Forms.ComboBox();
             this.txtKhoiOld = new System.Windows.Forms.ComboBox();
             this.txtYearOld = new System.Windows.Forms.ComboBox();
@@ -197,10 +201,6 @@ namespace ManagerStudent.GUI
             this.studentTableAdapter = new ManagerStudent.StudentManagerDataSet2TableAdapters.StudentTableAdapter();
             this.studentTableAdapter1 = new ManagerStudent.StudentManagerDataSet3TableAdapters.StudentTableAdapter();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
-            this.txtSemesterOld = new System.Windows.Forms.ComboBox();
-            this.label41 = new System.Windows.Forms.Label();
-            this.txtSemesterNew = new System.Windows.Forms.ComboBox();
-            this.label42 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
@@ -1088,6 +1088,25 @@ namespace ManagerStudent.GUI
             this.panel8.Size = new System.Drawing.Size(269, 131);
             this.panel8.TabIndex = 6;
             // 
+            // txtSemesterNew
+            // 
+            this.txtSemesterNew.FormattingEnabled = true;
+            this.txtSemesterNew.Location = new System.Drawing.Point(97, 72);
+            this.txtSemesterNew.Name = "txtSemesterNew";
+            this.txtSemesterNew.Size = new System.Drawing.Size(144, 21);
+            this.txtSemesterNew.TabIndex = 9;
+            this.txtSemesterNew.Text = "Chọn lớp";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(16, 75);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(49, 16);
+            this.label42.TabIndex = 8;
+            this.label42.Text = "Học kỳ";
+            // 
             // txtClassNew
             // 
             this.txtClassNew.FormattingEnabled = true;
@@ -1185,6 +1204,25 @@ namespace ManagerStudent.GUI
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(269, 131);
             this.panel6.TabIndex = 0;
+            // 
+            // txtSemesterOld
+            // 
+            this.txtSemesterOld.FormattingEnabled = true;
+            this.txtSemesterOld.Location = new System.Drawing.Point(97, 69);
+            this.txtSemesterOld.Name = "txtSemesterOld";
+            this.txtSemesterOld.Size = new System.Drawing.Size(136, 21);
+            this.txtSemesterOld.TabIndex = 7;
+            this.txtSemesterOld.Text = "Chọn lớp";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(16, 72);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(49, 16);
+            this.label41.TabIndex = 6;
+            this.label41.Text = "Học kỳ";
             // 
             // txtClassOld
             // 
@@ -2152,44 +2190,6 @@ namespace ManagerStudent.GUI
             // openFileDialog2
             // 
             this.openFileDialog2.FileName = "openFileDialog2";
-            // 
-            // txtSemesterOld
-            // 
-            this.txtSemesterOld.FormattingEnabled = true;
-            this.txtSemesterOld.Location = new System.Drawing.Point(97, 69);
-            this.txtSemesterOld.Name = "txtSemesterOld";
-            this.txtSemesterOld.Size = new System.Drawing.Size(136, 21);
-            this.txtSemesterOld.TabIndex = 7;
-            this.txtSemesterOld.Text = "Chọn lớp";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(16, 72);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(49, 16);
-            this.label41.TabIndex = 6;
-            this.label41.Text = "Học kỳ";
-            // 
-            // txtSemesterNew
-            // 
-            this.txtSemesterNew.FormattingEnabled = true;
-            this.txtSemesterNew.Location = new System.Drawing.Point(97, 72);
-            this.txtSemesterNew.Name = "txtSemesterNew";
-            this.txtSemesterNew.Size = new System.Drawing.Size(144, 21);
-            this.txtSemesterNew.TabIndex = 9;
-            this.txtSemesterNew.Text = "Chọn lớp";
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(16, 75);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(49, 16);
-            this.label42.TabIndex = 8;
-            this.label42.Text = "Học kỳ";
             // 
             // HocSinhForm
             // 

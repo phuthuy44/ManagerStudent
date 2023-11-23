@@ -46,6 +46,8 @@ namespace ManagerStudent.GUI
             //System.IO.File.Copy(openFileDialog1.FileName, image);
 
             if (string.IsNullOrEmpty(hoTen))
+
+
             {
                 //MessageBox.Show("Trường Họ tên không thể bỏ trống");
                 MessageBox.Show("Trường Họ tên không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
