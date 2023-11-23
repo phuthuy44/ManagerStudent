@@ -102,14 +102,13 @@ namespace ManagerStudent.DAL
                 SqlCommand command = new SqlCommand(sql, sqlConnection);
                 command.Parameters.AddWithValue("@semesterName", semesterName);
                 int rowsAffected = command.ExecuteNonQuery();
-                /*return rowsAffected > 0;*/
+                return rowsAffected > 0;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return false;
             }
-            return true;
         }
 
         public bool checkInsertSemesterName(string semesterName)

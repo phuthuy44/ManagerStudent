@@ -1074,12 +1074,6 @@ namespace ManagerStudent.GUI
             textBox16.Clear();
         }
 
-        private void button22_Click(object sender, EventArgs e)
-        {
-            string pointName = textBox17.Text;
-            deleteTypeofPoint(pointName);
-        }
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -1161,6 +1155,12 @@ namespace ManagerStudent.GUI
         {
             string subjectName = textBox20.Text;
             deleteSubject(subjectName);
+        }
+
+        private void button22_Click_1(object sender, EventArgs e)
+        {
+            string pointName = textBox17.Text;
+            deleteTypeofPoint(pointName);
         }
     }
 }
