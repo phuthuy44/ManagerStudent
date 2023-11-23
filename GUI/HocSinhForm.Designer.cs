@@ -35,7 +35,6 @@ namespace ManagerStudent.GUI
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.button8 = new System.Windows.Forms.Button();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.dataTableStudent = new System.Windows.Forms.DataGridView();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,7 +50,6 @@ namespace ManagerStudent.GUI
             this.studentManagerDataSet2 = new ManagerStudent.StudentManagerDataSet2();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button7 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -107,6 +105,8 @@ namespace ManagerStudent.GUI
             this.panel7 = new System.Windows.Forms.Panel();
             this.dataTableClassNew = new System.Windows.Forms.DataGridView();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.txtSemesterNew = new System.Windows.Forms.ComboBox();
+            this.label42 = new System.Windows.Forms.Label();
             this.txtClassNew = new System.Windows.Forms.ComboBox();
             this.txtKhoiNew = new System.Windows.Forms.ComboBox();
             this.txtYearNew = new System.Windows.Forms.ComboBox();
@@ -116,6 +116,8 @@ namespace ManagerStudent.GUI
             this.panel5 = new System.Windows.Forms.Panel();
             this.dataTableClassOld = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.txtSemesterOld = new System.Windows.Forms.ComboBox();
+            this.label41 = new System.Windows.Forms.Label();
             this.txtClassOld = new System.Windows.Forms.ComboBox();
             this.txtKhoiOld = new System.Windows.Forms.ComboBox();
             this.txtYearOld = new System.Windows.Forms.ComboBox();
@@ -197,14 +199,13 @@ namespace ManagerStudent.GUI
             this.studentTableAdapter = new ManagerStudent.StudentManagerDataSet2TableAdapters.StudentTableAdapter();
             this.studentTableAdapter1 = new ManagerStudent.StudentManagerDataSet3TableAdapters.StudentTableAdapter();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
-            this.txtSemesterOld = new System.Windows.Forms.ComboBox();
-            this.label41 = new System.Windows.Forms.Label();
-            this.txtSemesterNew = new System.Windows.Forms.ComboBox();
-            this.label42 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.lblOld = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.lblNew = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableStudent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentManagerDataSet2)).BeginInit();
@@ -276,11 +277,9 @@ namespace ManagerStudent.GUI
             this.tabPage1.BackColor = System.Drawing.Color.White;
             this.tabPage1.Controls.Add(this.pictureBox13);
             this.tabPage1.Controls.Add(this.button8);
-            this.tabPage1.Controls.Add(this.pictureBox11);
             this.tabPage1.Controls.Add(this.dataTableStudent);
             this.tabPage1.Controls.Add(this.comboBox1);
             this.tabPage1.Controls.Add(this.textBox1);
-            this.tabPage1.Controls.Add(this.button7);
             this.tabPage1.Controls.Add(this.panel2);
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -314,18 +313,6 @@ namespace ManagerStudent.GUI
             this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // pictureBox11
-            // 
-            this.pictureBox11.BackColor = System.Drawing.Color.MediumBlue;
-            this.pictureBox11.Image = global::ManagerStudent.Properties.Resources.icon__magnifying_glass_;
-            this.pictureBox11.Location = new System.Drawing.Point(364, 194);
-            this.pictureBox11.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(30, 20);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox11.TabIndex = 12;
-            this.pictureBox11.TabStop = false;
             // 
             // dataTableStudent
             // 
@@ -449,23 +436,13 @@ namespace ManagerStudent.GUI
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(133, 191);
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(133, 195);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(217, 27);
+            this.textBox1.Size = new System.Drawing.Size(317, 23);
             this.textBox1.TabIndex = 7;
-            // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.Color.MediumBlue;
-            this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(356, 188);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(92, 34);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "Tìm kiếm";
-            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button7.UseVisualStyleBackColor = false;
             // 
             // panel2
             // 
@@ -1052,11 +1029,13 @@ namespace ManagerStudent.GUI
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.lblNew);
+            this.panel7.Controls.Add(this.label45);
             this.panel7.Controls.Add(this.dataTableClassNew);
             this.panel7.Controls.Add(this.panel8);
-            this.panel7.Location = new System.Drawing.Point(462, 49);
+            this.panel7.Location = new System.Drawing.Point(453, 49);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(348, 376);
+            this.panel7.Size = new System.Drawing.Size(357, 376);
             this.panel7.TabIndex = 2;
             // 
             // dataTableClassNew
@@ -1064,11 +1043,11 @@ namespace ManagerStudent.GUI
             this.dataTableClassNew.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataTableClassNew.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dataTableClassNew.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataTableClassNew.Location = new System.Drawing.Point(3, 140);
+            this.dataTableClassNew.Location = new System.Drawing.Point(3, 172);
             this.dataTableClassNew.Name = "dataTableClassNew";
             this.dataTableClassNew.ReadOnly = true;
             this.dataTableClassNew.RowHeadersWidth = 51;
-            this.dataTableClassNew.Size = new System.Drawing.Size(345, 229);
+            this.dataTableClassNew.Size = new System.Drawing.Size(351, 197);
             this.dataTableClassNew.TabIndex = 2;
             // 
             // panel8
@@ -1087,6 +1066,25 @@ namespace ManagerStudent.GUI
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(269, 131);
             this.panel8.TabIndex = 6;
+            // 
+            // txtSemesterNew
+            // 
+            this.txtSemesterNew.FormattingEnabled = true;
+            this.txtSemesterNew.Location = new System.Drawing.Point(97, 72);
+            this.txtSemesterNew.Name = "txtSemesterNew";
+            this.txtSemesterNew.Size = new System.Drawing.Size(144, 21);
+            this.txtSemesterNew.TabIndex = 9;
+            this.txtSemesterNew.Text = "Chọn lớp";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(16, 75);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(49, 16);
+            this.label42.TabIndex = 8;
+            this.label42.Text = "Học kỳ";
             // 
             // txtClassNew
             // 
@@ -1150,11 +1148,13 @@ namespace ManagerStudent.GUI
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.lblOld);
+            this.panel5.Controls.Add(this.label43);
             this.panel5.Controls.Add(this.dataTableClassOld);
             this.panel5.Controls.Add(this.panel6);
-            this.panel5.Location = new System.Drawing.Point(6, 49);
+            this.panel5.Location = new System.Drawing.Point(6, 52);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(348, 376);
+            this.panel5.Size = new System.Drawing.Size(361, 373);
             this.panel5.TabIndex = 1;
             // 
             // dataTableClassOld
@@ -1162,10 +1162,10 @@ namespace ManagerStudent.GUI
             this.dataTableClassOld.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataTableClassOld.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.dataTableClassOld.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataTableClassOld.Location = new System.Drawing.Point(4, 140);
+            this.dataTableClassOld.Location = new System.Drawing.Point(4, 169);
             this.dataTableClassOld.Name = "dataTableClassOld";
             this.dataTableClassOld.RowHeadersWidth = 51;
-            this.dataTableClassOld.Size = new System.Drawing.Size(341, 229);
+            this.dataTableClassOld.Size = new System.Drawing.Size(354, 200);
             this.dataTableClassOld.TabIndex = 1;
             this.dataTableClassOld.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataTableClassOld_CellContentClick);
             // 
@@ -1185,6 +1185,25 @@ namespace ManagerStudent.GUI
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(269, 131);
             this.panel6.TabIndex = 0;
+            // 
+            // txtSemesterOld
+            // 
+            this.txtSemesterOld.FormattingEnabled = true;
+            this.txtSemesterOld.Location = new System.Drawing.Point(97, 69);
+            this.txtSemesterOld.Name = "txtSemesterOld";
+            this.txtSemesterOld.Size = new System.Drawing.Size(136, 21);
+            this.txtSemesterOld.TabIndex = 7;
+            this.txtSemesterOld.Text = "Chọn lớp";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(16, 72);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(49, 16);
+            this.label41.TabIndex = 6;
+            this.label41.Text = "Học kỳ";
             // 
             // txtClassOld
             // 
@@ -2153,43 +2172,45 @@ namespace ManagerStudent.GUI
             // 
             this.openFileDialog2.FileName = "openFileDialog2";
             // 
-            // txtSemesterOld
+            // label43
             // 
-            this.txtSemesterOld.FormattingEnabled = true;
-            this.txtSemesterOld.Location = new System.Drawing.Point(97, 69);
-            this.txtSemesterOld.Name = "txtSemesterOld";
-            this.txtSemesterOld.Size = new System.Drawing.Size(136, 21);
-            this.txtSemesterOld.TabIndex = 7;
-            this.txtSemesterOld.Text = "Chọn lớp";
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.ForeColor = System.Drawing.Color.Red;
+            this.label43.Location = new System.Drawing.Point(6, 148);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(76, 18);
+            this.label43.TabIndex = 2;
+            this.label43.Text = "Còn lại : ";
             // 
-            // label41
+            // lblOld
             // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(16, 72);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(49, 16);
-            this.label41.TabIndex = 6;
-            this.label41.Text = "Học kỳ";
+            this.lblOld.AutoSize = true;
+            this.lblOld.ForeColor = System.Drawing.Color.Red;
+            this.lblOld.Location = new System.Drawing.Point(92, 153);
+            this.lblOld.Name = "lblOld";
+            this.lblOld.Size = new System.Drawing.Size(0, 13);
+            this.lblOld.TabIndex = 3;
             // 
-            // txtSemesterNew
+            // label45
             // 
-            this.txtSemesterNew.FormattingEnabled = true;
-            this.txtSemesterNew.Location = new System.Drawing.Point(97, 72);
-            this.txtSemesterNew.Name = "txtSemesterNew";
-            this.txtSemesterNew.Size = new System.Drawing.Size(144, 21);
-            this.txtSemesterNew.TabIndex = 9;
-            this.txtSemesterNew.Text = "Chọn lớp";
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.ForeColor = System.Drawing.Color.Red;
+            this.label45.Location = new System.Drawing.Point(3, 151);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(76, 18);
+            this.label45.TabIndex = 7;
+            this.label45.Text = "Còn lại : ";
             // 
-            // label42
+            // lblNew
             // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(16, 75);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(49, 16);
-            this.label42.TabIndex = 8;
-            this.label42.Text = "Học kỳ";
+            this.lblNew.AutoSize = true;
+            this.lblNew.ForeColor = System.Drawing.Color.Red;
+            this.lblNew.Location = new System.Drawing.Point(79, 154);
+            this.lblNew.Name = "lblNew";
+            this.lblNew.Size = new System.Drawing.Size(0, 13);
+            this.lblNew.TabIndex = 4;
             // 
             // HocSinhForm
             // 
@@ -2206,7 +2227,6 @@ namespace ManagerStudent.GUI
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableStudent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentManagerDataSet2)).EndInit();
@@ -2232,10 +2252,12 @@ namespace ManagerStudent.GUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableClassNew)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataTableClassOld)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
@@ -2279,7 +2301,6 @@ namespace ManagerStudent.GUI
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
@@ -2348,7 +2369,6 @@ namespace ManagerStudent.GUI
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.PictureBox pictureBox9;
-        private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.PictureBox pictureBox12;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.PictureBox pictureBox13;
@@ -2446,5 +2466,9 @@ namespace ManagerStudent.GUI
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.ComboBox txtSemesterNew;
         private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label lblNew;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label lblOld;
+        private System.Windows.Forms.Label label43;
     }
 }
