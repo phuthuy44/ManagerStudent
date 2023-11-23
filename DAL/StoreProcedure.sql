@@ -61,6 +61,23 @@ FROM Capacity
     WHERE capacityName LIKE '%' + @STR + '%'
 END
 
+GO
+
+CREATE PROCEDURE DeleteTypeOfPoint
+    @pointName NVARCHAR(100)
+AS
+BEGIN
+DELETE FROM Point
+WHERE typeofpointID IN (
+    SELECT ID
+    FROM TypeOfPoint
+    WHERE pointName = @pointName
+);
+
+DELETE FROM TypeOfPoint
+WHERE pointName = @pointName;
+
+END
 
 
 --EXEC FindCapacity 'k' 
@@ -78,7 +95,16 @@ SELECT ID as N'Mã hạnh kiểm', conductName AS 'Tên hạnh kiểm',
 END 
 --EXEC FindConduct  'k' 
 
+GO
 
+CREATE PROCEDURE FindSubject
+    @STR NVARCHAR(100)
+AS
+BEGIN
+SELECT ID as N'Mã môn học', subjectName as 'Tên môn học'
+    FROM Subject
+    WHERE subjectName LIKE '%' + @STR + '%'
+END 
 
 
 --

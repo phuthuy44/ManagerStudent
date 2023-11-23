@@ -1,6 +1,5 @@
 ﻿using Google.Apis.Sheets.v4.Data;
 using ManagerStudent.BLL;
-using ManagerStudent.DAL;
 using ManagerStudent.DTO;
 using System;
 using System.Collections.Generic;
@@ -34,6 +33,12 @@ namespace ManagerStudent.GUI
         private TypeOfPointBLL updateTypeOfPointBLL;
         private TypeOfPointBLL deleteTypeOfPointBLL;
 
+        private SubjectBLL subjectBLL;
+        private SubjectBLL insertSubjectBLL;
+        private SubjectBLL updateSubjectBLL;
+        private SubjectBLL deleteSubjectBLL;
+
+
         public CategoryForm()
         {
             InitializeComponent();
@@ -60,8 +65,6 @@ namespace ManagerStudent.GUI
         {
             conductBLL = new ConductBLL();
             dataGridView2.DataSource = conductBLL.GetConductData();
-
-
         }
         private void capacityTab()
         {
@@ -82,6 +85,12 @@ namespace ManagerStudent.GUI
             typeofpointBLL = new TypeOfPointBLL();
             dataGridView5.DataSource = typeofpointBLL.TypeOfPointData();
         }
+
+        private void SubjectTab()
+        {
+            subjectBLL = new SubjectBLL();
+            dataGridView1.DataSource = subjectBLL.GetSubjectData();
+        }
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = tabControl1.SelectedIndex;
@@ -98,6 +107,9 @@ namespace ManagerStudent.GUI
                     break;
                 case 3:
                     TypeOfPointTab();
+                    break;
+                case 4:
+                    SubjectTab();
                     break;
             }
             //Xóa lựa chọn trong dataGridView khi chuyển tab
@@ -116,6 +128,10 @@ namespace ManagerStudent.GUI
             else if (tabControl1.SelectedTab == tabPage5)
             {
                 dataGridView5.ClearSelection();
+            }
+            else if (tabControl1.SelectedTab == tabPage1)
+            {
+                dataGridView1.ClearSelection();
             }
 
         }
@@ -158,16 +174,23 @@ namespace ManagerStudent.GUI
 
             typeofpointBLL = new TypeOfPointBLL();
             dataGridView5.DataSource = typeofpointBLL.FindTypeOfPoint(textBox16.Text.Trim());
+        }
 
+        private void FindSubject()
+        {
+            subjectBLL = new SubjectBLL();
+            dataGridView1.DataSource = subjectBLL.FindSubjects(textBox22.Text.Trim());
         }
         private void button6_Click(object sender, EventArgs e)
         {
             FindConductData();
-            }
+            textBox2.Clear();
+        }
 
         private void button11_Click(object sender, EventArgs e)
         {
             FindCapacityData();
+            textBox5.Clear();
         }
 
         private void insertCapacity(string conductName, float upperLimit, float lowerLimit, float paraPoint)
@@ -178,6 +201,12 @@ namespace ManagerStudent.GUI
 
             if (isInserted)
             {
+                MessageBox.Show("Thêm thành công!");
+                textBox11.Clear();
+                textBox10.Clear();
+                textBox7.Clear();
+                textBox6.Clear();
+                textBox12.Clear();
                 // Lấy dữ liệu từ cơ sở dữ liệu và gán cho dataGridView1
                 capacityTab();
             }
@@ -251,6 +280,23 @@ namespace ManagerStudent.GUI
             }
         }
 
+        public void insertSubject(string subjectName)
+        {
+            insertSubjectBLL = new SubjectBLL();
+            bool isInserted = insertSubjectBLL.insertSubjects(subjectName);
+
+            if (isInserted)
+            {
+                MessageBox.Show("Thêm thành công!");
+                textBox21.Clear();
+                textBox20.Clear();
+                SubjectTab();
+            }
+            else
+            {
+                MessageBox.Show("Không thêm được dữ liệu. Vui lòng thử lại.");
+            }
+        }
         private void updateConduct(string conductName, int upperLimit, int lowerLimit, int ID)
         {
 
@@ -319,8 +365,8 @@ namespace ManagerStudent.GUI
         private void updateTypeofPoint(int ID, string pointName, int coefficient)
         {
 
-            typeofpointBLL = new TypeOfPointBLL();
-            bool isUpdated = typeofpointBLL.updateTypeofPointBLL(ID, pointName, coefficient);
+            updateTypeOfPointBLL = new TypeOfPointBLL();
+            bool isUpdated = updateTypeOfPointBLL.updateTypeofPointBLL(ID, pointName, coefficient);
 
             if (isUpdated)
             {
@@ -338,6 +384,25 @@ namespace ManagerStudent.GUI
             }
         }
 
+        private void updateSubject(int ID, string subjectName)
+        {
+            updateSubjectBLL = new SubjectBLL();
+            bool isUpdated = updateSubjectBLL.updateSubjects(ID, subjectName);
+
+            if (isUpdated)
+            {
+
+                MessageBox.Show("Sửa thành công!");
+                textBox20.Clear();
+                textBox21.Clear();
+                SubjectTab();
+            }
+            else
+            {
+                MessageBox.Show("Không sửa được dữ liệu. Vui lòng thử lại!");
+            }
+        }
+
         private void deleteConduct(string conductName)
         {
             // Hiển thị hộp thoại xác nhận xóa
@@ -351,6 +416,7 @@ namespace ManagerStudent.GUI
 
                     if (isDeleted)
                     {
+                        MessageBox.Show("Xóa thành công!");
                         textBox4.Clear();
                         textBox3.Clear();
                         textBox1.Clear();
@@ -383,6 +449,7 @@ namespace ManagerStudent.GUI
 
                     if (isDeleted)
                     {
+                        MessageBox.Show("Xóa thành công!");
                         textBox11.Clear();
                         textBox10.Clear();
                         textBox7.Clear();
@@ -407,7 +474,7 @@ namespace ManagerStudent.GUI
             // Hiển thị hộp thoại xác nhận xóa
             if (dataGridView4.SelectedRows.Count > 0)
             {
-                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa hạnh kiểm này?", "Xác nhận xóa", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa học kỳ này?", "Xác nhận xóa", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     deleteSemesterBLL = new SemesterBLL();
@@ -415,10 +482,74 @@ namespace ManagerStudent.GUI
 
                     if (isDeleted)
                     {
+                        MessageBox.Show("Xóa thành công!");
                         textBox15.Clear();
                         textBox14.Clear();
                         textBox8.Clear();
                         SemesterTab();
+                    }
+                    else
+                    {
+                        // Xử lý khi không thêm được dữ liệu
+                        MessageBox.Show("Không xóa được dữ liệu. Vui lòng thử lại.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một dòng để xóa!");
+            }
+        }
+
+        private void deleteTypeofPoint(string pointName)
+        {
+            // Hiển thị hộp thoại xác nhận xóa
+            if (dataGridView5.SelectedRows.Count > 0)
+            {
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa loại điểm này?", "Xác nhận xóa", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    deleteTypeOfPointBLL = new TypeOfPointBLL();
+                    bool isDeleted = deleteTypeOfPointBLL.deleteTypeofPointBLL(pointName);
+
+                    if (isDeleted)
+                    {
+                        MessageBox.Show("Xóa thành công!");
+                        textBox18.Clear();
+                        textBox17.Clear();
+                        textBox9.Clear();
+                        TypeOfPointTab();
+                    }
+                    else
+                    {
+                        // Xử lý khi không thêm được dữ liệu
+                        MessageBox.Show("Không xóa được dữ liệu. Vui lòng thử lại.");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một dòng để xóa!");
+            }
+        }
+
+        private void deleteSubject(string subjectName)
+        {
+            // Hiển thị hộp thoại xác nhận xóa
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa môn học này?", "Xác nhận xóa", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    deleteSubjectBLL = new SubjectBLL();
+                    bool isDeleted = deleteSubjectBLL.deleteSubjects(subjectName);
+
+                    if (isDeleted)
+                    {
+                        MessageBox.Show("Xóa thành công!");
+                        textBox21.Clear();
+                        textBox20.Clear();
+                        SubjectTab();
                     }
                     else
                     {
@@ -934,11 +1065,102 @@ namespace ManagerStudent.GUI
         private void button16_Click(object sender, EventArgs e)
         {
             FindSemesterData();
+            textBox13.Clear();
         }
 
         private void button21_Click(object sender, EventArgs e)
         {
             FindTypeOfPoint();
+            textBox16.Clear();
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            string pointName = textBox17.Text;
+            deleteTypeofPoint(pointName);
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                textBox21.Text = row.Cells[0].Value.ToString();
+                textBox20.Text = row.Cells[1].Value.ToString();
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string subjectName = textBox20.Text;
+
+            if (string.IsNullOrEmpty(subjectName))
+            {
+                MessageBox.Show("Vui lòng nhập tên môn học.");
+                return;
+            }
+
+            if (!IsValidName(subjectName))
+            {
+                MessageBox.Show("Tên môn học chỉ được nhập chữ. Vui lòng nhập lại.");
+                return;
+            }
+
+            if (subjectBLL.checkInsertSubjectName(subjectName))
+            {
+                MessageBox.Show("Tên môn học đã tồn tại. Vui lòng nhập lại.");
+                return;
+            }
+            insertSubject(subjectName);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string subjectName = textBox20.Text;
+            deleteSubject(subjectName);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string subjectName = textBox20.Text;
+            int ID;
+
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+                ID = Convert.ToInt32(selectedRow.Cells["Mã môn học"].Value);
+            }
+
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một dòng để sửa.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(subjectName))
+            {
+                MessageBox.Show("Vui lòng nhập tên môn học.");
+                return;
+            }
+
+            if (!IsValidName(subjectName))
+            {
+                MessageBox.Show("Tên môn học chỉ được nhập chữ. Vui lòng nhập lại.");
+                return;
+            }
+
+            if (subjectBLL.checkUpdateSubjectName(ID, subjectName))
+            {
+                MessageBox.Show("Tên môn học đã tồn tại. Vui lòng nhập lại.");
+                return;
+            }
+            updateSubject(ID, subjectName);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            FindSubject();
+            textBox22.Clear();
         }
     }
 }

@@ -11,8 +11,8 @@ namespace ManagerStudent.BLL
     internal class SubjectBLL
     {
         private GetSubjectData subjectData;
-        public SubjectBLL() 
-        { 
+        public SubjectBLL()
+        {
             subjectData = new GetSubjectData();
         }
 
@@ -20,7 +20,7 @@ namespace ManagerStudent.BLL
         {
             return subjectData.GetAllSubject();
         }
-        
+
         public DataTable FindSubjects(string str)
         {
             return subjectData.FindSubject(str);
@@ -43,11 +43,11 @@ namespace ManagerStudent.BLL
             GetSubjectData updateSubjectData = new GetSubjectData();
             return updateSubjectData.updateSubject(ID, subjectName);
         }
-        
+
         public bool checkInsertSubjectName(string subjectName)
         {
             GetSubjectData checkInsertSubjectData = new GetSubjectData();
-            return checkInsertSubjectData.checkInsertSubject(subjectName); 
+            return checkInsertSubjectData.checkInsertSubject(subjectName);
         }
 
         public bool checkUpdateSubjectName(int ID, string subjectName)

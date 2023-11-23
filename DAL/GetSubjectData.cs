@@ -23,11 +23,12 @@ namespace ManagerStudent.DAL
                                 from Subject";
                 SqlCommand command = new SqlCommand(sql, connection);
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-                
+
                 dataAdapter.Fill(dataTable);
                 connection.Close();
 
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -48,7 +49,7 @@ namespace ManagerStudent.DAL
                 dataAdapter.Fill(dataTable);
                 connection.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -67,7 +68,7 @@ namespace ManagerStudent.DAL
                 int rowAffected = command.ExecuteNonQuery();
                 return rowAffected > 0;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return false;
@@ -84,7 +85,7 @@ namespace ManagerStudent.DAL
                 SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@ID", ID);
                 command.Parameters.AddWithValue("@subjectName", subjectName);
-                
+
                 int rowAffected = command.ExecuteNonQuery();
                 return rowAffected > 0;
             }
@@ -103,11 +104,11 @@ namespace ManagerStudent.DAL
                 string sql = "delete Subject where subjectName = @subjectName";
                 SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@subjectName", subjectName);
-                
+
                 int rowAffected = command.ExecuteNonQuery();
                 return rowAffected > 0;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return false;
@@ -123,7 +124,7 @@ namespace ManagerStudent.DAL
                                where LOWER(subjectName) = LOWER(@subjectName)";
                 SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@subjectName", subjectName);
-                
+
                 int existingCount = (int)command.ExecuteScalar();
                 return existingCount > 0;
             }
@@ -149,7 +150,7 @@ namespace ManagerStudent.DAL
                 int existingCount = (int)command.ExecuteScalar();
                 return existingCount > 0;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return false;
