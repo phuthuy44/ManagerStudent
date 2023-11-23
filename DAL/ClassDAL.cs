@@ -58,6 +58,24 @@ namespace ManagerStudent.DAL
                 Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
             }
         }
+
+        public bool HasNameClass(string ten)
+        {
+            try
+            {
+                string sql = "select * from Class where className=N'" + ten + "'";
+                dt = init.Runquery(sql);
+                if (dt.Rows.Count == 0) return false;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ tại đây
+                Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
+                return false;
+            }
+        }
+
         public int getlastclassid()
         {
             ConnectToDatabase();
@@ -89,6 +107,25 @@ namespace ManagerStudent.DAL
                 Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
             }
         }
+
+        public bool DeleteClass(int ma)
+        {
+            try
+            {
+                ConnectToDatabase();
+                string sql = "delete from Class WHERE ID = " + ma;
+                dt = init.Runquery(sql);
+                init.Update(dt);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ tại đây
+                Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
+                return false;
+            }
+        }
+
 
     }
 }

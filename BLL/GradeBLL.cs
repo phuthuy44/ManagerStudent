@@ -26,9 +26,17 @@ namespace ManagerStudent.BLL
            }*/
         public string insertGrade(Grade grade)
         {
+            if (gradeDAL.HasNameGrade(grade.Name))
+                return "Tên đã tồn tại";
             gradeDAL.InsertGrade(grade);
             return "Thêm thành công";
         }
+
+        public bool hasNameGrade(string name)
+        {
+            return gradeDAL.HasNameGrade(name);
+        }
+
         public int GetLastGradeId()
         {
             return gradeDAL.getlastgradeid();
@@ -38,9 +46,9 @@ namespace ManagerStudent.BLL
             gradeDAL.UpdateGrade(grade);
             return "Cập nhập thành công";
         }
-        public void deleteGrade(Grade grade)
+        public bool deleteGrade(int ma)
         {
-            gradeDAL.DeleteGrade(grade);
+            return gradeDAL.DeleteGrade(ma);
         }
 
     }

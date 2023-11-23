@@ -9,35 +9,20 @@ namespace ManagerStudent.DTO
     public class Class
     {
         public int ID { get; set; }
-        public string gradeID { get; set; }
+
         public string Name { get; set; }
      
         public int maxStudent { get; set; }
         public int realStudent { get; set; }
-        public int quantityMale {  get; set; }
-        public int quantityFemale { get; set; }
-        public Class(int iD, string name,int maxStudent, int realStudent, int quantityMale, int quantityFemale)
+
+        public Class(int iD, string name,int maxStudent, int realStudent)
         {
             ID = iD;
-            Name = name;
-           
+            Name = name;     
             this.maxStudent = maxStudent;
             this.realStudent = realStudent;
-            this.quantityMale = quantityMale;
-            this.quantityFemale = quantityFemale;
-        }
 
-        public Class(int iD, string gradeID, string name, int maxStudent, int realStudent, int quantityMale, int quantityFemale)
-        {
-            ID = iD;
-            this.gradeID = gradeID;
-            Name = name;
-            this.maxStudent = maxStudent;
-            this.realStudent = realStudent;
-            this.quantityMale = quantityMale;
-            this.quantityFemale = quantityFemale;
         }
-
         public Class() { }
 
     }
