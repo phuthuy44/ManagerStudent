@@ -96,7 +96,7 @@ namespace ManagerStudent.DAL
         }
         public bool insertStudent(Student student)
         {
-           // string filename = Path.GetFileName(?);
+            // string filename = Path.GetFileName(?);
             string sql= "INSERT INTO Student (name,birthday,gender,address, email, numberPhone, image) Values(@Hoten,@NgaySinh,@gioitinh,@diaChi,@email,@soDienThoai,@HinhAnh)";
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
@@ -177,7 +177,7 @@ namespace ManagerStudent.DAL
         public List<StudentClassSemesterAcademicYear> getAcademicYearsInAssignmentClass()
         {
             List<StudentClassSemesterAcademicYear> academicYears = new List<StudentClassSemesterAcademicYear>();
-            string sql = "select academicyearID from StudentClassSemesterAcademicYear";//AcademicYear$
+            string sql = "select distinct academicyearID from StudentClassSemesterAcademicYear";//AcademicYear$
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {
@@ -250,7 +250,7 @@ namespace ManagerStudent.DAL
         public List<StudentClassSemesterAcademicYear> getGrade(int idYear)
         {
             List<StudentClassSemesterAcademicYear> grade = new List<StudentClassSemesterAcademicYear>();
-            string sql = "select gradeID from StudentClassSemesterAcademicYear where academicyearID = @id"; ;
+            string sql = "select distinct gradeID from StudentClassSemesterAcademicYear where academicyearID = @id"; 
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {
@@ -277,7 +277,7 @@ namespace ManagerStudent.DAL
         public string namGrade(int id)
         {
             string name = null;
-            string sql = "select gradeName from grade where ID = @id";
+            string sql = "select  gradeName from grade where ID = @id";
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {
@@ -321,7 +321,7 @@ namespace ManagerStudent.DAL
         public List<StudentClassSemesterAcademicYear> getClassInGrade(int gradeID)
         {
             List <StudentClassSemesterAcademicYear> classes = new List<StudentClassSemesterAcademicYear>();
-            string sql = "SELECT classID FROM StudentClassSemesterAcademicYear where gradeID= @maKhoi";
+            string sql = "SELECT distinct classID FROM StudentClassSemesterAcademicYear where gradeID= @maKhoi";
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {
@@ -416,7 +416,7 @@ namespace ManagerStudent.DAL
         public List<StudentClassSemesterAcademicYear> getIDStudentFromPhanLop(int id)
         {
             List<StudentClassSemesterAcademicYear> student = new List<StudentClassSemesterAcademicYear>();
-            string sql = "select studentID from StudentClassSemesterAcademicYear where classID =@id";
+            string sql = "select distinct studentID from StudentClassSemesterAcademicYear where classID =@id";
             SqlConnection con = initConnect.ConnectToDatabase();
             try
             {
@@ -513,6 +513,53 @@ namespace ManagerStudent.DAL
             finally { conn.Close(); }
 
         }
-
+       
+        public int getMaxStudentInClass(int cls)
+        {
+            string sql = "SELECT maxStudent from Class where ID = @ID";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            int count = 0;
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@ID", cls);
+                count = (int)cmd.ExecuteScalar();
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally { conn.Close(); }
+            return count;
+        }
+        public int getCurrentStudentInClass(int cls,int se)
+        {
+            string sql = "Select count(*) from StudentClassSemesterAcademicYear as p where P.classID = @idClass and p.semesterID =@idSe";
+            SqlConnection con = initConnect.ConnectToDatabase(); ;
+            int count = 0;
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@idClass", cls);
+                cmd.Parameters.AddWithValue("@idSe", se);
+                count = (int)cmd.ExecuteScalar();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return count;
+        }
+        public int getQuantity(int classID,int se)
+        {
+            int maxStudent = getMaxStudentInClass(classID);
+            int currentStudent = getCurrentStudentInClass(classID, se);
+            int remain = maxStudent - currentStudent;
+            return remain;
+        }
     }
 }
