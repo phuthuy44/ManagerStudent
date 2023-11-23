@@ -323,59 +323,59 @@ namespace ManagerStudent.GUI
         }
         private void saveUpdatePoints()
         {
-            if (dataGridView1.DataSource != null)
+            // Kiểm tra nếu DataGridView có dữ liệu
+            if (dataGridView1.DataSource != null && dataGridView1.DataSource is DataTable updatedData)
             {
-                DataTable updatedData = (DataTable)dataGridView1.DataSource;
-
                 // Lặp qua từng dòng của DataTable
                 foreach (DataRow row in updatedData.Rows)
                 {
-                    // Lấy thông tin cần thiết từ mỗi dòng
-                    int studentID = Convert.ToInt32(row["Mã học sinh"]);
-                    /*int regularPoint = Convert.ToInt32(row["Điểm đánh giá thường xuyên"]);
-                    int midtermPoint = Convert.ToInt32(row["Điểm giữa kỳ"]);
-                    int finalPoint = Convert.ToInt32(row["Điểm cuối kỳ"]);*/
-                    double regularPoint = Convert.IsDBNull(row["Điểm đánh giá thường xuyên"]) ? 0 : Convert.ToDouble(row["Điểm đánh giá thường xuyên"]);
-                    double midtermPoint = Convert.IsDBNull(row["Điểm giữa kỳ"]) ? 0 : Convert.ToDouble(row["Điểm giữa kỳ"]);
-                    double finalPoint = Convert.IsDBNull(row["Điểm cuối kỳ"]) ? 0 : Convert.ToDouble(row["Điểm cuối kỳ"]);
-
-
-                    string academicYearName = comboBox1.Text;
-                    string semesterName = comboBox3.Text;
-                    string subjectName = comboBox4.Text;
-
-                    // Gọi hàm BLL để cập nhật điểm
-                    PointBLL bll = new PointBLL();
-                    bool result = bll.UpdateStudentPoint(studentID, academicYearName, semesterName, 
-                    subjectName, regularPoint, midtermPoint, finalPoint);
-
-                    if (result)
+                    // Lấy thông tin cần thiết từ mỗi dònG
+                    
+                    if (row["Mã học sinh"] is int studentID &&
+                        row["Điểm đánh giá thường xuyên"] is double regularPoint &&
+                        row["Điểm giữa kỳ"] is double midtermPoint &&
+                        row["Điểm cuối kỳ"] is double finalPoint)
                     {
-                        // Nếu cập nhật thành công và MessageBox chưa được hiển thị, thông báo cho người dùng
-                        if (messageBoxCount == 0)
+                        // Lấy thông tin tên năm học, học kỳ và môn học từ các comboBox
+                        string academicYearName = comboBox1.Text;
+                        string semesterName = comboBox3.Text;
+                        string subjectName = comboBox4.Text;
+
+                        // Gọi hàm BLL để cập nhật điểm
+                        PointBLL bll = new PointBLL();
+                        bool success = true;
+
+                        // Thực hiện cập nhật điểm cho từng loại điểm
+                        if (!bll.UpdateStudentPoint(studentID, academicYearName, semesterName, subjectName, regularPoint))
+                            success = false;
+
+                        if (!bll.UpdateStudentPoint(studentID, academicYearName, semesterName, subjectName, midtermPoint))
+                            success = false;
+
+                        if (!bll.UpdateStudentPoint(studentID, academicYearName, semesterName, subjectName, finalPoint))
+                            success = false;
+
+                        if (success)
                         {
                             MessageBox.Show("Điểm đã được cập nhật thành công.");
-                            messageBoxCount++;
                         }
-                    }
-                    else
-                    {
-                        // Nếu cập nhật không thành công và MessageBox chưa được hiển thị, thông báo cho người dùng
-                        if (messageBoxCount == 0)
+                        else
                         {
                             MessageBox.Show("Có lỗi xảy ra khi cập nhật điểm.");
-                            messageBoxCount++;
                         }
                     }
+                    
                 }
             }
+
+
         }
         private void UpdateDataGridView1()
         {
-            string academicYearName = comboBox1.Text;
-            string semesterName = comboBox3.Text;
-            string className = comboBox2.Text;
-            string subjectName = comboBox4.Text;
+            tmpAcademicYearName = comboBox1.Text;
+            tmpSemesterName = comboBox3.Text;
+            tmpClassName = comboBox2.Text;
+            tmpSubjectName = comboBox4.Text;
 
             /*Console.WriteLine(academicYearName);
             Console.WriteLine($"{academicYearName}");
@@ -383,7 +383,7 @@ namespace ManagerStudent.GUI
             Console.WriteLine(academicYearName, semesterName, className, subjectName);*/
 
             PointBLL bll = new PointBLL();
-            studentPointsData = bll.GetStudentPoints(academicYearName, semesterName, className, subjectName);
+            studentPointsData = bll.GetStudentPoints(tmpAcademicYearName, tmpSemesterName, tmpClassName, tmpSubjectName);
 
             /*            dataGridView1.DataSource = studentPointsData;*/
             if (studentPointsData != null && studentPointsData.Rows.Count > 0)
@@ -429,14 +429,31 @@ namespace ManagerStudent.GUI
             else
             {
                 UpdateDataGridView1();
+
+                originalData = ((DataTable)dataGridView1.DataSource).Copy();
+                
             }
         }
-
+        private DataTable originalData;
+        private string tmpAcademicYearName;
+        private string tmpSemesterName;
+        private string tmpClassName;
+        private string tmpSubjectName;
         private void button2_Click(object sender, EventArgs e)
         {
+            // Lưu bản sao của dữ liệu ban đầu
+
+            // Khi cần kiểm tra, so sánh dữ liệu hiện tại với bản sao ban đầu
+            bool hasChanges = !((DataTable)dataGridView1.DataSource).AsEnumerable()
+                                .SequenceEqual(originalData.AsEnumerable(), DataRowComparer.Default);
+            if (hasChanges)
+            {
+                saveUpdatePoints();
+                //MessageBox.Show("Update!");
+            }
             /*saveUpdatePoints();*/
-            saveInsertPoints();
-            messageBoxCount = 0;
+            //saveInsertPoints();
+            //messageBoxCount = 0;
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -470,13 +487,13 @@ namespace ManagerStudent.GUI
         {
             //Không cho chỉnh sửa 3 cột bên dưới
             // Kiểm tra nếu đang chỉnh sửa cột "STT" hoặc cột "Tên học sinh"
-            if (e.ColumnIndex == dataGridView1.Columns["STT"].Index ||
+            /*if (e.ColumnIndex == dataGridView1.Columns["STT"].Index ||
                 e.ColumnIndex == dataGridView1.Columns["Mã học sinh"].Index ||
                 e.ColumnIndex == dataGridView1.Columns["Tên học sinh"].Index)
             {
                 // Ngăn chặn chỉnh sửa trên cột "STT" và cột "Tên học sinh"
                 e.Cancel = true;
-            }
+            }*/
         }
 
         private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)

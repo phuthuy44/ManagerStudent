@@ -17,6 +17,8 @@ namespace ManagerStudent.BLL
         }
         public string insertClass(Class cls)
         {
+            if (clsdal.HasNameClass(cls.Name))
+                return "Tên đã tồn tại";
             clsdal.InsertClass(cls);
             return "Them thanh cong";
         }
@@ -28,6 +30,11 @@ namespace ManagerStudent.BLL
         {
             clsdal.UpdateClass(cls);
             return "Cập nhập thành công";
+        }
+
+        public bool deleteClass(int ma)
+        {
+            return clsdal.DeleteClass(ma);
         }
     }
 }

@@ -20,7 +20,6 @@ namespace ManagerStudent.BLL
 
         public DataTable TypeOfPointData()
         {
-            Console.WriteLine("kkkkkk");
             return typeofpointDAL.TypeOfPointData();
         }
         public bool insertTypeofPointBLL(string pointName, int coefficient)
@@ -35,12 +34,11 @@ namespace ManagerStudent.BLL
             return updateTypeofPointData.updateTypeofPoint(ID, pointName, coefficient);
         }
 
-        //Chưa xong
-        /*        public bool deleteTypeofPointBLL(int ID, string pointName, int coefficient)
-                {
-                    TypeOfPointDAL deleteTypeofPointData = new TypeOfPointDAL();
-                    return deleteTypeofPointData.deleteTypeofPoint(ID, pointName, coefficient);
-                }*/
+        public bool deleteTypeofPointBLL(string pointName)
+        {
+            TypeOfPointDAL deleteTypeofPointData = new TypeOfPointDAL();
+            return deleteTypeofPointData.deleteTypeofPoint(pointName);
+        }
 
         public bool checkUpdateTypeofPointName(string pointName, int ID)
         {

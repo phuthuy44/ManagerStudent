@@ -20,12 +20,11 @@ namespace ManagerStudent.BLL
         private PointDAL studentIdNameDAL;
 
         public bool UpdateStudentPoint(int studentID, string academicYearName, string semesterName,
-                                        string subjectName, double regularPoint, double midtermPoint, double finalPoint)
+                                        string subjectName, double Point)
         {
             // Gọi hàm DAL để cập nhật điểm
             PointDAL updatePointDAL = new PointDAL();
-            return updatePointDAL.UpdateStudentPoint(studentID, academicYearName, semesterName, subjectName,
-                regularPoint, midtermPoint, finalPoint);
+            return updatePointDAL.UpdateStudentPoint(studentID, academicYearName, semesterName, subjectName, Point);
         }
         public bool InsertStudentPoint(int studentID, string academicyearName, string semesterName,
                                 string subjectName, string pointName, double point)

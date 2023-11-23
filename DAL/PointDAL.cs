@@ -12,22 +12,20 @@ namespace ManagerStudent.DAL
     internal class PointDAL
     {
         public bool UpdateStudentPoint(int studentID, string academicyearName, string semesterName,
-                                        string subjectName, double regularPoint, double midtermPoint, double finalPoint)
+                                        string subjectName, double Point)
         {
             try
             {
                 SqlConnection connection = initConnect.ConnectToDatabase();
                 string query = @"EXEC UpdatePoint @studentID, @academicyearName, @semesterName, 
-                                      @subjectName, @regularPoint, @midtermPoint, @finalPoint";
+                                      @subjectName, @Point";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@studentID", studentID);
                 command.Parameters.AddWithValue("@academicyearName", academicyearName);
                 command.Parameters.AddWithValue("@semesterName", semesterName);
                 command.Parameters.AddWithValue("@subjectName", subjectName);
-                command.Parameters.AddWithValue("@regularPoint", regularPoint);
-                command.Parameters.AddWithValue("@midtermPoint", midtermPoint);
-                command.Parameters.AddWithValue("@finalPoint", finalPoint);
+                command.Parameters.AddWithValue("@regularPoint", Point);
                 int rowsAffected = command.ExecuteNonQuery();
                 // Trả về true nếu cập nhật thành công
                 /*return rowsAffected > 0;*/
@@ -46,7 +44,7 @@ namespace ManagerStudent.DAL
             try
             {
                 SqlConnection connection = initConnect.ConnectToDatabase();
-                string query = @"EXEC InsertPoint @studentID, @academicyearName, @semesterName, 
+                string query = @"EXEC UPDATE_INSERT_POINT @studentID, @academicyearName, @semesterName, 
                     @subjectName, @pointName, @point";
 
                 SqlCommand command = new SqlCommand(query, connection);
@@ -58,8 +56,7 @@ namespace ManagerStudent.DAL
                 command.Parameters.AddWithValue("@point", point);
 
                 int rowsAffected = command.ExecuteNonQuery();
-                // Trả về true nếu cập nhật thành công
-                /*return rowsAffected > 0;*/
+                connection.Close();
             }
             catch (Exception ex)
             {
