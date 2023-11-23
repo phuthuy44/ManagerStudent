@@ -12,30 +12,33 @@ namespace ManagerStudent.DAL
     internal class PointDAL
     {
         public bool UpdateStudentPoint(int studentID, string academicyearName, string semesterName,
-                                        string subjectName, double Point)
+                                string subjectName, string className, string pointName, double Point)
         {
             try
             {
                 SqlConnection connection = initConnect.ConnectToDatabase();
-                string query = @"EXEC UpdatePoint @studentID, @academicyearName, @semesterName, 
-                                      @subjectName, @Point";
+                string query = @"EXEC UPDATE_INSERT_POINT @studentID, @academicyearName, @semesterName, 
+                              @subjectName, @className, @pointName, @Point";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@studentID", studentID);
                 command.Parameters.AddWithValue("@academicyearName", academicyearName);
                 command.Parameters.AddWithValue("@semesterName", semesterName);
                 command.Parameters.AddWithValue("@subjectName", subjectName);
-                command.Parameters.AddWithValue("@regularPoint", Point);
+                command.Parameters.AddWithValue("@className", className); // Thêm tham số className
+                command.Parameters.AddWithValue("@pointName", pointName); // Thêm tham số pointName
+                command.Parameters.AddWithValue("@Point", Point);
                 int rowsAffected = command.ExecuteNonQuery();
-                // Trả về true nếu cập nhật thành công
-                /*return rowsAffected > 0;*/
+                connection.Close();
+
+                // Trả về true nếu có hàng bị ảnh hưởng (rowsAffected > 0)
+                return rowsAffected > 0;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Lỗi: " + ex.Message);
                 return false;
             }
-            return true;
         }
 
         public bool InsertStudentPoint(int studentID, string academicyearName, string semesterName,
