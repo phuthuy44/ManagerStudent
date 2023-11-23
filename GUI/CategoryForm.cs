@@ -1090,7 +1090,7 @@ namespace ManagerStudent.GUI
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click_1(object sender, EventArgs e)
         {
             string subjectName = textBox20.Text;
 
@@ -1114,13 +1114,7 @@ namespace ManagerStudent.GUI
             insertSubject(subjectName);
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            string subjectName = textBox20.Text;
-            deleteSubject(subjectName);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
             string subjectName = textBox20.Text;
             int ID;
@@ -1161,6 +1155,12 @@ namespace ManagerStudent.GUI
         {
             FindSubject();
             textBox22.Clear();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            string subjectName = textBox20.Text;
+            deleteSubject(subjectName);
         }
     }
 }
