@@ -60,6 +60,23 @@ namespace ManagerStudent.DAL
             }
         }
 
+        public bool HasNameGrade(string ten)
+        {
+            try
+            {
+                string sql = "select * from Grade where gradeName=N'" + ten + "'";
+                dt = init.Runquery(sql);
+                if (dt.Rows.Count == 0) return false;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ tại đây
+                Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
+                return false;
+            }
+        }
+
         public int getlastgradeid()
         {
             ConnectToDatabase();
@@ -91,22 +108,25 @@ namespace ManagerStudent.DAL
                 Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
             }
         }
-        public void DeleteGrade(Grade grade)
+        public bool DeleteGrade(int ma)
         {
             try
             {
-                ConnectToDatabase();
-                int ma = grade.ID;
-                string sql = "DELETE FROM Grade WHERE ID = " + ma;
+                ConnectToDatabase();              
+                string sql = "delete from Grade WHERE ID = " + ma;
                 dt = init.Runquery(sql);
                 init.Update(dt);
+                return true;
             }
             catch (Exception ex)
             {
                 // Xử lý ngoại lệ tại đây
                 Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
+                return false;
             }
         }
+
+
         /*public List<Grade> SearchGrades(string searchTerm)
         {
             List<Grade> searchResults = new List<Grade>();

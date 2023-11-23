@@ -191,8 +191,6 @@ CREATE TABLE Class(
 	className NVARCHAR(255),
 	maxStudent INT,
 	quantityStudent INT,
-	quantityMale INT,
-	quantityFemale INT,
 	PRIMARY KEY (ID)
 )
 
