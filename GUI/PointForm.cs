@@ -396,16 +396,16 @@ namespace ManagerStudent.GUI
             {
                 // Tạo một DataTable mới để chứa dữ liệu với cột STT
                 DataTable updatedData = new DataTable();
-                updatedData.Columns.Add("STT", typeof(int));
+                //updatedData.Columns.Add("STT", typeof(int));
                 updatedData.Merge(studentPointsData);
 
                 // Tính giá trị STT cho từng dòng
-                for (int i = 0; i < updatedData.Rows.Count; i++)
+                /*for (int i = 0; i < updatedData.Rows.Count; i++)
                 {
                     updatedData.Rows[i]["STT"] = i + 1; // Giá trị STT
-                }
+                }*/
                 dataGridView1.DataSource = updatedData;
-                dataGridView1.Columns["STT"].DisplayIndex = 0; // Đặt vị trí hiển thị cho cột STT
+                //dataGridView1.Columns["STT"].DisplayIndex = 0; // Đặt vị trí hiển thị cho cột STT
             }
             else
             {
