@@ -557,7 +557,7 @@ namespace ManagerStudent.GUI
             string selectedSe = txtSemesterOld.Text;
             int classID = studentBLL.getClassID(selected);
             int semesID = studentBLL.getIDSemester(selectedSe);        
-            /*lblOld.Text = getQuantity(classID,semesID).ToString();*/
+            lblOld.Text = getQuantity(classID,semesID).ToString();
             Console.WriteLine(classID);
             DataTable dataTable = studentBLL.getListStudentInClass(classID, semesID);
             // DataView dataView = new DataView(dataTable);
@@ -591,7 +591,7 @@ namespace ManagerStudent.GUI
             int classID = studentBLL.getClassID(selected);
             int semesID = studentBLL.getIDSemester(selectedSe);
 
-            /*lblNew.Text = getQuantity(classID, semesID).ToString();*/
+            lblNew.Text = getQuantity(classID, semesID).ToString();
 
             Console.WriteLine(classID);
             DataTable dataTable = studentBLL.getListStudentInClass(classID, semesID);
@@ -975,19 +975,19 @@ namespace ManagerStudent.GUI
             string selectedSemester = txtSemesterOld.SelectedItem.ToString();
             string selectedSemesterNew = txtSemesterNew.SelectedItem.ToString();
             string selectedNewClass = txtClassNew.SelectedItem.ToString();
-            /*int quantity = int.Parse(lblNew.Text);*/
+            int quantity = int.Parse(lblNew.Text);
 
             if (selectedCurrentClass == selectedNewClass && selectedSemester == selectedSemesterNew )
             {
                 MessageBox.Show("Vui lòng chọn một lớp khác với lớp hiện tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-/*            if (quantity == 0)
+            if (quantity == 0)
             {
                 MessageBox.Show("Lớp đã đầy !", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
 
-            }*/
+            }
             //Lap qua cac hang da chon trong dataTableClassOld
             foreach (DataGridViewRow item in dataTableClassOld.SelectedRows)
             {
@@ -1013,8 +1013,8 @@ namespace ManagerStudent.GUI
             }
             MessageBox.Show("Chuyển lớp thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             
-/*            lblNew.Text = getQuantity(idClass, idSes).ToString();
-            lblOld.Text = getQuantity(idClass_old,idSes_old).ToString();*/
+            lblNew.Text = getQuantity(idClass, idSes).ToString();
+            lblOld.Text = getQuantity(idClass_old,idSes_old).ToString();
 
         }
     }
