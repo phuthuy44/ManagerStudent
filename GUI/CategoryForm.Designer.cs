@@ -1454,10 +1454,10 @@
             // 
             // textBox21
             // 
+            this.textBox21.Enabled = false;
             this.textBox21.Location = new System.Drawing.Point(120, 14);
             this.textBox21.Margin = new System.Windows.Forms.Padding(4);
             this.textBox21.Name = "textBox21";
-            this.textBox21.ReadOnly = true;
             this.textBox21.Size = new System.Drawing.Size(161, 22);
             this.textBox21.TabIndex = 3;
             // 
