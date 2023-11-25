@@ -90,11 +90,6 @@ namespace ManagerStudent.BLL
         private PointDAL pointDAL; 
 
         public PointBLL() {  pointDAL = new PointDAL(); }
-        public DataTable StudentSummary(int studentID, string academicyearName, string semesterName, string className)
-        {
-            Console.WriteLine(111111111);
-            return pointDAL.StudentSummary(studentID, academicyearName, semesterName, className);
-        }
         public DataTable StudentPoint(int studentID, string academicyearName, string semesterName, string className)
         {
             return pointDAL.StudentPoint(studentID, academicyearName, semesterName, className);

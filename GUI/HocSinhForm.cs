@@ -560,7 +560,7 @@ namespace ManagerStudent.GUI
             string selectedSe = txtSemesterOld.Text;
             int classID = studentBLL.getClassID(selected);
             int semesID = studentBLL.getIDSemester(selectedSe);        
-            //lblOld.Text = getQuantity(classID,semesID).ToString();
+            lblOld.Text = getQuantity(classID,semesID).ToString();
             Console.WriteLine(classID);
             DataTable dataTable = studentBLL.getListStudentInClass(classID, semesID);
             // DataView dataView = new DataView(dataTable);
@@ -594,7 +594,7 @@ namespace ManagerStudent.GUI
             int classID = studentBLL.getClassID(selected);
             int semesID = studentBLL.getIDSemester(selectedSe);
 
-            //lblNew.Text = getQuantity(classID, semesID).ToString();
+            lblNew.Text = getQuantity(classID, semesID).ToString();
 
             Console.WriteLine(classID);
             DataTable dataTable = studentBLL.getListStudentInClass(classID, semesID);
@@ -1019,7 +1019,7 @@ namespace ManagerStudent.GUI
                         lblOld.Text = quantityold.ToString() ;
                         //lblOld.Text = quantity.ToString();
                     }
-                }
+                
 
                 /*//Xoa cac hang da chon tu dataTable
                 foreach (DataGridViewRow item in dataTableClassOld.SelectedRows)
@@ -1030,7 +1030,7 @@ namespace ManagerStudent.GUI
                /* lblNew.Text = getQuantity(idClass, idSes).ToString();*/
                 //lblOld.Text = getQuantity(idClass_old, idSes_old).ToString();
 
-            }
+            
 
             //Xoa cac hang da chon tu dataTable
             foreach (DataGridViewRow item in dataTableClassOld.SelectedRows)
@@ -1039,9 +1039,8 @@ namespace ManagerStudent.GUI
             }
             MessageBox.Show("Chuyển lớp thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             
-            //lblNew.Text = getQuantity(idClass, idSes).ToString();
-            //lblOld.Text = getQuantity(idClass_old,idSes_old).ToString();
-
+            lblNew.Text = getQuantity(idClass, idSes).ToString();
+            lblOld.Text = getQuantity(idClass_old,idSes_old).ToString();
         }
     }
 }

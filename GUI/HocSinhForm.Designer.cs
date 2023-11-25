@@ -1045,7 +1045,7 @@ namespace ManagerStudent.GUI
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox9.TabIndex = 6;
             this.pictureBox9.TabStop = false;
-            this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click_1);
+            //this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click_1);
             // 
             // pictureBox6
             // 

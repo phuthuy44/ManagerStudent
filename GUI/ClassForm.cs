@@ -134,8 +134,8 @@ namespace ManagerStudent.GUI
             DataGridViewRow row = dgvGrade.Rows[e.RowIndex];
             txtMaKhoi.Text = row.Cells[0].Value.ToString();
             txtTenKhoi.Text = row.Cells[1].Value.ToString();
-            txtSoLuongKhoi.Text = row.Cells[2].Value.ToString();
-            txtSoLuongLop.Text = row.Cells[3].Value.ToString();             
+            //txtSoLuongKhoi.Text = row.Cells[2].Value.ToString();
+            //txtSoLuongLop.Text = row.Cells[3].Value.ToString();             
 
         }
 
