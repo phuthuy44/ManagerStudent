@@ -165,8 +165,6 @@ ALTER TABLE AccountStatus
 CREATE TABLE Grade(
 	ID INT IDENTITY(1, 1) NOT NULL,
 	gradeName NVARCHAR(255),
-	maxclassofGrade INT,
-	quantityclassofGrade INT
 	PRIMARY KEY (ID)	
 )
 

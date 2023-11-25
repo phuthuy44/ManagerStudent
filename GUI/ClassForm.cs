@@ -42,8 +42,6 @@ namespace ManagerStudent.GUI
         {
             txtMaKhoi.Text = "";
             txtTenKhoi.Text = "";
-            txtSoLuongKhoi.Text = "";
-            txtSoLuongLop.Text = "";
         }
 
         public void ResetClass()
@@ -57,13 +55,6 @@ namespace ManagerStudent.GUI
         public void SetControl(bool edit)
         {
             txtMaKhoi.Enabled = false;
-            /*   txtTenKhoi.Enabled = edit;
-               txtSoLuongKhoi.Enabled = edit;
-               txtSoLuongLop.Enabled = edit;
-               btnAdd.Enabled =edit;
-               btnEdit.Enabled =!edit;
-               btnDelete.Enabled = !edit;*/
-
 
         }
         public void SetControlClass(bool edit)
@@ -113,28 +104,7 @@ namespace ManagerStudent.GUI
                 if (string.IsNullOrEmpty(txtTenKhoi.Text))
                 {
                     MessageBox.Show("Vui lòng nhập tên khối");
-                }
-                else if (string.IsNullOrEmpty(txtSoLuongKhoi.Text))
-                {
-                    MessageBox.Show("Vui lòng nhập lớp tối đa trong khối");
-                }
-                else if (string.IsNullOrEmpty(txtSoLuongLop.Text))
-                {
-                    MessageBox.Show("Vui lòng nhập lớp thực tế trong khối");
-                }
-
-                else if (!txtSoLuongKhoi.Text.All(char.IsDigit))
-                {
-                    MessageBox.Show("Lớp tối đa chỉ được nhập số từ 0-9");
-                }
-                else if (!txtSoLuongLop.Text.All(char.IsDigit))
-                {
-                    MessageBox.Show("Lớp thực tế chỉ được nhập số từ 0-9");
-                }
-                else if (Convert.ToInt32(txtSoLuongLop.Text) > Convert.ToInt32(txtSoLuongKhoi.Text))
-                {
-                    MessageBox.Show("Số lượng lớp thực tế không được lớn hơn số lượng tối đa trong khối");
-                }
+                }          
                 else
                 {
                     row = dgvGrade.Rows.Count;
@@ -144,8 +114,6 @@ namespace ManagerStudent.GUI
                     gradeDTO.ID = newID;
                     txtMaKhoi.Text = gradeDTO.ID.ToString();
                     gradeDTO.Name = txtTenKhoi.Text;
-                    gradeDTO.maxClassOfGrade = Convert.ToInt32(txtSoLuongKhoi.Text);
-                    gradeDTO.realClassOfGrade = Convert.ToInt32(txtSoLuongLop.Text);
                     string result = gradeBll.insertGrade(gradeDTO);
                     if (result == "Tên đã tồn tại")
                     {
@@ -183,32 +151,9 @@ namespace ManagerStudent.GUI
                     {
                         MessageBox.Show("Vui lòng nhập tên khối");
                     }
-                    else if (string.IsNullOrEmpty(txtSoLuongKhoi.Text))
-                    {
-                        MessageBox.Show("Vui lòng nhập lớp tối đa trong khối");
-                    }
-                    else if (string.IsNullOrEmpty(txtSoLuongLop.Text))
-                    {
-                        MessageBox.Show("Vui lòng nhập lớp thực tế trong khối");
-                    }
-
-                    else if (!txtSoLuongKhoi.Text.All(char.IsDigit))
-                    {
-                        MessageBox.Show("Lớp tối đa chỉ được nhập số từ 0-9");
-                    }
-                    else if (!txtSoLuongLop.Text.All(char.IsDigit))
-                    {
-                        MessageBox.Show("Lớp thực tế chỉ được nhập số từ 0-9");
-                    }
-                    else if (Convert.ToInt32(txtSoLuongLop.Text) > Convert.ToInt32(txtSoLuongKhoi.Text))
-                    {
-                        MessageBox.Show("Số lượng lớp thực tế không được lớn hơn số lượng tối đa trong khối");
-                    }
                     else
                     {
                         gradeDTO.Name = txtTenKhoi.Text;
-                        gradeDTO.maxClassOfGrade = Convert.ToInt32(txtSoLuongKhoi.Text);
-                        gradeDTO.realClassOfGrade = Convert.ToInt32(txtSoLuongLop.Text);
                         MessageBox.Show(gradeBll.updateGrade(gradeDTO), "Bạn đã sửa thành công");
                         loadDataGrade(); // Cập nhật dữ liệu trên DataGridView
                         ResetGrade();
@@ -232,8 +177,6 @@ namespace ManagerStudent.GUI
                 int selectedIndex = dgvGrade.SelectedRows[0].Index;
                 Grade gradeDTO = grade[selectedIndex];
                 gradeDTO.Name = txtTenKhoi.Text;
-                gradeDTO.maxClassOfGrade = Convert.ToInt32(txtSoLuongKhoi.Text);
-                gradeDTO.realClassOfGrade = Convert.ToInt32(txtSoLuongLop.Text);
                 DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa khối này?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {

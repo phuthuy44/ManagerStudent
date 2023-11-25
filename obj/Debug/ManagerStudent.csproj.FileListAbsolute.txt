@@ -359,3 +359,4 @@ E:\ManagerStudent\obj\Debug\ManagerStudent.exe
 E:\ManagerStudent\obj\Debug\ManagerStudent.pdb
 E:\ManagerStudent\obj\Debug\ManagerStudent.GUI.AddStudentForm.resources
 C:\Users\thede\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.AddStudentForm.resources
+C:\Users\Admin\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.AddStudentForm.resources
