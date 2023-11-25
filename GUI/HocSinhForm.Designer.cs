@@ -196,9 +196,10 @@ namespace ManagerStudent.GUI
             this.button13 = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.cbStudentIDInQuanHe = new System.Windows.Forms.ComboBox();
-            this.cbClassInQuanhe = new System.Windows.Forms.ComboBox();
             this.cbGradeInQuanHe = new System.Windows.Forms.ComboBox();
             this.txtNamHocInQuanHe = new System.Windows.Forms.ComboBox();
+            this.cbClassInQuanhe = new System.Windows.Forms.ComboBox();
+            this.cbSeInQuanHe = new System.Windows.Forms.ComboBox();
             this.studentBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.studentManagerDataSet3 = new ManagerStudent.StudentManagerDataSet3();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -207,7 +208,6 @@ namespace ManagerStudent.GUI
             this.studentTableAdapter = new ManagerStudent.StudentManagerDataSet2TableAdapters.StudentTableAdapter();
             this.studentTableAdapter1 = new ManagerStudent.StudentManagerDataSet3TableAdapters.StudentTableAdapter();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
-            this.cbSeInQuanHe = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
@@ -1045,7 +1045,7 @@ namespace ManagerStudent.GUI
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox9.TabIndex = 6;
             this.pictureBox9.TabStop = false;
-            //this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click_1);
+            this.pictureBox9.Click += new System.EventHandler(this.pictureBox9_Click);
             // 
             // pictureBox6
             // 
@@ -2197,18 +2197,6 @@ namespace ManagerStudent.GUI
             this.cbStudentIDInQuanHe.TabIndex = 3;
             this.cbStudentIDInQuanHe.SelectedIndexChanged += new System.EventHandler(this.cbStudentIDInQuanHe_SelectedIndexChanged);
             // 
-            // cbClassInQuanhe
-            // 
-            this.cbClassInQuanhe.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbClassInQuanhe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbClassInQuanhe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbClassInQuanhe.FormattingEnabled = true;
-            this.cbClassInQuanhe.Location = new System.Drawing.Point(6, 92);
-            this.cbClassInQuanhe.Name = "cbClassInQuanhe";
-            this.cbClassInQuanhe.Size = new System.Drawing.Size(173, 26);
-            this.cbClassInQuanhe.TabIndex = 2;
-            this.cbClassInQuanhe.SelectedIndexChanged += new System.EventHandler(this.cbClassInQuanhe_SelectedIndexChanged);
-            // 
             // cbGradeInQuanHe
             // 
             this.cbGradeInQuanHe.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -2232,6 +2220,29 @@ namespace ManagerStudent.GUI
             this.txtNamHocInQuanHe.Size = new System.Drawing.Size(173, 26);
             this.txtNamHocInQuanHe.TabIndex = 0;
             this.txtNamHocInQuanHe.SelectedIndexChanged += new System.EventHandler(this.comboBox12_SelectedIndexChanged);
+            // 
+            // cbClassInQuanhe
+            // 
+            this.cbClassInQuanhe.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbClassInQuanhe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbClassInQuanhe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbClassInQuanhe.FormattingEnabled = true;
+            this.cbClassInQuanhe.Location = new System.Drawing.Point(6, 92);
+            this.cbClassInQuanhe.Name = "cbClassInQuanhe";
+            this.cbClassInQuanhe.Size = new System.Drawing.Size(173, 26);
+            this.cbClassInQuanhe.TabIndex = 2;
+            this.cbClassInQuanhe.SelectedIndexChanged += new System.EventHandler(this.cbClassInQuanhe_SelectedIndexChanged);
+            // 
+            // cbSeInQuanHe
+            // 
+            this.cbSeInQuanHe.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbSeInQuanHe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSeInQuanHe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSeInQuanHe.FormattingEnabled = true;
+            this.cbSeInQuanHe.Location = new System.Drawing.Point(6, 53);
+            this.cbSeInQuanHe.Name = "cbSeInQuanHe";
+            this.cbSeInQuanHe.Size = new System.Drawing.Size(173, 26);
+            this.cbSeInQuanHe.TabIndex = 4;
             // 
             // studentBindingSource1
             // 
@@ -2268,17 +2279,6 @@ namespace ManagerStudent.GUI
             // openFileDialog2
             // 
             this.openFileDialog2.FileName = "openFileDialog2";
-            // 
-            // cbSeInQuanHe
-            // 
-            this.cbSeInQuanHe.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbSeInQuanHe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSeInQuanHe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbSeInQuanHe.FormattingEnabled = true;
-            this.cbSeInQuanHe.Location = new System.Drawing.Point(6, 53);
-            this.cbSeInQuanHe.Name = "cbSeInQuanHe";
-            this.cbSeInQuanHe.Size = new System.Drawing.Size(173, 26);
-            this.cbSeInQuanHe.TabIndex = 4;
             // 
             // HocSinhForm
             // 
