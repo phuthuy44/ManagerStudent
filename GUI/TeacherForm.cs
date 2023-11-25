@@ -22,12 +22,12 @@ namespace ManagerStudent.GUI
         public void FillTableTeacher()
         {
             TableTeacher.DataSource = teacherBLL.GetDataTeacher();
-        /*    TableTeacher.Columns[1].Width = 150;
-            TableTeacher.Columns[2].Width = 40;
-            TableTeacher.Columns[0].Width = 30;
+            /*TableTeacher.Columns[1].Width = 150;*/
+            /*TableTeacher.Columns[2].Width = 40;
+            TableTeacher.Columns[0].Width = 30;*/
             TableTeacher.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             TableTeacher.Columns["Tên Giáo viên"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            TableTeacher.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;*/
+            TableTeacher.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
         public void FillTableTechnical()
         {
