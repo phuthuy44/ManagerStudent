@@ -193,5 +193,34 @@ namespace ManagerStudent.BLL
         {
             return studentDAL.getGradeInAddStudentView();
         }
+        public DataTable searchStudent(string selected, string searchText)
+        {
+            DataTable search = new DataTable();
+            if (selected == "Tên")
+            {
+                search = studentDAL.searchStudentByNam(searchText);
+            }
+            if (selected == "Mã")
+            {
+                if (int.TryParse(searchText, out int id)) 
+                { 
+
+                    search = studentDAL.searchStudentByID(id);
+                }
+            }
+            if(selected == "Giới tính")
+            {
+                search = studentDAL.searchStudentByGender(searchText);
+            }
+            if(selected == "Số điện thoại")
+            {
+                search = studentDAL.searchStudentBySDT(searchText);
+            }
+            if(selected == "Email")
+            {
+                search = studentDAL.searchStudentByEmail(searchText);
+            }
+            return search;
+        }
     }
 }

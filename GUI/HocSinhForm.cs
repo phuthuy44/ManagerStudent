@@ -6,6 +6,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 using Google.Apis.Util;
 using ManagerStudent.BLL;
 using ManagerStudent.DTO;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -24,7 +25,8 @@ namespace ManagerStudent.GUI
         private ParentBLL parentBLL;
         private Parent parent;
         private Student student;
-        private BindingSource bindingSourceClassNew, bindingSourceClassOld;
+        //private BindingSource bindingSourceClassNew, bindingSourceClassOld;
+        private DataTable originalDataTable; // Biến lưu trữ bản sao của dữ liệu ban đầu
         public HocSinhForm()
         {
             InitializeComponent();
@@ -61,23 +63,27 @@ namespace ManagerStudent.GUI
             {
                 //MessageBox.Show("Trường Họ tên không thể bỏ trống");
                 MessageBox.Show("Trường Họ tên không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             else if (string.IsNullOrEmpty(gioiTinh))
             {
                 //MessageBox.Show("Trường Giới tính không thể bỏ trống");
                 MessageBox.Show("Trường Giới tính không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             else if (age < 15 || age > 20)
-             {
+            {
                 MessageBox.Show("Tuổi phải nằm trong khoảng từ 16 đến 20", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             else if (!string.IsNullOrEmpty(soDienThoai) && soDienThoai.Length != 10)
             {
                 MessageBox.Show("Số điện thoại phải chứa đúng 10 số", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             else
             {
-                student = new Student(hoTen,gioiTinh,diaChi,ngaySinh,email,soDienThoai,image);
+                student = new Student(hoTen, gioiTinh, diaChi, ngaySinh, email, soDienThoai, image);
                 bool result = studentBLL.insertStudent(student);
                 if (result)
                 {
@@ -112,13 +118,14 @@ namespace ManagerStudent.GUI
         private void HocSinhForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'studentManagerDataSet3.Student' table. You can move, or remove it, as needed.
-           // studentTableAdapter1.Fill(this.studentManagerDataSet3.Student);
+            // studentTableAdapter1.Fill(this.studentManagerDataSet3.Student);
             // TODO: This line of code loads data into the 'studentManagerDataSet2.Student' table. You can move, or remove it, as needed.
             //this.studentTableAdapter.Fill(this.studentManagerDataSet2.Student);
             // TODO: This line of code loads data into the 'managerStudentDataSet1._Student_' table. You can move, or remove it, as needed.
             // TODO: This line of code loads data into the 'studentManagerDataSet.Student' table. You can move, or remove it, as needed.
             //this.studentTableAdapter.Fill(this.studentManagerDataSet.Student);
             GetListStudent();
+            cbSearch.SelectedIndex = 0;
             /*PhanLop*/
             /*List<AcademicYear> academicYears = studentBLL.GetAcademicYears();
             foreach(AcademicYear a in academicYears)
@@ -143,21 +150,21 @@ namespace ManagerStudent.GUI
                 txtYearOld.Items.Add(AcademicName);
                 txtYearNew.Items.Add(AcademicName);
                 txtNamHocInQuanHe.Items.Add(AcademicName);
-                txtYearOld.SelectedIndex = 0  ;
-                txtYearNew.SelectedIndex=0;
-                txtNamHocInQuanHe.SelectedIndex=0;
+                txtYearOld.SelectedIndex = 0;
+                txtYearNew.SelectedIndex = 0;
+                txtNamHocInQuanHe.SelectedIndex = 0;
             }
 
             List<Semester> semester = studentBLL.getSemester();
-            foreach(Semester s in semester)
+            foreach (Semester s in semester)
             {
                 string semesterName = s.Name;
                 txtSemesterOld.Items.Add(semesterName);
                 txtSemesterNew.Items.Add(semesterName);
                 cbSeInQuanHe.Items.Add(semesterName);
-                cbSeInQuanHe.SelectedIndex = 0 ;
-                txtSemesterOld.SelectedIndex=0;
-                txtSemesterNew.SelectedIndex=0;
+                cbSeInQuanHe.SelectedIndex = 0;
+                txtSemesterOld.SelectedIndex = 0;
+                txtSemesterNew.SelectedIndex = 0;
             }
             txtGioiTinhCha.Text = "Nam";
             txtGioiTinhMe.Text = "Nữ";
@@ -169,6 +176,7 @@ namespace ManagerStudent.GUI
         //Xu ly fill dataTable lên dataGridView
         public void GetListStudent()
         {
+            originalDataTable = studentBLL.GetListStudent().Copy();
             dataTableStudent.DataSource = studentBLL.GetListStudent();
         }
 
@@ -190,23 +198,23 @@ namespace ManagerStudent.GUI
             {
                 string grade = studentBLL.getNameGrade(a.gradeID);
                 txtKhoiNew.Items.Add(grade);
-                txtKhoiNew.SelectedIndex= 0;
+                txtKhoiNew.SelectedIndex = 0;
             }
-            
-        
-    }
+
+
+        }
 
         private void button6_Click(object sender, EventArgs e)
         {
 
         }
 
-      /*  private void HocSinhForm_Load_1(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'studentManagerDataSet1.Student' table. You can move, or remove it, as needed.
-           // this.studentTableAdapter.Fill(this.studentManagerDataSet1.Student);
-           // GetListStudent();
-        }*/
+        /*  private void HocSinhForm_Load_1(object sender, EventArgs e)
+          {
+              // TODO: This line of code loads data into the 'studentManagerDataSet1.Student' table. You can move, or remove it, as needed.
+             // this.studentTableAdapter.Fill(this.studentManagerDataSet1.Student);
+             // GetListStudent();
+          }*/
 
         private void cboxGioiTinh_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -249,7 +257,7 @@ namespace ManagerStudent.GUI
                     picStudent.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -262,7 +270,7 @@ namespace ManagerStudent.GUI
 
         private void dataTableStudent_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0)
+            if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataTableStudent.Rows[e.RowIndex];
                 pictureBox1_Click(sender, e);
@@ -278,7 +286,7 @@ namespace ManagerStudent.GUI
                     string tenStudent = row.Cells[1].Value.ToString();
                     txtHoTen.Text = tenStudent;
                 }
-                if (row.Cells[2].Value!= null)
+                if (row.Cells[2].Value != null)
                 {
                     // string ngaySinh = row.Cells[2].Value.ToString();
                     //txtDate.Text = ngaySinh;
@@ -289,7 +297,7 @@ namespace ManagerStudent.GUI
                 if (row.Cells[3].Value != null)
                 {
                     string ngaySinh = row.Cells[3].Value.ToString();
-                    txtDate.Text=ngaySinh;
+                    txtDate.Text = ngaySinh;
                 }
                 if (row.Cells[4].Value != null)
                 {
@@ -337,19 +345,19 @@ namespace ManagerStudent.GUI
                         MessageBox.Show("Lỗi!Không tìm thấy ảnh.");
                     }
                 }
-               /* else
-                {
-                    picStudent.Image = null;
-                }*/
+                /* else
+                 {
+                     picStudent.Image = null;
+                 }*/
             }
         }
         //DeleteStudent
         private void button3_Click(object sender, EventArgs e)
         {
-            if(dataTableStudent != null && dataTableStudent.SelectedRows.Count > 0)
+            if (dataTableStudent != null && dataTableStudent.SelectedRows.Count > 0)
             {
                 string idStudent = dataTableStudent.SelectedRows[0].Cells[0].Value.ToString();
-                DialogResult confirm = MessageBox.Show("Bạn muốn xóa học sinh này ?","Xác nhận xóa",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                DialogResult confirm = MessageBox.Show("Bạn muốn xóa học sinh này ?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (confirm == DialogResult.Yes)
                 {
                     bool isLoiKhoaNgoai;
@@ -413,12 +421,15 @@ namespace ManagerStudent.GUI
                 if (!string.IsNullOrEmpty(soDienThoai) && soDienThoai.Length != 10)
                 {
                     MessageBox.Show("Số điện thoại phải chứa đúng 10 số", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-                if(age < 15 || age >20)
+                if (age < 15 || age > 20)
                 {
                     MessageBox.Show("Tuổi phải nằm trong khoảng từ 16 đến 20", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-                else {
+                else
+                {
                     string image = System.IO.Path.GetFileName(txtImg);
                     student = new Student(id, hoTen, gioiTinh, diaChi, ngaySinh, email, soDienThoai, image);
                     bool result = studentBLL.updateStudent(student);
@@ -517,7 +528,7 @@ namespace ManagerStudent.GUI
             {
                 string className = studentBLL.getClassName(c.classID);
                 txtClassOld.Items.Add(className);
-                txtClassOld.SelectedIndex=0;
+                txtClassOld.SelectedIndex = 0;
             }
         }
 
@@ -553,7 +564,7 @@ namespace ManagerStudent.GUI
         {
             updateTableWhenSelectedClass_Old();
         }
-        
+
         public void updateTableWhenSelectedClass_Old()
         {
             string selectedYear = txtYearOld.SelectedItem.ToString();
@@ -585,11 +596,11 @@ namespace ManagerStudent.GUI
         private void txtClassNew_SelectedIndexChanged(object sender, EventArgs e)
         {
             updateTableWhenSelectedClass_New();
-            
+
         }
-        public int getQuantity(int idYear, int idGrade,int idClass, int idSe)
+        public int getQuantity(int idYear, int idGrade, int idClass, int idSe)
         {
-            int getQuantityStudent = studentBLL.getQuantity(idYear,idGrade,idClass, idSe);
+            int getQuantityStudent = studentBLL.getQuantity(idYear, idGrade, idClass, idSe);
             return getQuantityStudent;
         }
         public void updateTableWhenSelectedClass_New()
@@ -607,7 +618,7 @@ namespace ManagerStudent.GUI
             lblNew.Text = getQuantity(yearID, gradeID, classID, semesID).ToString();
 
             Console.WriteLine(classID);
-            DataTable dataTable = studentBLL.getListStudentInClass(yearID, gradeID,classID, semesID);
+            DataTable dataTable = studentBLL.getListStudentInClass(yearID, gradeID, classID, semesID);
             // DataView dataView = new DataView(dataTable);
             dataTableClassNew.Columns.Clear();
             dataTableClassNew.Columns.Add("ID", "Mã học sinh");
@@ -637,7 +648,7 @@ namespace ManagerStudent.GUI
             {
                 string grade = studentBLL.getNameGrade(a.gradeID);
                 cbGradeInQuanHe.Items.Add(grade);
-                cbGradeInQuanHe.SelectedIndex=0;
+                cbGradeInQuanHe.SelectedIndex = 0;
             }
         }
 
@@ -647,12 +658,12 @@ namespace ManagerStudent.GUI
             int gradeID = studentBLL.getGradeID(selected);
             List<StudentClassSemesterAcademicYear> cls = studentBLL.getClass(gradeID);
             cbClassInQuanhe.Items.Clear();
-           // List<StudentClassSemesterAcademicYear> distinClass = cls.GroupBy(a => a.classID).Select(g => g.First()).ToList();
-            foreach(StudentClassSemesterAcademicYear a in cls)
+            // List<StudentClassSemesterAcademicYear> distinClass = cls.GroupBy(a => a.classID).Select(g => g.First()).ToList();
+            foreach (StudentClassSemesterAcademicYear a in cls)
             {
                 string classes = studentBLL.getClassName(a.classID);
                 cbClassInQuanhe.Items.Add(classes);
-                cbClassInQuanhe.SelectedIndex=0;
+                cbClassInQuanhe.SelectedIndex = 0;
             }
         }
 
@@ -664,21 +675,22 @@ namespace ManagerStudent.GUI
             string selected = cbClassInQuanhe.SelectedItem.ToString();
             int classID = studentBLL.getClassID(selected);
             Console.WriteLine(classID);
-            List<StudentClassSemesterAcademicYear> stu = studentBLL.getStudentIdFromPhanLop(idNH,idGrade,idSe,classID);
+            List<StudentClassSemesterAcademicYear> stu = studentBLL.getStudentIdFromPhanLop(idNH, idGrade, idSe, classID);
             cbStudentIDInQuanHe.Items.Clear();
             /*List<StudentClassSemesterAcademicYear> distinStudent = stu
                 .GroupBy(a => a.studentID)
                 .Select(g => g.First())
                 .ToList();*/
-            foreach(StudentClassSemesterAcademicYear s in stu)
+            foreach (StudentClassSemesterAcademicYear s in stu)
             {
                 cbStudentIDInQuanHe.Items.Add(s.studentID);
                 //Console.WriteLine(s.studentID);
-                cbStudentIDInQuanHe.SelectedIndex=0;
+                cbStudentIDInQuanHe.SelectedIndex = 0;
             }
-            
-            
-;        }
+
+
+;
+        }
 
         private void cbStudentIDInQuanHe_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -719,21 +731,21 @@ namespace ManagerStudent.GUI
                         MessageBox.Show("Lỗi!Không thể tải ảnh: " + ex.Message);
                     }
                 }
-               
-                
+
+
             }
             getDataCha(selected);
             getDataMe(selected);
-            
+
         }
         public void getDataCha(int id)
         {
             List<Parent> parents = parentBLL.getDataCha(id);
 
-            if(parents.Count > 0)
+            if (parents.Count > 0)
             {
                 string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-                Parent p = parents[0]; 
+                Parent p = parents[0];
                 txtHoTenCha.Text = p.Name;
                 dateTimeCha.Text = p.Birthday.ToString();
                 txtGioiTinhCha.Text = p.Gender;
@@ -741,7 +753,7 @@ namespace ManagerStudent.GUI
                 txtSDTCha.Text = p.Phone;
                 txtImageCha.Text = p.Image;
                 Console.WriteLine(txtImageCha.Text);
-                string fullImagePath = appDirectory + "\\Image\\HocSinh-Cha\\"+txtImageCha.Text;
+                string fullImagePath = appDirectory + "\\Image\\HocSinh-Cha\\" + txtImageCha.Text;
                 //string fullImagePath =folderPath+fileName;
                 Console.WriteLine(fullImagePath);
                 if (File.Exists(fullImagePath))
@@ -765,7 +777,7 @@ namespace ManagerStudent.GUI
         public void getDataMe(int id)
         {
             List<Parent> parents = parentBLL.getDataMe(id);
-            if(parents.Count > 0)
+            if (parents.Count > 0)
             {
                 string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
                 Parent p = parents[0];
@@ -865,10 +877,12 @@ namespace ManagerStudent.GUI
             if (!string.IsNullOrEmpty(soDT) && soDT.Length != 10)
             {
                 MessageBox.Show("Lỗi! Số điện thoại phải là 10 chữ số!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            if(age < 20)
+            if (age < 20)
             {
                 MessageBox.Show("Tuổi phải từ 20 tuổi trở lên", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
 
             }
             else
@@ -889,7 +903,7 @@ namespace ManagerStudent.GUI
 
         private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
         {
-            
+
         }
         //UploadImage-Me
         private void button13_Click(object sender, EventArgs e)
@@ -941,10 +955,12 @@ namespace ManagerStudent.GUI
             if (!string.IsNullOrEmpty(soDT) && soDT.Length != 10)
             {
                 MessageBox.Show("Lỗi! Số điện thoại phải là 10 chữ số!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             if (age < 20)
             {
                 MessageBox.Show("Tuổi phải từ 20 tuổi trở lên", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             else
             {
@@ -971,6 +987,39 @@ namespace ManagerStudent.GUI
         {
             AddStudentForm form = new AddStudentForm(this);
             form.Show();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = cbSearch.SelectedItem.ToString();
+            string searchText = txtSearch.Text;
+
+            if (string.IsNullOrEmpty(searchText))
+            {
+                dataTableStudent.DataSource = originalDataTable; // Hiển thị dữ liệu ban đầu khi TextBox tìm kiếm rỗng
+            }
+            else
+            {
+                DataTable search = studentBLL.searchStudent(selected, searchText);
+                dataTableStudent.DataSource = search;
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            comboBox1_SelectedIndexChanged(sender, e);
+            /* string selected = cbSearch.SelectedItem.ToString();
+             string searchText = txtSearch.Text;
+
+             if (string.IsNullOrEmpty(searchText))
+             {
+                 dataTableStudent.DataSource = originalDataTable; // Hiển thị dữ liệu ban đầu khi TextBox tìm kiếm rỗng
+             }
+             else
+             {
+                 DataTable search = studentBLL.searchStudent(selected, searchText);
+                 dataTableStudent.DataSource = search;
+             }*/
         }
 
         private void pictureBox6_Click(object sender, EventArgs e)
@@ -1071,6 +1120,88 @@ namespace ManagerStudent.GUI
 
                 lblNew.Text = getQuantity(idClass, idSes).ToString();
                 lblOld.Text = getQuantity(idClass_old, idSes_old).ToString();*/
+            }
+        }
+
+        private void exportExcel_Click(object sender, EventArgs e)
+        {
+            string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string folderPath = System.IO.Path.Combine(appDirectory, "excel", "DanhSachHocSinh");
+
+            // Kiểm tra xem thư mục tồn tại chưa, nếu chưa thì tạo mới
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            // Tạo đường dẫn cho file Excel mặc định
+            string defaultExcelFilePath = System.IO.Path.Combine(folderPath, "");
+
+            // Hiển thị hộp thoại SaveFileDialog để cho phép người dùng chọn đường dẫn và đặt tên cho file
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+            saveFileDialog.FileName = "";
+            saveFileDialog.InitialDirectory = folderPath;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Gọi hàm xuất Excel với đường dẫn đã chọn
+                ExportToExcel(dataTableStudent, saveFileDialog.FileName);
+                MessageBox.Show("Dữ liệu đã được xuất thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                // Nếu người dùng không chọn đường dẫn, sử dụng đường dẫn mặc định
+                ExportToExcel(dataTableStudent, defaultExcelFilePath);
+            }
+        }
+        private void ExportToExcel(DataGridView dataGridView, string filePath)
+        {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial; // Set the license context
+
+            using (ExcelPackage excelPackage = new ExcelPackage())
+            {
+                ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Sheet1");
+
+                // Write headers to Excel
+                for (int i = 1; i <= dataGridView.Columns.Count; i++)
+                {
+                    worksheet.Cells[1, i].Value = dataGridView.Columns[i - 1].HeaderText;
+                }
+
+                // Write data from DataGridView to Excel
+                for (int i = 1; i <= dataGridView.Columns.Count; i++)
+                {
+                    // Check if the column contains DateTime values
+                    if (dataGridView.Columns[i - 1].ValueType == typeof(DateTime))
+                    {
+                        for (int j = 1; j <= dataGridView.Rows.Count; j++)
+                        {
+                            if (dataGridView.Rows[j - 1].Cells[i - 1].Value is DateTime dateTimeValue)
+                            {
+                                string formattedDateTime = dateTimeValue.ToString("MM/dd/yyyy hh:mm:ss tt");
+                                worksheet.Cells[j + 1, i].Value = formattedDateTime;
+                            }
+                            else
+                            {
+                                // Handle the case where the value cannot be cast to DateTime
+                                // For example, you can set a default value or log an error
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int j = 1; j <= dataGridView.Rows.Count; j++)
+                        {
+                            worksheet.Cells[j + 1, i].Value = dataGridView.Rows[j - 1].Cells[i - 1].Value;
+                        }
+                    }
+                }
+
+                // Save the Excel file to the specified path
+                FileInfo excelFile = new FileInfo(filePath);
+
+                excelPackage.SaveAs(excelFile);
             }
         }
     }

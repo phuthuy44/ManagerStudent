@@ -708,6 +708,101 @@ namespace ManagerStudent.DAL
             finally { conn.Close(); }
             return s;
         }
-
+        /*timkiem*/
+        public DataTable searchStudentByNam(string name)
+        {
+            DataTable s = new DataTable();
+            string sql = "SELECT * FROM Student WHERE Name LIKE N'%' + @name + '%'";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@name", name);
+                SqlDataAdapter data = new SqlDataAdapter(cmd);
+                data.Fill(s);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally { conn.Close(); }
+            return s;
+        }
+        public DataTable searchStudentByID(int id)
+        {
+            DataTable s = new DataTable();
+            string sql = "SELECT * FROM Student WHERE ID = @id";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", id);
+                SqlDataAdapter data = new SqlDataAdapter(cmd);
+                data.Fill(s);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally { conn.Close(); }
+            return s;
+        }
+        public DataTable searchStudentByGender(string gender)
+        {
+            DataTable s = new DataTable();
+            string sql = "SELECT * FROM Student WHERE gender = @gender";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@gender",gender);
+                SqlDataAdapter data = new SqlDataAdapter(cmd);
+                data.Fill(s);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally { conn.Close(); }
+            return s;
+        }
+        public DataTable searchStudentBySDT(string soDienThoai)
+        {
+            DataTable s = new DataTable();
+            string sql = "SELECT * FROM Student WHERE numberPhone LIKE N'%' + @SDT + '%'";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@SDT", soDienThoai);
+                SqlDataAdapter data = new SqlDataAdapter(cmd);
+                data.Fill(s);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally { conn.Close(); }
+            return s;
+        }
+        public DataTable searchStudentByEmail(string email)
+        {
+            DataTable s = new DataTable();
+            string sql = "SELECT * FROM Student WHERE email LIKE N'%' + @email + '%'";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@email", email);
+                SqlDataAdapter data = new SqlDataAdapter(cmd);
+                data.Fill(s);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally { conn.Close(); }
+            return s;
+        }
     }
 }

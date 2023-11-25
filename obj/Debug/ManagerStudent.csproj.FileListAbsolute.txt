@@ -364,3 +364,7 @@ D:\Phuong Vy\ManagerStudent\obj\Debug\ManagerStudent.GUI.AddStudentForm.resource
 D:\Phuong Vy\ManagerStudent\bin\Debug\System.CodeDom.dll
 D:\Phuong Vy\ManagerStudent\bin\Debug\System.ComponentModel.Annotations.dll
 D:\Phuong Vy\ManagerStudent\bin\Debug\System.CodeDom.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\RecyclableMemoryStream.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.Framework.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.Framework.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml

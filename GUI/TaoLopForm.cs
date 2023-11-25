@@ -120,8 +120,8 @@ namespace ManagerStudent.GUI
             }
             /*txtMax.Text = "0";
             txtSiSo.Text = "0";
-            txtConLai.Text = "0";
-            txtRandom.Text = "0";*/
+            txtConLai.Text = "0";*/
+            txtRandom.Text = "0";
             txtClass_SelectedIndexChanged(sender, new EventArgs());
         }
 
