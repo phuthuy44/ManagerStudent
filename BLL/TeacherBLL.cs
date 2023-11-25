@@ -20,9 +20,28 @@ namespace ManagerStudent.BLL
         {
             return teacherDAL.GetListTeacher();
         }
-        public DataTable GetSubjectTeacher()
+        public DataTable GetAssignmentTeacher()
         {
-            return teacherDAL.GetSubjectTeacher(); 
+            return teacherDAL.GetAssignmentTeacher(); 
+        }
+        public DataTable GetAcademicYear()
+        {
+            return teacherDAL.GetAcademicYear();
+        }
+        public DataTable GetSemester() {
+            return teacherDAL.GetSemester();
+        }
+        public DataTable GetClass()
+        {
+            return teacherDAL.GetClass();
+        }
+        public DataTable GetPosition()
+        {
+            return teacherDAL.GetPosition();
+        }
+        public DataTable GetSubjectTeacher(int id)
+        {
+            return teacherDAL.GetSubjectTeacher(id);
         }
         public bool InsertTeacher(Teacher teacher)
         {
@@ -45,12 +64,8 @@ namespace ManagerStudent.BLL
         }
         public bool InsertSubTecher(int id1, int id2)
         {
-            bool rs = teacherDAL.InsertSubOfTecher(id1, id2);
-            if(rs)
-            {
-                return true;
-            }
-            else { return false; }
+            return teacherDAL.InsertSubOfTecher(id1, id2);
+            
         }
         public bool UpdateTeacher(Teacher teacher)
         {
