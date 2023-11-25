@@ -27,8 +27,6 @@ namespace ManagerStudent.DAL
                     Grade grade = new Grade();
                     grade.ID = Convert.ToInt32(dt.Rows[i]["ID"]);
                     grade.Name = dt.Rows[i]["gradeName"].ToString();
-                    grade.maxClassOfGrade = Convert.ToInt32(dt.Rows[i]["maxclassofGrade"]);
-                    grade.realClassOfGrade = Convert.ToInt32(dt.Rows[i]["quantityclassofGrade"]);
                     dsgrade.Add(grade);
                 }
             }
@@ -46,9 +44,7 @@ namespace ManagerStudent.DAL
                 ConnectToDatabase();
                 int ma = grade.ID;
                 string name = grade.Name;
-                int maxClassOfGrade = grade.maxClassOfGrade;
-                int realClassOfGrade = grade.realClassOfGrade;
-                string sql = "insert into Grade(gradeName,maxclassofGrade,quantityclassofGrade) values('" + name + "','" + maxClassOfGrade + "','" + realClassOfGrade + "')";
+                string sql = "insert into Grade(gradeName) values('" + name + "')";
                 dt = init.Runquery(sql);
                 init.Update(dt);
             }
@@ -96,9 +92,8 @@ namespace ManagerStudent.DAL
                 ConnectToDatabase();
                 int ma = grade.ID;
                 string name = grade.Name;
-                int maxClassOfGrade = grade.maxClassOfGrade;
-                int realClassOfGrade = grade.realClassOfGrade;
-                string sql = "UPDATE Grade SET gradeName = '" + name + "', maxclassofGrade = '" + maxClassOfGrade + "', quantityclassofGrade = '" + realClassOfGrade + "' WHERE ID = " + ma;
+
+                string sql = "UPDATE Grade SET gradeName = '" + name + "' WHERE ID = " + ma;
                 dt = init.Runquery(sql);
                 init.Update(dt);
             }

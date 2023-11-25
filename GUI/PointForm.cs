@@ -544,6 +544,7 @@ namespace ManagerStudent.GUI
             {
                 pointBLL = new PointBLL();
                 dataGridView3.DataSource = pointBLL.StudentPoint(int.Parse(comboBox12.Text), comboBox9.Text, comboBox11.Text, comboBox10.Text);
+                dataGridView4.DataSource = pointBLL.StudentSummary(int.Parse(comboBox12.Text), comboBox9.Text, comboBox11.Text, comboBox10.Text);
             }
             
         }
@@ -554,6 +555,11 @@ namespace ManagerStudent.GUI
         }
 
         private void comboBox9_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

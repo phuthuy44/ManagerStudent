@@ -118,10 +118,11 @@ namespace ManagerStudent.GUI
                 txtSemester.Items.Add(semesterName);
                 txtSemester.SelectedIndex = 0;
             }
-            txtMax.Text = "0";
+            /*txtMax.Text = "0";
             txtSiSo.Text = "0";
             txtConLai.Text = "0";
-            txtRandom.Text = "0";
+            txtRandom.Text = "0";*/
+            txtClass_SelectedIndexChanged(sender, new EventArgs());
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

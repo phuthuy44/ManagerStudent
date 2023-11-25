@@ -86,7 +86,7 @@ CREATE PROCEDURE FindConduct
     @STR NVARCHAR(100)
 AS
 BEGIN
-SELECT ID, conductName, lowerLimit, upperLimit
+SELECT ID, conductName, upperLimit, lowerLimit
     FROM Conduct
     WHERE conductName LIKE '%' + @STR + '%'
 END

@@ -880,6 +880,13 @@ namespace ManagerStudent.GUI
                 return;
             }
 
+            Regex regex = new Regex(@"^(H|h)ọc kỳ [1-3]$");
+            if (!regex.IsMatch(semesterName))
+            {
+                MessageBox.Show("Tên học kỳ không đúng định dạng. Vui lòng nhập lại theo định dạng 'Học kỳ x' (với x là số từ 1 đến 3).");
+                return;
+            }
+
             if (!int.TryParse(textBox8.Text, out coefficient))
             {
                 MessageBox.Show("Vui lòng nhập số nguyên cho hệ số học kỳ.");
@@ -921,6 +928,13 @@ namespace ManagerStudent.GUI
             if (string.IsNullOrEmpty(semesterName))
             {
                 MessageBox.Show("Vui lòng nhập tên học kỳ.");
+                return;
+            }
+
+            Regex regex = new Regex(@"^(H|h)ọc kỳ [1-3]$");
+            if (!regex.IsMatch(semesterName))
+            {
+                MessageBox.Show("Tên học kỳ không đúng định dạng. Vui lòng nhập lại theo định dạng 'Học kỳ x' (với x là số từ 1 đến 3).");
                 return;
             }
 

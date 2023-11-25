@@ -10,14 +10,10 @@ namespace ManagerStudent.DTO
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public int maxClassOfGrade { get; set; }
-        public int realClassOfGrade { get; set; }
-        public Grade(int iD, string name, int maxClassOfGrade, int realClassOfGrade)
+        public Grade(int iD, string name)
         {
             ID = iD;
             Name = name;
-            this.maxClassOfGrade = maxClassOfGrade;
-            this.realClassOfGrade = realClassOfGrade;
         }
 
         public Grade() { }

@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Bibliography;
-using DocumentFormat.OpenXml.Drawing;
+﻿using DocumentFormat.OpenXml.Drawing;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.VariantTypes;
@@ -25,7 +24,7 @@ namespace ManagerStudent.GUI
         private ParentBLL parentBLL;
         private Parent parent;
         private Student student;
-        //private BindingSource bindingSourceClassNew, bindingSourceClassOld;
+        private BindingSource bindingSourceClassNew, bindingSourceClassOld;
         public HocSinhForm()
         {
             InitializeComponent();
@@ -155,6 +154,8 @@ namespace ManagerStudent.GUI
                 string semesterName = s.Name;
                 txtSemesterOld.Items.Add(semesterName);
                 txtSemesterNew.Items.Add(semesterName);
+                cbSeInQuanHe.Items.Add(semesterName);
+                cbSeInQuanHe.SelectedIndex = 0 ;
                 txtSemesterOld.SelectedIndex=0;
                 txtSemesterNew.SelectedIndex=0;
             }
@@ -162,6 +163,7 @@ namespace ManagerStudent.GUI
             txtGioiTinhMe.Text = "Nữ";
             updateTableWhenSelectedClass_Old();
             updateTableWhenSelectedClass_New();
+            cbClassInQuanhe_SelectedIndexChanged(sender, new EventArgs());
 
         }
         //Xu ly fill dataTable lên dataGridView
@@ -453,7 +455,7 @@ namespace ManagerStudent.GUI
 
         private void pictureBox10_Click(object sender, EventArgs e)
         {
-            TaoLopForm taoLopForm = new TaoLopForm(this);
+            TaoLopForm taoLopForm = new TaoLopForm();
             taoLopForm.Show();
         }
 
@@ -554,17 +556,13 @@ namespace ManagerStudent.GUI
         
         public void updateTableWhenSelectedClass_Old()
         {
-            string selectedYear = txtYearOld.SelectedItem.ToString();
-            string gradeSelected = txtKhoiOld.SelectedItem.ToString();
             string selected = txtClassOld.SelectedItem.ToString();
             string selectedSe = txtSemesterOld.Text;
-            int yearID = studentBLL.getIdAca(selectedYear);
-            int gradeID = studentBLL.getGradeID(gradeSelected);
             int classID = studentBLL.getClassID(selected);
             int semesID = studentBLL.getIDSemester(selectedSe);        
-            lblOld.Text = getQuantity(yearID,gradeID,classID,semesID).ToString();
+            //lblOld.Text = getQuantity(classID,semesID).ToString();
             Console.WriteLine(classID);
-            DataTable dataTable = studentBLL.getListStudentInClass(yearID,gradeID,classID, semesID);
+            DataTable dataTable = studentBLL.getListStudentInClass(classID, semesID);
             // DataView dataView = new DataView(dataTable);
             dataTableClassOld.Columns.Clear();
             dataTableClassOld.Columns.Add("ID", "Mã học sinh");
@@ -584,26 +582,22 @@ namespace ManagerStudent.GUI
             updateTableWhenSelectedClass_New();
             
         }
-        public int getQuantity(int acID,int gradeID,int idClass, int idSe)
+        public int getQuantity(int idClass, int idSe)
         {
-            int getQuantityStudent = studentBLL.getQuantity(acID, gradeID, idClass, idSe);
+            int getQuantityStudent = studentBLL.getQuantity(idClass, idSe);
             return getQuantityStudent;
         }
         public void updateTableWhenSelectedClass_New()
         {
-            string selectedYear = txtYearNew.SelectedItem.ToString();
-            string gradeSelected = txtKhoiNew.SelectedItem.ToString();
             string selected = txtClassNew.SelectedItem.ToString();
             string selectedSe = txtSemesterNew.Text;
-            int yearID = studentBLL.getIdAca(selectedYear);
-            int gradeID = studentBLL.getGradeID(gradeSelected);
             int classID = studentBLL.getClassID(selected);
             int semesID = studentBLL.getIDSemester(selectedSe);
 
-            lblNew.Text = getQuantity(yearID, gradeID, classID, semesID).ToString();
+            //lblNew.Text = getQuantity(classID, semesID).ToString();
 
             Console.WriteLine(classID);
-            DataTable dataTable = studentBLL.getListStudentInClass(yearID, gradeID,classID, semesID);
+            DataTable dataTable = studentBLL.getListStudentInClass(classID, semesID);
             // DataView dataView = new DataView(dataTable);
             dataTableClassNew.Columns.Clear();
             dataTableClassNew.Columns.Add("ID", "Mã học sinh");
@@ -615,7 +609,7 @@ namespace ManagerStudent.GUI
             dataTableClassNew.Columns["Name"].DataPropertyName = "name";
             dataTableClassNew.Columns["Gender"].DataPropertyName = "gender";
             dataTableClassNew.DataSource = dataTable;
-            dataTableClassNew.DataBindings.Clear();
+            // dataTableClassNew.DataBindings.Clear();*/
         }
         private void comboBox12_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -654,10 +648,13 @@ namespace ManagerStudent.GUI
 
         private void cbClassInQuanhe_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int idNH = studentBLL.getIdAca(txtNamHocInQuanHe.SelectedItem.ToString());
+            int idGrade = studentBLL.getGradeID(cbGradeInQuanHe.SelectedItem.ToString());
+            int idSe = studentBLL.getIDSemester(cbSeInQuanHe.Text);
             string selected = cbClassInQuanhe.SelectedItem.ToString();
             int classID = studentBLL.getClassID(selected);
             Console.WriteLine(classID);
-            List<StudentClassSemesterAcademicYear> stu = studentBLL.getStudentIdFromPhanLop(classID);
+            List<StudentClassSemesterAcademicYear> stu = studentBLL.getStudentIdFromPhanLop(idNH,idGrade,idSe,classID);
             cbStudentIDInQuanHe.Items.Clear();
             /*List<StudentClassSemesterAcademicYear> distinStudent = stu
                 .GroupBy(a => a.studentID)
@@ -959,12 +956,6 @@ namespace ManagerStudent.GUI
         {
 
         }
-        //open AddStudentForm
-        private void pictureBox9_Click(object sender, EventArgs e)
-        {
-            AddStudentForm addStudent  = new AddStudentForm(this);
-            addStudent.Show();
-        }
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
@@ -972,10 +963,10 @@ namespace ManagerStudent.GUI
             int idNH = studentBLL.getIdAca(txtYearNew.SelectedItem.ToString());
             int idKhoi = studentBLL.getGradeID(txtKhoiNew.SelectedItem.ToString());
             int idClass = studentBLL.getClassID(txtClassNew.SelectedItem.ToString());
-            int idNH_old = studentBLL.getIdAca(txtYearOld.SelectedItem.ToString());
+            /*int idNH_old = studentBLL.getIdAca(txtYearOld.SelectedItem.ToString());
             int idKhoi_Old = studentBLL.getGradeID(txtKhoiOld.SelectedIndex.ToString());
             int idClass_old = studentBLL.getClassID(txtClassOld.SelectedItem.ToString());
-            int idSes_old = studentBLL.getIDSemester(txtSemesterOld.Text);
+            int idSes_old = studentBLL.getIDSemester(txtSemesterOld.Text);*/
             int idSes = studentBLL.getIDSemester(txtSemesterNew.Text);
             List<int> selectedStudentIDs = new List<int>();//tao mot danh sach cac id cua hoc sinh duoc chon de chuyen lop
 
@@ -990,55 +981,42 @@ namespace ManagerStudent.GUI
             }
             string selectedCurrentClass = txtClassOld.SelectedItem.ToString();
             string selectedSemester = txtSemesterOld.SelectedItem.ToString();
-            string selectedtNH = txtYearOld.SelectedItem.ToString();
-            string selectedGrade = txtKhoiOld.SelectedItem.ToString();
-            string selectedNHNew = txtYearNew.SelectedItem.ToString();
-            string selectedGradeNew = txtKhoiNew.SelectedItem.ToString();
             string selectedSemesterNew = txtSemesterNew.SelectedItem.ToString();
             string selectedNewClass = txtClassNew.SelectedItem.ToString();
             int quantity = int.Parse(lblNew.Text);
+            int quantityold = int.Parse(lblOld.Text);
 
-            if (selectedCurrentClass == selectedNewClass && selectedSemester == selectedSemesterNew && selectedtNH == selectedNHNew && selectedGrade == selectedGradeNew)
+            if (selectedCurrentClass == selectedNewClass && selectedSemester == selectedSemesterNew )
             {
                 MessageBox.Show("Vui lòng chọn một lớp khác với lớp hiện tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (quantity < 1)
+            if (quantity == 0)
             {
                 MessageBox.Show("Lớp đã đầy !", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
 
             }
-            else
+            //Lap qua cac hang da chon trong dataTableClassOld
+            foreach (DataGridViewRow item in dataTableClassOld.SelectedRows)
             {
-                //Lap qua cac hang da chon trong dataTableClassOld
-                foreach (DataGridViewRow item in dataTableClassOld.SelectedRows)
-                {
-                    // Kiểm tra nếu quantity đã đạt đến hoặc nhỏ hơn 0, không thêm học sinh nữa
-                    if (quantity < 1)
-                    {
-                        MessageBox.Show("Lớp đã đầy !", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                    else
-                    {
-                        int studentID = Convert.ToInt32(item.Cells["ID"].Value);//Lay ID cua hoc sinh tu cot "ID" cua hang do va them vao danh sach 
-                        selectedStudentIDs.Add(studentID);
+                int studentID = Convert.ToInt32(item.Cells["ID"].Value);//Lay ID cua hoc sinh tu cot "ID" cua hang do va them vao danh sach 
+                selectedStudentIDs.Add(studentID);
+               
+                    //Them mot hang moi trong newDataTable 
+                    DataRow newRow = newDataTable.NewRow();
+                    newRow["ID"] = item.Cells["ID"].Value;
+                    newRow["Name"] = item.Cells["Name"].Value;
+                    newRow["Gender"] = item.Cells["Gender"].Value;
+                    newDataTable.Rows.Add(newRow);
 
-                        //Them mot hang moi trong newDataTable 
-                        DataRow newRow = newDataTable.NewRow();
-                        newRow["ID"] = item.Cells["ID"].Value;
-                        newRow["Name"] = item.Cells["Name"].Value;
-                        newRow["Gender"] = item.Cells["Gender"].Value;
-                        newDataTable.Rows.Add(newRow);
-
-                        StudentClassSemesterAcademicYear p = new StudentClassSemesterAcademicYear(studentID, idClass, idSes, idNH, idKhoi);
-
+                    StudentClassSemesterAcademicYear p = new StudentClassSemesterAcademicYear(studentID, idClass, idSes, idNH, idKhoi);
                         studentBLL.updateStudentInPhanLop(p);
                         oldDataTable.Rows.RemoveAt(item.Index);
                         quantity--;
+                        quantityold++;
                         lblNew.Text = quantity.ToString();
-                        lblOld.Text = getQuantity(idNH_old,idKhoi_Old,idClass_old, idSes_old).ToString();
+                        lblOld.Text = quantityold.ToString() ;
                         //lblOld.Text = quantity.ToString();
                     }
                 }
@@ -1051,13 +1029,19 @@ namespace ManagerStudent.GUI
                 MessageBox.Show("Chuyển lớp thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                /* lblNew.Text = getQuantity(idClass, idSes).ToString();*/
                 //lblOld.Text = getQuantity(idClass_old, idSes_old).ToString();
-            }
-        }
 
-        private void pictureBox9_Click_1(object sender, EventArgs e)
-        {
-            AddStudentForm form = new AddStudentForm(this);
-            form.Show();
+            }
+
+            //Xoa cac hang da chon tu dataTable
+            foreach (DataGridViewRow item in dataTableClassOld.SelectedRows)
+            {
+                oldDataTable.Rows.RemoveAt(item.Index);
+            }
+            MessageBox.Show("Chuyển lớp thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
+            //lblNew.Text = getQuantity(idClass, idSes).ToString();
+            //lblOld.Text = getQuantity(idClass_old,idSes_old).ToString();
+
         }
     }
 }
