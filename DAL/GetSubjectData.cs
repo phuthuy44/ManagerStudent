@@ -16,9 +16,7 @@ namespace ManagerStudent.DAL
             try
             {
                 SqlConnection connection = initConnect.ConnectToDatabase();
-                string sql = @"select ID as N'Mã môn học', 
-                                       subjectName as N'Tên môn học' 
-                                from Subject";
+                string sql = @"select ID, subjectName from Subject";
                 SqlCommand command = new SqlCommand(sql, connection);
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
 

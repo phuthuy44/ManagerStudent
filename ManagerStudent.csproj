@@ -177,6 +177,12 @@
     <Compile Include="DTO\Teacher.cs" />
     <Compile Include="DTO\TypeOfPoint.cs" />
     <Compile Include="DTO\TypeOfSubject.cs" />
+    <Compile Include="GUI\AddStudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AddStudentForm.Designer.cs">
+      <DependentUpon>AddStudentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\CategoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,6 +276,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StudentManagerDataSet4.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUI\AddStudentForm.resx">
+      <DependentUpon>AddStudentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\CategoryForm.resx">
       <DependentUpon>CategoryForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -526,10 +535,8 @@
     <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.dll" />
     <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.xml" />
     <Content Include="DAL\ScriptData.sql" />
-    <Content Include="DAL\Store Procedure\SP.sql" />
     <Content Include="DAL\StoreProcedure.sql" />
     <Content Include="DAL\Trigger.sql" />
-    <Content Include="DAL\Trigger\TRIGGER.SQL" />
     <Content Include="Image\GiaoVien\Alex Sarah Bùi.jpg" />
     <Content Include="Image\GiaoVien\Diệp Túy Phương.jpg" />
     <Content Include="Image\GiaoVien\Dương Hồ Mỹ Uyên.jpg" />
