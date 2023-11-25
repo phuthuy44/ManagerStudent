@@ -155,6 +155,8 @@ namespace ManagerStudent.GUI
                 string semesterName = s.Name;
                 txtSemesterOld.Items.Add(semesterName);
                 txtSemesterNew.Items.Add(semesterName);
+                cbSeInQuanHe.Items.Add(semesterName);
+                cbSeInQuanHe.SelectedIndex = 0 ;
                 txtSemesterOld.SelectedIndex=0;
                 txtSemesterNew.SelectedIndex=0;
             }
@@ -162,6 +164,7 @@ namespace ManagerStudent.GUI
             txtGioiTinhMe.Text = "Nữ";
             updateTableWhenSelectedClass_Old();
             updateTableWhenSelectedClass_New();
+            cbClassInQuanhe_SelectedIndexChanged(sender, new EventArgs());
 
         }
         //Xu ly fill dataTable lên dataGridView
@@ -654,10 +657,13 @@ namespace ManagerStudent.GUI
 
         private void cbClassInQuanhe_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int idNH = studentBLL.getIdAca(txtNamHocInQuanHe.SelectedItem.ToString());
+            int idGrade = studentBLL.getGradeID(cbGradeInQuanHe.SelectedItem.ToString());
+            int idSe = studentBLL.getIDSemester(cbSeInQuanHe.Text);
             string selected = cbClassInQuanhe.SelectedItem.ToString();
             int classID = studentBLL.getClassID(selected);
             Console.WriteLine(classID);
-            List<StudentClassSemesterAcademicYear> stu = studentBLL.getStudentIdFromPhanLop(classID);
+            List<StudentClassSemesterAcademicYear> stu = studentBLL.getStudentIdFromPhanLop(idNH,idGrade,idSe,classID);
             cbStudentIDInQuanHe.Items.Clear();
             /*List<StudentClassSemesterAcademicYear> distinStudent = stu
                 .GroupBy(a => a.studentID)
@@ -972,10 +978,10 @@ namespace ManagerStudent.GUI
             int idNH = studentBLL.getIdAca(txtYearNew.SelectedItem.ToString());
             int idKhoi = studentBLL.getGradeID(txtKhoiNew.SelectedItem.ToString());
             int idClass = studentBLL.getClassID(txtClassNew.SelectedItem.ToString());
-            int idNH_old = studentBLL.getIdAca(txtYearOld.SelectedItem.ToString());
+            /*int idNH_old = studentBLL.getIdAca(txtYearOld.SelectedItem.ToString());
             int idKhoi_Old = studentBLL.getGradeID(txtKhoiOld.SelectedIndex.ToString());
             int idClass_old = studentBLL.getClassID(txtClassOld.SelectedItem.ToString());
-            int idSes_old = studentBLL.getIDSemester(txtSemesterOld.Text);
+            int idSes_old = studentBLL.getIDSemester(txtSemesterOld.Text);*/
             int idSes = studentBLL.getIDSemester(txtSemesterNew.Text);
             List<int> selectedStudentIDs = new List<int>();//tao mot danh sach cac id cua hoc sinh duoc chon de chuyen lop
 
@@ -997,6 +1003,7 @@ namespace ManagerStudent.GUI
             string selectedSemesterNew = txtSemesterNew.SelectedItem.ToString();
             string selectedNewClass = txtClassNew.SelectedItem.ToString();
             int quantity = int.Parse(lblNew.Text);
+            int quantityold = int.Parse(lblOld.Text);
 
             if (selectedCurrentClass == selectedNewClass && selectedSemester == selectedSemesterNew && selectedtNH == selectedNHNew && selectedGrade == selectedGradeNew)
             {
@@ -1037,8 +1044,9 @@ namespace ManagerStudent.GUI
                         studentBLL.updateStudentInPhanLop(p);
                         oldDataTable.Rows.RemoveAt(item.Index);
                         quantity--;
+                        quantityold++;
                         lblNew.Text = quantity.ToString();
-                        lblOld.Text = getQuantity(idNH_old,idKhoi_Old,idClass_old, idSes_old).ToString();
+                        lblOld.Text = quantityold.ToString() ;
                         //lblOld.Text = quantity.ToString();
                     }
                 }

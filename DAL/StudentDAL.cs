@@ -415,14 +415,17 @@ namespace ManagerStudent.DAL
             }
             return gradeID;
         }*/
-        public List<StudentClassSemesterAcademicYear> getIDStudentFromPhanLop(int id)
+        public List<StudentClassSemesterAcademicYear> getIDStudentFromPhanLop(int id1,int id2, int id3, int id)
         {
             List<StudentClassSemesterAcademicYear> student = new List<StudentClassSemesterAcademicYear>();
-            string sql = "select distinct studentID from StudentClassSemesterAcademicYear where classID =@id";
+            string sql = "select distinct studentID from StudentClassSemesterAcademicYear where academicyearID=@id1 and gradeID = @id2 and semesterID= @id3 and classID =@id";
             SqlConnection con = initConnect.ConnectToDatabase();
             try
             {
                 SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@id1", id1);
+                cmd.Parameters.AddWithValue("@id2", id2);
+                cmd.Parameters.AddWithValue("@id3", id3);
                 cmd.Parameters.AddWithValue("@id", id);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())

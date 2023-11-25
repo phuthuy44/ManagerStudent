@@ -90,6 +90,8 @@ namespace ManagerStudent.GUI
             this.button9 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.label45 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
@@ -105,6 +107,8 @@ namespace ManagerStudent.GUI
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.lblNew = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
             this.dataTableClassNew = new System.Windows.Forms.DataGridView();
             this.panel8 = new System.Windows.Forms.Panel();
             this.txtSemesterNew = new System.Windows.Forms.ComboBox();
@@ -116,6 +120,8 @@ namespace ManagerStudent.GUI
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.lblOld = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
             this.dataTableClassOld = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
             this.txtSemesterOld = new System.Windows.Forms.ComboBox();
@@ -201,12 +207,7 @@ namespace ManagerStudent.GUI
             this.studentTableAdapter = new ManagerStudent.StudentManagerDataSet2TableAdapters.StudentTableAdapter();
             this.studentTableAdapter1 = new ManagerStudent.StudentManagerDataSet3TableAdapters.StudentTableAdapter();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.lblOld = new System.Windows.Forms.Label();
-            this.lblNew = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.label45 = new System.Windows.Forms.Label();
+            this.cbSeInQuanHe = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
@@ -902,6 +903,26 @@ namespace ManagerStudent.GUI
             this.panel3.Size = new System.Drawing.Size(545, 124);
             this.panel3.TabIndex = 0;
             // 
+            // comboBox5
+            // 
+            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Location = new System.Drawing.Point(364, 58);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(168, 26);
+            this.comboBox5.TabIndex = 9;
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(306, 61);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(30, 16);
+            this.label45.TabIndex = 8;
+            this.label45.Text = "Lớp";
+            // 
             // textBox2
             // 
             this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -1070,6 +1091,26 @@ namespace ManagerStudent.GUI
             this.panel7.Size = new System.Drawing.Size(348, 376);
             this.panel7.TabIndex = 2;
             // 
+            // lblNew
+            // 
+            this.lblNew.AutoSize = true;
+            this.lblNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNew.ForeColor = System.Drawing.Color.Red;
+            this.lblNew.Location = new System.Drawing.Point(48, 144);
+            this.lblNew.Name = "lblNew";
+            this.lblNew.Size = new System.Drawing.Size(51, 16);
+            this.lblNew.TabIndex = 4;
+            this.lblNew.Text = "label45";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(3, 147);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(48, 13);
+            this.label44.TabIndex = 7;
+            this.label44.Text = "Còn lại : ";
+            // 
             // dataTableClassNew
             // 
             this.dataTableClassNew.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -1189,6 +1230,26 @@ namespace ManagerStudent.GUI
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(348, 376);
             this.panel5.TabIndex = 1;
+            // 
+            // lblOld
+            // 
+            this.lblOld.AutoSize = true;
+            this.lblOld.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOld.ForeColor = System.Drawing.Color.Red;
+            this.lblOld.Location = new System.Drawing.Point(51, 144);
+            this.lblOld.Name = "lblOld";
+            this.lblOld.Size = new System.Drawing.Size(51, 16);
+            this.lblOld.TabIndex = 3;
+            this.lblOld.Text = "label45";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(9, 147);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(48, 13);
+            this.label43.TabIndex = 2;
+            this.label43.Text = "Còn lại : ";
             // 
             // dataTableClassOld
             // 
@@ -1321,11 +1382,11 @@ namespace ManagerStudent.GUI
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.49315F));
             this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel10, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.pictureBox17, 0, 0);
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 94);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 126);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(368, 333);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(368, 301);
             this.tableLayoutPanel9.TabIndex = 1;
             this.tableLayoutPanel9.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel9_Paint);
             // 
@@ -1356,7 +1417,7 @@ namespace ManagerStudent.GUI
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(240, 311);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(240, 289);
             this.tableLayoutPanel10.TabIndex = 2;
             // 
             // txtNgayTaoStudent
@@ -1365,7 +1426,7 @@ namespace ManagerStudent.GUI
             this.txtNgayTaoStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtNgayTaoStudent.Enabled = false;
             this.txtNgayTaoStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNgayTaoStudent.Location = new System.Drawing.Point(80, 274);
+            this.txtNgayTaoStudent.Location = new System.Drawing.Point(80, 252);
             this.txtNgayTaoStudent.Name = "txtNgayTaoStudent";
             this.txtNgayTaoStudent.Size = new System.Drawing.Size(157, 24);
             this.txtNgayTaoStudent.TabIndex = 26;
@@ -1375,7 +1436,7 @@ namespace ManagerStudent.GUI
             this.label33.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(3, 268);
+            this.label33.Location = new System.Drawing.Point(3, 246);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(46, 36);
             this.label33.TabIndex = 25;
@@ -1388,7 +1449,7 @@ namespace ManagerStudent.GUI
             this.txtDiaChiStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtDiaChiStudent.Enabled = false;
             this.txtDiaChiStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDiaChiStudent.Location = new System.Drawing.Point(80, 226);
+            this.txtDiaChiStudent.Location = new System.Drawing.Point(80, 204);
             this.txtDiaChiStudent.Name = "txtDiaChiStudent";
             this.txtDiaChiStudent.Size = new System.Drawing.Size(157, 24);
             this.txtDiaChiStudent.TabIndex = 24;
@@ -1398,7 +1459,7 @@ namespace ManagerStudent.GUI
             this.label34.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(3, 229);
+            this.label34.Location = new System.Drawing.Point(3, 207);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(53, 18);
             this.label34.TabIndex = 23;
@@ -1411,7 +1472,7 @@ namespace ManagerStudent.GUI
             this.txtSoDienThoaiStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtSoDienThoaiStudent.Enabled = false;
             this.txtSoDienThoaiStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSoDienThoaiStudent.Location = new System.Drawing.Point(80, 178);
+            this.txtSoDienThoaiStudent.Location = new System.Drawing.Point(80, 156);
             this.txtSoDienThoaiStudent.Name = "txtSoDienThoaiStudent";
             this.txtSoDienThoaiStudent.Size = new System.Drawing.Size(157, 24);
             this.txtSoDienThoaiStudent.TabIndex = 22;
@@ -1421,7 +1482,7 @@ namespace ManagerStudent.GUI
             this.label35.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(3, 172);
+            this.label35.Location = new System.Drawing.Point(3, 150);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(62, 36);
             this.label35.TabIndex = 21;
@@ -1433,7 +1494,7 @@ namespace ManagerStudent.GUI
             this.label36.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(3, 131);
+            this.label36.Location = new System.Drawing.Point(3, 109);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(62, 18);
             this.label36.TabIndex = 19;
@@ -1445,7 +1506,7 @@ namespace ManagerStudent.GUI
             this.label37.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(3, 67);
+            this.label37.Location = new System.Drawing.Point(3, 51);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(46, 36);
             this.label37.TabIndex = 2;
@@ -1457,7 +1518,7 @@ namespace ManagerStudent.GUI
             this.label38.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(3, 19);
+            this.label38.Location = new System.Drawing.Point(3, 13);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(52, 18);
             this.label38.TabIndex = 0;
@@ -1470,7 +1531,7 @@ namespace ManagerStudent.GUI
             this.txtHoTenStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtHoTenStudent.Enabled = false;
             this.txtHoTenStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHoTenStudent.Location = new System.Drawing.Point(80, 16);
+            this.txtHoTenStudent.Location = new System.Drawing.Point(80, 10);
             this.txtHoTenStudent.Name = "txtHoTenStudent";
             this.txtHoTenStudent.Size = new System.Drawing.Size(157, 24);
             this.txtHoTenStudent.TabIndex = 1;
@@ -1481,7 +1542,7 @@ namespace ManagerStudent.GUI
             this.txtGioiTinhStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtGioiTinhStudent.Enabled = false;
             this.txtGioiTinhStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGioiTinhStudent.Location = new System.Drawing.Point(80, 128);
+            this.txtGioiTinhStudent.Location = new System.Drawing.Point(80, 106);
             this.txtGioiTinhStudent.Name = "txtGioiTinhStudent";
             this.txtGioiTinhStudent.Size = new System.Drawing.Size(157, 24);
             this.txtGioiTinhStudent.TabIndex = 27;
@@ -1492,7 +1553,7 @@ namespace ManagerStudent.GUI
             this.txtNgaySinhStudent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.txtNgaySinhStudent.Enabled = false;
             this.txtNgaySinhStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNgaySinhStudent.Location = new System.Drawing.Point(80, 73);
+            this.txtNgaySinhStudent.Location = new System.Drawing.Point(80, 57);
             this.txtNgaySinhStudent.Name = "txtNgaySinhStudent";
             this.txtNgaySinhStudent.Size = new System.Drawing.Size(157, 24);
             this.txtNgaySinhStudent.TabIndex = 28;
@@ -2111,15 +2172,17 @@ namespace ManagerStudent.GUI
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.cbStudentIDInQuanHe, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.cbClassInQuanhe, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.cbGradeInQuanHe, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.txtNamHocInQuanHe, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.cbClassInQuanhe, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.cbSeInQuanHe, 0, 1);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(368, 91);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(368, 123);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // cbStudentIDInQuanHe
@@ -2128,7 +2191,7 @@ namespace ManagerStudent.GUI
             this.cbStudentIDInQuanHe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStudentIDInQuanHe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbStudentIDInQuanHe.FormattingEnabled = true;
-            this.cbStudentIDInQuanHe.Location = new System.Drawing.Point(188, 54);
+            this.cbStudentIDInQuanHe.Location = new System.Drawing.Point(188, 53);
             this.cbStudentIDInQuanHe.Name = "cbStudentIDInQuanHe";
             this.cbStudentIDInQuanHe.Size = new System.Drawing.Size(174, 26);
             this.cbStudentIDInQuanHe.TabIndex = 3;
@@ -2140,7 +2203,7 @@ namespace ManagerStudent.GUI
             this.cbClassInQuanhe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbClassInQuanhe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbClassInQuanhe.FormattingEnabled = true;
-            this.cbClassInQuanhe.Location = new System.Drawing.Point(6, 54);
+            this.cbClassInQuanhe.Location = new System.Drawing.Point(6, 92);
             this.cbClassInQuanhe.Name = "cbClassInQuanhe";
             this.cbClassInQuanhe.Size = new System.Drawing.Size(173, 26);
             this.cbClassInQuanhe.TabIndex = 2;
@@ -2206,65 +2269,16 @@ namespace ManagerStudent.GUI
             // 
             this.openFileDialog2.FileName = "openFileDialog2";
             // 
-            // label43
+            // cbSeInQuanHe
             // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(9, 147);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(48, 13);
-            this.label43.TabIndex = 2;
-            this.label43.Text = "Còn lại : ";
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(3, 147);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(48, 13);
-            this.label44.TabIndex = 7;
-            this.label44.Text = "Còn lại : ";
-            // 
-            // lblOld
-            // 
-            this.lblOld.AutoSize = true;
-            this.lblOld.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOld.ForeColor = System.Drawing.Color.Red;
-            this.lblOld.Location = new System.Drawing.Point(51, 144);
-            this.lblOld.Name = "lblOld";
-            this.lblOld.Size = new System.Drawing.Size(51, 16);
-            this.lblOld.TabIndex = 3;
-            this.lblOld.Text = "label45";
-            // 
-            // lblNew
-            // 
-            this.lblNew.AutoSize = true;
-            this.lblNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNew.ForeColor = System.Drawing.Color.Red;
-            this.lblNew.Location = new System.Drawing.Point(48, 144);
-            this.lblNew.Name = "lblNew";
-            this.lblNew.Size = new System.Drawing.Size(51, 16);
-            this.lblNew.TabIndex = 4;
-            this.lblNew.Text = "label45";
-            // 
-            // comboBox5
-            // 
-            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(364, 58);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(168, 26);
-            this.comboBox5.TabIndex = 9;
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(306, 61);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(30, 16);
-            this.label45.TabIndex = 8;
-            this.label45.Text = "Lớp";
+            this.cbSeInQuanHe.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbSeInQuanHe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSeInQuanHe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSeInQuanHe.FormattingEnabled = true;
+            this.cbSeInQuanHe.Location = new System.Drawing.Point(6, 53);
+            this.cbSeInQuanHe.Name = "cbSeInQuanHe";
+            this.cbSeInQuanHe.Size = new System.Drawing.Size(173, 26);
+            this.cbSeInQuanHe.TabIndex = 4;
             // 
             // HocSinhForm
             // 
@@ -2529,5 +2543,6 @@ namespace ManagerStudent.GUI
         private System.Windows.Forms.Label lblNew;
         private System.Windows.Forms.ComboBox comboBox5;
         private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.ComboBox cbSeInQuanHe;
     }
 }
