@@ -566,7 +566,7 @@ namespace ManagerStudent.GUI
             Console.WriteLine(classID);
             DataTable dataTable = studentBLL.getListStudentInClass(yearID,gradeID,classID, semesID);
             // DataView dataView = new DataView(dataTable);
-            /*dataTableClassOld.Columns.Clear();
+            dataTableClassOld.Columns.Clear();
             dataTableClassOld.Columns.Add("ID", "Mã học sinh");
             dataTableClassOld.Columns.Add("Name", "Tên học sinh");
             dataTableClassOld.Columns.Add("Gender", "Giới tính");
@@ -574,7 +574,7 @@ namespace ManagerStudent.GUI
 
             dataTableClassOld.Columns["ID"].DataPropertyName = "ID";
             dataTableClassOld.Columns["Name"].DataPropertyName = "name";
-            dataTableClassOld.Columns["Gender"].DataPropertyName = "gender";*/
+            dataTableClassOld.Columns["Gender"].DataPropertyName = "gender";
             dataTableClassOld.DataSource = dataTable;
             dataTableClassOld.DataBindings.Clear();
         }
@@ -604,7 +604,7 @@ namespace ManagerStudent.GUI
 
             Console.WriteLine(classID);
             DataTable dataTable = studentBLL.getListStudentInClass(yearID, gradeID,classID, semesID);
-          /*  // DataView dataView = new DataView(dataTable);
+            // DataView dataView = new DataView(dataTable);
             dataTableClassNew.Columns.Clear();
             dataTableClassNew.Columns.Add("ID", "Mã học sinh");
             dataTableClassNew.Columns.Add("Name", "Tên học sinh");
@@ -613,7 +613,7 @@ namespace ManagerStudent.GUI
             // Map the columns to the corresponding columns in the DataTable
             dataTableClassNew.Columns["ID"].DataPropertyName = "ID";
             dataTableClassNew.Columns["Name"].DataPropertyName = "name";
-            dataTableClassNew.Columns["Gender"].DataPropertyName = "gender";*/
+            dataTableClassNew.Columns["Gender"].DataPropertyName = "gender";
             dataTableClassNew.DataSource = dataTable;
             dataTableClassNew.DataBindings.Clear();
         }
@@ -1052,6 +1052,12 @@ namespace ManagerStudent.GUI
                /* lblNew.Text = getQuantity(idClass, idSes).ToString();*/
                 //lblOld.Text = getQuantity(idClass_old, idSes_old).ToString();
             }
+        }
+
+        private void pictureBox9_Click_1(object sender, EventArgs e)
+        {
+            AddStudentForm form = new AddStudentForm(this);
+            form.Show();
         }
     }
 }
