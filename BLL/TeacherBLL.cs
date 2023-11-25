@@ -52,6 +52,21 @@ namespace ManagerStudent.BLL
             }
             else { return false; }
         }
-
+        public bool UpdateTeacher(Teacher teacher)
+        {
+            return teacherDAL.EditTeacher(teacher); 
+        }
+        public bool DeleteTeacher(int id)
+        {
+            return teacherDAL.DeleteTeacher(id);
+        }
+        public bool DeleteSubOfTeacher(int id)
+        {
+            return teacherDAL.DeleteSubOfTeacher(id);
+        }
+        public bool DeleteAssignment(int id)
+        {
+            return teacherDAL.DeleteAssignment(id);
+        }
     }
 }
