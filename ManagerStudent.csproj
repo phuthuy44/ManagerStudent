@@ -526,10 +526,8 @@
     <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.dll" />
     <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.xml" />
     <Content Include="DAL\ScriptData.sql" />
-    <Content Include="DAL\Store Procedure\SP.sql" />
     <Content Include="DAL\StoreProcedure.sql" />
     <Content Include="DAL\Trigger.sql" />
-    <Content Include="DAL\Trigger\TRIGGER.SQL" />
     <Content Include="Image\GiaoVien\Alex Sarah Bùi.jpg" />
     <Content Include="Image\GiaoVien\Diệp Túy Phương.jpg" />
     <Content Include="Image\GiaoVien\Dương Hồ Mỹ Uyên.jpg" />
