@@ -15,12 +15,7 @@ namespace ManagerStudent.DAL
             try
             {
                 SqlConnection conn = initConnect.ConnectToDatabase();
-/*                string sql = "SELECT * FROM Conduct";*/
-                string sql = @"SELECT ID as N'Mã hạnh kiểm', 
-                                conductName AS N'Tên hạnh kiểm', 
-                                upperLimit AS N'Điểm cận trên', 
-                                lowerLimit AS N'Điểm cận dưới' 
-                              FROM Conduct";
+                string sql = "SELECT * FROM Conduct";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd);
                 sqlDataAdapter.Fill(dt);
