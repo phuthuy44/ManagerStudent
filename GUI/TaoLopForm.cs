@@ -56,7 +56,7 @@ namespace ManagerStudent.GUI
                     studentBLL.insertStudent(p);
                     dataStudent.Rows.RemoveAt(i);
                     txt--;
-                    txtConLai.Text = "0";
+                    txtRandom.Text = "0";
                     txtConLai.Text = txt.ToString();
                     hocSinhForm.updateTableWhenSelectedClass_New();
                     hocSinhForm.updateTableWhenSelectedClass_Old();
