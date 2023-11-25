@@ -177,6 +177,12 @@
     <Compile Include="DTO\Teacher.cs" />
     <Compile Include="DTO\TypeOfPoint.cs" />
     <Compile Include="DTO\TypeOfSubject.cs" />
+    <Compile Include="GUI\AddStudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AddStudentForm.Designer.cs">
+      <DependentUpon>AddStudentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\CategoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -270,6 +276,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>StudentManagerDataSet4.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="GUI\AddStudentForm.resx">
+      <DependentUpon>AddStudentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\CategoryForm.resx">
       <DependentUpon>CategoryForm.cs</DependentUpon>
     </EmbeddedResource>

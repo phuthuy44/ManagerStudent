@@ -74,14 +74,16 @@ namespace ManagerStudent.DAL
             }
             return data;
         }
-        public DataTable getListStudentInClass(int classID, int idSemester)
+        public DataTable getListStudentInClass(int yearID, int gradeID,int classID, int idSemester)
         {
             DataTable data = new DataTable();
-            string sql = "Select Student.ID,Student.name,Student.gender  FROM Student,StudentClassSemesterAcademicYear as phanlop,Semester  where phanlop.studentID = Student.ID and phanlop.semesterID=Semester.ID and phanlop.ClassID = @id and phanlop.semesterID = @idSe";
+            string sql = "Select Student.ID,Student.name,Student.gender  FROM Student,StudentClassSemesterAcademicYear as phanlop,Semester  where phanlop.studentID = Student.ID and phanlop.semesterID=Semester.ID and phanlop.academicyearID = @academicyearID AND phanlop.gradeID=@gradeID and phanlop.ClassID = @id and phanlop.semesterID = @idSe";
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {
                 SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@academicyearID", yearID);
+                cmd.Parameters.AddWithValue("@gradeID", gradeID);
                 cmd.Parameters.AddWithValue("@id", classID);
                 cmd.Parameters.AddWithValue("@idSe", idSemester);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -513,7 +515,27 @@ namespace ManagerStudent.DAL
             finally { conn.Close(); }
 
         }
-       
+        public bool insertStudentNotInAssginment(StudentClassSemesterAcademicYear student)
+        {
+            string sql = "insert into StudentClassSemesterAcademicYear(studentID,classID,semesterID,academicyearID,gradeID) VALUES (@id,@classID,@semesterID,@academicyearID,@gradeID)";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", student.studentID);
+                cmd.Parameters.AddWithValue("@classID", student.classID);
+                cmd.Parameters.AddWithValue("@semesterID", student.semesterID);
+                cmd.Parameters.AddWithValue("@academicyearID", student.academicyearID);
+                cmd.Parameters.AddWithValue("@gradeID", student.gradeID);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch(Exception ex){
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally { conn.Close(); }
+        }
         public int getMaxStudentInClass(int cls)
         {
             string sql = "SELECT maxStudent from Class where ID = @ID";
@@ -532,14 +554,16 @@ namespace ManagerStudent.DAL
             finally { conn.Close(); }
             return count;
         }
-        public int getCurrentStudentInClass(int cls,int se)
+        public int getCurrentStudentInClass(int acaID, int gradeID,int cls,int se)
         {
-            string sql = "Select count(*) from StudentClassSemesterAcademicYear as p where P.classID = @idClass and p.semesterID =@idSe";
+            string sql = "Select count(*) from StudentClassSemesterAcademicYear as p where p.academicyearID = @yearID and p.gradeID = @gradeID and p.classID = @idClass and p.semesterID =@idSe";
             SqlConnection con = initConnect.ConnectToDatabase(); ;
             int count = 0;
             try
             {
                 SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@yearID", acaID);
+                cmd.Parameters.AddWithValue("@gradeID", gradeID);
                 cmd.Parameters.AddWithValue("@idClass", cls);
                 cmd.Parameters.AddWithValue("@idSe", se);
                 count = (int)cmd.ExecuteScalar();
@@ -554,12 +578,133 @@ namespace ManagerStudent.DAL
             }
             return count;
         }
-        public int getQuantity(int classID,int se)
+        public int getQuantity(int acaID, int gradeID,int classID,int se)
         {
             int maxStudent = getMaxStudentInClass(classID);
-            int currentStudent = getCurrentStudentInClass(classID, se);
+            int currentStudent = getCurrentStudentInClass(acaID,gradeID,classID, se);
             int remain = maxStudent - currentStudent;
             return remain;
         }
+        public DataTable GetListStudentNotInAssignment()
+        {
+            DataTable dataTable = new DataTable();
+            string sql = $"SELECT DISTINCT s.ID as N'Mã học sinh',s.name as N'Tên học sinh',s.gender as N'Giới tính' FROM Student as s WHERE s.ID NOT IN (SELECT phanlop.studentID FROM StudentClassSemesterAcademicYear as phanlop)";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                adapter.Fill(dataTable);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return dataTable;
+        }
+        public DataTable GetListStudentNotInAssignment_top(int row)
+        {
+            DataTable dataTable = new DataTable();
+            string sql = $"SELECT DISTINCT TOP {row} s.ID as N'Mã học sinh',s.name as N'Tên học sinh',s.gender as N'Giới tính' FROM Student as s WHERE s.ID NOT IN (SELECT phanlop.studentID FROM StudentClassSemesterAcademicYear as phanlop)";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                adapter.Fill(dataTable);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return dataTable;
+        }
+        /*AddStudentForm*/
+        public List<AcademicYear> getYear()
+        {
+            List<AcademicYear> s= new List<AcademicYear>();
+            string sql = "SELECT * FROM academicyear";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand command = new SqlCommand(sql, conn);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    AcademicYear a = new AcademicYear();
+                    a.Name = reader["academicyearName"].ToString();
+                    s.Add(a);
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally { conn.Close(); }
+            return s;
+        }
+        public List<Class> getClass()
+        {
+            List<Class> s = new List<Class>();
+            string sql = "SELECT * FROM class";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand command = new SqlCommand(sql, conn);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Class a = new Class();
+                    a.Name = reader["className"].ToString();
+                    s.Add(a);
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally { conn.Close(); }
+            return s;
+        }
+        public List<Grade> getGradeInAddStudentView()
+        {
+            List<Grade> s = new List<Grade>();
+            string sql = "SELECT * FROM grade";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand command = new SqlCommand(sql, conn);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Grade a = new Grade();
+                    a.Name= reader["gradeName"].ToString();
+                    s.Add(a);
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally { conn.Close(); }
+            return s;
+        }
+
     }
 }

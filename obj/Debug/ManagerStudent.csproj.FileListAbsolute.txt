@@ -357,3 +357,4 @@ E:\ManagerStudent\obj\Debug\ManagerStudent.csproj.CoreCompileInputs.cache
 E:\ManagerStudent\obj\Debug\ManagerStudent.csproj.CopyComplete
 E:\ManagerStudent\obj\Debug\ManagerStudent.exe
 E:\ManagerStudent\obj\Debug\ManagerStudent.pdb
+E:\ManagerStudent\obj\Debug\ManagerStudent.GUI.AddStudentForm.resources

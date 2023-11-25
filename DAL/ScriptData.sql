@@ -382,10 +382,11 @@ CREATE TABLE StudentClassSemesterAcademicYear(
 	semesterID INT NOT NULL,
 	academicyearID INT NOT NULL,
 	gradeID INT NOT NULL,
-	statusID INT NOT NULL,
-	PRIMARY KEY (studentID, classID, semesterID, academicyearID, gradeID, statusID)
-)
+	--statusID INT NOT NULL,
+	--PRIMARY KEY (studentID, classID, semesterID, academicyearID, gradeID, statusID)
+	PRIMARY KEY (studentID, classID, semesterID, academicyearID, gradeID)
 
+)
 ALTER TABLE StudentClassSemesterAcademicYear
 	ADD CONSTRAINT StudentClassSemesterAcademicYear_statusID_Status_ID
 	FOREIGN KEY (statusID) REFERENCES Status(ID)

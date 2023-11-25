@@ -113,9 +113,9 @@ namespace ManagerStudent.BLL
         {
             return studentDAL.getClassID(name);
         }
-        public DataTable getListStudentInClass(int classID, int idSe)
+        public DataTable getListStudentInClass(int yearID, int gradeID,int classID, int idSe)
         {
-            return studentDAL.getListStudentInClass(classID, idSe);
+            return studentDAL.getListStudentInClass(yearID,gradeID,classID, idSe);
         }
         public List<StudentClassSemesterAcademicYear> getStudentIdFromPhanLop(int id)
         {
@@ -147,13 +147,51 @@ namespace ManagerStudent.BLL
                 return false;
             }
         }
-        public int getQuantity(int classID,int se)
+        public bool insertStudent(StudentClassSemesterAcademicYear student)
         {
-            return studentDAL.getQuantity(classID,se);
+            bool result = studentDAL.insertStudentNotInAssginment(student);
+            if (result)
+            {
+                Console.WriteLine("Success!");
+            return true;
+            }
+            else
+            {
+                Console.WriteLine("Faild!");
+                return false;
+            }
         }
-        public int getCurrentStudent(int classID, int se)
+        public int getQuantity(int acID, int gradeID,int classID,int se)
         {
-            return studentDAL.getCurrentStudentInClass(classID,se);
+            return studentDAL.getQuantity(acID, gradeID,classID, se);
+        }
+        public int getCurrentStudent(int acID, int gradeID,int classID, int se)
+        {
+            return studentDAL.getCurrentStudentInClass(acID, gradeID,classID,se);
+        }
+        public int getMaxStudentInClass(int classID)
+        {
+            return studentDAL.getMaxStudentInClass(classID);
+        }
+        public DataTable getStudentNotInAssignment()
+        {
+            return studentDAL.GetListStudentNotInAssignment();
+        }
+        public DataTable getStudentNotinAssignment_TOP(int row)
+        {
+            return studentDAL.GetListStudentNotInAssignment_top(row);
+        }
+        public List<AcademicYear> getYear()
+        {
+            return studentDAL.getYear();
+        }
+        public List<Class> GetClasses()
+        {
+            return studentDAL.getClass();
+        }
+        public List<Grade> GetGrades()
+        {
+            return studentDAL.getGradeInAddStudentView();
         }
     }
 }
