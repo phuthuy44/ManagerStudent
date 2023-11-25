@@ -247,5 +247,26 @@ namespace ManagerStudent.DAL
             }
             return dataTable;
         }
+        public DataTable StudentSummary(int studentID, string academicyearName, string semesterName, string className)
+        {
+            DataTable dataTable = new DataTable();
+            string sql = "EXEC SUMMARY_POINT_STUDENT @academicyearName, @semesterName, @className, @studentID";
+            try
+            {
+                SqlConnection connection = initConnect.ConnectToDatabase();
+                SqlCommand sqlCommand = new SqlCommand(sql, connection);
+                sqlCommand.Parameters.AddWithValue("@academicyearName", academicyearName);
+                sqlCommand.Parameters.AddWithValue("@semesterName", semesterName);
+                sqlCommand.Parameters.AddWithValue("@className", className);
+                sqlCommand.Parameters.AddWithValue("@studentID", studentID);
+                SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+                adapter.Fill(dataTable);
+                connection.Close();
+            }catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return dataTable;
+        }
     }
 }

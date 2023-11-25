@@ -557,7 +557,7 @@ namespace ManagerStudent.GUI
             string selectedSe = txtSemesterOld.Text;
             int classID = studentBLL.getClassID(selected);
             int semesID = studentBLL.getIDSemester(selectedSe);        
-            lblOld.Text = getQuantity(classID,semesID).ToString();
+            //lblOld.Text = getQuantity(classID,semesID).ToString();
             Console.WriteLine(classID);
             DataTable dataTable = studentBLL.getListStudentInClass(classID, semesID);
             // DataView dataView = new DataView(dataTable);
@@ -591,7 +591,7 @@ namespace ManagerStudent.GUI
             int classID = studentBLL.getClassID(selected);
             int semesID = studentBLL.getIDSemester(selectedSe);
 
-            lblNew.Text = getQuantity(classID, semesID).ToString();
+            //lblNew.Text = getQuantity(classID, semesID).ToString();
 
             Console.WriteLine(classID);
             DataTable dataTable = studentBLL.getListStudentInClass(classID, semesID);
@@ -975,7 +975,7 @@ namespace ManagerStudent.GUI
             string selectedSemester = txtSemesterOld.SelectedItem.ToString();
             string selectedSemesterNew = txtSemesterNew.SelectedItem.ToString();
             string selectedNewClass = txtClassNew.SelectedItem.ToString();
-            int quantity = int.Parse(lblNew.Text);
+            int quantity = int.Parse("12");
 
             if (selectedCurrentClass == selectedNewClass && selectedSemester == selectedSemesterNew )
             {
@@ -1013,8 +1013,8 @@ namespace ManagerStudent.GUI
             }
             MessageBox.Show("Chuyển lớp thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             
-            lblNew.Text = getQuantity(idClass, idSes).ToString();
-            lblOld.Text = getQuantity(idClass_old,idSes_old).ToString();
+            //lblNew.Text = getQuantity(idClass, idSes).ToString();
+            //lblOld.Text = getQuantity(idClass_old,idSes_old).ToString();
 
         }
     }
