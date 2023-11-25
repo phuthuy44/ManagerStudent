@@ -671,7 +671,7 @@ namespace ManagerStudent.GUI
             if (dataGridView2.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dataGridView2.SelectedRows[0];
-                ID = Convert.ToInt32(selectedRow.Cells["Mã hạnh kiểm"].Value);
+                ID = Convert.ToInt32(selectedRow.Cells["Column1"].Value);
             }
 
             else
@@ -910,7 +910,7 @@ namespace ManagerStudent.GUI
             if (dataGridView4.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dataGridView4.SelectedRows[0];
-                ID = Convert.ToInt32(selectedRow.Cells["Mã học kỳ"].Value);
+                ID = Convert.ToInt32(selectedRow.Cells["Column5"].Value);
             }
             else
             {
@@ -998,7 +998,7 @@ namespace ManagerStudent.GUI
             if (dataGridView5.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dataGridView5.SelectedRows[0];
-                ID = Convert.ToInt32(selectedRow.Cells["Mã loại điểm"].Value);
+                ID = Convert.ToInt32(selectedRow.Cells["Column8"].Value);
             }
 
             else
@@ -1116,7 +1116,7 @@ namespace ManagerStudent.GUI
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
-                ID = Convert.ToInt32(selectedRow.Cells["Mã môn học"].Value);
+                ID = Convert.ToInt32(selectedRow.Cells["Column11"].Value);
             }
 
             else

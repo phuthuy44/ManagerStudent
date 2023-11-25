@@ -329,30 +329,32 @@ namespace ManagerStudent.GUI
                 // Lặp qua từng dòng của DataTable
                 foreach (DataRow row in updatedData.Rows)
                 {
-                    // Lấy thông tin cần thiết từ mỗi dònG
-                    
-                    if (row["Mã học sinh"] is int studentID &&
-                        row["Điểm đánh giá thường xuyên"] is double regularPoint &&
-                        row["Điểm giữa kỳ"] is double midtermPoint &&
-                        row["Điểm cuối kỳ"] is double finalPoint)
-                    {
-                        // Lấy thông tin tên năm học, học kỳ và môn học từ các comboBox
-                        string academicYearName = comboBox1.Text;
-                        string semesterName = comboBox3.Text;
-                        string subjectName = comboBox4.Text;
 
+                    // Khai báo biến để lưu dữ liệu sau khi chuyển đổi
+                    int studentID;
+                    double regularPoint, midtermPoint, finalPoint;
+
+                    // Thực hiện chuyển đổi và kiểm tra
+                    bool isStudentIDValid = int.TryParse(row["Mã học sinh"].ToString(), out studentID);
+                    bool isRegularPointValid = double.TryParse(row["Điểm đánh giá thường xuyên"].ToString(), out regularPoint);
+                    bool isMidtermPointValid = double.TryParse(row["Điểm giữa kỳ"].ToString(), out midtermPoint);
+                    bool isFinalPointValid = double.TryParse(row["Điểm cuối kỳ"].ToString(), out finalPoint);
+
+                    // Kiểm tra xem tất cả các giá trị đã được chuyển đổi thành công chưa
+                    if (isStudentIDValid || isRegularPointValid || isMidtermPointValid || isFinalPointValid)
+                    {
                         // Gọi hàm BLL để cập nhật điểm
                         PointBLL bll = new PointBLL();
                         bool success = true;
 
                         // Thực hiện cập nhật điểm cho từng loại điểm
-                        if (!bll.UpdateStudentPoint(studentID, academicYearName, semesterName, subjectName, regularPoint))
+                        if (!bll.UpdateStudentPoint(studentID, tmpAcademicYearName, tmpSemesterName, tmpSubjectName, tmpClassName, "Điểm đánh giá thường xuyên", regularPoint))
                             success = false;
 
-                        if (!bll.UpdateStudentPoint(studentID, academicYearName, semesterName, subjectName, midtermPoint))
+                        if (!bll.UpdateStudentPoint(studentID, tmpAcademicYearName, tmpSemesterName, tmpSubjectName, tmpClassName, "Điểm giữa kỳ", midtermPoint))
                             success = false;
 
-                        if (!bll.UpdateStudentPoint(studentID, academicYearName, semesterName, subjectName, finalPoint))
+                        if (!bll.UpdateStudentPoint(studentID, tmpAcademicYearName, tmpSemesterName, tmpSubjectName, tmpClassName, "Điểm cuối kỳ", finalPoint))
                             success = false;
 
                         if (success)
@@ -364,7 +366,11 @@ namespace ManagerStudent.GUI
                             MessageBox.Show("Có lỗi xảy ra khi cập nhật điểm.");
                         }
                     }
-                    
+                    else
+                    {
+                        continue;
+                    }
+
                 }
             }
 
@@ -446,11 +452,11 @@ namespace ManagerStudent.GUI
             // Khi cần kiểm tra, so sánh dữ liệu hiện tại với bản sao ban đầu
             bool hasChanges = !((DataTable)dataGridView1.DataSource).AsEnumerable()
                                 .SequenceEqual(originalData.AsEnumerable(), DataRowComparer.Default);
-            if (hasChanges)
-            {
+            //if (hasChanges)
+            //{
                 saveUpdatePoints();
                 //MessageBox.Show("Update!");
-            }
+            //}
             /*saveUpdatePoints();*/
             //saveInsertPoints();
             //messageBoxCount = 0;

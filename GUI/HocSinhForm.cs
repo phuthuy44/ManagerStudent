@@ -57,6 +57,8 @@ namespace ManagerStudent.GUI
                 age--;
             }
             if (string.IsNullOrEmpty(hoTen))
+
+
             {
                 //MessageBox.Show("Trường Họ tên không thể bỏ trống");
                 MessageBox.Show("Trường Họ tên không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);

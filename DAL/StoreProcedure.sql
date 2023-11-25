@@ -2,10 +2,8 @@
 CREATE PROC GetDataSemester
 AS
 	BEGIN
-		SELECT ID as N'Mã học kỳ', 
-            semesterName as N'Tên học kỳ', 
-            coefficient as N'Hệ số' 
-		FROM Semester s ;
+		SELECT ID, semesterName, coefficient
+		FROM Semester s
 	END;
 GO
 
@@ -14,7 +12,7 @@ GO
     @STR NVARCHAR(100)
 AS
     BEGIN
-		SELECT ID as N'Mã học kỳ', semesterName as N'Tên học kỳ', coefficient as N'Hệ số' 
+		SELECT ID, semesterName, coefficient
 		FROM Semester s
     WHERE semesterName LIKE '%' + @STR + '%'
 END;
@@ -24,9 +22,9 @@ GO
 CREATE PROC GetDataTypeOfPoint
 AS 
 	Begin
-		SELECT ID as N'Mã loại điểm', 
-        pointName as N'Tên loại điểm', 
-        coefficient as N'Hệ số'  
+		SELECT ID, 
+        pointName, 
+        coefficient
 		FROM TypeOfPoint;
 	END
 
@@ -36,9 +34,9 @@ GO
     @STR NVARCHAR(100)
 AS
 BEGIN
-	SELECT ID as N'Mã loại điểm', 
-		pointName as N'Tên loại điểm', 
-		coefficient as N'Hệ số'  
+	SELECT ID, 
+		pointName, 
+		coefficient 
 	FROM TypeOfPoint
     WHERE pointName LIKE '%' + @STR + '%'
 END
@@ -53,7 +51,7 @@ CREATE PROCEDURE FindCapacity
 AS
 BEGIN
 SELECT ID as N'Mã học lực', 
-       capacityName AS N'Tên hạnh kiểm', 
+       capacityName AS N'Tên học lực', 
        upperLimit AS N'Điểm cận trên', 
        lowerLimit AS N'Điểm cận dưới', 
        paraPoint AS N'Điểm khống chế'
@@ -88,11 +86,10 @@ CREATE PROCEDURE FindConduct
     @STR NVARCHAR(100)
 AS
 BEGIN
-SELECT ID as N'Mã hạnh kiểm', conductName AS 'Tên hạnh kiểm', 
-        lowerLimit AS 'Điểm cận dưới', upperLimit AS 'Điểm cận trên' 
+SELECT ID, conductName, lowerLimit, upperLimit
     FROM Conduct
     WHERE conductName LIKE '%' + @STR + '%'
-END 
+END
 --EXEC FindConduct  'k' 
 
 GO
@@ -101,7 +98,7 @@ CREATE PROCEDURE FindSubject
     @STR NVARCHAR(100)
 AS
 BEGIN
-SELECT ID as N'Mã môn học', subjectName as 'Tên môn học'
+SELECT ID, subjectName
     FROM Subject
     WHERE subjectName LIKE '%' + @STR + '%'
 END 
