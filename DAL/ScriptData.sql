@@ -8,7 +8,8 @@
 
 -- Tạo bảng hạnh kiểm
 CREATE TABLE Conduct(
-	ID VARCHAR(8) NOT NULL,
+	--ID VARCHAR(8) NOT NULL,
+	ID INT IDENTITY(1,1) NOT NULL,
 	conductName NVARCHAR(100),
 	upperLimit INT,
 	lowerLimit INT,
@@ -17,11 +18,16 @@ CREATE TABLE Conduct(
 
 -- Tạo bảng học lực 
 CREATE TABLE Capacity(
-	ID VARCHAR(8) NOT NULL,
+	--ID VARCHAR(8) NOT NULL,
+	--capacitytName NVARCHAR(100),
+	--upperLimit INT,
+	--lowerLimit INT,
+	--paraPoint INT,
+	ID INT IDENTITY(1,1) NOT NULL,
 	capacitytName NVARCHAR(100),
-	upperLimit INT,
-	lowerLimit INT,
-	paraPoint INT,
+	upperLimit FLOAT,
+	lowerLimit FLOAT,
+	paraPoint FLOAT,
 	PRIMARY KEY (ID)
 )
 
