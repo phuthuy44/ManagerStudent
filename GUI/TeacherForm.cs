@@ -18,19 +18,18 @@ namespace ManagerStudent.GUI
         private TeacherBLL teacherBLL;
         private PointBLL pointBLL;   
         private Teacher teacher;
-        private DataTable dt;
-
+        private DataTable tc;
         public TeacherForm()
         {
             InitializeComponent();
             teacherBLL = new TeacherBLL();
             pointBLL= new PointBLL();
-            dt = new DataTable();
+            tc = new DataTable();
         }
         public void FillTableTeacher()
         {
-            dt = teacherBLL.GetDataTeacher();
-            TableTeacher.DataSource = dt;
+            tc = teacherBLL.GetDataTeacher();
+            TableTeacher.DataSource = tc;
             TableTeacher.Columns[1].Width = 150;
             TableTeacher.Columns[2].Width = 40;
             TableTeacher.Columns[0].Width = 30;
@@ -43,8 +42,7 @@ namespace ManagerStudent.GUI
         }
         public void FillTableTechnical()
         {
-            DataTable tc = teacherBLL.GetSubjectTeacher();
-            TableAssignment.DataSource = tc;
+            TableAssignment.DataSource = teacherBLL.GetAssignmentTeacher();
         }
         private int Age(DateTime birthDate)
         {
@@ -77,11 +75,44 @@ namespace ManagerStudent.GUI
             FillTableTeacher();
             FillTableTechnical();
             DataTable subject = pointBLL.GetSujectData();
+            DataTable ay = teacherBLL.GetAcademicYear();
+            DataTable sm = teacherBLL.GetSemester();
+            DataTable cls = teacherBLL.GetClass();
+            DataTable ps = teacherBLL.GetPosition();
             foreach (DataRow row in subject.Rows)
             {
-                string subjectname = row["SubjectName"].ToString();
+                string subjectName = row["subjectName"].ToString();
+
+                cbTechnical.Items.Add(subjectName);
+            }
+            foreach (DataRow row in ay.Rows)
+            {
+                string acayear = row["academicyearName"].ToString();
+
+                cbNH.Items.Add(acayear);
+            }
+            foreach (DataRow row in sm.Rows)
+            {
+                string smName = row["semesterName"].ToString();
+
+                cbHK.Items.Add(smName);
+            }
+            foreach (DataRow row in cls.Rows)
+            {
+                string clsName = row["className"].ToString();
         
-                cbTechnical.Items.Add(subjectname);
+                cbPCL.Items.Add(clsName);
+            }
+            foreach (DataRow row in ps.Rows)
+            {
+                string positionName = row["positionName"].ToString();
+
+                cbCV.Items.Add(positionName);
+            }
+            foreach (DataRow row in tc.Rows)
+            {
+                string teacherName = row["Mã GV"].ToString() + " - " + row["Tên giáo viên"].ToString();
+                cbGV.Items.Add(teacherName);
             }
         }
 
@@ -317,8 +348,7 @@ namespace ManagerStudent.GUI
             {
                 MessageBox.Show("Lỗi! Hãy chọn một dòng của bản để sửa", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
+        }      
         private void button3_Click(object sender, EventArgs e)
         {
             DialogResult flag = MessageBox.Show("Bạn có chắc muốn xóa giáo viên "+ txtHoTenGV.Text + " ?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -347,6 +377,43 @@ namespace ManagerStudent.GUI
                     MessageBox.Show("Lỗi! Hãy chọn một dòng của bảng để xóa", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+   
+        }
+        private void button10_Click(object sender, EventArgs e)
+        {
+            ReloadForm();
+        }
+  
+
+
+        private void cbGV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbCM.Items.Clear();
+            if (!string.IsNullOrEmpty(cbGV.SelectedItem?.ToString()))
+            {
+                int id = int.Parse(cbGV.SelectedItem?.ToString().Split('-')[0]);
+                DataTable sbOfTea = teacherBLL.GetSubjectTeacher(id);
+                foreach (DataRow row in sbOfTea.Rows)
+                {
+                    string subjectName = row["subjectName"].ToString();
+
+                    cbCM.Items.Add(subjectName);
+                }
+            }
+            
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            cbHK.SelectedItem = null;
+            cbNH.SelectedItem = null;
+            cbPCL.SelectedItem = null;
+            cbGV.SelectedItem = null;
+            cbCV.SelectedItem = null;
         }
     }
 }

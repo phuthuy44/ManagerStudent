@@ -18,21 +18,21 @@ namespace ManagerStudent.DAL
         {
             DataTable dt = new DataTable();
             string sql = @" SELECT
-                    t.ID as N'Mã GV',
-                    t.teacherName as N'Tên Giáo viên',
-                    t.gender as N'Giới tính',
-                    t.birthday as N'Ngày sinh',
+                    t.ID N'Mã GV',
+                    t.teacherName N'Tên giáo viên',
+                    t.gender N'Giới tính',
+                    t.birthday N'Ngày sinh',
                     t.email,
-                    t.phonenumber as N'Số điện thoại',
-                    t.address as N'Địa chỉ',
-                    t.image as N'Hình ảnh',
+                    t.phonenumber N'Số điện thoại',
+                    t.address N'Địa chỉ',
+                    t.image N'Hình ảnh',
                     STRING_AGG(s.subjectName, ', ') WITHIN GROUP (ORDER BY s.subjectName) AS N'Chuyên môn'
                 FROM
-                    Teacher AS t
+                    Teacher t
                 JOIN
-                    SubjectOfTeacher AS s2 ON t.ID = s2.teacherID
+                    SubjectOfTeacher s2 ON t.ID = s2.teacherID
                 JOIN
-                    Subject AS s ON s2.subjectID = s.ID
+                    Subject s ON s2.subjectID = s.ID
                 GROUP BY
                     t.ID, t.teacherName, t.gender, t.birthday, t.email, t.phonenumber, t.address, t.image";
 
@@ -57,22 +57,14 @@ namespace ManagerStudent.DAL
             }
             return dt;
         }
-        public DataTable GetSubjectTeacher()
+        public DataTable GetAssignmentTeacher()
         {
             DataTable sbteacher = new DataTable();
-            string sql = @" SELECT
-                    t.ID as N'Mã GV',
-                    t.teacherName as N'Tên Giáo viên',
-                    STRING_AGG(s.subjectName, ', ') WITHIN GROUP (ORDER BY s.subjectName) AS N'Chuyên môn'
-                FROM
-                    Teacher AS t
-                JOIN
-                    SubjectOfTeacher AS s2 ON t.ID = s2.teacherID
-                JOIN
-                    Subject AS s ON s2.subjectID = s.ID
-                GROUP BY
-                    t.ID, t.teacherName";
-
+            string sql = @"SELECT ay.academicyearName N'Năm học', s2.semesterName N'Học kỳ', c.className N'Lớp', 
+                                  t.teacherName N'Tên giáo viên', s.subjectName N'Môn', p.positionName N'Chức vụ'
+                           FROM Teacher t, Assignment a, Class c, Position p, AcademicYear ay, Subject s, Semester s2  
+                           WHERE t.ID = a.teacherID AND a.classID = c.ID AND a.positionID = p.ID  AND ay.ID = a.academicyearID 
+                           AND s.ID = a.subjectID AND a.semesterID = s2.ID";
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {
@@ -94,6 +86,121 @@ namespace ManagerStudent.DAL
             }
             return sbteacher;
         }
+        public DataTable GetAcademicYear()
+        {
+            DataTable Ay = new DataTable();
+            string sql = @" SELECT * from AcademicYear";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                adapter.Fill(Ay);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return Ay;
+        }
+        public DataTable GetSemester()
+        {
+            DataTable sm = new DataTable();
+            string sql = @" SELECT * from Semester";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                adapter.Fill(sm);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return sm;
+        }
+        public DataTable GetClass()
+        {
+            DataTable cls = new DataTable();
+            string sql = @" SELECT * from Class";
+
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                adapter.Fill(cls);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return cls;
+        }
+        public DataTable GetPosition()
+        {
+            DataTable ps = new DataTable();
+            string sql = @" SELECT * from Position";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                adapter.Fill(ps);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return ps;
+        }
+        public DataTable GetSubjectTeacher( int id)
+        {
+            DataTable sb = new DataTable();
+            string sql = @"SELECT * 
+                           FROM Subject s, SubjectOfTeacher sot  
+                           WHERE sot.teacherID = @id AND s.ID =sot.subjectID";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", id);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                adapter.Fill(sb);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return sb;
+        }
+
         public bool insertTeacher(Teacher teacher)
         {
             
@@ -272,5 +379,7 @@ namespace ManagerStudent.DAL
             }
             return id;
         }
+
+
     }
 }
