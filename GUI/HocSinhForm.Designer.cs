@@ -82,20 +82,18 @@ namespace ManagerStudent.GUI
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataTraCuu = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.button9 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.txtTraCuuLop = new System.Windows.Forms.ComboBox();
             this.label45 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.txtTraCuuKhoi = new System.Windows.Forms.ComboBox();
+            this.txtTraCuuHK = new System.Windows.Forms.ComboBox();
+            this.txtTraCuuNH = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -207,6 +205,8 @@ namespace ManagerStudent.GUI
             this.studentTableAdapter = new ManagerStudent.StudentManagerDataSet2TableAdapters.StudentTableAdapter();
             this.studentTableAdapter1 = new ManagerStudent.StudentManagerDataSet3TableAdapters.StudentTableAdapter();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
+            this.label12 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
@@ -224,7 +224,7 @@ namespace ManagerStudent.GUI
             ((System.ComponentModel.ISupportInitialize)(this.btnReset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picStudent)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTraCuu)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -336,6 +336,7 @@ namespace ManagerStudent.GUI
             // 
             this.dataTableStudent.AutoGenerateColumns = false;
             this.dataTableStudent.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dataTableStudent.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataTableStudent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataTableStudent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
@@ -353,6 +354,7 @@ namespace ManagerStudent.GUI
             this.dataTableStudent.Name = "dataTableStudent";
             this.dataTableStudent.ReadOnly = true;
             this.dataTableStudent.RowHeadersWidth = 51;
+            this.dataTableStudent.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataTableStudent.Size = new System.Drawing.Size(790, 198);
             this.dataTableStudent.TabIndex = 9;
             this.dataTableStudent.TabStop = false;
@@ -799,7 +801,8 @@ namespace ManagerStudent.GUI
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.dataGridView2);
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.dataTraCuu);
             this.tabPage2.Controls.Add(this.panel4);
             this.tabPage2.Controls.Add(this.panel3);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -811,32 +814,37 @@ namespace ManagerStudent.GUI
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
-            // dataGridView2
+            // dataTraCuu
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(15, 168);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(795, 259);
-            this.dataGridView2.TabIndex = 2;
+            this.dataTraCuu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataTraCuu.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dataTraCuu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataTraCuu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataTraCuu.Location = new System.Drawing.Point(15, 168);
+            this.dataTraCuu.Name = "dataTraCuu";
+            this.dataTraCuu.RowHeadersWidth = 51;
+            this.dataTraCuu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataTraCuu.Size = new System.Drawing.Size(795, 259);
+            this.dataTraCuu.TabIndex = 2;
             // 
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.button5);
             this.panel4.Controls.Add(this.pictureBox12);
             this.panel4.Controls.Add(this.pictureBox7);
             this.panel4.Controls.Add(this.button9);
             this.panel4.Controls.Add(this.button6);
-            this.panel4.Location = new System.Drawing.Point(649, 18);
+            this.panel4.Location = new System.Drawing.Point(649, 24);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(164, 100);
+            this.panel4.Size = new System.Drawing.Size(164, 133);
             this.panel4.TabIndex = 1;
             // 
             // pictureBox12
             // 
             this.pictureBox12.BackColor = System.Drawing.Color.MediumBlue;
             this.pictureBox12.Image = global::ManagerStudent.Properties.Resources.icon__magnifying_glass_;
-            this.pictureBox12.Location = new System.Drawing.Point(20, 18);
+            this.pictureBox12.Location = new System.Drawing.Point(19, 13);
             this.pictureBox12.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(25, 22);
@@ -848,7 +856,7 @@ namespace ManagerStudent.GUI
             // 
             this.pictureBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.pictureBox7.Image = global::ManagerStudent.Properties.Resources.icon__arrow_right_;
-            this.pictureBox7.Location = new System.Drawing.Point(20, 61);
+            this.pictureBox7.Location = new System.Drawing.Point(17, 59);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(25, 19);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -859,120 +867,101 @@ namespace ManagerStudent.GUI
             // 
             this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(12, 53);
+            this.button9.Location = new System.Drawing.Point(11, 50);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(141, 35);
             this.button9.TabIndex = 5;
             this.button9.Text = "Xuất Excel";
             this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.Blue;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(12, 10);
+            this.button6.Location = new System.Drawing.Point(11, 5);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(141, 39);
             this.button6.TabIndex = 0;
             this.button6.Text = "Hiển thị";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click_1);
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.comboBox5);
+            this.panel3.Controls.Add(this.txtTraCuuLop);
             this.panel3.Controls.Add(this.label45);
-            this.panel3.Controls.Add(this.textBox2);
-            this.panel3.Controls.Add(this.comboBox4);
-            this.panel3.Controls.Add(this.comboBox3);
-            this.panel3.Controls.Add(this.comboBox2);
-            this.panel3.Controls.Add(this.label12);
+            this.panel3.Controls.Add(this.txtTraCuuKhoi);
+            this.panel3.Controls.Add(this.txtTraCuuHK);
+            this.panel3.Controls.Add(this.txtTraCuuNH);
             this.panel3.Controls.Add(this.label11);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.label9);
-            this.panel3.Location = new System.Drawing.Point(98, 18);
+            this.panel3.Location = new System.Drawing.Point(98, 38);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(545, 124);
+            this.panel3.Size = new System.Drawing.Size(545, 119);
             this.panel3.TabIndex = 0;
             // 
-            // comboBox5
+            // txtTraCuuLop
             // 
-            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(364, 58);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(168, 26);
-            this.comboBox5.TabIndex = 9;
+            this.txtTraCuuLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtTraCuuLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTraCuuLop.FormattingEnabled = true;
+            this.txtTraCuuLop.Location = new System.Drawing.Point(353, 75);
+            this.txtTraCuuLop.Name = "txtTraCuuLop";
+            this.txtTraCuuLop.Size = new System.Drawing.Size(178, 26);
+            this.txtTraCuuLop.TabIndex = 9;
             // 
             // label45
             // 
             this.label45.AutoSize = true;
             this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(306, 61);
+            this.label45.Location = new System.Drawing.Point(295, 78);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(30, 16);
             this.label45.TabIndex = 8;
             this.label45.Text = "Lớp";
             // 
-            // textBox2
+            // txtTraCuuKhoi
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(258, 92);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(154, 24);
-            this.textBox2.TabIndex = 7;
+            this.txtTraCuuKhoi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtTraCuuKhoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTraCuuKhoi.FormattingEnabled = true;
+            this.txtTraCuuKhoi.Location = new System.Drawing.Point(353, 34);
+            this.txtTraCuuKhoi.Name = "txtTraCuuKhoi";
+            this.txtTraCuuKhoi.Size = new System.Drawing.Size(178, 26);
+            this.txtTraCuuKhoi.TabIndex = 6;
+            this.txtTraCuuKhoi.SelectedIndexChanged += new System.EventHandler(this.txtTraCuuKhoi_SelectedIndexChanged);
             // 
-            // comboBox4
+            // txtTraCuuHK
             // 
-            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(364, 17);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(168, 26);
-            this.comboBox4.TabIndex = 6;
+            this.txtTraCuuHK.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtTraCuuHK.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTraCuuHK.FormattingEnabled = true;
+            this.txtTraCuuHK.Location = new System.Drawing.Point(81, 76);
+            this.txtTraCuuHK.Name = "txtTraCuuHK";
+            this.txtTraCuuHK.Size = new System.Drawing.Size(183, 26);
+            this.txtTraCuuHK.TabIndex = 5;
             // 
-            // comboBox3
+            // txtTraCuuNH
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(81, 59);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(161, 26);
-            this.comboBox3.TabIndex = 5;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(81, 16);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(161, 26);
-            this.comboBox2.TabIndex = 4;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(197, 96);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(45, 16);
-            this.label12.TabIndex = 3;
-            this.label12.Text = "GVCN";
+            this.txtTraCuuNH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtTraCuuNH.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTraCuuNH.FormattingEnabled = true;
+            this.txtTraCuuNH.Location = new System.Drawing.Point(81, 33);
+            this.txtTraCuuNH.Name = "txtTraCuuNH";
+            this.txtTraCuuNH.Size = new System.Drawing.Size(183, 26);
+            this.txtTraCuuNH.TabIndex = 4;
+            this.txtTraCuuNH.SelectedIndexChanged += new System.EventHandler(this.txtTraCuuNH_SelectedIndexChanged);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(306, 19);
+            this.label11.Location = new System.Drawing.Point(295, 36);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(33, 16);
             this.label11.TabIndex = 2;
@@ -982,7 +971,7 @@ namespace ManagerStudent.GUI
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(14, 62);
+            this.label10.Location = new System.Drawing.Point(14, 79);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(49, 16);
             this.label10.TabIndex = 1;
@@ -992,7 +981,7 @@ namespace ManagerStudent.GUI
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(14, 20);
+            this.label9.Location = new System.Drawing.Point(14, 37);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(61, 16);
             this.label9.TabIndex = 0;
@@ -1109,6 +1098,7 @@ namespace ManagerStudent.GUI
             // 
             this.dataTableClassNew.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataTableClassNew.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dataTableClassNew.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataTableClassNew.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataTableClassNew.Location = new System.Drawing.Point(3, 163);
             this.dataTableClassNew.Name = "dataTableClassNew";
@@ -1249,6 +1239,7 @@ namespace ManagerStudent.GUI
             // 
             this.dataTableClassOld.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataTableClassOld.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dataTableClassOld.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataTableClassOld.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataTableClassOld.Location = new System.Drawing.Point(4, 163);
             this.dataTableClassOld.Name = "dataTableClassOld";
@@ -2275,6 +2266,30 @@ namespace ManagerStudent.GUI
             // 
             this.openFileDialog2.FileName = "openFileDialog2";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Green;
+            this.label12.Location = new System.Drawing.Point(230, 8);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(328, 24);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "TRA CỨU THÔNG TIN THEO LỚP";
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.Red;
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.ForeColor = System.Drawing.Color.White;
+            this.button5.Location = new System.Drawing.Point(11, 89);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(141, 35);
+            this.button5.TabIndex = 14;
+            this.button5.Text = "Xuất PDF";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // HocSinhForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2305,7 +2320,8 @@ namespace ManagerStudent.GUI
             ((System.ComponentModel.ISupportInitialize)(this.btnReset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picStudent)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTraCuu)).EndInit();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
@@ -2393,15 +2409,14 @@ namespace ManagerStudent.GUI
         private System.Windows.Forms.DataGridView dataTableStudent;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataTraCuu;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox txtTraCuuKhoi;
+        private System.Windows.Forms.ComboBox txtTraCuuHK;
+        private System.Windows.Forms.ComboBox txtTraCuuNH;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox4;
@@ -2526,7 +2541,6 @@ namespace ManagerStudent.GUI
         private System.Windows.Forms.DataGridViewTextBoxColumn createDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn updateDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.ComboBox txtSemesterOld;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.ComboBox txtSemesterNew;
@@ -2535,8 +2549,10 @@ namespace ManagerStudent.GUI
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label lblOld;
         private System.Windows.Forms.Label lblNew;
-        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.ComboBox txtTraCuuLop;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.ComboBox cbSeInQuanHe;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button button5;
     }
 }
