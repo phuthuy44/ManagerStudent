@@ -443,7 +443,7 @@ namespace ManagerStudent.GUI
             string semesName = cbHK.SelectedItem?.ToString();
             string clsname = cbPCL.SelectedItem?.ToString();
             string teacherName = cbGV.SelectedItem?.ToString();
-            if (!string.IsNullOrEmpty(teacherName))
+            if (!string.IsNullOrEmpty(teacherName) && !string.IsNullOrEmpty(semesName) && string.IsNullOrEmpty(clsname))
             {
                 
                 int id = int.Parse(teacherName.Split('-')[0]);
@@ -462,7 +462,7 @@ namespace ManagerStudent.GUI
             string semesName = cbHK.SelectedItem?.ToString();
             string clsname = cbPCL.SelectedItem?.ToString();
             string teacherName = cbGV.SelectedItem?.ToString();
-            if (!string.IsNullOrEmpty(teacherName) && string.IsNullOrEmpty(clsname))
+            if (!string.IsNullOrEmpty(teacherName) && string.IsNullOrEmpty(clsname) && !string.IsNullOrEmpty(ayName))
             {
                
                 int id = int.Parse(teacherName.Split('-')[0]);

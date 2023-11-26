@@ -236,9 +236,9 @@ ALTER TABLE Assignment
 	ADD CONSTRAINT Assignment_subjectID_Subject_ID
 	FOREIGN KEY (subjectID) REFERENCES Subject(ID)
 	
-ALTER TABLE [Assignment] 
-	ADD CONSTRAINT Assignment_statusID_Status_ID
-	FOREIGN KEY (statusID) REFERENCES Status(ID)
+--ALTER TABLE [Assignment] 
+--	ADD CONSTRAINT Assignment_statusID_Status_ID
+--	FOREIGN KEY (statusID) REFERENCES Status(ID)
 
 -- Tạo bảng điểm
 CREATE TABLE Point(
@@ -390,9 +390,9 @@ CREATE TABLE StudentClassSemesterAcademicYear(
 	PRIMARY KEY (studentID, classID, semesterID, academicyearID, gradeID)
 
 )
-ALTER TABLE StudentClassSemesterAcademicYear
-	ADD CONSTRAINT StudentClassSemesterAcademicYear_statusID_Status_ID
-	FOREIGN KEY (statusID) REFERENCES Status(ID)
+--ALTER TABLE StudentClassSemesterAcademicYear
+--	ADD CONSTRAINT StudentClassSemesterAcademicYear_statusID_Status_ID
+--	FOREIGN KEY (statusID) REFERENCES Status(ID)
 
 ALTER TABLE StudentClassSemesterAcademicYear
 	ADD CONSTRAINT StudentClassSemesterAcademicYear_studentID_Student_ID
