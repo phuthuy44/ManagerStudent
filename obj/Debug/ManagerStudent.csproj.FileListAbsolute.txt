@@ -364,63 +364,62 @@ D:\Phuong Vy\ManagerStudent\obj\Debug\ManagerStudent.GUI.AddStudentForm.resource
 D:\Phuong Vy\ManagerStudent\bin\Debug\System.CodeDom.dll
 D:\Phuong Vy\ManagerStudent\bin\Debug\System.ComponentModel.Annotations.dll
 D:\Phuong Vy\ManagerStudent\bin\Debug\System.CodeDom.xml
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.exe.config
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.exe
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\ManagerStudent.pdb
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.dll
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\EPPlus.dll
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Auth.dll
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Auth.PlatformServices.dll
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Core.dll
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.dll
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.PlatformServices.dll
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Sheets.v4.dll
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\OfficeOpenXml.Core.ExcelPackage.dll
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\OfficeOpenXml.Extends.dll
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\QuickWord.OpenXml.dll
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\System.CodeDom.dll
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\System.ComponentModel.Annotations.dll
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\System.Drawing.Common.dll
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.xml
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\EPPlus.xml
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.pdb
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.xml
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Auth.pdb
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Auth.xml
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Core.pdb
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Core.xml
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Sheets.v4.pdb
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\Google.Apis.Sheets.v4.xml
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\OfficeOpenXml.Core.ExcelPackage.pdb
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\QuickWord.OpenXml.xml
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\System.CodeDom.xml
-C:\Users\Asus\Documents\GitHub\ManagerStudent\bin\Debug\System.Drawing.Common.xml
-C:\Users\Asus\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.AssemblyReference.cache
-C:\Users\Asus\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.AddStudentForm.resources
-C:\Users\Asus\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.CategoryForm.resources
-C:\Users\Asus\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.ClassForm.resources
-C:\Users\Asus\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.HocSinhForm.resources
-C:\Users\Asus\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.LoginForm.resources
-C:\Users\Asus\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.MainForm.resources
-C:\Users\Asus\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.PointForm.resources
-C:\Users\Asus\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.TaoLopForm.resources
-C:\Users\Asus\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.TeacherForm.resources
-C:\Users\Asus\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.GUI.ThongKeForm.resources
-C:\Users\Asus\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.Properties.Resources.resources
-C:\Users\Asus\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.GenerateResource.cache
-C:\Users\Asus\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.CoreCompileInputs.cache
-C:\Users\Asus\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.csproj.CopyComplete
-C:\Users\Asus\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.exe
-C:\Users\Asus\Documents\GitHub\ManagerStudent\obj\Debug\ManagerStudent.pdb
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.Framework.dll
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\ExcelDataReader.DataSet.dll
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\ExcelDataReader.dll
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\RecyclableMemoryStream.dll
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.Framework.xml
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\ExcelDataReader.pdb
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\ExcelDataReader.xml
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\ExcelDataReader.DataSet.pdb
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\ExcelDataReader.DataSet.xml
-C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\RecyclableMemoryStream.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.Framework.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.Framework.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.Framework.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\RecyclableMemoryStream.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.Framework.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.barcodes.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.bouncy-castle-connector.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.commons.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.forms.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.io.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.kernel.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.layout.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.pdfa.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.sign.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.styledxmlparser.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.svg.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\Microsoft.Extensions.Logging.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\Microsoft.Extensions.Options.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\Microsoft.Extensions.Primitives.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\System.ValueTuple.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\System.Buffers.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.barcodes.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.bouncy-castle-connector.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.commons.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.forms.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.io.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.kernel.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.layout.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.pdfa.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.sign.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.styledxmlparser.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.svg.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\Microsoft.Extensions.Logging.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\Microsoft.Extensions.Options.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\Microsoft.Extensions.Primitives.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\System.ValueTuple.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.html2pdf.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.html2pdf.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\BouncyCastle.Cryptography.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.bouncy-castle-adapter.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\BouncyCastle.Cryptography.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.bouncy-castle-adapter.xml
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.font_asian.dll
+D:\Phuong Vy\ManagerStudent\bin\Debug\itext.font_asian.xml
