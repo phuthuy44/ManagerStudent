@@ -13,14 +13,12 @@ namespace ManagerStudent.DTO
         public string Name { get; set; }
      
         public int maxStudent { get; set; }
-        public int realStudent { get; set; }
 
-        public Class(int iD, string name,int maxStudent, int realStudent)
+        public Class(int iD, string name,int maxStudent)
         {
             ID = iD;
             Name = name;     
             this.maxStudent = maxStudent;
-            this.realStudent = realStudent;
 
         }
         public Class() { }

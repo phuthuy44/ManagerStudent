@@ -16,10 +16,7 @@ namespace ManagerStudent.BLL
             return clsdal.getAll();
         }
 
-        public List<Class> searchClass(String searchTerm)
-        {
-            return clsdal.SearchClass(searchTerm);
-        }
+    
         public string insertClass(Class cls)
         {
             if (clsdal.HasNameClass(cls.Name))

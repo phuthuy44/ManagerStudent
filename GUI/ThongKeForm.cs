@@ -1,4 +1,4 @@
-﻿using ManagerStudent.BLL;
+﻿/*using ManagerStudent.BLL;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -436,3 +436,4 @@ namespace ManagerStudent.GUI
         }
     }
 }
+*/

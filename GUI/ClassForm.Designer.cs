@@ -30,9 +30,6 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -44,8 +41,6 @@
             this.btnThem = new System.Windows.Forms.Button();
             this.dgvClass = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtSoLuongHocSinh = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.txtMaxHocSinh = new System.Windows.Forms.TextBox();
             this.txtTenLop = new System.Windows.Forms.TextBox();
             this.txtMaLop = new System.Windows.Forms.TextBox();
@@ -70,7 +65,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -102,9 +96,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.pictureBox10);
-            this.tabPage1.Controls.Add(this.txtSearch);
-            this.tabPage1.Controls.Add(this.btnSearch);
             this.tabPage1.Controls.Add(this.panel2);
             this.tabPage1.Controls.Add(this.dgvClass);
             this.tabPage1.Controls.Add(this.panel1);
@@ -115,40 +106,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Lớp";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox10
-            // 
-            this.pictureBox10.BackColor = System.Drawing.Color.MediumBlue;
-            this.pictureBox10.Image = global::ManagerStudent.Properties.Resources.icon__magnifying_glass_;
-            this.pictureBox10.Location = new System.Drawing.Point(180, 39);
-            this.pictureBox10.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(30, 20);
-            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox10.TabIndex = 13;
-            this.pictureBox10.TabStop = false;
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(25, 31);
-            this.txtSearch.Multiline = true;
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(138, 36);
-            this.txtSearch.TabIndex = 4;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.BackColor = System.Drawing.Color.MediumBlue;
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(169, 31);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(107, 36);
-            this.btnSearch.TabIndex = 3;
-            this.btnSearch.Text = "Tìm Kiếm";
-            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel2
             // 
@@ -161,9 +118,9 @@
             this.panel2.Controls.Add(this.btnSua);
             this.panel2.Controls.Add(this.btnExcelClass);
             this.panel2.Controls.Add(this.btnThem);
-            this.panel2.Location = new System.Drawing.Point(25, 298);
+            this.panel2.Location = new System.Drawing.Point(8, 270);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(251, 118);
+            this.panel2.Size = new System.Drawing.Size(268, 118);
             this.panel2.TabIndex = 2;
             // 
             // pictureBox4
@@ -272,35 +229,16 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.txtSoLuongHocSinh);
-            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.txtMaxHocSinh);
             this.panel1.Controls.Add(this.txtTenLop);
             this.panel1.Controls.Add(this.txtMaLop);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(8, 89);
+            this.panel1.Location = new System.Drawing.Point(8, 44);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(279, 179);
             this.panel1.TabIndex = 0;
-            // 
-            // txtSoLuongHocSinh
-            // 
-            this.txtSoLuongHocSinh.Location = new System.Drawing.Point(137, 139);
-            this.txtSoLuongHocSinh.Name = "txtSoLuongHocSinh";
-            this.txtSoLuongHocSinh.Size = new System.Drawing.Size(129, 20);
-            this.txtSoLuongHocSinh.TabIndex = 8;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(13, 140);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(112, 16);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Số lượng học sinh";
             // 
             // txtMaxHocSinh
             // 
@@ -329,9 +267,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(13, 98);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 16);
+            this.label3.Size = new System.Drawing.Size(96, 16);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Tổng học sinh";
+            this.label3.Text = "Số lượng tối đa";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
@@ -544,8 +482,6 @@
             this.Load += new System.EventHandler(this.ClassForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -572,8 +508,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dgvClass;
         private System.Windows.Forms.Panel panel1;
@@ -606,8 +540,5 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox10;
-        private System.Windows.Forms.TextBox txtSoLuongHocSinh;
-        private System.Windows.Forms.Label label6;
     }
 }
