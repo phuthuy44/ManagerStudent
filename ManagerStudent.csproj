@@ -228,6 +228,7 @@
     <Compile Include="BLL\StudentBLL.cs" />
     <Compile Include="BLL\SubjectBLL.cs" />
     <Compile Include="BLL\TeacherBLL.cs" />
+    <Compile Include="BLL\ThongKeBLL.cs" />
     <Compile Include="BLL\TypeOfPointBLL.cs" />
     <Compile Include="DAL\GetSubjectData.cs" />
     <Compile Include="DAL\TeacherDAL.cs" />
@@ -244,6 +245,7 @@
     <Compile Include="DAL\ParentDAL.cs" />
     <Compile Include="DAL\PointDAL.cs" />
     <Compile Include="DAL\StudentDAL.cs" />
+    <Compile Include="DAL\ThongKeDAL.cs" />
     <Compile Include="DAL\TypeOfPointDAL.cs" />
     <Compile Include="DTO\AcademicYear.cs" />
     <Compile Include="DTO\Account.cs" />

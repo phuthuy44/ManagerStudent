@@ -175,6 +175,7 @@
             this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox13.TabIndex = 17;
             this.pictureBox13.TabStop = false;
+            this.pictureBox13.Click += new System.EventHandler(this.button7_Click);
             // 
             // button7
             // 
@@ -362,14 +363,16 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(125, 183);
+            this.txtSearch.Location = new System.Drawing.Point(134, 188);
             this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(199, 34);
+            this.txtSearch.Size = new System.Drawing.Size(199, 22);
             this.txtSearch.TabIndex = 10;
+            this.txtSearch.TextChanged += new System.EventHandler(this.btnSearch_Click);
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Mã ",
@@ -379,7 +382,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(110, 21);
             this.comboBox1.TabIndex = 9;
-            this.comboBox1.Text = "Tất cả";
             // 
             // panel1
             // 
@@ -408,6 +410,7 @@
             // 
             // cbGender
             // 
+            this.cbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGender.FormattingEnabled = true;
             this.cbGender.Items.AddRange(new object[] {
             "Nam",
@@ -419,6 +422,7 @@
             // 
             // cbTechnical
             // 
+            this.cbTechnical.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTechnical.FormattingEnabled = true;
             this.cbTechnical.Location = new System.Drawing.Point(378, 124);
             this.cbTechnical.Name = "cbTechnical";

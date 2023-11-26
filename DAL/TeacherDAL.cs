@@ -57,6 +57,58 @@ namespace ManagerStudent.DAL
             }
             return dt;
         }
+        public DataTable SearchAllTeacher( string s)
+        {
+            DataTable dt = new DataTable();
+            string sql = @" SELECT
+                    t.ID N'Mã GV',
+                    t.teacherName N'Tên giáo viên',
+                    t.gender N'Giới tính',
+                    t.birthday N'Ngày sinh',
+                    t.email,
+                    t.phonenumber N'Số điện thoại',
+                    t.address N'Địa chỉ',
+                    t.image N'Hình ảnh',
+                    STRING_AGG(s.subjectName, ', ') WITHIN GROUP (ORDER BY s.subjectName) AS N'Chuyên môn'
+                FROM
+                    Teacher t
+                JOIN
+                    SubjectOfTeacher s2 ON t.ID = s2.teacherID
+                JOIN
+                    Subject s ON s2.subjectID = s.ID
+                WHERE
+                    t.ID LIKE '%' + @s + '%' OR
+                    t.teacherName LIKE '%' + @s + '%' OR
+                    t.gender LIKE '%' + @s + '%' OR
+                    CONVERT(NVARCHAR, t.birthday, 112) LIKE '%' + @s + '%' OR
+                    t.email LIKE '%' + @s + '%' OR
+                    CONVERT(NVARCHAR, t.phonenumber) LIKE '%' + @s + '%' OR
+                    t.address LIKE '%' + @s + '%'   
+                GROUP BY
+                    t.ID, t.teacherName, t.gender, t.birthday, t.email, t.phonenumber, t.address, t.image";
+
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@s", s);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                adapter.Fill(dt);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("SearchAllTeacher " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return dt;
+        }
         public DataTable GetAssignment()
         {
             DataTable sbteacher = new DataTable();
