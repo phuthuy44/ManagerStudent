@@ -206,7 +206,6 @@ CREATE TABLE Assignment(
 	positionID INT,
 	academicyearID INT,
 	subjectID INT,
-	statusID INT,
 	PRIMARY KEY (teacherID, classID, semesterID, 
 	positionID, academicyearID, subjectID, statusID)
 )

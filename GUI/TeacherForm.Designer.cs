@@ -43,9 +43,9 @@
             this.button5 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnDeleteTeacher = new System.Windows.Forms.Button();
+            this.btnEditTeacher = new System.Windows.Forms.Button();
+            this.btnAddTeacher = new System.Windows.Forms.Button();
             this.TableTeacher = new System.Windows.Forms.DataGridView();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -88,7 +88,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnDA = new System.Windows.Forms.Button();
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
-            this.button11 = new System.Windows.Forms.Button();
+            this.btnFillAssignment = new System.Windows.Forms.Button();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -125,10 +125,11 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.ItemSize = new System.Drawing.Size(120, 18);
             this.tabControl1.Location = new System.Drawing.Point(-1, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(830, 462);
+            this.tabControl1.Size = new System.Drawing.Size(826, 462);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
             // 
@@ -147,7 +148,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(822, 436);
+            this.tabPage1.Size = new System.Drawing.Size(818, 436);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Giáo viên";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -224,9 +225,9 @@
             this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Controls.Add(this.button4);
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.btnDeleteTeacher);
+            this.panel2.Controls.Add(this.btnEditTeacher);
+            this.panel2.Controls.Add(this.btnAddTeacher);
             this.panel2.Location = new System.Drawing.Point(678, 20);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(133, 201);
@@ -311,41 +312,41 @@
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button4.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btnDeleteTeacher
             // 
-            this.button3.BackColor = System.Drawing.Color.LightCoral;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(3, 84);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(125, 35);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Xóa";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnDeleteTeacher.BackColor = System.Drawing.Color.LightCoral;
+            this.btnDeleteTeacher.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteTeacher.Location = new System.Drawing.Point(3, 84);
+            this.btnDeleteTeacher.Name = "btnDeleteTeacher";
+            this.btnDeleteTeacher.Size = new System.Drawing.Size(125, 35);
+            this.btnDeleteTeacher.TabIndex = 2;
+            this.btnDeleteTeacher.Text = "Xóa";
+            this.btnDeleteTeacher.UseVisualStyleBackColor = false;
+            this.btnDeleteTeacher.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button2
+            // btnEditTeacher
             // 
-            this.button2.BackColor = System.Drawing.Color.Turquoise;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(3, 45);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(125, 35);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Sửa";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnEditTeacher.BackColor = System.Drawing.Color.Turquoise;
+            this.btnEditTeacher.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditTeacher.Location = new System.Drawing.Point(3, 45);
+            this.btnEditTeacher.Name = "btnEditTeacher";
+            this.btnEditTeacher.Size = new System.Drawing.Size(125, 35);
+            this.btnEditTeacher.TabIndex = 1;
+            this.btnEditTeacher.Text = "Sửa";
+            this.btnEditTeacher.UseVisualStyleBackColor = false;
+            this.btnEditTeacher.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
+            // btnAddTeacher
             // 
-            this.button1.BackColor = System.Drawing.Color.SpringGreen;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 35);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Thêm";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnAddTeacher.BackColor = System.Drawing.Color.SpringGreen;
+            this.btnAddTeacher.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddTeacher.Location = new System.Drawing.Point(3, 4);
+            this.btnAddTeacher.Name = "btnAddTeacher";
+            this.btnAddTeacher.Size = new System.Drawing.Size(125, 35);
+            this.btnAddTeacher.TabIndex = 0;
+            this.btnAddTeacher.Text = "Thêm";
+            this.btnAddTeacher.UseVisualStyleBackColor = false;
+            this.btnAddTeacher.Click += new System.EventHandler(this.button1_Click);
             // 
             // TableTeacher
             // 
@@ -566,9 +567,9 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(822, 436);
+            this.tabPage2.Size = new System.Drawing.Size(818, 436);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Phân công";
+            this.tabPage2.Text = "Phân công giảng dạy";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // panel4
@@ -593,6 +594,7 @@
             // 
             // cbCV
             // 
+            this.cbCV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCV.FormattingEnabled = true;
             this.cbCV.Location = new System.Drawing.Point(136, 208);
             this.cbCV.Name = "cbCV";
@@ -611,11 +613,13 @@
             // 
             // cbPCL
             // 
+            this.cbPCL.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPCL.FormattingEnabled = true;
             this.cbPCL.Location = new System.Drawing.Point(136, 172);
             this.cbPCL.Name = "cbPCL";
             this.cbPCL.Size = new System.Drawing.Size(166, 21);
             this.cbPCL.TabIndex = 8;
+            this.cbPCL.SelectedIndexChanged += new System.EventHandler(this.cbPCL_SelectedIndexChanged);
             // 
             // label13
             // 
@@ -629,6 +633,7 @@
             // 
             // cbCM
             // 
+            this.cbCM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCM.FormattingEnabled = true;
             this.cbCM.Location = new System.Drawing.Point(136, 132);
             this.cbCM.Name = "cbCM";
@@ -637,14 +642,17 @@
             // 
             // cbHK
             // 
+            this.cbHK.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbHK.FormattingEnabled = true;
             this.cbHK.Location = new System.Drawing.Point(136, 52);
             this.cbHK.Name = "cbHK";
             this.cbHK.Size = new System.Drawing.Size(166, 21);
             this.cbHK.TabIndex = 6;
+            this.cbHK.SelectedIndexChanged += new System.EventHandler(this.cbHK_SelectedIndexChanged);
             // 
             // cbGV
             // 
+            this.cbGV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGV.FormattingEnabled = true;
             this.cbGV.Location = new System.Drawing.Point(136, 92);
             this.cbGV.Name = "cbGV";
@@ -654,11 +662,13 @@
             // 
             // cbNH
             // 
+            this.cbNH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbNH.FormattingEnabled = true;
             this.cbNH.Location = new System.Drawing.Point(136, 14);
             this.cbNH.Name = "cbNH";
             this.cbNH.Size = new System.Drawing.Size(166, 21);
             this.cbNH.TabIndex = 4;
+            this.cbNH.SelectedIndexChanged += new System.EventHandler(this.cbNH_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -703,6 +713,7 @@
             // TableAssignment
             // 
             this.TableAssignment.AllowUserToAddRows = false;
+            this.TableAssignment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.TableAssignment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TableAssignment.Location = new System.Drawing.Point(331, 6);
             this.TableAssignment.Name = "TableAssignment";
@@ -718,7 +729,7 @@
             this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Controls.Add(this.btnDA);
             this.panel3.Controls.Add(this.pictureBox16);
-            this.panel3.Controls.Add(this.button11);
+            this.panel3.Controls.Add(this.btnFillAssignment);
             this.panel3.Controls.Add(this.pictureBox9);
             this.panel3.Controls.Add(this.pictureBox8);
             this.panel3.Controls.Add(this.pictureBox7);
@@ -773,6 +784,7 @@
             this.btnDA.TabIndex = 14;
             this.btnDA.Text = "Xóa";
             this.btnDA.UseVisualStyleBackColor = false;
+            this.btnDA.Click += new System.EventHandler(this.btnDA_Click);
             // 
             // pictureBox16
             // 
@@ -786,17 +798,18 @@
             this.pictureBox16.TabIndex = 13;
             this.pictureBox16.TabStop = false;
             // 
-            // button11
+            // btnFillAssignment
             // 
-            this.button11.BackColor = System.Drawing.Color.Blue;
-            this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button11.ForeColor = System.Drawing.Color.White;
-            this.button11.Location = new System.Drawing.Point(12, 71);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(136, 42);
-            this.button11.TabIndex = 10;
-            this.button11.Text = "Hiển Thị";
-            this.button11.UseVisualStyleBackColor = false;
+            this.btnFillAssignment.BackColor = System.Drawing.Color.Blue;
+            this.btnFillAssignment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFillAssignment.ForeColor = System.Drawing.Color.White;
+            this.btnFillAssignment.Location = new System.Drawing.Point(12, 71);
+            this.btnFillAssignment.Name = "btnFillAssignment";
+            this.btnFillAssignment.Size = new System.Drawing.Size(136, 42);
+            this.btnFillAssignment.TabIndex = 10;
+            this.btnFillAssignment.Text = "Hiển Thị";
+            this.btnFillAssignment.UseVisualStyleBackColor = false;
+            this.btnFillAssignment.Click += new System.EventHandler(this.btnFillAssignment_Click);
             // 
             // pictureBox9
             // 
@@ -865,6 +878,7 @@
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // FileDialog
             // 
@@ -944,9 +958,9 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDeleteTeacher;
+        private System.Windows.Forms.Button btnEditTeacher;
+        private System.Windows.Forms.Button btnAddTeacher;
         private System.Windows.Forms.PictureBox picGV;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button8;
@@ -960,7 +974,7 @@
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.ComboBox cbTechnical;
         private System.Windows.Forms.ComboBox cbGender;
-        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button btnFillAssignment;
         private System.Windows.Forms.PictureBox pictureBox16;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ComboBox cbCM;

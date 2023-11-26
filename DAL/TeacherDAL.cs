@@ -57,7 +57,7 @@ namespace ManagerStudent.DAL
             }
             return dt;
         }
-        public DataTable GetAssignmentTeacher()
+        public DataTable GetAssignment()
         {
             DataTable sbteacher = new DataTable();
             string sql = @"SELECT ay.academicyearName N'Năm học', s2.semesterName N'Học kỳ', c.className N'Lớp', 
@@ -85,6 +85,71 @@ namespace ManagerStudent.DAL
                 conn.Close();
             }
             return sbteacher;
+        }
+        public DataTable GetAssignmentTeacher( int id, string ayname, string semesName)
+        {
+            DataTable AoT = new DataTable();
+            string sql = @"SELECT  p.positionName N'Chức vụ', c.className N'Lớp', 
+                           s.subjectName N'Môn' 
+                           FROM Teacher t, Assignment a, Class c, Position p, AcademicYear ay, Subject s, Semester s2  
+                           WHERE t.ID = a.teacherID AND a.classID = c.ID AND a.positionID = p.ID  AND ay.ID = a.academicyearID 
+                            AND s.ID = a.subjectID AND a.semesterID = s2.ID AND a.teacherID = @id AND ay.academicyearName = @ayName 
+                            AND s2.semesterName = @semesName";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@ayName", ayname);
+                cmd.Parameters.AddWithValue("@semesName", semesName);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                adapter.Fill(AoT);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("GetAssignmentTeacher" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return AoT;
+        }
+        public DataTable GetAssignmentClass(string clsname, string ayname, string semesName)
+        {
+            DataTable AoC = new DataTable();
+            string sql = @"SELECT t.teacherName N'Tên giáo viên',s.subjectName N'Môn', p.positionName N'Chức vụ' 
+                           FROM Teacher t, Assignment a, Class c, Position p, AcademicYear ay, Subject s, Semester s2  
+                           WHERE t.ID = a.teacherID AND a.classID = c.ID AND a.positionID = p.ID  AND ay.ID = a.academicyearID 
+                           AND s.ID = a.subjectID AND a.semesterID = s2.ID AND c.className = @clsname AND ay.academicyearName = @ayName 
+                           AND s2.semesterName = @semesName";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@clsname", clsname);
+                cmd.Parameters.AddWithValue("@ayName", ayname);
+                cmd.Parameters.AddWithValue("@semesName", semesName);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                adapter.Fill(AoC);
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("GetAssignmentClass" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return AoC;
         }
         public DataTable GetAcademicYear()
         {
@@ -201,6 +266,7 @@ namespace ManagerStudent.DAL
             return sb;
         }
 
+
         public bool insertTeacher(Teacher teacher)
         {
             
@@ -289,7 +355,7 @@ namespace ManagerStudent.DAL
             }
             finally { conn.Close(); }
         }
-        public bool DeleteAssignment(int id)
+        public bool DeleteTechnical(int id)
         {
             String sql = "DELETE FROM Assignment where teacherID = @idteacher";
             SqlConnection conn = initConnect.ConnectToDatabase();
@@ -307,7 +373,6 @@ namespace ManagerStudent.DAL
             }
             finally { conn.Close(); }
         }
-
         public bool InsertSubOfTecher(int id1 , int id2)
         {
             string sql = "INSERT INTO SubjectOfTeacher(teacherID,subjectID) Values(@id1,@id2)";
@@ -327,6 +392,8 @@ namespace ManagerStudent.DAL
             }
             finally { conn.Close(); }
         }
+
+
         public int GetIdSubject(string sbname)
         {
             string sql = "Select id FROM Subject Where subjectName = @sbname";
@@ -353,6 +420,112 @@ namespace ManagerStudent.DAL
                 conn.Close();
             }
             return id; 
+        }
+        public int GetIdAY(string name)
+        {
+            string sql = "Select id FROM AcademicYear Where academicyearName = @name";
+            int id = new int();
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@name", name);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    id = reader.GetInt32(0);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return id;
+        }
+        public int GetIdSemester(string name)
+        {
+            string sql = "Select id FROM Semester Where semesterName = @name";
+            int id = new int();
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@name", name);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    id = reader.GetInt32(0);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return id;
+        }
+        public int GetIdClass(string name)
+        {
+            string sql = "Select id FROM Class Where className = @name";
+            int id = new int();
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@name", name);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    id = reader.GetInt32(0);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return id;
+        }
+        public int GetIdPosition(string name)
+        {
+            string sql = "Select id FROM Position Where positionName = @name";
+            int id = new int();
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@name", name);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    id = reader.GetInt32(0);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return id;
         }
         public int GetIdTeacherLast()
         {
@@ -381,5 +554,114 @@ namespace ManagerStudent.DAL
         }
 
 
+        public bool CheckClass( int idCls, int idSb, int idAy, int idSe)
+        {
+            string sql = "SELECT * FROM Assignment a WHERE classID= @idCls AND subjectID = @idSb  AND academicyearID = @idAy AND  semesterID= @idSe";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@idCls", idCls );
+                cmd.Parameters.AddWithValue("@idSb", idSb );
+                cmd.Parameters.AddWithValue("@idAy", idAy);
+                cmd.Parameters.AddWithValue("@idSe", idSe);
+                SqlDataReader rd = cmd.ExecuteReader();
+                if(rd.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally { conn.Close(); }
+        }
+        public bool CheckPosition(int idCls, int idAy, int idSe)
+        {
+            string sql = "SELECT * FROM Assignment a, Position p " +
+                "WHERE classID= @idCls AND a.positionID = p.ID AND academicyearID = @idAy AND  semesterID= @idSe AND p.positionName= N'Giáo viên chủ nhiệm'" ;
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@idCls", idCls);
+                cmd.Parameters.AddWithValue("@idAy", idAy);
+                cmd.Parameters.AddWithValue("@idSe", idSe);
+                SqlDataReader rd = cmd.ExecuteReader();
+                if (rd.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally { conn.Close(); }
+        }
+
+        public bool DeleteAssignment(int idCls, int idSb, int idAy, int idSe, int idTea)
+        {
+
+            string sql = "DELETE FROM Assignment " +
+                         "WHERE teacherID = @idTea AND classID = @idCls AND semesterID = @idSe " +
+                         "AND academicyearID = @idAy AND subjectID = @idSb";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@idTea",idTea);
+                cmd.Parameters.AddWithValue("@idCls",idCls);
+                cmd.Parameters.AddWithValue("@idSe", idSe);
+                cmd.Parameters.AddWithValue("@idAy", idAy);
+                cmd.Parameters.AddWithValue("@idSb", idSb);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally { conn.Close(); }
+        }
+        public bool InsertAssignment(int idCls, int idSb, int idAy, int idSe, int idTea, int idPos)
+        {
+
+            string sql = "INSERT INTO Assignment(teacherID,classID,semesterID,positionID,academicyearID, subjectID) " +
+                         "Values(@idTea,@idCls,@idSe,@idPos,@idAy,@idSb)";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@idTea", idTea);
+                cmd.Parameters.AddWithValue("@idCls", idCls);
+                cmd.Parameters.AddWithValue("@idSe", idSe);
+                cmd.Parameters.AddWithValue("@idPos", idPos);
+                cmd.Parameters.AddWithValue("@idAy", idAy);
+                cmd.Parameters.AddWithValue("@idSb", idSb);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally { conn.Close(); }
+        }
     }
 }
