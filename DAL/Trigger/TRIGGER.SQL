@@ -208,6 +208,74 @@ BEGIN
     END
     END;
 
+CREATE TRIGGER SET_SUMMARY
+	ON Point
+	AFTER INSERT , UPDATE
+AS
+BEGIN
+		DECLARE @studentCapacityID INT
+		DECLARE @studentConductID INT
+		DECLARE @studentID INT
+		DECLARE @point DECIMAL(10, 2)
+		
+		DECLARE @minpoint DECIMAL(10, 2)
+		DECLARE @academicyearID INT
+		DECLARE @semesterID INT
+		DECLARE @classID INT
+		DECLARE @capacityName NVARCHAR(255)
+
+		--studentID
+		--academicyearID
+		--semesterID
+		--classID
+		SELECT @studentID = i.studentID, @academicyearID = i.academicyearID,
+			@semesterID = i.semesterID, @classID = i.classID
+		FROM inserted i
+		
+		--point
+		SELECT @point = AVG(p.point) , @minpoint = MIN(p.point) 
+			FROM Point p  
+			WHERE p.typeofpointID = (
+				SELECT TOP 1 top2.ID  
+				FROM TypeOfPoint top2 
+				WHERE top2.pointName = N'Điểm trung bình môn'
+			)
+			AND p.studentID = @studentID
+			AND p.academicyearID = @academicyearID
+			AND p.semesterID = @semesterID
+			AND p.classID = @classID
+			GROUP BY p.studentID, p.academicyearID  , p.classID ,p.semesterID;
+		PRINT @point
+		--capacityName
+		SELECT TOP 1 @capacityName = c.capacityName 
+		FROM Capacity c 
+		INNER JOIN Capacity c2 ON c.ID = c2.ID 
+			AND c2.paraPoint < @minpoint
+		WHERE  c.lowerLimit <= @point 
+		PRINT @capacityName
+	IF NOT EXISTS (
+		SELECT * 
+		FROM StudentCapacity sc 
+		WHERE sc.studentID = @studentID
+			AND sc.semesterID = @semesterID 
+            AND sc.academicyearID = @academicyearID
+	)
+	BEGIN 
+		
+		INSERT INTO StudentCapacity (studentID, academicyearID, semesterID, capacityName, point, createDate)
+		VALUES (@studentID, @academicyearID, @semesterID, @capacityName, @point, GETDATE())
+	END
+	ELSE
+	BEGIN
+		UPDATE StudentCapacity 
+		SET point = @point, capacityName = @capacityName 
+		WHERE studentID = @studentID
+		AND academicyearID = @academicyearID
+		AND semesterID = @semesterID
+	END
+	
+END;
+
 CREATE TRIGGER UPDATE_PARENT
 ON Parent
 AFTER UPDATE

@@ -184,6 +184,90 @@ BEGIN
         ORDER BY p.updateDate 
 END;
 
+CREATE    PROC FINAL_RESULT
+    @academicyearName NVARCHAR(255),
+	@studentID INT
+	AS
+	BEGIN
+		DECLARE @academicyearID INT
+		DECLARE @typeofpointID INT
+		DECLARE @semesterID1 INT
+		DECLARE @semesterID2 INT
+		DECLARE @coefficient1 INT
+		DECLARE @coefficient2 INT
+		DECLARE @minpoint DECIMAL(10, 2)
+		DECLARE @avgpoint DECIMAL(10, 2)
+		DECLARE @capacityName NVARCHAR(255)
+		DECLARE @conductName NVARCHAR(255)
+		
+		SELECT @academicyearID = ay.ID 
+		FROM AcademicYear ay 
+		WHERE ay.academicyearName = @academicyearName
+		
+		SELECT @typeofpointID = top2.ID
+		FROM TypeOfPoint top2 
+		WHERE top2.pointName =  N'Điểm trung bình môn'
+		
+		SELECT @semesterID1 = s.ID ,@coefficient1 = s.coefficient 
+		FROM Semester s 
+		WHERE s.semesterName = N'Học kỳ 1'
+		
+		SELECT @semesterID2 = s.ID ,@coefficient2 = s.coefficient 
+		FROM Semester s 
+		WHERE s.semesterName = N'Học kỳ 2'
+		
+		
+	
+	    SELECT @avgpoint = AVG(resultpoint) , @minpoint = MIN(resultpoint)  FROM 
+	    (
+		    SELECT (p1.point*@coefficient1 + p2.point*@coefficient2)/(@coefficient1+@coefficient2) AS resultpoint
+		    FROM 
+		    (
+			    SELECT p.studentID , p.subjectID ,p.academicyearID ,p.semesterID ,p.point 
+			    FROM Point p 
+			    --Đặt biến
+			    WHERE p.typeofpointID = @typeofpointID 
+			    --Đặt biến
+			    AND p.semesterID = @semesterID1 
+			    --Truyền vào
+			    AND p.academicyearID = @academicyearID
+			    --Truyền vào
+			    AND p.studentID = @studentID
+		    ) AS p1, 
+		    (
+			    
+			    SELECT p.studentID , p.subjectID ,p.academicyearID ,p.semesterID ,p.point 
+			    FROM Point p 
+			    --Đặt biến
+			    WHERE p.typeofpointID = @typeofpointID 
+			    --Đặt biến
+			    AND p.semesterID = @semesterID2
+			    --Truyền vào
+			    AND p.academicyearID = @academicyearID
+			    --Truyền vào
+			    AND p.studentID = @studentID
+		    ) AS p2
+			WHERE p1.studentID = p2.studentID 
+			AND p1.subjectID = p2.subjectID
+			AND p1.academicyearID = p2.academicyearID
+		) AS res
+		
+		SELECT TOP 1 @capacityName = c.capacityName 
+		FROM Capacity c 
+		INNER JOIN Capacity c2 ON c.ID = c2.ID 
+			AND c2.paraPoint < @minpoint
+		WHERE  c.lowerLimit <= @avgpoint 
+		
+		SELECT top 1 @conductName = c.conductName 
+			FROM StudentConduct sc  
+			INNER JOIN Conduct c ON sc.point BETWEEN c.lowerLimit AND c.upperLimit
+			WHERE sc.studentID = @studentID
+			GROUP BY c.conductName
+			--ORDER BY c.ID 
+			HAVING AVG(sc.point) BETWEEN MIN(c.lowerLimit) AND MAX(c.upperLimit)
+		SELECT N'Cả năm' AS N'Học kỳ', @conductName AS N'Hạnh Kiểm', @capacityName AS N'Học lực',  @avgpoint AS N'Điểm trung bình'
+	END;
+
 CREATE PROCEDURE FindCapacity
     @STR NVARCHAR(100)
 AS
@@ -213,6 +297,29 @@ AS
 	Begin
 		SELECT * FROM TypeOfPoint top2 ;
 	END;
+
+CREATE PROC SUMMARY_POINT_STUDENT
+	@academicyearName NVARCHAR(255),
+    @semesterName NVARCHAR(255),
+    @className NVARCHAR(255),
+    @studentID INT
+AS
+BEGIN
+	SELECT  s.semesterName AS N'Học Kỳ',sc2.conductName AS N'Hạnh Kiểm' , sc.capacityName AS N'Học lực',  sc.point AS N'Điểm trung bình'
+	FROM StudentManager.dbo.StudentCapacity sc  , StudentManager.dbo.StudentConduct sc2 ,
+		StudentManager.dbo.Semester s 
+	WHERE sc.studentID = @studentID
+	AND sc.academicyearID = (
+		SELECT TOP 1 ay.ID 
+		FROM AcademicYear ay
+		WHERE ay.academicyearName = @academicyearName
+	)
+	AND sc2.studentID = sc.studentID 
+	AND sc2.academicyearID = sc.academicyearID 
+	AND sc2.semesterID = sc.semesterID 
+	AND s.ID = sc.semesterID 
+	ORDER BY s.ID 
+END;
 
 CREATE   PROCEDURE UPDATE_INSERT_POINT
     @studentID INT,

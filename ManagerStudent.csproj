@@ -551,7 +551,6 @@
     <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.dll" />
     <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.xml" />
     <Content Include="DAL\ScriptData.sql" />
-    <Content Include="DAL\Store Procedure\DATA_POINT.sql" />
     <Content Include="DAL\Store Procedure\SP.sql" />
     <Content Include="DAL\StoreProcedure.sql" />
     <Content Include="DAL\Trigger.sql" />
