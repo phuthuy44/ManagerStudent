@@ -44,7 +44,7 @@ namespace ManagerStudent.GUI
             InitializeComponent();
             conductTab();
             Shown += (sender, e) => dataGridView2.ClearSelection();
-            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
+            /*tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;*/
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -116,22 +116,38 @@ namespace ManagerStudent.GUI
             if (tabControl1.SelectedTab == tabPage2)
             {
                 dataGridView2.ClearSelection();
+                textBox4.Clear();
+                textBox3.Clear();
+                textBox1.Clear();
             }
             else if (tabControl1.SelectedTab == tabPage3)
             {
                 dataGridView3.ClearSelection();
+                textBox11.Clear();
+                textBox10.Clear();
+                textBox7.Clear();
+                textBox6.Clear();
+                textBox12.Clear();
             }
             else if (tabControl1.SelectedTab == tabPage4)
             {
                 dataGridView4.ClearSelection();
+                textBox15.Clear();
+                textBox14.Clear();
+                textBox8.Clear();
             }
             else if (tabControl1.SelectedTab == tabPage5)
             {
                 dataGridView5.ClearSelection();
+                textBox18.Clear();
+                textBox17.Clear();
+                textBox9.Clear();
             }
             else if (tabControl1.SelectedTab == tabPage1)
             {
                 dataGridView1.ClearSelection();
+                textBox21.Clear();
+                textBox20.Clear();
             }
 
         }
@@ -772,8 +788,8 @@ namespace ManagerStudent.GUI
                 !float.TryParse(textBox6.Text, out lowerLimit) ||
                 !float.TryParse(textBox12.Text, out paraPoint))
             {
-                MessageBox.Show("Vui lòng nhập số nguyên hoặc số thập phân " +
-                    "cho điểm cận trên, điểm cận dưới và điểm khống chế!.");
+                MessageBox.Show("Vui lòng nhập Số nguyên hoặc Số thập phân " +
+                    "cho Điểm cận trên, Điểm cận dưới và Điểm khống chế!.");
                 return;
             }
 
@@ -786,7 +802,24 @@ namespace ManagerStudent.GUI
                 return;
             }
 
-            if (paraPoint >= lowerLimit ||
+            if (lowerLimit == 0 && paraPoint == 0)
+            {
+                DialogResult result = MessageBox.Show("Cả hai Điểm cận dưới và Điểm khống chế đều bằng 0. Bạn có muốn thêm dữ liệu?", "Xác nhận", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    insertCapacity(capacityName, upperLimit, lowerLimit, paraPoint);
+                }
+            }
+            else if (paraPoint >= lowerLimit || paraPoint >= upperLimit || lowerLimit >= upperLimit)
+            {
+                MessageBox.Show("Điểm khống chế phải nhỏ hơn Điểm cận dưới và Điểm cận dưới phải nhỏ hơn Điểm cận trên.");
+            }
+            else
+            {
+                insertCapacity(capacityName, upperLimit, lowerLimit, paraPoint);
+            }
+
+/*            if (paraPoint >= lowerLimit ||
                 paraPoint >= upperLimit ||
                 lowerLimit >= upperLimit)
             {
@@ -794,7 +827,7 @@ namespace ManagerStudent.GUI
                     "và Điểm cận dưới phải nhỏ hơn điểm cận trên.");
                 return;
             }
-            insertCapacity(capacityName, upperLimit, lowerLimit, paraPoint);
+            insertCapacity(capacityName, upperLimit, lowerLimit, paraPoint);*/
         }
 
         private void button13_Click(object sender, EventArgs e)
@@ -852,7 +885,24 @@ namespace ManagerStudent.GUI
                 return;
             }
 
-            if (paraPoint >= lowerLimit ||
+            if (lowerLimit == 0 && paraPoint == 0)
+            {
+                DialogResult result = MessageBox.Show("Cả hai Điểm cận dưới và Điểm khống chế đều bằng 0. Bạn có muốn thêm dữ liệu?", "Xác nhận", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    updateCapacity(ID, capacityName, upperLimit, lowerLimit, paraPoint);
+                }
+            }
+            else if (paraPoint >= lowerLimit || paraPoint >= upperLimit || lowerLimit >= upperLimit)
+            {
+                MessageBox.Show("Điểm khống chế phải nhỏ hơn Điểm cận dưới và Điểm cận dưới phải nhỏ hơn Điểm cận trên.");
+            }
+            else
+            {
+                updateCapacity(ID, capacityName, upperLimit, lowerLimit, paraPoint);
+            }
+
+            /*if (paraPoint >= lowerLimit ||
                 paraPoint >= upperLimit ||
                 lowerLimit >= upperLimit)
             {
@@ -860,7 +910,7 @@ namespace ManagerStudent.GUI
                     "và Điểm cận dưới phải nhỏ hơn điểm cận trên.");
                 return;
             }
-            updateCapacity(ID, capacityName, upperLimit, lowerLimit, paraPoint);
+            updateCapacity(ID, capacityName, upperLimit, lowerLimit, paraPoint);*/
         }
 
         private void button12_Click(object sender, EventArgs e)
