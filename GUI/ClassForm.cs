@@ -6,6 +6,7 @@ using OfficeOpenXml.Drawing.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace ManagerStudent.GUI
@@ -23,6 +24,9 @@ namespace ManagerStudent.GUI
         {
 
             InitializeComponent();
+            Shown += (sender, e) => dgvClass.ClearSelection();
+            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
+
         }
 
         public void loadDataGrade()
@@ -55,20 +59,24 @@ namespace ManagerStudent.GUI
         public void SetControl(bool edit)
         {
             txtMaKhoi.Enabled = false;
-
+            txtTenKhoi.Enabled = true;
+            btnAdd.Enabled = !edit;
+            btnEdit.Enabled = edit;
+            btnDelete.Enabled = edit;
         }
         public void SetControlClass(bool edit)
         {
             txtMaLop.Enabled = false;
-            /*   txtTenKhoi.Enabled = edit;
-               txtSoLuongKhoi.Enabled = edit;
-               txtSoLuongLop.Enabled = edit;
-               btnAdd.Enabled =edit;
-               btnEdit.Enabled =!edit;
-               btnDelete.Enabled = !edit;*/
+            txtTenLop.Enabled = true;
+            txtMaxHocSinh.Enabled = true;
+            txtSoLuongHocSinh.Enabled = true;
+            btnThem.Enabled = !edit;
+            btnSua.Enabled = edit;
+            btnXoa.Enabled = edit;
 
 
         }
+
 
         private void label3_Click(object sender, EventArgs e)
         {
@@ -100,12 +108,17 @@ namespace ManagerStudent.GUI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
- 
-                if (string.IsNullOrEmpty(txtTenKhoi.Text))
+         /*   Regex regex = new Regex(@"^(K|k)ối [1-12]$");*/
+            if (string.IsNullOrEmpty(txtTenKhoi.Text))
                 {
                     MessageBox.Show("Vui lòng nhập tên khối");
-                }          
-                else
+                }
+/*            else if (!regex.IsMatch(txtTenKhoi.Text))
+            {
+                MessageBox.Show("Tên học kỳ không đúng định dạng. Vui lòng nhập lại theo định dạng 'Khối x' (với x là số từ 1 đến 12).");
+
+            }*/
+            else
                 {
                     row = dgvGrade.Rows.Count;
                     Grade gradeDTO = new Grade();
@@ -123,6 +136,7 @@ namespace ManagerStudent.GUI
                     MessageBox.Show(result, "Bạn đã thêm thành công");
                     loadDataGrade();
                     ResetGrade();
+                  dgvGrade.ClearSelection();
                 }
             }
 
@@ -141,8 +155,7 @@ namespace ManagerStudent.GUI
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            
-                if (dgvGrade.SelectedRows.Count > 0)
+            if (dgvGrade.SelectedRows.Count > 0)
                 {
                     int selectedIndex = dgvGrade.SelectedRows[0].Index;
                     Grade gradeDTO = grade[selectedIndex];
@@ -150,14 +163,22 @@ namespace ManagerStudent.GUI
                     if (string.IsNullOrEmpty(txtTenKhoi.Text))
                     {
                         MessageBox.Show("Vui lòng nhập tên khối");
-                    }
-                    else
-                    {
+                }
+
+                else if (gradeBll.checkUpdateGrade(txtTenKhoi.Text, Convert.ToInt32(txtMaKhoi.Text)))
+                     {
+                    MessageBox.Show("Tên khối đã tồn tại. Vui lòng nhập lại.");
+
+                     }
+
+                else
+                {
                         gradeDTO.Name = txtTenKhoi.Text;
                         MessageBox.Show(gradeBll.updateGrade(gradeDTO), "Bạn đã sửa thành công");
                         loadDataGrade(); // Cập nhật dữ liệu trên DataGridView
                         ResetGrade();
-                    }
+                    dgvGrade.ClearSelection();
+                }
                 }
                 else
                 {
@@ -184,6 +205,7 @@ namespace ManagerStudent.GUI
                     MessageBox.Show("Bạn đã xóa thành công");
                     loadDataGrade(); // Cập nhật dữ liệu trên DataGridView
                     ResetGrade();
+                    dgvGrade.ClearSelection();
                 }
             }
             else
@@ -199,27 +221,28 @@ namespace ManagerStudent.GUI
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            /*    string searchTerm = txtTimKiem.Text;
+            string searchTerm = txtTimKiem.Text.Trim();
 
-                try
+            try
+            {
+                // Gọi hàm searchGrades để tìm kiếm dữ liệu
+                List<Grade> searchResults = gradeBll.searchGrades(searchTerm);
+
+                if (searchResults.Count > 0)
                 {
-                    // Gọi hàm SearchGrades để tìm kiếm dữ liệu
-                    List<Grade> searchResults = gradeBll.searchGrades(searchTerm);
-
-                    if (searchResults.Count > 0)
-                    {
-                        // Cập nhật nguồn dữ liệu của DataGridView
-                        dgvGrade.DataSource = searchResults;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không tìm thấy kết quả tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    // Cập nhật nguồn dữ liệu của DataGridView
+                    dgvGrade.DataSource = searchResults;
+                    dgvGrade.ClearSelection();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Lỗi khi tìm kiếm dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }*/
+                    MessageBox.Show("Không tìm thấy kết quả tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
 
         }
@@ -246,7 +269,7 @@ namespace ManagerStudent.GUI
             {
                 MessageBox.Show("Số lượng hoc sinh chỉ nhập được số từ 0-9");
             }
-            else if (Convert.ToInt32(txtSoLuongHocSinh.Text) >= Convert.ToInt32(txtMaxHocSinh.Text))
+            else if (Convert.ToInt32(txtSoLuongHocSinh.Text) > Convert.ToInt32(txtMaxHocSinh.Text))
             {
                 MessageBox.Show("Số lượng hoc sinh không được lớn hơn max học sinh");
             }
@@ -269,6 +292,7 @@ namespace ManagerStudent.GUI
                 MessageBox.Show(result, "Bạn đã thêm thành công");
                 loadDataClass();
                 ResetClass();
+                dgvClass.ClearSelection();
             }
 
         }
@@ -314,7 +338,12 @@ namespace ManagerStudent.GUI
                 {
                     MessageBox.Show("Số lượng hoc sinh chỉ nhập được số từ 0-9");
                 }
-                else if (Convert.ToInt32(txtSoLuongHocSinh.Text) >= Convert.ToInt32(txtMaxHocSinh.Text))
+                else if (clsBll.checkUpdateClass(txtTenLop.Text, Convert.ToInt32(txtMaLop.Text)))
+                {
+                    MessageBox.Show("Tên khối đã tồn tại. Vui lòng nhập lại.");
+
+                }
+                else if (Convert.ToInt32(txtSoLuongHocSinh.Text) > Convert.ToInt32(txtMaxHocSinh.Text))
                 {
                     MessageBox.Show("Số lượng hoc sinh không được lớn hơn max học sinh");
                 }
@@ -327,6 +356,7 @@ namespace ManagerStudent.GUI
                     MessageBox.Show("Bạn đã sửa thành công");
                     loadDataClass();
                     ResetClass();
+                    dgvClass.ClearSelection();
                 }
             }
             else
@@ -351,11 +381,92 @@ namespace ManagerStudent.GUI
                     MessageBox.Show("Bạn đã xóa thành công");
                     loadDataClass(); // Cập nhật dữ liệu trên DataGridView
                     ResetClass();
+                    dgvClass.ClearSelection();
                 }
             }
             else
             {
                 MessageBox.Show("Vui lòng chọn một khối để xóa");
+            }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = tabControl1.SelectedIndex;
+            switch (index)
+            {
+                case 0:
+                    loadDataClass();
+                    break;
+                case 1:
+                    loadDataGrade();
+                    break;
+            }
+            //Xóa lựa chọn trong dataGridView khi chuyển tab
+            if (tabControl1.SelectedTab == tabPage1)
+            {
+                dgvClass.ClearSelection();
+            }
+            else if (tabControl1.SelectedTab == tabPage2)
+            {
+                dgvGrade.ClearSelection();
+            }
+
+        }
+
+        private void dgvGrade_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvGrade.SelectedRows.Count > 0)
+            {
+                // SetControl thành true nếu có hàng được chọn
+                SetControl(true);
+            }
+            else
+            {
+                // SetControl thành false nếu không có hàng được chọn
+                SetControl(false);
+            }
+
+        }
+
+        private void dgvClass_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvClass.SelectedRows.Count > 0)
+            {
+                // SetControl thành true nếu có hàng được chọn
+                SetControlClass(true);
+            }
+            else
+            {
+                // SetControl thành false nếu không có hàng được chọn
+                SetControlClass(false);
+            }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string searchTerm = txtSearch.Text.Trim();
+
+            try
+            {
+                // Gọi hàm searchGrades để tìm kiếm dữ liệu
+                List<Class> searchResults = clsBll.searchClass(searchTerm);
+
+                if (searchResults.Count > 0)
+                {
+                    // Cập nhật nguồn dữ liệu của DataGridView
+                    dgvClass.DataSource = searchResults;
+                    dgvClass.ClearSelection();
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy kết quả tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

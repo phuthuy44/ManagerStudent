@@ -49,15 +49,14 @@ namespace ManagerStudent.GUI
             this.updateDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.studentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.studentManagerDataSet2 = new ManagerStudent.StudentManagerDataSet2();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button7 = new System.Windows.Forms.Button();
+            this.cbSearch = new System.Windows.Forms.ComboBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.exportExcel = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -285,9 +284,8 @@ namespace ManagerStudent.GUI
             this.tabPage1.Controls.Add(this.button8);
             this.tabPage1.Controls.Add(this.pictureBox11);
             this.tabPage1.Controls.Add(this.dataTableStudent);
-            this.tabPage1.Controls.Add(this.comboBox1);
-            this.tabPage1.Controls.Add(this.textBox1);
-            this.tabPage1.Controls.Add(this.button7);
+            this.tabPage1.Controls.Add(this.cbSearch);
+            this.tabPage1.Controls.Add(this.txtSearch);
             this.tabPage1.Controls.Add(this.panel2);
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -326,10 +324,10 @@ namespace ManagerStudent.GUI
             // 
             this.pictureBox11.BackColor = System.Drawing.Color.MediumBlue;
             this.pictureBox11.Image = global::ManagerStudent.Properties.Resources.icon__magnifying_glass_;
-            this.pictureBox11.Location = new System.Drawing.Point(364, 194);
+            this.pictureBox11.Location = new System.Drawing.Point(392, 191);
             this.pictureBox11.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(30, 20);
+            this.pictureBox11.Size = new System.Drawing.Size(37, 26);
             this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox11.TabIndex = 12;
             this.pictureBox11.TabStop = false;
@@ -441,38 +439,32 @@ namespace ManagerStudent.GUI
             this.studentManagerDataSet2.DataSetName = "StudentManagerDataSet2";
             this.studentManagerDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // comboBox1
+            // cbSearch
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Mã ",
+            this.cbSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSearch.FormattingEnabled = true;
+            this.cbSearch.Items.AddRange(new object[] {
             "Tên",
-            "SĐT"});
-            this.comboBox1.Location = new System.Drawing.Point(17, 195);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(110, 21);
-            this.comboBox1.TabIndex = 8;
-            this.comboBox1.Text = "Tất cả";
+            "Mã",
+            "Giới tính",
+            "Số điện thoại",
+            "Email"});
+            this.cbSearch.Location = new System.Drawing.Point(17, 193);
+            this.cbSearch.Name = "cbSearch";
+            this.cbSearch.Size = new System.Drawing.Size(110, 24);
+            this.cbSearch.TabIndex = 8;
+            this.cbSearch.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // textBox1
+            // txtSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(133, 191);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(217, 27);
-            this.textBox1.TabIndex = 7;
-            // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.Color.MediumBlue;
-            this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(356, 188);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(92, 34);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "Tìm kiếm";
-            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button7.UseVisualStyleBackColor = false;
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(133, 191);
+            this.txtSearch.Multiline = true;
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(296, 27);
+            this.txtSearch.TabIndex = 7;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // panel2
             // 
@@ -481,7 +473,7 @@ namespace ManagerStudent.GUI
             this.panel2.Controls.Add(this.pictureBox5);
             this.panel2.Controls.Add(this.pictureBox4);
             this.panel2.Controls.Add(this.pictureBox3);
-            this.panel2.Controls.Add(this.button5);
+            this.panel2.Controls.Add(this.exportExcel);
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Controls.Add(this.button4);
             this.panel2.Controls.Add(this.button3);
@@ -536,17 +528,18 @@ namespace ManagerStudent.GUI
             this.pictureBox3.TabIndex = 6;
             this.pictureBox3.TabStop = false;
             // 
-            // button5
+            // exportExcel
             // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(1, 161);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(125, 35);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Xuất Excel";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button5.UseVisualStyleBackColor = false;
+            this.exportExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.exportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exportExcel.Location = new System.Drawing.Point(1, 161);
+            this.exportExcel.Name = "exportExcel";
+            this.exportExcel.Size = new System.Drawing.Size(125, 35);
+            this.exportExcel.TabIndex = 4;
+            this.exportExcel.Text = "Xuất Excel";
+            this.exportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.exportExcel.UseVisualStyleBackColor = false;
+            this.exportExcel.Click += new System.EventHandler(this.exportExcel_Click);
             // 
             // pictureBox2
             // 
@@ -570,6 +563,7 @@ namespace ManagerStudent.GUI
             this.button4.Text = "Nhập Excel";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -990,9 +984,9 @@ namespace ManagerStudent.GUI
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(14, 62);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(33, 16);
+            this.label10.Size = new System.Drawing.Size(49, 16);
             this.label10.TabIndex = 1;
-            this.label10.Text = "Khối";
+            this.label10.Text = "Học kỳ";
             // 
             // label9
             // 
@@ -1258,6 +1252,7 @@ namespace ManagerStudent.GUI
             this.dataTableClassOld.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataTableClassOld.Location = new System.Drawing.Point(4, 163);
             this.dataTableClassOld.Name = "dataTableClassOld";
+            this.dataTableClassOld.ReadOnly = true;
             this.dataTableClassOld.RowHeadersWidth = 51;
             this.dataTableClassOld.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataTableClassOld.Size = new System.Drawing.Size(341, 206);
@@ -2369,17 +2364,16 @@ namespace ManagerStudent.GUI
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button exportExcel;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnThemStudent;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbSearch;
         private System.Windows.Forms.PictureBox picStudent;
         private System.Windows.Forms.TextBox txtImage;
         private System.Windows.Forms.TextBox txtSoDienThoai;

@@ -44,7 +44,7 @@ namespace ManagerStudent.GUI
             InitializeComponent();
             conductTab();
             Shown += (sender, e) => dataGridView2.ClearSelection();
-            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
+            /*tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;*/
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -116,22 +116,38 @@ namespace ManagerStudent.GUI
             if (tabControl1.SelectedTab == tabPage2)
             {
                 dataGridView2.ClearSelection();
+                textBox4.Clear();
+                textBox3.Clear();
+                textBox1.Clear();
             }
             else if (tabControl1.SelectedTab == tabPage3)
             {
                 dataGridView3.ClearSelection();
+                textBox11.Clear();
+                textBox10.Clear();
+                textBox7.Clear();
+                textBox6.Clear();
+                textBox12.Clear();
             }
             else if (tabControl1.SelectedTab == tabPage4)
             {
                 dataGridView4.ClearSelection();
+                textBox15.Clear();
+                textBox14.Clear();
+                textBox8.Clear();
             }
             else if (tabControl1.SelectedTab == tabPage5)
             {
                 dataGridView5.ClearSelection();
+                textBox18.Clear();
+                textBox17.Clear();
+                textBox9.Clear();
             }
             else if (tabControl1.SelectedTab == tabPage1)
             {
                 dataGridView1.ClearSelection();
+                textBox21.Clear();
+                textBox20.Clear();
             }
 
         }
@@ -153,12 +169,14 @@ namespace ManagerStudent.GUI
         {
             conductBLL = new ConductBLL();
             dataGridView2.DataSource = conductBLL.FindConduct(textBox2.Text.Trim());
+            dataGridView2.ClearSelection();
         }
 
         private void FindCapacityData()
         {
             capacityBLL = new CapacityManager();
             dataGridView3.DataSource = capacityBLL.FindCapacity(textBox5.Text.Trim());
+            dataGridView3.ClearSelection();
         }
 
         private void FindSemesterData()
@@ -166,6 +184,7 @@ namespace ManagerStudent.GUI
 
             semesterBLL = new SemesterBLL();
             dataGridView4.DataSource = semesterBLL.FindSemester(textBox13.Text.Trim());
+            dataGridView4.ClearSelection();
 
         }
 
@@ -174,12 +193,14 @@ namespace ManagerStudent.GUI
 
             typeofpointBLL = new TypeOfPointBLL();
             dataGridView5.DataSource = typeofpointBLL.FindTypeOfPoint(textBox16.Text.Trim());
+            dataGridView5.ClearSelection();
         }
 
         private void FindSubject()
         {
             subjectBLL = new SubjectBLL();
             dataGridView1.DataSource = subjectBLL.FindSubjects(textBox22.Text.Trim());
+            dataGridView1.ClearSelection();
         }
         private void button6_Click(object sender, EventArgs e)
         {
@@ -209,6 +230,7 @@ namespace ManagerStudent.GUI
                 textBox12.Clear();
                 // Lấy dữ liệu từ cơ sở dữ liệu và gán cho dataGridView1
                 capacityTab();
+                dataGridView3.ClearSelection();
             }
             else
             {
@@ -230,6 +252,7 @@ namespace ManagerStudent.GUI
                 textBox1.Clear();
                 // Lấy dữ liệu từ cơ sở dữ liệu và gán cho dataGridView1
                 conductTab();
+                dataGridView2.ClearSelection();
             }
             else
             {
@@ -251,6 +274,7 @@ namespace ManagerStudent.GUI
                 textBox8.Clear();
                 // Lấy dữ liệu từ cơ sở dữ liệu và gán cho dataGridView1
                 SemesterTab();
+                dataGridView4.ClearSelection();
             }
             else
             {
@@ -272,6 +296,7 @@ namespace ManagerStudent.GUI
                 textBox9.Clear();
                 // Lấy dữ liệu từ cơ sở dữ liệu và gán cho dataGridView1
                 TypeOfPointTab();
+                dataGridView5.ClearSelection();
             }
             else
             {
@@ -291,6 +316,7 @@ namespace ManagerStudent.GUI
                 textBox21.Clear();
                 textBox20.Clear();
                 SubjectTab();
+                dataGridView1.ClearSelection();
             }
             else
             {
@@ -310,6 +336,7 @@ namespace ManagerStudent.GUI
                 textBox3.Clear();
                 textBox1.Clear();
                 conductTab();
+                dataGridView2.ClearSelection();
             }
             else
             {
@@ -333,6 +360,7 @@ namespace ManagerStudent.GUI
                 textBox6.Clear();
                 textBox12.Clear();
                 capacityTab();
+                dataGridView3.ClearSelection();
             }
             else
             {
@@ -354,6 +382,7 @@ namespace ManagerStudent.GUI
                 textBox14.Clear();
                 textBox8.Clear();
                 SemesterTab();
+                dataGridView4.ClearSelection();
             }
             else
             {
@@ -376,6 +405,7 @@ namespace ManagerStudent.GUI
                 textBox9.Clear();
                 // Lấy dữ liệu từ cơ sở dữ liệu và gán cho dataGridView1
                 TypeOfPointTab();
+                dataGridView5.ClearSelection();
             }
             else
             {
@@ -396,6 +426,7 @@ namespace ManagerStudent.GUI
                 textBox20.Clear();
                 textBox21.Clear();
                 SubjectTab();
+                dataGridView1.ClearSelection();
             }
             else
             {
@@ -422,6 +453,7 @@ namespace ManagerStudent.GUI
                         textBox1.Clear();
                         // Lấy dữ liệu từ cơ sở dữ liệu và gán cho dataGridView1
                         conductTab();
+                        dataGridView2.ClearSelection();
                     }
                     else
                     {
@@ -456,6 +488,7 @@ namespace ManagerStudent.GUI
                         textBox6.Clear();
                         textBox12.Clear();
                         capacityTab();
+                        dataGridView3.ClearSelection();
                     }
                     else
                     {
@@ -487,6 +520,7 @@ namespace ManagerStudent.GUI
                         textBox14.Clear();
                         textBox8.Clear();
                         SemesterTab();
+                        dataGridView4.ClearSelection();
                     }
                     else
                     {
@@ -519,6 +553,7 @@ namespace ManagerStudent.GUI
                         textBox17.Clear();
                         textBox9.Clear();
                         TypeOfPointTab();
+                        dataGridView5.ClearSelection();
                     }
                     else
                     {
@@ -550,6 +585,7 @@ namespace ManagerStudent.GUI
                         textBox21.Clear();
                         textBox20.Clear();
                         SubjectTab();
+                        dataGridView1.ClearSelection();
                     }
                     else
                     {
@@ -730,6 +766,7 @@ namespace ManagerStudent.GUI
         {
             string conductName = textBox4.Text;
             deleteConduct(conductName);
+            dataGridView2.ClearSelection();
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -772,8 +809,8 @@ namespace ManagerStudent.GUI
                 !float.TryParse(textBox6.Text, out lowerLimit) ||
                 !float.TryParse(textBox12.Text, out paraPoint))
             {
-                MessageBox.Show("Vui lòng nhập số nguyên hoặc số thập phân " +
-                    "cho điểm cận trên, điểm cận dưới và điểm khống chế!.");
+                MessageBox.Show("Vui lòng nhập Số nguyên hoặc Số thập phân " +
+                    "cho Điểm cận trên, Điểm cận dưới và Điểm khống chế!.");
                 return;
             }
 
@@ -786,7 +823,24 @@ namespace ManagerStudent.GUI
                 return;
             }
 
-            if (paraPoint >= lowerLimit ||
+            if (lowerLimit == 0 && paraPoint == 0)
+            {
+                DialogResult result = MessageBox.Show("Cả hai Điểm cận dưới và Điểm khống chế đều bằng 0. Bạn có muốn thêm dữ liệu?", "Xác nhận", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    insertCapacity(capacityName, upperLimit, lowerLimit, paraPoint);
+                }
+            }
+            else if (paraPoint >= lowerLimit || paraPoint >= upperLimit || lowerLimit >= upperLimit)
+            {
+                MessageBox.Show("Điểm khống chế phải nhỏ hơn Điểm cận dưới và Điểm cận dưới phải nhỏ hơn Điểm cận trên.");
+            }
+            else
+            {
+                insertCapacity(capacityName, upperLimit, lowerLimit, paraPoint);
+            }
+
+/*            if (paraPoint >= lowerLimit ||
                 paraPoint >= upperLimit ||
                 lowerLimit >= upperLimit)
             {
@@ -794,7 +848,7 @@ namespace ManagerStudent.GUI
                     "và Điểm cận dưới phải nhỏ hơn điểm cận trên.");
                 return;
             }
-            insertCapacity(capacityName, upperLimit, lowerLimit, paraPoint);
+            insertCapacity(capacityName, upperLimit, lowerLimit, paraPoint);*/
         }
 
         private void button13_Click(object sender, EventArgs e)
@@ -852,7 +906,24 @@ namespace ManagerStudent.GUI
                 return;
             }
 
-            if (paraPoint >= lowerLimit ||
+            if (lowerLimit == 0 && paraPoint == 0)
+            {
+                DialogResult result = MessageBox.Show("Cả hai Điểm cận dưới và Điểm khống chế đều bằng 0. Bạn có muốn thêm dữ liệu?", "Xác nhận", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    updateCapacity(ID, capacityName, upperLimit, lowerLimit, paraPoint);
+                }
+            }
+            else if (paraPoint >= lowerLimit || paraPoint >= upperLimit || lowerLimit >= upperLimit)
+            {
+                MessageBox.Show("Điểm khống chế phải nhỏ hơn Điểm cận dưới và Điểm cận dưới phải nhỏ hơn Điểm cận trên.");
+            }
+            else
+            {
+                updateCapacity(ID, capacityName, upperLimit, lowerLimit, paraPoint);
+            }
+
+            /*if (paraPoint >= lowerLimit ||
                 paraPoint >= upperLimit ||
                 lowerLimit >= upperLimit)
             {
@@ -860,13 +931,14 @@ namespace ManagerStudent.GUI
                     "và Điểm cận dưới phải nhỏ hơn điểm cận trên.");
                 return;
             }
-            updateCapacity(ID, capacityName, upperLimit, lowerLimit, paraPoint);
+            updateCapacity(ID, capacityName, upperLimit, lowerLimit, paraPoint);*/
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
             string capacityName = textBox10.Text;
             deleteCapacity(capacityName);
+            dataGridView3.ClearSelection();
         }
 
         private void button20_Click(object sender, EventArgs e)
@@ -963,6 +1035,7 @@ namespace ManagerStudent.GUI
         {
             string semesterName = textBox14.Text;
             deleteSemester(semesterName);
+            dataGridView4.ClearSelection();
         }
 
         private void button25_Click(object sender, EventArgs e)
@@ -1169,12 +1242,14 @@ namespace ManagerStudent.GUI
         {
             string subjectName = textBox20.Text;
             deleteSubject(subjectName);
+            dataGridView1.ClearSelection();
         }
 
         private void button22_Click_1(object sender, EventArgs e)
         {
             string pointName = textBox17.Text;
             deleteTypeofPoint(pointName);
+            dataGridView5.ClearSelection();
         }
     }
 }

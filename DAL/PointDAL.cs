@@ -240,6 +240,30 @@ namespace ManagerStudent.DAL
 
                 SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
                 adapter.Fill(dataTable);
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return dataTable;
+        }
+        public DataTable StudentSummary(int studentID, string academicyearName, string semesterName, string className)
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                SqlConnection conn = initConnect.ConnectToDatabase();
+                string sql = "EXEC SUMMARY_POINT_STUDENT @academicYearName, @semesterName, @className, @studentID";
+                SqlCommand sqlCommand = new SqlCommand(sql, conn);
+                sqlCommand.Parameters.AddWithValue("@academicYearName", academicyearName);
+                sqlCommand.Parameters.AddWithValue("@semesterName", semesterName);
+                sqlCommand.Parameters.AddWithValue("@className", className);
+                sqlCommand.Parameters.AddWithValue("@studentID", studentID);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
+                adapter.Fill(dataTable);
+                conn.Close();
             }
             catch (Exception ex)
             {

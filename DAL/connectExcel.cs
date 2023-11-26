@@ -1,77 +1,70 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data;
 using System.IO;
-using DocumentFormat.OpenXml.Spreadsheet;
+using ExcelDataReader;
 using OfficeOpenXml;
-
 
 namespace ManagerStudent.DAL
 {
-    public class connectExcel
+    public class ConnectExcel
     {
-        public connectExcel()
+        public ConnectExcel()
         {
-
         }
 
-        public static void exportDataToExcel(string path, string sheetName, IList<IList<object>> data)
+        public static void ExportDataToExcel(string path, DataTable data)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-            // Tạo một tệp Excel mới
             var newFile = new FileInfo(path);
 
             using (var package = new ExcelPackage(newFile))
             {
-                // Kiểm tra xem trang tính có tồn tại trong tệp Excel không
-                var worksheet = package.Workbook.Worksheets.Add(sheetName);
+                var worksheet = package.Workbook.Worksheets.Add("Sheet1");
 
-                int i = 0;
-                foreach (var row in data)
+                int rowCount = data.Rows.Count;
+                int columnCount = data.Columns.Count;
+
+                for (int i = 0; i < rowCount; i++)
                 {
-                    i++;
-                    int j = 0;
-                    foreach (var cell in row)
+                    for (int j = 0; j < columnCount; j++)
                     {
-                        j++;
-                        worksheet.Cells[i, j].Value = cell;
+                        worksheet.Cells[i + 1, j + 1].Value = data.Rows[i][j].ToString();
                     }
                 }
 
-                // Lưu tệp Excel
                 package.Save();
             }
         }
 
-        public static IList<IList<string>> importDataFromExcel(string path, string sheetName)
+        public static DataTable ImportExcelToDataTable(string filePath)
         {
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            var existingFile = new FileInfo(path);
+            // Tạo DataTable để lưu trữ dữ liệu từ tệp Excel
+            DataTable dataTable = new DataTable();
 
-            using (var package = new ExcelPackage(existingFile))
+            // Sử dụng FileStream để đọc tệp Excel
+            using (FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
             {
-                var worksheet = package.Workbook.Worksheets[sheetName];
-
-                int rows = worksheet.Dimension.Rows;
-                int columns = worksheet.Dimension.Columns;
-
-                var importedData = new List<IList<string>>();
-
-                for (int row = 1; row <= rows; row++)
+                // Đọc dữ liệu từ tệp Excel bằng ExcelDataReader
+                using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
                 {
-
-                    var rowData = new List<string>();
-                    for (int col = 1; col <= columns; col++)
+                    // Đọc dữ liệu từ Excel và lưu vào DataTable
+                    DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration()
                     {
-                        var cellValue = worksheet.Cells[row, col].Value.ToString();
-                        //Console.WriteLine(cellValue);
-                        rowData.Add(cellValue);
-                    }
-                    importedData.Add(rowData);
-                }
+                        ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
+                        {
+                            UseHeaderRow = true // Sử dụng hàng đầu tiên làm tên cột
+                        }
+                    });
 
-                return importedData;
+                    if (result.Tables.Count > 0)
+                    {
+                        dataTable = result.Tables[0]; // Lấy DataTable đầu tiên từ DataSet
+                    }
+                }
             }
+
+            return dataTable;
         }
     }
 }

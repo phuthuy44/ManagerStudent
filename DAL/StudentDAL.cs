@@ -37,7 +37,8 @@ namespace ManagerStudent.DAL
             {
                 Console.WriteLine(ex.Message);
             }
-            finally {
+            finally
+            {
                 conn.Close();
             }
             return dataTable;
@@ -55,7 +56,7 @@ namespace ManagerStudent.DAL
                 while (reader.Read())
                 {
                     Student st = new Student();
-                    st.Name =reader["Name"].ToString();
+                    st.Name = reader["Name"].ToString();
                     st.Birthday = (DateTime)reader["birthday"];
                     st.Gender = reader["gender"].ToString();
                     st.Phone = reader["numberPhone"].ToString();
@@ -64,7 +65,8 @@ namespace ManagerStudent.DAL
                     st.createDate = (DateTime)reader["createDate"];
                     data.Add(st);
                 }
-            }catch(Exception ex) 
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -74,7 +76,7 @@ namespace ManagerStudent.DAL
             }
             return data;
         }
-        public DataTable getListStudentInClass(int yearID, int gradeID,int classID, int idSemester)
+        public DataTable getListStudentInClass(int yearID, int gradeID, int classID, int idSemester)
         {
             DataTable data = new DataTable();
             string sql = "Select Student.ID,Student.name,Student.gender  FROM Student,StudentClassSemesterAcademicYear as phanlop,Semester  where phanlop.studentID = Student.ID and phanlop.semesterID=Semester.ID and phanlop.academicyearID = @academicyearID AND phanlop.gradeID=@gradeID and phanlop.ClassID = @id and phanlop.semesterID = @idSe";
@@ -90,16 +92,17 @@ namespace ManagerStudent.DAL
                 SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
                 adapter.Fill(data);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Console.WriteLine ("?"+ex.Message);
-            }finally { conn.Close(); }
+                Console.WriteLine("?" + ex.Message);
+            }
+            finally { conn.Close(); }
             return data;
         }
         public bool insertStudent(Student student)
         {
             // string filename = Path.GetFileName(?);
-            string sql= "INSERT INTO Student (name,birthday,gender,address, email, numberPhone, image) Values(@Hoten,@NgaySinh,@gioitinh,@diaChi,@email,@soDienThoai,@HinhAnh)";
+            string sql = "INSERT INTO Student (name,birthday,gender,address, email, numberPhone, image) Values(@Hoten,@NgaySinh,@gioitinh,@diaChi,@email,@soDienThoai,@HinhAnh)";
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {
@@ -110,31 +113,32 @@ namespace ManagerStudent.DAL
                 cmd.Parameters.AddWithValue("@diaChi", student.Address);
                 cmd.Parameters.AddWithValue("@email", student.Email);
                 cmd.Parameters.AddWithValue("@soDienThoai", student.Phone);
-                cmd.Parameters.AddWithValue("@HinhAnh","\\Image\\HocSinh\\"+ student.Image);
+                cmd.Parameters.AddWithValue("@HinhAnh", "\\Image\\HocSinh\\" + student.Image);
                 cmd.ExecuteNonQuery();
                 return true;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return false;
             }
             finally { conn.Close(); }
         }
-        public bool deleteStudent(string idStudent,out bool isLoiKhoaNgoai)
+        public bool deleteStudent(string idStudent, out bool isLoiKhoaNgoai)
         {
             string sql = "DELETE FROM Student where id = @idStudent";
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {
-               SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@idStudent", idStudent);
-                cmd.ExecuteNonQuery ();
+                cmd.ExecuteNonQuery();
                 isLoiKhoaNgoai = false;
                 return true;
             }
             catch (SqlException ex)
             {
-               if(ex.Number == 547)
+                if (ex.Number == 547)
                 {
                     Console.WriteLine("Lỗi:Không thể xóa học sinh này vì có khóa ngoại tham chiếu");
                     isLoiKhoaNgoai = true;
@@ -142,9 +146,9 @@ namespace ManagerStudent.DAL
                 else
                 {
                     Console.WriteLine("Lỗi:" + ex.Message);
-                    isLoiKhoaNgoai=false;
+                    isLoiKhoaNgoai = false;
                 }
-               return false;
+                return false;
             }
             finally { conn.Close(); }
         }
@@ -165,12 +169,13 @@ namespace ManagerStudent.DAL
                 cmd.Parameters.AddWithValue("@id", student.ID);
                 cmd.ExecuteNonQuery();
                 return true;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
-                Console.WriteLine("Lỗi:"+ ex.Message);
+                Console.WriteLine("Lỗi:" + ex.Message);
                 return false;
             }
-            finally { conn.Close(); }  
+            finally { conn.Close(); }
 
         }
         /*Danh cho View Quan he*/
@@ -191,12 +196,14 @@ namespace ManagerStudent.DAL
                     academic.academicyearID = (int)reader.GetSqlInt32(0);
                     academicYears.Add(academic);
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return null;
             }
-            finally { 
-                conn.Close(); 
+            finally
+            {
+                conn.Close();
             }
             return academicYears;
         }
@@ -216,7 +223,7 @@ namespace ManagerStudent.DAL
                     getAcademicName = reader.GetString(0);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -226,7 +233,7 @@ namespace ManagerStudent.DAL
         //Chuyen teNam thanh maNam
         public int getIDAcademic(string name)
         {
-            int idAcademic = 0 ;
+            int idAcademic = 0;
             string sql = "Select ID from AcademicYear where AcademicyearName = @name";
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
@@ -239,7 +246,7 @@ namespace ManagerStudent.DAL
                     idAcademic = reader.GetInt32(0);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -252,7 +259,7 @@ namespace ManagerStudent.DAL
         public List<StudentClassSemesterAcademicYear> getGrade(int idYear)
         {
             List<StudentClassSemesterAcademicYear> grade = new List<StudentClassSemesterAcademicYear>();
-            string sql = "select distinct gradeID from StudentClassSemesterAcademicYear where academicyearID = @id"; 
+            string sql = "select distinct gradeID from StudentClassSemesterAcademicYear where academicyearID = @id";
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
             {
@@ -266,7 +273,7 @@ namespace ManagerStudent.DAL
                     grade.Add(grades);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return null;
             }
@@ -291,11 +298,11 @@ namespace ManagerStudent.DAL
                     name = reader.GetString(0);
                 }
             }
-            catch(Exception ex) { return null; }
+            catch (Exception ex) { return null; }
             finally { conn.Close(); }
             return name;
         }
-        public int getGradeID (string nameGrade)
+        public int getGradeID(string nameGrade)
         {
             int idGrade = 0;
             string sql = "Select ID from grade where gradeName = @name";
@@ -322,7 +329,7 @@ namespace ManagerStudent.DAL
         }
         public List<StudentClassSemesterAcademicYear> getClassInGrade(int gradeID)
         {
-            List <StudentClassSemesterAcademicYear> classes = new List<StudentClassSemesterAcademicYear>();
+            List<StudentClassSemesterAcademicYear> classes = new List<StudentClassSemesterAcademicYear>();
             string sql = "SELECT distinct classID FROM StudentClassSemesterAcademicYear where gradeID= @maKhoi";
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
@@ -341,7 +348,8 @@ namespace ManagerStudent.DAL
                     classes.Add(cls);
 
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return null;
             }
@@ -415,7 +423,7 @@ namespace ManagerStudent.DAL
             }
             return gradeID;
         }*/
-        public List<StudentClassSemesterAcademicYear> getIDStudentFromPhanLop(int id1,int id2, int id3, int id)
+        public List<StudentClassSemesterAcademicYear> getIDStudentFromPhanLop(int id1, int id2, int id3, int id)
         {
             List<StudentClassSemesterAcademicYear> student = new List<StudentClassSemesterAcademicYear>();
             string sql = "select distinct studentID from StudentClassSemesterAcademicYear where academicyearID=@id1 and gradeID = @id2 and semesterID= @id3 and classID =@id";
@@ -431,12 +439,12 @@ namespace ManagerStudent.DAL
                 while (reader.Read())
                 {
                     StudentClassSemesterAcademicYear students = new StudentClassSemesterAcademicYear();
-                    students.studentID= (int)reader.GetSqlInt32(0);
+                    students.studentID = (int)reader.GetSqlInt32(0);
                     student.Add(students);
-                    
+
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
@@ -502,7 +510,7 @@ namespace ManagerStudent.DAL
             try
             {
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@classID", p.classID );
+                cmd.Parameters.AddWithValue("@classID", p.classID);
                 cmd.Parameters.AddWithValue("@semesterID", p.semesterID);
                 cmd.Parameters.AddWithValue("@academicyearID", p.academicyearID);
                 cmd.Parameters.AddWithValue("@gradeID", p.gradeID);
@@ -533,7 +541,8 @@ namespace ManagerStudent.DAL
                 cmd.ExecuteNonQuery();
                 return true;
             }
-            catch(Exception ex){
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex.Message);
                 return false;
             }
@@ -550,14 +559,14 @@ namespace ManagerStudent.DAL
                 cmd.Parameters.AddWithValue("@ID", cls);
                 count = (int)cmd.ExecuteScalar();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
             finally { conn.Close(); }
             return count;
         }
-        public int getCurrentStudentInClass(int acaID, int gradeID,int cls,int se)
+        public int getCurrentStudentInClass(int acaID, int gradeID, int cls, int se)
         {
             string sql = "Select count(*) from StudentClassSemesterAcademicYear as p where p.academicyearID = @yearID and p.gradeID = @gradeID and p.classID = @idClass and p.semesterID =@idSe";
             SqlConnection con = initConnect.ConnectToDatabase(); ;
@@ -571,7 +580,7 @@ namespace ManagerStudent.DAL
                 cmd.Parameters.AddWithValue("@idSe", se);
                 count = (int)cmd.ExecuteScalar();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -581,10 +590,10 @@ namespace ManagerStudent.DAL
             }
             return count;
         }
-        public int getQuantity(int acaID, int gradeID,int classID,int se)
+        public int getQuantity(int acaID, int gradeID, int classID, int se)
         {
             int maxStudent = getMaxStudentInClass(classID);
-            int currentStudent = getCurrentStudentInClass(acaID,gradeID,classID, se);
+            int currentStudent = getCurrentStudentInClass(acaID, gradeID, classID, se);
             int remain = maxStudent - currentStudent;
             return remain;
         }
@@ -641,7 +650,7 @@ namespace ManagerStudent.DAL
         /*AddStudentForm*/
         public List<AcademicYear> getYear()
         {
-            List<AcademicYear> s= new List<AcademicYear>();
+            List<AcademicYear> s = new List<AcademicYear>();
             string sql = "SELECT * FROM academicyear";
             SqlConnection conn = initConnect.ConnectToDatabase();
             try
@@ -697,7 +706,7 @@ namespace ManagerStudent.DAL
                 while (reader.Read())
                 {
                     Grade a = new Grade();
-                    a.Name= reader["gradeName"].ToString();
+                    a.Name = reader["gradeName"].ToString();
                     s.Add(a);
                 }
             }
@@ -708,6 +717,123 @@ namespace ManagerStudent.DAL
             finally { conn.Close(); }
             return s;
         }
+        /*timkiem*/
+        public DataTable searchStudentByNam(string name)
+        {
+            DataTable s = new DataTable();
+            string sql = "SELECT * FROM Student WHERE Name LIKE N'%' + @name + '%'";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@name", name);
+                SqlDataAdapter data = new SqlDataAdapter(cmd);
+                data.Fill(s);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally { conn.Close(); }
+            return s;
+        }
+        public DataTable searchStudentByID(int id)
+        {
+            DataTable s = new DataTable();
+            string sql = "SELECT * FROM Student WHERE ID = @id";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", id);
+                SqlDataAdapter data = new SqlDataAdapter(cmd);
+                data.Fill(s);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally { conn.Close(); }
+            return s;
+        }
+        public DataTable searchStudentByGender(string gender)
+        {
+            DataTable s = new DataTable();
+            string sql = "SELECT * FROM Student WHERE gender = @gender";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@gender", gender);
+                SqlDataAdapter data = new SqlDataAdapter(cmd);
+                data.Fill(s);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally { conn.Close(); }
+            return s;
+        }
+        public DataTable searchStudentBySDT(string soDienThoai)
+        {
+            DataTable s = new DataTable();
+            string sql = "SELECT * FROM Student WHERE numberPhone LIKE N'%' + @SDT + '%'";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@SDT", soDienThoai);
+                SqlDataAdapter data = new SqlDataAdapter(cmd);
+                data.Fill(s);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally { conn.Close(); }
+            return s;
+        }
+        public DataTable searchStudentByEmail(string email)
+        {
+            DataTable s = new DataTable();
+            string sql = "SELECT * FROM Student WHERE email LIKE N'%' + @email + '%'";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@email", email);
+                SqlDataAdapter data = new SqlDataAdapter(cmd);
+                data.Fill(s);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            finally { conn.Close(); }
+            return s;
+        }
+        public bool checkStudent(int id)
+        {
+            string sql = "SELECT COUNT(*) FROM Student WHERE ID = @ID";
+            SqlConnection con = initConnect.ConnectToDatabase(); ;
+            int count = 0;
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@ID", id);
 
+                count = (int)cmd.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return count>0;
+        }
     }
 }

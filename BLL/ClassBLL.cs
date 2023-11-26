@@ -15,6 +15,11 @@ namespace ManagerStudent.BLL
         {
             return clsdal.getAll();
         }
+
+        public List<Class> searchClass(String searchTerm)
+        {
+            return clsdal.SearchClass(searchTerm);
+        }
         public string insertClass(Class cls)
         {
             if (clsdal.HasNameClass(cls.Name))
@@ -31,7 +36,10 @@ namespace ManagerStudent.BLL
             clsdal.UpdateClass(cls);
             return "Cập nhập thành công";
         }
-
+        public bool checkUpdateClass(string name, int id)
+        {
+            return clsdal.checkUpdateClass(name, id);
+        }
         public bool deleteClass(int ma)
         {
             return clsdal.DeleteClass(ma);

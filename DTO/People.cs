@@ -70,14 +70,15 @@ namespace ManagerStudent.DTO
         }
         public DateTime updateDate
         {
-            set
+            /*set
             {
                 this.updateDate = value;
             }
             get
             {
                 return this.updateDate;
-}
+            }*/
+            get;set;
         }
         public People(int id, string name, string gender, string address, DateTime birthday, string birthplace, string email, string phone, string image)
         {
@@ -141,6 +142,11 @@ namespace ManagerStudent.DTO
             Phone = phone;
             Image = image;
           
+        }
+
+        public People(int iD, string name, string gender, string address, DateTime birthday, string email, string phone, string image, DateTime createDate, DateTime updateDate) : this(iD, name, gender, address, birthday, email, phone, image, createDate)
+        {
+            this.updateDate = updateDate;
         }
     }
 }

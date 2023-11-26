@@ -7,6 +7,7 @@ using System.Linq;
 using ManagerStudent.DTO;
 using System.Data;
 using System.Reflection.Emit;
+using ManagerStudent.DAL;
 
 namespace ManagerStudent.GUI
 {
@@ -214,18 +215,18 @@ namespace ManagerStudent.GUI
             {
                 // Tạo một DataTable mới để chứa dữ liệu với cột STT
                 DataTable updatedData = new DataTable();
-                updatedData.Columns.Add("STT", typeof(int));
+                //updatedData.Columns.Add("STT", typeof(int));
                 updatedData.Merge(studentPointsData);
 
                 // Tính giá trị STT cho từng dòng
-                for (int i = 0; i < updatedData.Rows.Count; i++)
+               /* for (int i = 0; i < updatedData.Rows.Count; i++)
                 {
                     updatedData.Rows[i]["STT"] = i + 1; // Giá trị STT
-                }
+                }*/
                 //Không chỉnh sửa được trên DataGridView
                 dataGridView2.ReadOnly = true;
                 dataGridView2.DataSource = updatedData;
-                dataGridView2.Columns["STT"].DisplayIndex = 0; // Đặt vị trí hiển thị cho cột STT
+                //dataGridView2.Columns["STT"].DisplayIndex = 0; // Đặt vị trí hiển thị cho cột STT
             }
             else
             {
@@ -544,6 +545,7 @@ namespace ManagerStudent.GUI
             {
                 pointBLL = new PointBLL();
                 dataGridView3.DataSource = pointBLL.StudentPoint(int.Parse(comboBox12.Text), comboBox9.Text, comboBox11.Text, comboBox10.Text);
+                dataGridView4.DataSource = pointBLL.StudentSummary(int.Parse(comboBox12.Text), comboBox9.Text, comboBox11.Text, comboBox10.Text);
             }
             
         }
@@ -556,6 +558,64 @@ namespace ManagerStudent.GUI
         private void comboBox9_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (dataGridView3.DataSource == null)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất!");
+            }
+            else
+            {
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Tệp Excel (*.xlsx)|*.xlsx|Tệp Excel cũ (*.xls)|*.xls";
+                    saveFileDialog.Title = "Lưu tệp tin";
+
+                    DialogResult result = saveFileDialog.ShowDialog();
+
+                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(saveFileDialog.FileName))
+                    {
+                        // Lưu tệp với đường dẫn đã chọn
+                        string filePath = saveFileDialog.FileName;
+                        //gọi phương thức
+                        //lưu với kiểu dữ liệu là datatable
+                        ConnectExcel.ExportDataToExcel(filePath, (DataTable)dataGridView3.DataSource);
+
+
+                        MessageBox.Show("Đã lưu tệp: " + filePath);
+                    }
+                }
+            }
+           
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.DataSource==null) {
+                MessageBox.Show("Không có dữ liệu để xuất!");
+            }
+            else
+            {
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Tệp Excel (*.xlsx)|*.xlsx|Tệp Excel cũ (*.xls)|*.xls";
+                    saveFileDialog.Title = "Lưu tệp tin";
+
+                    DialogResult result = saveFileDialog.ShowDialog();
+
+                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(saveFileDialog.FileName))
+                    {
+                        // Lưu tệp với đường dẫn đã chọn
+                        string filePath = saveFileDialog.FileName;
+                        //gọi phương thức
+                        //lưu với kiểu dữ liệu là datatable
+                        ConnectExcel.ExportDataToExcel(filePath, (DataTable)dataGridView2.DataSource);
+                        MessageBox.Show("Đã lưu tệp: " + filePath);
+                    }
+                }
+            }
         }
     }
 }
