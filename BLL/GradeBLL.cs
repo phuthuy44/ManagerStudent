@@ -20,10 +20,11 @@ namespace ManagerStudent.BLL
         {
             return gradeDAL.GetAll();
         }
-        /*   public List<Grade> searchGrades(String searchTerm)
-           {
-               return gradeDAL.SearchGrades(searchTerm);
-           }*/
+
+        public List<Grade> searchGrades(String searchTerm)
+        {
+            return gradeDAL.SearchGrades(searchTerm);
+        }
         public string insertGrade(Grade grade)
         {
             if (gradeDAL.HasNameGrade(grade.Name))
