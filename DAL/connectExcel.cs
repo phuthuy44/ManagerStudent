@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.IO;
+using ExcelDataReader;
 using OfficeOpenXml;
 
 namespace ManagerStudent.DAL
@@ -36,37 +37,34 @@ namespace ManagerStudent.DAL
             }
         }
 
-        public static DataTable ImportDataFromExcel(string path, string sheetName)
+        public static DataTable ImportExcelToDataTable(string filePath)
         {
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            var existingFile = new FileInfo(path);
+            // Tạo DataTable để lưu trữ dữ liệu từ tệp Excel
+            DataTable dataTable = new DataTable();
 
-            using (var package = new ExcelPackage(existingFile))
+            // Sử dụng FileStream để đọc tệp Excel
+            using (FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
             {
-                var worksheet = package.Workbook.Worksheets[sheetName];
-
-                int rows = worksheet.Dimension.Rows;
-                int columns = worksheet.Dimension.Columns;
-
-                var importedData = new DataTable();
-
-                for (int col = 1; col <= columns; col++)
+                // Đọc dữ liệu từ tệp Excel bằng ExcelDataReader
+                using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
                 {
-                    importedData.Columns.Add(worksheet.Cells[1, col].Value.ToString());
-                }
-
-                for (int row = 2; row <= rows; row++)
-                {
-                    DataRow dataRow = importedData.NewRow();
-                    for (int col = 1; col <= columns; col++)
+                    // Đọc dữ liệu từ Excel và lưu vào DataTable
+                    DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration()
                     {
-                        dataRow[col - 1] = worksheet.Cells[row, col].Value.ToString();
-                    }
-                    importedData.Rows.Add(dataRow);
-                }
+                        ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
+                        {
+                            UseHeaderRow = true // Sử dụng hàng đầu tiên làm tên cột
+                        }
+                    });
 
-                return importedData;
+                    if (result.Tables.Count > 0)
+                    {
+                        dataTable = result.Tables[0]; // Lấy DataTable đầu tiên từ DataSet
+                    }
+                }
             }
+
+            return dataTable;
         }
     }
 }
