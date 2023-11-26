@@ -20,6 +20,11 @@ namespace ManagerStudent.BLL
         {
             return teacherDAL.GetListTeacher();
         }
+        public DataTable SearchAllTeacher(string s)
+        {
+            return teacherDAL.SearchAllTeacher(s);
+        }
+        
         public DataTable GetAssignment()
         {
             return teacherDAL.GetAssignment(); 

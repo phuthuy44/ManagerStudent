@@ -71,14 +71,17 @@ namespace ManagerStudent.GUI
         }
         private void ReloadForm()
         {
+            cbGender.SelectedItem = null;
+            cbTechnical.SelectedItem = null;
+            cbGender.Text = string.Empty;
+            cbTechnical.Text = string.Empty;
             txtMaGV.Text = string.Empty; 
             txtHoTenGV.Text = string.Empty;
             txtEmailGV.Text = string.Empty;
             txtSDTGV.Text = string.Empty;
-            cbGender.SelectedItem = null;
             picGV.Image = null;
             txtDiaChiGV.Text = string.Empty;
-            cbTechnical.SelectedItem = null;
+            
         }
 
         private void TeacherForm_Load(object sender, System.EventArgs e)
@@ -383,7 +386,8 @@ namespace ManagerStudent.GUI
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-   
+            string search =txtSearch.Text;
+            TableTeacher.DataSource= teacherBLL.SearchAllTeacher(search);
         }
         private void button10_Click(object sender, EventArgs e)
         {
