@@ -582,5 +582,28 @@ namespace ManagerStudent.GUI
                 }
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Tệp Excel (*.xlsx)|*.xlsx|Tệp Excel cũ (*.xls)|*.xls";
+                saveFileDialog.Title = "Lưu tệp tin";
+
+                DialogResult result = saveFileDialog.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(saveFileDialog.FileName))
+                {
+                    // Lưu tệp với đường dẫn đã chọn
+                    string filePath = saveFileDialog.FileName;
+                    //gọi phương thức
+                    //lưu với kiểu dữ liệu là datatable
+                    ConnectExcel.ExportDataToExcel(filePath, (DataTable)dataGridView2.DataSource);
+
+
+                    MessageBox.Show("Đã lưu tệp: " + filePath);
+                }
+            }
+        }
     }
 }
