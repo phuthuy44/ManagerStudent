@@ -108,16 +108,18 @@ namespace ManagerStudent.GUI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-         /*   Regex regex = new Regex(@"^(K|k)ối [1-12]$");*/
-            if (string.IsNullOrEmpty(txtTenKhoi.Text))
+            Regex regex = new Regex(@"^(K|k)hối lớp (1[0-2]|[1-9])$");
+            string tenKhoi = txtTenKhoi.Text.Trim();
+            if (!regex.IsMatch(tenKhoi))
+            {
+                MessageBox.Show("Tên khối không đúng định dạng. Vui lòng nhập lại theo định dạng 'Khối lớp x' (với x là số từ 1 đến 12).");
+                return;
+            }
+            if (string.IsNullOrEmpty(tenKhoi))
                 {
                     MessageBox.Show("Vui lòng nhập tên khối");
                 }
-/*            else if (!regex.IsMatch(txtTenKhoi.Text))
-            {
-                MessageBox.Show("Tên học kỳ không đúng định dạng. Vui lòng nhập lại theo định dạng 'Khối x' (với x là số từ 1 đến 12).");
-
-            }*/
+           
             else
                 {
                     row = dgvGrade.Rows.Count;
@@ -125,8 +127,8 @@ namespace ManagerStudent.GUI
                     int lastID = gradeBll.GetLastGradeId();
                     int newID = lastID + 1;
                     gradeDTO.ID = newID;
-                    txtMaKhoi.Text = gradeDTO.ID.ToString();
-                    gradeDTO.Name = txtTenKhoi.Text;
+                txtMaKhoi.Text = gradeDTO.ID.ToString();
+                    gradeDTO.Name = tenKhoi;
                     string result = gradeBll.insertGrade(gradeDTO);
                     if (result == "Tên đã tồn tại")
                     {
@@ -160,12 +162,20 @@ namespace ManagerStudent.GUI
                     int selectedIndex = dgvGrade.SelectedRows[0].Index;
                     Grade gradeDTO = grade[selectedIndex];
 
-                    if (string.IsNullOrEmpty(txtTenKhoi.Text))
+                Regex regex = new Regex(@"^(K|k)hối lớp (1[0-2]|[1-9])$");
+                string tenKhoi = txtTenKhoi.Text.Trim();
+                if (!regex.IsMatch(tenKhoi))
+                {
+                    MessageBox.Show("Tên khối không đúng định dạng. Vui lòng nhập lại theo định dạng 'Khối lớp x' (với x là số từ 1 đến 12).");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(tenKhoi))
                     {
                         MessageBox.Show("Vui lòng nhập tên khối");
                 }
 
-                else if (gradeBll.checkUpdateGrade(txtTenKhoi.Text, Convert.ToInt32(txtMaKhoi.Text)))
+                else if (gradeBll.checkUpdateGrade(tenKhoi, Convert.ToInt32(txtMaKhoi.Text)))
                      {
                     MessageBox.Show("Tên khối đã tồn tại. Vui lòng nhập lại.");
 
@@ -173,7 +183,7 @@ namespace ManagerStudent.GUI
 
                 else
                 {
-                        gradeDTO.Name = txtTenKhoi.Text;
+                        gradeDTO.Name = tenKhoi;
                         MessageBox.Show(gradeBll.updateGrade(gradeDTO), "Bạn đã sửa thành công");
                         loadDataGrade(); // Cập nhật dữ liệu trên DataGridView
                         ResetGrade();
@@ -249,7 +259,17 @@ namespace ManagerStudent.GUI
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtTenLop.Text))
+            Regex regex = new Regex(@"^((1[0-2]|[1-9])A[1-9])$");
+
+            string tenLop = txtTenLop.Text.Trim();
+            if (!regex.IsMatch(tenLop))
+            {
+                MessageBox.Show("Tên lớp không đúng định dạng. Vui lòng nhập lại theo định dạng 'xAy' (với x và y là số từ 1 đến 12).");
+                return;
+            }
+
+
+            if (string.IsNullOrEmpty(tenLop))
             {
                 MessageBox.Show("Vui lòng nhập tên lớp");
             }
@@ -280,7 +300,7 @@ namespace ManagerStudent.GUI
                 int lastId = clsBll.getlastclassid();
                 int newId = lastId + 1;
                 clsDTO.ID = newId;
-                clsDTO.Name = txtTenLop.Text;
+                clsDTO.Name = tenLop;
                 clsDTO.maxStudent = Convert.ToInt32(txtMaxHocSinh.Text);
                 clsDTO.realStudent = Convert.ToInt32(txtSoLuongHocSinh.Text);
                 string result = clsBll.insertClass(clsDTO);
@@ -318,7 +338,16 @@ namespace ManagerStudent.GUI
             {
                 int selectedIndex = dgvClass.SelectedRows[0].Index;
                 Class clsDTO = dscls[selectedIndex];
-                if (string.IsNullOrEmpty(txtTenLop.Text))
+                Regex regex = new Regex(@"^((1[0-2]|[1-9])A[1-9])$");
+
+                string tenLop = txtTenLop.Text.Trim();
+                if (!regex.IsMatch(tenLop))
+                {
+                    MessageBox.Show("Tên lớp không đúng định dạng. Vui lòng nhập lại theo định dạng 'xAy' (với x và y là số từ 1 đến 12).");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(tenLop))
                 {
                     MessageBox.Show("Vui lòng nhập tên lớp");
                 }
@@ -349,7 +378,7 @@ namespace ManagerStudent.GUI
                 }
                 else
                 {
-                    clsDTO.Name = txtTenLop.Text;
+                    clsDTO.Name = tenLop;
                     clsDTO.maxStudent = Convert.ToInt32(txtMaxHocSinh.Text);
                     clsDTO.realStudent = Convert.ToInt32(txtSoLuongHocSinh.Text);
                     clsBll.updateClass(clsDTO);
@@ -361,7 +390,7 @@ namespace ManagerStudent.GUI
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn một khối để sửa đổi");
+                MessageBox.Show("Vui lòng chọn một lớp để sửa đổi");
             }
         }
 
@@ -386,7 +415,7 @@ namespace ManagerStudent.GUI
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn một khối để xóa");
+                MessageBox.Show("Vui lòng chọn một lớp để xóa");
             }
         }
 
@@ -406,10 +435,12 @@ namespace ManagerStudent.GUI
             if (tabControl1.SelectedTab == tabPage1)
             {
                 dgvClass.ClearSelection();
+                ResetClass();
             }
             else if (tabControl1.SelectedTab == tabPage2)
             {
                 dgvGrade.ClearSelection();
+                ResetGrade();
             }
 
         }
@@ -467,6 +498,40 @@ namespace ManagerStudent.GUI
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi tìm kiếm dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "C:\\";
+                openFileDialog.Filter = "All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show("Đường dẫn của tệp đã chọn: " + openFileDialog.FileName);
+                    dgvGrade.DataSource = ConnectExcel.ImportExcelToDataTable(openFileDialog.FileName);
+                }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "C:\\";
+                openFileDialog.Filter = "All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show("Đường dẫn của tệp đã chọn: " + openFileDialog.FileName);
+                    dgvClass.DataSource = ConnectExcel.ImportExcelToDataTable(openFileDialog.FileName);
+                }
             }
         }
     }
