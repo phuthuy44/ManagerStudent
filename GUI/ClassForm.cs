@@ -6,6 +6,7 @@ using OfficeOpenXml.Drawing.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace ManagerStudent.GUI
@@ -107,12 +108,17 @@ namespace ManagerStudent.GUI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
- 
-                if (string.IsNullOrEmpty(txtTenKhoi.Text))
+            Regex regex = new Regex(@"^(K|k)ối [1-12]$");
+            if (string.IsNullOrEmpty(txtTenKhoi.Text))
                 {
                     MessageBox.Show("Vui lòng nhập tên khối");
-                }          
-                else
+                }
+            else if (!regex.IsMatch(txtTenKhoi.Text))
+            {
+                MessageBox.Show("Tên học kỳ không đúng định dạng. Vui lòng nhập lại theo định dạng 'Khối x' (với x là số từ 1 đến 12).");
+
+            }
+            else
                 {
                     row = dgvGrade.Rows.Count;
                     Grade gradeDTO = new Grade();
@@ -149,8 +155,8 @@ namespace ManagerStudent.GUI
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            
-                if (dgvGrade.SelectedRows.Count > 0)
+            Regex regex = new Regex(@"^(K|k)ối [1-12]$");
+            if (dgvGrade.SelectedRows.Count > 0)
                 {
                     int selectedIndex = dgvGrade.SelectedRows[0].Index;
                     Grade gradeDTO = grade[selectedIndex];
@@ -158,8 +164,13 @@ namespace ManagerStudent.GUI
                     if (string.IsNullOrEmpty(txtTenKhoi.Text))
                     {
                         MessageBox.Show("Vui lòng nhập tên khối");
-                    }
-                  else if (gradeBll.checkUpdateGrade(txtTenKhoi.Text, Convert.ToInt32(txtMaKhoi.Text)))
+                }
+                else if (!regex.IsMatch(txtTenKhoi.Text))
+                {
+                    MessageBox.Show("Tên học kỳ không đúng định dạng. Vui lòng nhập lại theo định dạng 'Khối x' (với x là số từ 1 đến 12).");
+
+                }
+                else if (gradeBll.checkUpdateGrade(txtTenKhoi.Text, Convert.ToInt32(txtMaKhoi.Text)))
                      {
                     MessageBox.Show("Tên khối đã tồn tại. Vui lòng nhập lại.");
 
