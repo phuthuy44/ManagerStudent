@@ -332,7 +332,7 @@ CREATE TABLE StudentCapacity(
 	academicyearID INT NOT NULL,
 	semesterID INT NOT NULL,
 	capacityName NVARCHAR(255),
-	point INT,
+	point DECIMAL(10, 2),
 	createDate DATETIME,
 	updateDate DATETIME,
 	finishDate DATETIME,

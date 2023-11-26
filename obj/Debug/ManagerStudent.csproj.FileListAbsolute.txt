@@ -368,3 +368,7 @@ D:\Phuong Vy\ManagerStudent\bin\Debug\RecyclableMemoryStream.dll
 D:\Phuong Vy\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.Framework.dll
 D:\Phuong Vy\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.Framework.xml
 D:\Phuong Vy\ManagerStudent\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.Framework.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\RecyclableMemoryStream.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.Framework.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
