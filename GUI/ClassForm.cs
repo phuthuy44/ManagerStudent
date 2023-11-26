@@ -122,7 +122,7 @@ namespace ManagerStudent.GUI
            
             else
                 {
-                    row = dgvGrade.Rows.Count;
+                   /* row = dgvGrade.Rows.Count;*/
                     Grade gradeDTO = new Grade();
                     int lastID = gradeBll.GetLastGradeId();
                     int newID = lastID + 1;
@@ -149,9 +149,7 @@ namespace ManagerStudent.GUI
             if (e.RowIndex == -1) return;
             DataGridViewRow row = dgvGrade.Rows[e.RowIndex];
             txtMaKhoi.Text = row.Cells[0].Value.ToString();
-            txtTenKhoi.Text = row.Cells[1].Value.ToString();
-            //txtSoLuongKhoi.Text = row.Cells[2].Value.ToString();
-            //txtSoLuongLop.Text = row.Cells[3].Value.ToString();             
+            txtTenKhoi.Text = row.Cells[1].Value.ToString();          
 
         }
 
@@ -229,33 +227,7 @@ namespace ManagerStudent.GUI
             loadDataGrade();
         }
 
-        private void btnTimKiem_Click(object sender, EventArgs e)
-        {
-            string searchTerm = txtTimKiem.Text.Trim();
-
-            try
-            {
-                // Gọi hàm searchGrades để tìm kiếm dữ liệu
-                List<Grade> searchResults = gradeBll.searchGrades(searchTerm);
-
-                if (searchResults.Count > 0)
-                {
-                    // Cập nhật nguồn dữ liệu của DataGridView
-                    dgvGrade.DataSource = searchResults;
-                    dgvGrade.ClearSelection();
-                }
-                else
-                {
-                    MessageBox.Show("Không tìm thấy kết quả tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tìm kiếm dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
-        }
+      
 
         private void btnThem_Click(object sender, EventArgs e)
         {

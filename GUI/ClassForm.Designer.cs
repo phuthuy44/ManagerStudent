@@ -53,7 +53,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.dgvGrade = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
@@ -64,8 +63,6 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnExcelGrade = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnTimKiem = new System.Windows.Forms.Button();
-            this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtTenKhoi = new System.Windows.Forms.TextBox();
             this.txtMaKhoi = new System.Windows.Forms.TextBox();
@@ -82,7 +79,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvClass)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrade)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -360,11 +356,8 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.pictureBox9);
             this.tabPage2.Controls.Add(this.dgvGrade);
             this.tabPage2.Controls.Add(this.panel4);
-            this.tabPage2.Controls.Add(this.btnTimKiem);
-            this.tabPage2.Controls.Add(this.txtTimKiem);
             this.tabPage2.Controls.Add(this.panel3);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -374,18 +367,6 @@
             this.tabPage2.Text = "Khối";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.BackColor = System.Drawing.Color.MediumBlue;
-            this.pictureBox9.Image = global::ManagerStudent.Properties.Resources.icon__magnifying_glass_;
-            this.pictureBox9.Location = new System.Drawing.Point(199, 41);
-            this.pictureBox9.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(30, 20);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox9.TabIndex = 12;
-            this.pictureBox9.TabStop = false;
             // 
             // dgvGrade
             // 
@@ -506,28 +487,6 @@
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // btnTimKiem
-            // 
-            this.btnTimKiem.BackColor = System.Drawing.Color.MediumBlue;
-            this.btnTimKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTimKiem.ForeColor = System.Drawing.Color.White;
-            this.btnTimKiem.Location = new System.Drawing.Point(189, 31);
-            this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(106, 38);
-            this.btnTimKiem.TabIndex = 6;
-            this.btnTimKiem.Text = "Tìm Kiếm";
-            this.btnTimKiem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTimKiem.UseVisualStyleBackColor = false;
-            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
-            // 
-            // txtTimKiem
-            // 
-            this.txtTimKiem.Location = new System.Drawing.Point(16, 31);
-            this.txtTimKiem.Multiline = true;
-            this.txtTimKiem.Name = "txtTimKiem";
-            this.txtTimKiem.Size = new System.Drawing.Size(156, 38);
-            this.txtTimKiem.TabIndex = 5;
-            // 
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -535,7 +494,7 @@
             this.panel3.Controls.Add(this.txtMaKhoi);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label8);
-            this.panel3.Location = new System.Drawing.Point(16, 122);
+            this.panel3.Location = new System.Drawing.Point(16, 71);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(274, 97);
             this.panel3.TabIndex = 1;
@@ -596,8 +555,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrade)).EndInit();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
@@ -636,8 +593,6 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnExcelGrade;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnTimKiem;
-        private System.Windows.Forms.TextBox txtTimKiem;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtTenKhoi;
         private System.Windows.Forms.TextBox txtMaKhoi;
@@ -651,7 +606,6 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.TextBox txtSoLuongHocSinh;
         private System.Windows.Forms.Label label6;
