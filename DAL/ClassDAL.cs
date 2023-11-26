@@ -148,6 +148,41 @@ namespace ManagerStudent.DAL
                 return false;
             }
         }
+        public List<Class> SearchClass(string searchTerm)
+        {
+            List<Class> searchResults = new List<Class>();
+            try
+            {
+                using (SqlConnection connection = ConnectToDatabase())
+                {
+                    string sql = "SELECT * FROM Class WHERE className LIKE @searchTerm";
+                    SqlCommand cmd = new SqlCommand(sql, connection);
+                    cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            Class cls = new Class();
+                            cls.ID = Convert.ToInt32(row["ID"]);
+                            cls.Name = row["className"].ToString();
+                            cls.maxStudent = Convert.ToInt32(row["maxStudent"]);
+                            cls.realStudent = Convert.ToInt32(row["quantityStudent"]);
+                            searchResults.Add(cls);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ tại đây
+                Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
+            }
+            return searchResults;
+        }
 
 
     }

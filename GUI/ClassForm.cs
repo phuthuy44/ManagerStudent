@@ -108,16 +108,16 @@ namespace ManagerStudent.GUI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Regex regex = new Regex(@"^(K|k)ối [1-12]$");
+         /*   Regex regex = new Regex(@"^(K|k)ối [1-12]$");*/
             if (string.IsNullOrEmpty(txtTenKhoi.Text))
                 {
                     MessageBox.Show("Vui lòng nhập tên khối");
                 }
-            else if (!regex.IsMatch(txtTenKhoi.Text))
+/*            else if (!regex.IsMatch(txtTenKhoi.Text))
             {
                 MessageBox.Show("Tên học kỳ không đúng định dạng. Vui lòng nhập lại theo định dạng 'Khối x' (với x là số từ 1 đến 12).");
 
-            }
+            }*/
             else
                 {
                     row = dgvGrade.Rows.Count;
@@ -155,7 +155,6 @@ namespace ManagerStudent.GUI
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            Regex regex = new Regex(@"^(K|k)ối [1-12]$");
             if (dgvGrade.SelectedRows.Count > 0)
                 {
                     int selectedIndex = dgvGrade.SelectedRows[0].Index;
@@ -165,11 +164,7 @@ namespace ManagerStudent.GUI
                     {
                         MessageBox.Show("Vui lòng nhập tên khối");
                 }
-                else if (!regex.IsMatch(txtTenKhoi.Text))
-                {
-                    MessageBox.Show("Tên học kỳ không đúng định dạng. Vui lòng nhập lại theo định dạng 'Khối x' (với x là số từ 1 đến 12).");
 
-                }
                 else if (gradeBll.checkUpdateGrade(txtTenKhoi.Text, Convert.ToInt32(txtMaKhoi.Text)))
                      {
                     MessageBox.Show("Tên khối đã tồn tại. Vui lòng nhập lại.");
@@ -226,27 +221,28 @@ namespace ManagerStudent.GUI
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            /*    string searchTerm = txtTimKiem.Text;
+            string searchTerm = txtTimKiem.Text.Trim();
 
-                try
+            try
+            {
+                // Gọi hàm searchGrades để tìm kiếm dữ liệu
+                List<Grade> searchResults = gradeBll.searchGrades(searchTerm);
+
+                if (searchResults.Count > 0)
                 {
-                    // Gọi hàm SearchGrades để tìm kiếm dữ liệu
-                    List<Grade> searchResults = gradeBll.searchGrades(searchTerm);
-
-                    if (searchResults.Count > 0)
-                    {
-                        // Cập nhật nguồn dữ liệu của DataGridView
-                        dgvGrade.DataSource = searchResults;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không tìm thấy kết quả tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    // Cập nhật nguồn dữ liệu của DataGridView
+                    dgvGrade.DataSource = searchResults;
+                    dgvGrade.ClearSelection();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Lỗi khi tìm kiếm dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }*/
+                    MessageBox.Show("Không tìm thấy kết quả tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
 
         }
@@ -446,6 +442,32 @@ namespace ManagerStudent.GUI
                 SetControlClass(false);
             }
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string searchTerm = txtSearch.Text.Trim();
+
+            try
+            {
+                // Gọi hàm searchGrades để tìm kiếm dữ liệu
+                List<Class> searchResults = clsBll.searchClass(searchTerm);
+
+                if (searchResults.Count > 0)
+                {
+                    // Cập nhật nguồn dữ liệu của DataGridView
+                    dgvClass.DataSource = searchResults;
+                    dgvClass.ClearSelection();
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy kết quả tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

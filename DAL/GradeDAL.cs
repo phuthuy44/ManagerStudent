@@ -110,8 +110,7 @@ namespace ManagerStudent.DAL
             {
                 ConnectToDatabase();
                 string sql = "SELECT COUNT(*) FROM Grade WHERE LOWER(gradeName) = LOWER('" + Name + "') AND ID != " + ID;
-
-                DataTable dt = init.Runquery(sql);
+                 dt = init.Runquery(sql);
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     int count = Convert.ToInt32(dt.Rows[0][0]);
@@ -147,28 +146,30 @@ namespace ManagerStudent.DAL
         }
 
 
-        /*public List<Grade> SearchGrades(string searchTerm)
+        public List<Grade> SearchGrades(string searchTerm)
         {
             List<Grade> searchResults = new List<Grade>();
             try
             {
-                SqlConnection connection = ConnectToDatabase();
-                string sql = "SELECT * FROM Grade WHERE gradeName LIKE @searchTerm";
-                SqlCommand cmd = new SqlCommand(sql, connection);
-                cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
-            
-                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                using (SqlConnection connection = ConnectToDatabase())
                 {
-                    adapter.Fill(dt);
-                }
-                foreach (DataRow row in dt.Rows)
-                {
-                    Grade grade = new Grade();
-                    grade.ID = Convert.ToInt32(row["ID"]);
-                    grade.Name = row["gradeName"].ToString();
-                    grade.maxClassOfGrade = Convert.ToInt32(row["maxclassofGrade"]);
-                    grade.realClassOfGrade = Convert.ToInt32(row["quantityclassofGrade"]);
-                    searchResults.Add(grade);
+                    string sql = "SELECT * FROM Grade WHERE gradeName LIKE @searchTerm";
+                    SqlCommand cmd = new SqlCommand(sql, connection);
+                    cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            Grade grade = new Grade();
+                            grade.ID = Convert.ToInt32(row["ID"]);
+                            grade.Name = row["gradeName"].ToString();
+                            searchResults.Add(grade);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -177,6 +178,7 @@ namespace ManagerStudent.DAL
                 Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
             }
             return searchResults;
-        }*/
+        }
+
     }
 }
