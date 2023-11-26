@@ -95,5 +95,10 @@ namespace ManagerStudent.BLL
             return pointDAL.StudentPoint(studentID, academicyearName, semesterName, className);
         }
 
+        public DataTable StudentSummary(int studentID, string academicyearName, string semesterName, string className)
+        {
+            return pointDAL.StudentSummary(studentID, academicyearName, semesterName, className);
+        }
+
     }
 }

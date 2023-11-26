@@ -1,49 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data;
 using System.IO;
-using DocumentFormat.OpenXml.Spreadsheet;
 using OfficeOpenXml;
-
 
 namespace ManagerStudent.DAL
 {
-    public class connectExcel
+    public class ConnectExcel
     {
-        public connectExcel()
+        public ConnectExcel()
         {
-
         }
 
-        public static void exportDataToExcel(string path, string sheetName, IList<IList<object>> data)
+        public static void ExportDataToExcel(string path, DataTable data)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-            // Tạo một tệp Excel mới
             var newFile = new FileInfo(path);
 
             using (var package = new ExcelPackage(newFile))
             {
-                // Kiểm tra xem trang tính có tồn tại trong tệp Excel không
-                var worksheet = package.Workbook.Worksheets.Add(sheetName);
+                var worksheet = package.Workbook.Worksheets.Add("Sheet1");
 
-                int i = 0;
-                foreach (var row in data)
+                int rowCount = data.Rows.Count;
+                int columnCount = data.Columns.Count;
+
+                for (int i = 0; i < rowCount; i++)
                 {
-                    i++;
-                    int j = 0;
-                    foreach (var cell in row)
+                    for (int j = 0; j < columnCount; j++)
                     {
-                        j++;
-                        worksheet.Cells[i, j].Value = cell;
+                        worksheet.Cells[i + 1, j + 1].Value = data.Rows[i][j].ToString();
                     }
                 }
 
-                // Lưu tệp Excel
                 package.Save();
             }
         }
 
-        public static IList<IList<string>> importDataFromExcel(string path, string sheetName)
+        public static DataTable ImportDataFromExcel(string path, string sheetName)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             var existingFile = new FileInfo(path);
@@ -55,19 +48,21 @@ namespace ManagerStudent.DAL
                 int rows = worksheet.Dimension.Rows;
                 int columns = worksheet.Dimension.Columns;
 
-                var importedData = new List<IList<string>>();
+                var importedData = new DataTable();
 
-                for (int row = 1; row <= rows; row++)
+                for (int col = 1; col <= columns; col++)
                 {
+                    importedData.Columns.Add(worksheet.Cells[1, col].Value.ToString());
+                }
 
-                    var rowData = new List<string>();
+                for (int row = 2; row <= rows; row++)
+                {
+                    DataRow dataRow = importedData.NewRow();
                     for (int col = 1; col <= columns; col++)
                     {
-                        var cellValue = worksheet.Cells[row, col].Value.ToString();
-                        //Console.WriteLine(cellValue);
-                        rowData.Add(cellValue);
+                        dataRow[col - 1] = worksheet.Cells[row, col].Value.ToString();
                     }
-                    importedData.Add(rowData);
+                    importedData.Rows.Add(dataRow);
                 }
 
                 return importedData;
