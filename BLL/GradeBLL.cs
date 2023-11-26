@@ -20,10 +20,11 @@ namespace ManagerStudent.BLL
         {
             return gradeDAL.GetAll();
         }
-        /*   public List<Grade> searchGrades(String searchTerm)
-           {
-               return gradeDAL.SearchGrades(searchTerm);
-           }*/
+
+        public List<Grade> searchGrades(String searchTerm)
+        {
+            return gradeDAL.SearchGrades(searchTerm);
+        }
         public string insertGrade(Grade grade)
         {
             if (gradeDAL.HasNameGrade(grade.Name))
@@ -46,6 +47,12 @@ namespace ManagerStudent.BLL
             gradeDAL.UpdateGrade(grade);
             return "Cập nhập thành công";
         }
+
+        public bool checkUpdateGrade(string name, int id)
+        {
+            return gradeDAL.checkUpdateGrade(name, id);
+        }
+
         public bool deleteGrade(int ma)
         {
             return gradeDAL.DeleteGrade(ma);

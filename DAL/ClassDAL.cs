@@ -49,7 +49,7 @@ namespace ManagerStudent.DAL
                 string name = cls.Name;
                 int maxStudent = cls.maxStudent;
                 int realStudent = cls.realStudent;
-                string sql = "insert into Class(className,maxStudent,quantityStudent) values('" + name + "','" + maxStudent + "','" + realStudent + "')";
+                string sql = "insert into Class(className,maxStudent,quantityStudent) values(N'" + name + "','" + maxStudent + "','" + realStudent + "')";
                 dt = init.Runquery(sql);
                 init.Update(dt);
             }
@@ -98,7 +98,7 @@ namespace ManagerStudent.DAL
                 string name = cls.Name;
                 int maxStudent = cls.maxStudent;
                 int realStudent = cls.realStudent;
-                string sql = "Update Class SET className= '" + name + "', maxStudent = '" + maxStudent + "',quantityStudent = '" + realStudent + "' WHERE ID = " + ma;
+                string sql = "Update Class SET className= N'" + name + "', maxStudent = '" + maxStudent + "',quantityStudent = '" + realStudent + "' WHERE ID = " + ma;
                 dt = init.Runquery(sql);
                 init.Update(dt);
             }
@@ -106,6 +106,29 @@ namespace ManagerStudent.DAL
             {
                 Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
             }
+        }
+
+        public bool checkUpdateClass(string Name, int ID)
+        {
+            try
+            {
+                ConnectToDatabase();
+                string sql = "SELECT COUNT(*) FROM Class WHERE LOWER(className) = LOWER('" + Name + "') AND ID != " + ID;
+
+                 dt = init.Runquery(sql);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    int count = Convert.ToInt32(dt.Rows[0][0]);
+                    return count > 0;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+
         }
 
         public bool DeleteClass(int ma)
@@ -124,6 +147,41 @@ namespace ManagerStudent.DAL
                 Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
                 return false;
             }
+        }
+        public List<Class> SearchClass(string searchTerm)
+        {
+            List<Class> searchResults = new List<Class>();
+            try
+            {
+                using (SqlConnection connection = ConnectToDatabase())
+                {
+                    string sql = "SELECT * FROM Class WHERE className LIKE @searchTerm";
+                    SqlCommand cmd = new SqlCommand(sql, connection);
+                    cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            Class cls = new Class();
+                            cls.ID = Convert.ToInt32(row["ID"]);
+                            cls.Name = row["className"].ToString();
+                            cls.maxStudent = Convert.ToInt32(row["maxStudent"]);
+                            cls.realStudent = Convert.ToInt32(row["quantityStudent"]);
+                            searchResults.Add(cls);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ tại đây
+                Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
+            }
+            return searchResults;
         }
 
 

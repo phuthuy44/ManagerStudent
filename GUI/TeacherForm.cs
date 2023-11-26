@@ -1,4 +1,5 @@
 ﻿using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Wordprocessing;
 using ManagerStudent.BLL;
@@ -31,7 +32,7 @@ namespace ManagerStudent.GUI
             tc = teacherBLL.GetDataTeacher();
             TableTeacher.DataSource = tc;
             TableTeacher.Columns[1].Width = 150;
-            TableTeacher.Columns[2].Width = 40;
+            TableTeacher.Columns[2].Width = 50;
             TableTeacher.Columns[0].Width = 30;
             TableTeacher.Columns[8].Width = 150;
             TableTeacher.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -42,7 +43,18 @@ namespace ManagerStudent.GUI
         }
         public void FillTableTechnical()
         {
-            TableAssignment.DataSource = teacherBLL.GetAssignmentTeacher();
+            TableAssignment.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            TableAssignment.DataSource = teacherBLL.GetAssignment();
+        }
+        public void FillTableAssignmentTeacher(int id, string ayName, string semesName)
+        {
+            TableAssignment.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            TableAssignment.DataSource = teacherBLL.GetAssignmentTeacher(id, ayName, semesName);
+        }
+        public void FillTableAssignmentClass(string clsname, string ayName, string semesName)
+        {
+            TableAssignment.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            TableAssignment.DataSource = teacherBLL.GetAssignmentClass(clsname, ayName, semesName);
         }
         private int Age(DateTime birthDate)
         {
@@ -78,7 +90,6 @@ namespace ManagerStudent.GUI
             DataTable ay = teacherBLL.GetAcademicYear();
             DataTable sm = teacherBLL.GetSemester();
             DataTable cls = teacherBLL.GetClass();
-            DataTable ps = teacherBLL.GetPosition();
             foreach (DataRow row in subject.Rows)
             {
                 string subjectName = row["subjectName"].ToString();
@@ -97,23 +108,18 @@ namespace ManagerStudent.GUI
 
                 cbHK.Items.Add(smName);
             }
-            foreach (DataRow row in cls.Rows)
-            {
-                string clsName = row["className"].ToString();
-        
-                cbPCL.Items.Add(clsName);
-            }
-            foreach (DataRow row in ps.Rows)
-            {
-                string positionName = row["positionName"].ToString();
-
-                cbCV.Items.Add(positionName);
-            }
             foreach (DataRow row in tc.Rows)
             {
                 string teacherName = row["Mã GV"].ToString() + " - " + row["Tên giáo viên"].ToString();
                 cbGV.Items.Add(teacherName);
             }
+            foreach (DataRow row in cls.Rows)
+            {
+                string clsName = row["className"].ToString();
+
+                cbPCL.Items.Add(clsName);
+            }
+            
         }
 
 
@@ -314,10 +320,6 @@ namespace ManagerStudent.GUI
                 {
                     MessageBox.Show("Trường giới tính không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                /*else if (string.IsNullOrEmpty(technical))
-                {
-                    MessageBox.Show("Trường chuyên môn không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }*/
                 else if (!string.IsNullOrEmpty(sdt) && sdt.Length != 10)
                 {
                     MessageBox.Show("Số điện thoại không hợp lệ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -351,14 +353,14 @@ namespace ManagerStudent.GUI
         }      
         private void button3_Click(object sender, EventArgs e)
         {
-            DialogResult flag = MessageBox.Show("Bạn có chắc muốn xóa giáo viên "+ txtHoTenGV.Text + " ?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult flag = MessageBox.Show("Bạn có chắc muốn xóa giáo viên " + txtHoTenGV.Text + " ?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (flag == DialogResult.Yes)
             {
 
                 if (!string.IsNullOrEmpty(txtMaGV.Text))
                 {
                     int id = int.Parse(txtMaGV.Text);
-                    bool rs1 = teacherBLL.DeleteAssignment(id);
+                    bool rs1 = teacherBLL.DeleteTechnical(id);
                     bool rs2 = teacherBLL.DeleteSubOfTeacher(id);
                     if (rs1 && rs2)
                     {
@@ -393,18 +395,35 @@ namespace ManagerStudent.GUI
         private void cbGV_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbCM.Items.Clear();
-            if (!string.IsNullOrEmpty(cbGV.SelectedItem?.ToString()))
+            cbCV.Items.Clear();
+            cbCM.SelectedItem = null;
+            cbCV.SelectedItem = null;
+            string ayName = cbNH.SelectedItem?.ToString();
+            string semesName = cbHK.SelectedItem?.ToString();
+            string teacherName = cbGV.SelectedItem?.ToString();
+            string clsname = cbPCL.SelectedItem?.ToString();
+            if (!string.IsNullOrEmpty(teacherName))
             {
-                int id = int.Parse(cbGV.SelectedItem?.ToString().Split('-')[0]);
+                int id = int.Parse(teacherName.Split('-')[0]);
                 DataTable sbOfTea = teacherBLL.GetSubjectTeacher(id);
+                DataTable ps = teacherBLL.GetPosition();
                 foreach (DataRow row in sbOfTea.Rows)
                 {
                     string subjectName = row["subjectName"].ToString();
 
                     cbCM.Items.Add(subjectName);
                 }
+                foreach (DataRow row in ps.Rows)
+                {
+                    string positionName = row["positionName"].ToString();
+
+                    cbCV.Items.Add(positionName);
+                }
+                if (string.IsNullOrEmpty(clsname)) {
+                    FillTableAssignmentTeacher(id, ayName, semesName);
+                }
+                
             }
-            
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -412,8 +431,225 @@ namespace ManagerStudent.GUI
             cbHK.SelectedItem = null;
             cbNH.SelectedItem = null;
             cbPCL.SelectedItem = null;
+            cbCM.SelectedItem = null;
             cbGV.SelectedItem = null;
             cbCV.SelectedItem = null;
+            FillTableTechnical();
+        }
+
+        private void cbNH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string ayName = cbNH.SelectedItem?.ToString();
+            string semesName = cbHK.SelectedItem?.ToString();
+            string clsname = cbPCL.SelectedItem?.ToString();
+            string teacherName = cbGV.SelectedItem?.ToString();
+            if (!string.IsNullOrEmpty(teacherName))
+            {
+                
+                int id = int.Parse(teacherName.Split('-')[0]);
+                FillTableAssignmentTeacher(id, ayName, semesName);
+            }
+            else if(!string.IsNullOrEmpty(clsname) && !string.IsNullOrEmpty(semesName))
+            {
+                FillTableAssignmentClass(clsname, ayName, semesName);
+            }
+
+        }
+
+        private void cbHK_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string ayName = cbNH.SelectedItem?.ToString();
+            string semesName = cbHK.SelectedItem?.ToString();
+            string clsname = cbPCL.SelectedItem?.ToString();
+            string teacherName = cbGV.SelectedItem?.ToString();
+            if (!string.IsNullOrEmpty(teacherName) && string.IsNullOrEmpty(clsname))
+            {
+               
+                int id = int.Parse(teacherName.Split('-')[0]);
+                FillTableAssignmentTeacher(id, ayName, semesName);
+            }
+            else if (!string.IsNullOrEmpty(clsname)&& !string.IsNullOrEmpty(ayName))
+            {
+                FillTableAssignmentClass(clsname, ayName, semesName);
+            }
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string ayName = cbNH.SelectedItem?.ToString();
+            string semesName = cbHK.SelectedItem?.ToString();
+            string teacherName = cbGV.SelectedItem?.ToString();
+            string sbName = cbCM.SelectedItem?.ToString();
+            string clsName = cbPCL.SelectedItem?.ToString();
+            string posName = cbCV.SelectedItem?.ToString();
+            if (string.IsNullOrEmpty(ayName))
+            {
+                MessageBox.Show("Trường năm học không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (string.IsNullOrEmpty(semesName))
+            {
+                MessageBox.Show("Trường học kỳ không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (string.IsNullOrEmpty(teacherName))
+            {
+                MessageBox.Show("Trường giáo viên không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (string.IsNullOrEmpty(sbName))
+            {
+                MessageBox.Show("Trường chuyên môn không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (string.IsNullOrEmpty(clsName))
+            {
+                MessageBox.Show("Trường phân công lớp không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            else if (string.IsNullOrEmpty(posName))
+            {
+                MessageBox.Show("Trường chức vụ không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            else
+            {
+                int idAy = teacherBLL.GetIdAY(ayName);
+                int idSe = teacherBLL.GetIdSemester(semesName);
+                int idSb = teacherBLL.GetIdSubject(sbName);
+                int idTea = int.Parse(teacherName.Split('-')[0]);
+                int idPos = teacherBLL.GetIdPosition(posName);
+                int idCls = teacherBLL.GetIdClass(clsName);
+                if(posName=="Giáo viên chủ nhiệm")
+                {
+                    if(!teacherBLL.CheckPosition(idCls, idAy, idSe))
+                    {
+                        if(!teacherBLL.CheckClass(idCls, idSb, idAy, idSe))
+                        {
+                            if (teacherBLL.InsertAssignment(idCls, idSb, idAy, idSe, idTea, idPos))
+                            {
+                                MessageBox.Show("Lưu thành công!");
+                                FillTableAssignmentClass(clsName, ayName, semesName);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Lỗi! Hãy thử lại sau", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Lớp " + clsName + " đã có giáo viên dạy môn "+ sbName, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                    }
+                    else {
+                        MessageBox.Show("Lớp" + clsName +" đã có giáo viên chủ nhiệm", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    if (!teacherBLL.CheckClass(idCls, idSb, idAy, idSe))
+                    {
+                        if (teacherBLL.InsertAssignment(idCls, idSb, idAy, idSe, idTea, idPos))
+                        {
+                            MessageBox.Show("Lưu thành công!");
+                            FillTableAssignmentClass(clsName, ayName, semesName);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Lỗi! Hãy thử lại sau", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lớp " + clsName + " đã có giáo viên dạy môn " + sbName, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                
+            }
+        }
+
+        private void cbPCL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string ayname = cbNH.SelectedItem?.ToString();
+            string semname = cbHK.SelectedItem?.ToString();
+            string clsname = cbPCL.SelectedItem?.ToString();
+            if (!string.IsNullOrEmpty(clsname) && !string.IsNullOrEmpty(ayname) && !string.IsNullOrEmpty(semname))
+            {
+                FillTableAssignmentClass(clsname, ayname, semname);
+            }
+           
+        }
+        private void btnFillAssignment_Click(object sender, EventArgs e)
+        {
+            string ayName = cbNH.SelectedItem?.ToString();
+            string semesName = cbHK.SelectedItem?.ToString();
+            string clsname = cbPCL.SelectedItem?.ToString();
+            string teacherName = cbGV.SelectedItem?.ToString();
+            if (!string.IsNullOrEmpty(teacherName) && string.IsNullOrEmpty(clsname) 
+                &&!string.IsNullOrEmpty(ayName) && !string.IsNullOrEmpty(semesName))
+            {
+
+                int id = int.Parse(teacherName.Split('-')[0]);
+                FillTableAssignmentTeacher(id, ayName, semesName);
+            }
+            else if (!string.IsNullOrEmpty(clsname)
+                 && !string.IsNullOrEmpty(ayName) && !string.IsNullOrEmpty(semesName))
+            {
+                FillTableAssignmentClass(clsname, ayName, semesName);
+            }
+        }
+
+        private void btnDA_Click(object sender, EventArgs e)
+        {
+            string ayName = cbNH.SelectedItem?.ToString();
+            string semesName = cbHK.SelectedItem?.ToString();
+            string teacherName = cbGV.SelectedItem?.ToString();
+            string sbName = cbCM.SelectedItem?.ToString();
+            string clsName = cbPCL.SelectedItem?.ToString();
+            string posName = cbCV.SelectedItem?.ToString();
+            DialogResult flag = MessageBox.Show("Bạn có chắc muốn xóa giáo viên " + teacherName.Split('-')[1] +" dạy môn " + sbName + " của lớp "+ clsName + " ?", "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (flag == DialogResult.Yes)
+            {
+                if (string.IsNullOrEmpty(ayName))
+                {
+                    MessageBox.Show("Trường năm học không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (string.IsNullOrEmpty(semesName))
+                {
+                    MessageBox.Show("Trường học kỳ không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (string.IsNullOrEmpty(teacherName))
+                {
+                    MessageBox.Show("Trường giáo viên không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (string.IsNullOrEmpty(sbName))
+                {
+                    MessageBox.Show("Trường chuyên môn không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (string.IsNullOrEmpty(clsName))
+                {
+                    MessageBox.Show("Trường phân công lớp không thể bỏ trống", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+                else
+                {
+                    int idAy = teacherBLL.GetIdAY(ayName);
+                    int idSe = teacherBLL.GetIdSemester(semesName);
+                    int idSb = teacherBLL.GetIdSubject(sbName);
+                    int idTea = int.Parse(teacherName.Split('-')[0]);
+                    /*int idPos = teacherBLL.GetIdPosition(posName);*/
+                    int idCls = teacherBLL.GetIdClass(clsName);
+                    if (teacherBLL.DeleteAssignment(idCls, idSb, idAy, idSe, idTea))
+                    {
+                        MessageBox.Show("Xóa thành công!");
+                        FillTableAssignmentClass(clsName, ayName, semesName);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi! Hãy thử lại sau", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
+            }
+            
         }
     }
 }

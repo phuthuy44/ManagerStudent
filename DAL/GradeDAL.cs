@@ -1,15 +1,12 @@
-﻿using System;
+﻿using ManagerStudent.DTO;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
-using ManagerStudent.DTO;
 
 namespace ManagerStudent.DAL
 {
-    public class GradeDAL:initConnect
+    public class GradeDAL : initConnect
     {
         DataTable dt;
         initConnect init = new initConnect();
@@ -44,7 +41,7 @@ namespace ManagerStudent.DAL
                 ConnectToDatabase();
                 int ma = grade.ID;
                 string name = grade.Name;
-                string sql = "insert into Grade(gradeName) values('" + name + "')";
+                string sql = "insert into Grade(gradeName) values(N'" + name + "')";
                 dt = init.Runquery(sql);
                 init.Update(dt);
             }
@@ -93,7 +90,7 @@ namespace ManagerStudent.DAL
                 int ma = grade.ID;
                 string name = grade.Name;
 
-                string sql = "UPDATE Grade SET gradeName = '" + name + "' WHERE ID = " + ma;
+                string sql = "UPDATE Grade SET gradeName = N'" + name + "' WHERE ID = " + ma;
                 dt = init.Runquery(sql);
                 init.Update(dt);
             }
@@ -103,11 +100,35 @@ namespace ManagerStudent.DAL
                 Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
             }
         }
+
+        public bool checkUpdateGrade(string Name, int ID)
+        {
+            try
+            {
+                ConnectToDatabase();
+                string sql = "SELECT COUNT(*) FROM Grade WHERE LOWER(gradeName) = LOWER('" + Name + "') AND ID != " + ID;
+                dt = init.Runquery(sql);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    int count = Convert.ToInt32(dt.Rows[0][0]);
+                    return count > 0;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+
+        }
+
+
         public bool DeleteGrade(int ma)
         {
             try
             {
-                ConnectToDatabase();              
+                ConnectToDatabase();
                 string sql = "delete from Grade WHERE ID = " + ma;
                 dt = init.Runquery(sql);
                 init.Update(dt);
@@ -122,28 +143,30 @@ namespace ManagerStudent.DAL
         }
 
 
-        /*public List<Grade> SearchGrades(string searchTerm)
+        public List<Grade> SearchGrades(string searchTerm)
         {
             List<Grade> searchResults = new List<Grade>();
             try
             {
-                SqlConnection connection = ConnectToDatabase();
-                string sql = "SELECT * FROM Grade WHERE gradeName LIKE @searchTerm";
-                SqlCommand cmd = new SqlCommand(sql, connection);
-                cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
-            
-                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                using (SqlConnection connection = ConnectToDatabase())
                 {
-                    adapter.Fill(dt);
-                }
-                foreach (DataRow row in dt.Rows)
-                {
-                    Grade grade = new Grade();
-                    grade.ID = Convert.ToInt32(row["ID"]);
-                    grade.Name = row["gradeName"].ToString();
-                    grade.maxClassOfGrade = Convert.ToInt32(row["maxclassofGrade"]);
-                    grade.realClassOfGrade = Convert.ToInt32(row["quantityclassofGrade"]);
-                    searchResults.Add(grade);
+                    string sql = "SELECT * FROM Grade WHERE gradeName LIKE @searchTerm";
+                    SqlCommand cmd = new SqlCommand(sql, connection);
+                    cmd.Parameters.AddWithValue("@searchTerm", "%" + searchTerm + "%");
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            Grade grade = new Grade();
+                            grade.ID = Convert.ToInt32(row["ID"]);
+                            grade.Name = row["gradeName"].ToString();
+                            searchResults.Add(grade);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -152,6 +175,7 @@ namespace ManagerStudent.DAL
                 Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
             }
             return searchResults;
-        }*/
+        }
+
     }
 }
