@@ -562,23 +562,30 @@ namespace ManagerStudent.GUI
 
         private void button5_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            if (dataGridView3.DataSource == null)
             {
-                saveFileDialog.Filter = "Tệp Excel (*.xlsx)|*.xlsx|Tệp Excel cũ (*.xls)|*.xls";
-                saveFileDialog.Title = "Lưu tệp tin";
-
-                DialogResult result = saveFileDialog.ShowDialog();
-
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(saveFileDialog.FileName))
+                MessageBox.Show("Không có dữ liệu để xuất!");
+            }
+            else
+            {
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
-                    // Lưu tệp với đường dẫn đã chọn
-                    string filePath = saveFileDialog.FileName;
-                    //gọi phương thức
-                    //lưu với kiểu dữ liệu là datatable
-                    ConnectExcel.ExportDataToExcel(filePath, (DataTable)dataGridView3.DataSource);
-                    
+                    saveFileDialog.Filter = "Tệp Excel (*.xlsx)|*.xlsx|Tệp Excel cũ (*.xls)|*.xls";
+                    saveFileDialog.Title = "Lưu tệp tin";
 
-                    MessageBox.Show("Đã lưu tệp: " + filePath);
+                    DialogResult result = saveFileDialog.ShowDialog();
+
+                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(saveFileDialog.FileName))
+                    {
+                        // Lưu tệp với đường dẫn đã chọn
+                        string filePath = saveFileDialog.FileName;
+                        //gọi phương thức
+                        //lưu với kiểu dữ liệu là datatable
+                        ConnectExcel.ExportDataToExcel(filePath, (DataTable)dataGridView3.DataSource);
+
+
+                        MessageBox.Show("Đã lưu tệp: " + filePath);
+                    }
                 }
             }
            
@@ -586,23 +593,27 @@ namespace ManagerStudent.GUI
 
         private void button3_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            if (dataGridView2.DataSource==null) {
+                MessageBox.Show("Không có dữ liệu để xuất!");
+            }
+            else
             {
-                saveFileDialog.Filter = "Tệp Excel (*.xlsx)|*.xlsx|Tệp Excel cũ (*.xls)|*.xls";
-                saveFileDialog.Title = "Lưu tệp tin";
-
-                DialogResult result = saveFileDialog.ShowDialog();
-
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(saveFileDialog.FileName))
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
-                    // Lưu tệp với đường dẫn đã chọn
-                    string filePath = saveFileDialog.FileName;
-                    //gọi phương thức
-                    //lưu với kiểu dữ liệu là datatable
-                    ConnectExcel.ExportDataToExcel(filePath, (DataTable)dataGridView2.DataSource);
+                    saveFileDialog.Filter = "Tệp Excel (*.xlsx)|*.xlsx|Tệp Excel cũ (*.xls)|*.xls";
+                    saveFileDialog.Title = "Lưu tệp tin";
 
+                    DialogResult result = saveFileDialog.ShowDialog();
 
-                    MessageBox.Show("Đã lưu tệp: " + filePath);
+                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(saveFileDialog.FileName))
+                    {
+                        // Lưu tệp với đường dẫn đã chọn
+                        string filePath = saveFileDialog.FileName;
+                        //gọi phương thức
+                        //lưu với kiểu dữ liệu là datatable
+                        ConnectExcel.ExportDataToExcel(filePath, (DataTable)dataGridView2.DataSource);
+                        MessageBox.Show("Đã lưu tệp: " + filePath);
+                    }
                 }
             }
         }
