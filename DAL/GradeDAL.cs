@@ -103,6 +103,31 @@ namespace ManagerStudent.DAL
                 Console.WriteLine("Đã xảy ra lỗi: " + ex.Message);
             }
         }
+
+        public bool checkUpdateGrade(string Name, int ID)
+        {
+            try
+            {
+                ConnectToDatabase();
+                string sql = "SELECT COUNT(*) FROM Grade WHERE LOWER(gradeName) = LOWER('" + Name + "') AND ID != " + ID;
+
+                DataTable dt = init.Runquery(sql);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    int count = Convert.ToInt32(dt.Rows[0][0]);
+                    return count > 0;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+
+        }
+
+
         public bool DeleteGrade(int ma)
         {
             try

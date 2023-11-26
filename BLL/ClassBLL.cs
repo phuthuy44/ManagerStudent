@@ -31,7 +31,10 @@ namespace ManagerStudent.BLL
             clsdal.UpdateClass(cls);
             return "Cập nhập thành công";
         }
-
+        public bool checkUpdateClass(string name, int id)
+        {
+            return clsdal.checkUpdateClass(name, id);
+        }
         public bool deleteClass(int ma)
         {
             return clsdal.DeleteClass(ma);

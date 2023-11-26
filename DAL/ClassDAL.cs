@@ -108,6 +108,29 @@ namespace ManagerStudent.DAL
             }
         }
 
+        public bool checkUpdateClass(string Name, int ID)
+        {
+            try
+            {
+                ConnectToDatabase();
+                string sql = "SELECT COUNT(*) FROM Class WHERE LOWER(className) = LOWER('" + Name + "') AND ID != " + ID;
+
+                 dt = init.Runquery(sql);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    int count = Convert.ToInt32(dt.Rows[0][0]);
+                    return count > 0;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+
+        }
+
         public bool DeleteClass(int ma)
         {
             try

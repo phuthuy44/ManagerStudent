@@ -102,6 +102,7 @@
             this.tabControl1.Size = new System.Drawing.Size(830, 466);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -268,6 +269,7 @@
             this.dgvClass.Size = new System.Drawing.Size(481, 422);
             this.dgvClass.TabIndex = 1;
             this.dgvClass.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClass_CellClick);
+            this.dgvClass.SelectionChanged += new System.EventHandler(this.dgvClass_SelectionChanged);
             // 
             // panel1
             // 
@@ -395,6 +397,7 @@
             this.dgvGrade.TabIndex = 8;
             this.dgvGrade.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrade_CellClick);
             this.dgvGrade.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrade_CellContentClick);
+            this.dgvGrade.SelectionChanged += new System.EventHandler(this.dgvGrade_SelectionChanged);
             // 
             // panel4
             // 

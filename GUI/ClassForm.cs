@@ -23,6 +23,9 @@ namespace ManagerStudent.GUI
         {
 
             InitializeComponent();
+            Shown += (sender, e) => dgvClass.ClearSelection();
+            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
+
         }
 
         public void loadDataGrade()
@@ -55,20 +58,24 @@ namespace ManagerStudent.GUI
         public void SetControl(bool edit)
         {
             txtMaKhoi.Enabled = false;
-
+            txtTenKhoi.Enabled = true;
+            btnAdd.Enabled = !edit;
+            btnEdit.Enabled = edit;
+            btnDelete.Enabled = edit;
         }
         public void SetControlClass(bool edit)
         {
             txtMaLop.Enabled = false;
-            /*   txtTenKhoi.Enabled = edit;
-               txtSoLuongKhoi.Enabled = edit;
-               txtSoLuongLop.Enabled = edit;
-               btnAdd.Enabled =edit;
-               btnEdit.Enabled =!edit;
-               btnDelete.Enabled = !edit;*/
+            txtTenLop.Enabled = true;
+            txtMaxHocSinh.Enabled = true;
+            txtSoLuongHocSinh.Enabled = true;
+            btnThem.Enabled = !edit;
+            btnSua.Enabled = edit;
+            btnXoa.Enabled = edit;
 
 
         }
+
 
         private void label3_Click(object sender, EventArgs e)
         {
@@ -123,6 +130,7 @@ namespace ManagerStudent.GUI
                     MessageBox.Show(result, "Bạn đã thêm thành công");
                     loadDataGrade();
                     ResetGrade();
+                  dgvGrade.ClearSelection();
                 }
             }
 
@@ -151,13 +159,20 @@ namespace ManagerStudent.GUI
                     {
                         MessageBox.Show("Vui lòng nhập tên khối");
                     }
-                    else
-                    {
+                  else if (gradeBll.checkUpdateGrade(txtTenKhoi.Text, Convert.ToInt32(txtMaKhoi.Text)))
+                     {
+                    MessageBox.Show("Tên khối đã tồn tại. Vui lòng nhập lại.");
+
+                     }
+
+                else
+                {
                         gradeDTO.Name = txtTenKhoi.Text;
                         MessageBox.Show(gradeBll.updateGrade(gradeDTO), "Bạn đã sửa thành công");
                         loadDataGrade(); // Cập nhật dữ liệu trên DataGridView
                         ResetGrade();
-                    }
+                    dgvGrade.ClearSelection();
+                }
                 }
                 else
                 {
@@ -184,6 +199,7 @@ namespace ManagerStudent.GUI
                     MessageBox.Show("Bạn đã xóa thành công");
                     loadDataGrade(); // Cập nhật dữ liệu trên DataGridView
                     ResetGrade();
+                    dgvGrade.ClearSelection();
                 }
             }
             else
@@ -246,7 +262,7 @@ namespace ManagerStudent.GUI
             {
                 MessageBox.Show("Số lượng hoc sinh chỉ nhập được số từ 0-9");
             }
-            else if (Convert.ToInt32(txtSoLuongHocSinh.Text) >= Convert.ToInt32(txtMaxHocSinh.Text))
+            else if (Convert.ToInt32(txtSoLuongHocSinh.Text) > Convert.ToInt32(txtMaxHocSinh.Text))
             {
                 MessageBox.Show("Số lượng hoc sinh không được lớn hơn max học sinh");
             }
@@ -269,6 +285,7 @@ namespace ManagerStudent.GUI
                 MessageBox.Show(result, "Bạn đã thêm thành công");
                 loadDataClass();
                 ResetClass();
+                dgvClass.ClearSelection();
             }
 
         }
@@ -314,7 +331,12 @@ namespace ManagerStudent.GUI
                 {
                     MessageBox.Show("Số lượng hoc sinh chỉ nhập được số từ 0-9");
                 }
-                else if (Convert.ToInt32(txtSoLuongHocSinh.Text) >= Convert.ToInt32(txtMaxHocSinh.Text))
+                else if (clsBll.checkUpdateClass(txtTenLop.Text, Convert.ToInt32(txtMaLop.Text)))
+                {
+                    MessageBox.Show("Tên khối đã tồn tại. Vui lòng nhập lại.");
+
+                }
+                else if (Convert.ToInt32(txtSoLuongHocSinh.Text) > Convert.ToInt32(txtMaxHocSinh.Text))
                 {
                     MessageBox.Show("Số lượng hoc sinh không được lớn hơn max học sinh");
                 }
@@ -327,6 +349,7 @@ namespace ManagerStudent.GUI
                     MessageBox.Show("Bạn đã sửa thành công");
                     loadDataClass();
                     ResetClass();
+                    dgvClass.ClearSelection();
                 }
             }
             else
@@ -351,12 +374,67 @@ namespace ManagerStudent.GUI
                     MessageBox.Show("Bạn đã xóa thành công");
                     loadDataClass(); // Cập nhật dữ liệu trên DataGridView
                     ResetClass();
+                    dgvClass.ClearSelection();
                 }
             }
             else
             {
                 MessageBox.Show("Vui lòng chọn một khối để xóa");
             }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = tabControl1.SelectedIndex;
+            switch (index)
+            {
+                case 0:
+                    loadDataClass();
+                    break;
+                case 1:
+                    loadDataGrade();
+                    break;
+            }
+            //Xóa lựa chọn trong dataGridView khi chuyển tab
+            if (tabControl1.SelectedTab == tabPage1)
+            {
+                dgvClass.ClearSelection();
+            }
+            else if (tabControl1.SelectedTab == tabPage2)
+            {
+                dgvGrade.ClearSelection();
+            }
+
+        }
+
+        private void dgvGrade_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvGrade.SelectedRows.Count > 0)
+            {
+                // SetControl thành true nếu có hàng được chọn
+                SetControl(true);
+            }
+            else
+            {
+                // SetControl thành false nếu không có hàng được chọn
+                SetControl(false);
+            }
+
+        }
+
+        private void dgvClass_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvClass.SelectedRows.Count > 0)
+            {
+                // SetControl thành true nếu có hàng được chọn
+                SetControlClass(true);
+            }
+            else
+            {
+                // SetControl thành false nếu không có hàng được chọn
+                SetControlClass(false);
+            }
+
         }
     }
 }
