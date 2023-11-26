@@ -193,6 +193,10 @@ namespace ManagerStudent.BLL
         {
             return studentDAL.getGradeInAddStudentView();
         }
+        public bool checkStudentCount(int studentCount)
+        {
+            return studentDAL.checkStudent(studentCount);
+        }
         public DataTable searchStudent(string selected, string searchText)
         {
             DataTable search = new DataTable();

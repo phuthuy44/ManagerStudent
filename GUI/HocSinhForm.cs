@@ -5,12 +5,14 @@ using DocumentFormat.OpenXml.VariantTypes;
 using DocumentFormat.OpenXml.Wordprocessing;
 using Google.Apis.Util;
 using ManagerStudent.BLL;
+using ManagerStudent.DAL;
 using ManagerStudent.DTO;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -996,7 +998,8 @@ namespace ManagerStudent.GUI
 
             if (string.IsNullOrEmpty(searchText))
             {
-                dataTableStudent.DataSource = originalDataTable; // Hiển thị dữ liệu ban đầu khi TextBox tìm kiếm rỗng
+                //dataTableStudent.DataSource = originalDataTable; // Hiển thị dữ liệu ban đầu khi TextBox tìm kiếm rỗng
+                GetListStudent();
             }
             else
             {
@@ -1202,6 +1205,118 @@ namespace ManagerStudent.GUI
                 FileInfo excelFile = new FileInfo(filePath);
 
                 excelPackage.SaveAs(excelFile);
+            }
+        }
+        //NhapExcel
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string folderPath = System.IO.Path.Combine(appDirectory, "excel", "DanhSachHocSinh");
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            // Thiết lập các thuộc tính cho OpenFileDialog
+            openFileDialog.Title = "Chọn tệp Excel để import";
+            openFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx|All Files (*.*)|*.*";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.RestoreDirectory = true;
+            openFileDialog.InitialDirectory = folderPath;
+
+            // Hiển thị hộp thoại để chọn tệp
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Lấy đường dẫn của tệp đã chọn
+                string filePath = openFileDialog.FileName;
+
+                // Gọi hàm ImportFromExcel với đường dẫn tệp đã chọn
+                ImportFromExcel(filePath);
+            }
+        }
+        private void ImportFromExcel(string filePath)
+        {
+            ExcelPackage.LicenseContext = LicenseContext.Commercial; // Set the license context
+            using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath)))
+            {
+                List<Student> stu = new List<Student>();
+                DataTable StudentClone = originalDataTable.Clone();
+                StudentClone.Columns.Add("Mã học sinh");
+                StudentClone.Columns.Add("Tên học sinh");
+                StudentClone.Columns.Add("Giới tính");
+                StudentClone.Columns.Add("Ngày sinh");
+                StudentClone.Columns.Add("Địa chỉ");
+                StudentClone.Columns.Add("Email");
+                StudentClone.Columns.Add("Số điện thoại");
+                StudentClone.Columns.Add("Hình ảnh");
+                StudentClone.Columns.Add("Ngày tạo");
+                StudentClone.Columns.Add("Ngày chỉnh sửa");
+              var student = originalDataTable.AsEnumerable().ToList();
+                foreach(DataRow row in student)
+                {
+                    StudentClone.ImportRow(row);
+                }
+                // Bắt đầu từ dòng thứ 2 để bỏ qua dòng đầu tiên
+                int startRow = 2;
+                if (package.Workbook.Worksheets.Count > 0)
+                {
+                    ExcelWorksheets worksheets = package.Workbook.Worksheets;
+                    ExcelWorksheet worksheet = worksheets[0]; // Lấy sheet đầu tiên
+                                                              // Lấy dữ liệu từ Excel và thêm vào DataTable StudentClone
+                    for (int row = startRow; row <= worksheet.Dimension.End.Row; row++)
+                    {
+
+                        string maHS = worksheet.Cells[row, 1].Text;
+                        string tenHS = worksheet.Cells[row, 2].Text;
+                        string gioitinh = worksheet.Cells[row, 3].Text;
+                        DateTime ngaySinh = DateTime.Parse(worksheet.Cells[row, 4].Text);
+                        string diachi = worksheet.Cells[row, 5].Text;
+                        string email = worksheet.Cells[row, 7].Text;
+                        string soDT = worksheet.Cells[row, 6].Text;
+                        string image = worksheet.Cells[row, 8].Text;
+                        /**DateTime ngayTao = DateTime.Parse(worksheet.Cells[row, 9].Text);
+                        DateTime ngaycapNhat = DateTime.Parse(worksheet.Cells[row, 10].Text);*/
+                        DateTime? ngayTao = null;
+                        if (DateTime.TryParse(worksheet.Cells[row, 9].Text, out DateTime parsedCreateDate))
+                        {
+                            ngayTao = parsedCreateDate;
+                        }
+                        DateTime? ngaycapNhat = null;
+                        if (DateTime.TryParse(worksheet.Cells[row, 10].Text, out DateTime parsedUpdateDate))
+                        {
+                            ngaycapNhat = parsedUpdateDate;
+                        }
+                        DateTime ngayTaoValue = ngayTao.HasValue ? ngayTao.Value : DateTime.MinValue;
+                        DateTime ngaycapNhatValue = ngaycapNhat.HasValue ? ngaycapNhat.Value : DateTime.MinValue;
+                        Student st = new Student(int.Parse(maHS),tenHS, gioitinh, diachi, ngaySinh, email, soDT, image, ngayTaoValue, ngaycapNhatValue);
+                        bool existsInDatabase = studentBLL.checkStudentCount(st.ID);
+                        HashSet<int> existingIDs = new HashSet<int>(StudentClone.AsEnumerable().Select(rows => rows.Field<int>("ID")));
+
+                        if (!existsInDatabase)
+                        {
+                            DataRow newRow = StudentClone.NewRow();
+                            newRow["ID"] = st.ID;
+                            newRow["Name"] = st.Name;
+                            newRow["Gender"] = st.Gender;
+                            newRow["birthday"] = st.Birthday;
+                            newRow["Address"] = st.Address;
+                            newRow["email"] = st.Email;
+                            newRow["numberPhone"] = st.Phone;
+                            newRow["image"] = st.Image;
+                            newRow["createDate"] = ngayTao.HasValue ? (DateTime)ngayTao : DateTime.MinValue; // Ép kiểu DateTime?
+                            newRow["updateDate"] = ngaycapNhat.HasValue ? (DateTime)ngaycapNhat : DateTime.MinValue; // Ép kiểu DateTime?
+                            Student st2 = new Student(tenHS, gioitinh, diachi, ngaySinh, email, soDT, image, ngayTaoValue, ngaycapNhatValue);
+                            StudentClone.Rows.Add(newRow);
+                           studentBLL.insertStudent(st2);
+                        }
+                    }
+                    
+
+                    MessageBox.Show("Import dữ liệu thành công!",
+                             "Thông báo",
+                             MessageBoxButtons.OK,
+                             MessageBoxIcon.Information);
+                    //GetListStudent();
+                    dataTableStudent.DataSource = StudentClone;
+                    GetListStudent();
+                }
             }
         }
     }

@@ -22,5 +22,9 @@ namespace ManagerStudent.DTO
         public Student(int iD, string name, string gender, string address, DateTime birthday, string email, string phone, string image) : base(iD, name, gender, address, birthday, email, phone, image)
         {
         }
+
+        public Student(int iD, string name, string gender, string address, DateTime birthday, string email, string phone, string image, DateTime createDate, DateTime updateDate) : base(iD, name, gender, address, birthday, email, phone, image, createDate, updateDate)
+        {
+        }
     }
 }
