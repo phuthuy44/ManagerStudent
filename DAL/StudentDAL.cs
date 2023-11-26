@@ -99,6 +99,29 @@ namespace ManagerStudent.DAL
             finally { conn.Close(); }
             return data;
         }
+        public DataTable getListStudentInClassTraCuu(int yearID, int gradeID, int classID, int idSemester)
+        {
+            DataTable data = new DataTable();
+            string sql = $"Select distinct Student.ID as N'Mã học sinh',Student.name as N'Tên học sinh',Student.gender as N'Giới tính',Student.birthday as N'Ngày sinh', Student.address as N'Địa chỉ',Student.numberPhone as N'Số điện thoại' FROM Student,StudentClassSemesterAcademicYear as phanlop,Semester  where phanlop.studentID = Student.ID and phanlop.semesterID=Semester.ID and phanlop.academicyearID = @academicyearID AND phanlop.gradeID=@gradeID and phanlop.ClassID = @id and phanlop.semesterID = @idSe";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@academicyearID", yearID);
+                cmd.Parameters.AddWithValue("@gradeID", gradeID);
+                cmd.Parameters.AddWithValue("@id", classID);
+                cmd.Parameters.AddWithValue("@idSe", idSemester);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
+                adapter.Fill(data);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("?" + ex.Message);
+            }
+            finally { conn.Close(); }
+            return data;
+        }
         public bool insertStudent(Student student)
         {
             // string filename = Path.GetFileName(?);

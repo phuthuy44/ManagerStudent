@@ -263,6 +263,13 @@ namespace ManagerStudent.DAL
 
                 SqlDataAdapter adapter = new SqlDataAdapter(sqlCommand);
                 adapter.Fill(dataTable);
+                sql = "EXEC FINAL_RESULT @academicYearName, @studentID";
+                SqlCommand sqlCommand1 = new SqlCommand(sql, conn);
+                sqlCommand1.Parameters.AddWithValue("@academicYearName", academicyearName);
+                sqlCommand1.Parameters.AddWithValue("@studentID", studentID);
+
+                SqlDataAdapter adapter1 = new SqlDataAdapter(sqlCommand1);
+                adapter1.Fill(dataTable);
                 conn.Close();
             }
             catch (Exception ex)
@@ -271,5 +278,6 @@ namespace ManagerStudent.DAL
             }
             return dataTable;
         }
+        
     }
 }

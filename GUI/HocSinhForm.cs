@@ -18,6 +18,19 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Forms;
+using iText.Kernel.Pdf;
+using iText.Kernel;
+using Table = iText.Layout.Element.Table;
+using Cell = iText.Layout.Element.Cell;
+using Paragraph = iText.Layout.Element.Paragraph;
+using Document = iText.Layout.Document;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using iText.IO.Font;
+using iText.Kernel.Font;
+using iText.IO.Font.Constants;
+using Text = iText.Layout.Element.Text;
+using System.Windows;
 
 namespace ManagerStudent.GUI
 {
@@ -152,9 +165,11 @@ namespace ManagerStudent.GUI
                 txtYearOld.Items.Add(AcademicName);
                 txtYearNew.Items.Add(AcademicName);
                 txtNamHocInQuanHe.Items.Add(AcademicName);
+                txtTraCuuNH.Items.Add(AcademicName);
                 txtYearOld.SelectedIndex = 0;
                 txtYearNew.SelectedIndex = 0;
                 txtNamHocInQuanHe.SelectedIndex = 0;
+                txtTraCuuNH.SelectedIndex = 0;
             }
 
             List<Semester> semester = studentBLL.getSemester();
@@ -164,16 +179,22 @@ namespace ManagerStudent.GUI
                 txtSemesterOld.Items.Add(semesterName);
                 txtSemesterNew.Items.Add(semesterName);
                 cbSeInQuanHe.Items.Add(semesterName);
+                txtTraCuuHK.Items.Add(semesterName);
                 cbSeInQuanHe.SelectedIndex = 0;
                 txtSemesterOld.SelectedIndex = 0;
                 txtSemesterNew.SelectedIndex = 0;
+                txtTraCuuHK.SelectedIndex = 0;
             }
             txtGioiTinhCha.Text = "Nam";
             txtGioiTinhMe.Text = "Nữ";
             updateTableWhenSelectedClass_Old();
             updateTableWhenSelectedClass_New();
             cbClassInQuanhe_SelectedIndexChanged(sender, new EventArgs());
-
+            
+        }
+        public void getListSTudentTraCuu(int yearID, int gradeID, int classID, int semesterID)
+        {
+            dataTraCuu.DataSource = studentBLL.getListStudentInClassTraCuu(yearID, gradeID, classID, semesterID);
         }
         //Xu ly fill dataTable lên dataGridView
         public void GetListStudent()
@@ -333,7 +354,7 @@ namespace ManagerStudent.GUI
                     {
                         try
                         {
-                            Image image = Image.FromFile(fullImagePath);
+                            System.Drawing.Image image = System.Drawing.Image.FromFile(fullImagePath);
                             picStudent.Image = image;
                             //File.Copy(fileName,fullImagePath, true);
                         }
@@ -725,7 +746,7 @@ namespace ManagerStudent.GUI
                 {
                     try
                     {
-                        Image image = Image.FromFile(fullImagePath);
+                        System.Drawing.Image image = System.Drawing.Image.FromFile(fullImagePath);
                         pictureBox17.Image = image;
                     }
                     catch (Exception ex)
@@ -762,7 +783,7 @@ namespace ManagerStudent.GUI
                 {
                     try
                     {
-                        Image image = Image.FromFile(fullImagePath);
+                        System.Drawing.Image image = System.Drawing.Image.FromFile(fullImagePath);
                         picCha.Image = image;
                         //File.Copy(fileName,fullImagePath, true);
                     }
@@ -796,7 +817,7 @@ namespace ManagerStudent.GUI
                 {
                     try
                     {
-                        Image image = Image.FromFile(fullImagePath);
+                        System.Drawing.Image image = System.Drawing.Image.FromFile(fullImagePath);
                         picMe.Image = image;
                         //File.Copy(fileName,fullImagePath, true);
                     }
@@ -1319,5 +1340,175 @@ namespace ManagerStudent.GUI
                 }
             }
         }
+
+        private void txtTraCuuNH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = txtTraCuuNH.SelectedItem.ToString();
+            int selectedID = studentBLL.getIdAca(selected);           
+            List<StudentClassSemesterAcademicYear> g = studentBLL.GetGrades(selectedID);
+            txtTraCuuKhoi.Items.Clear();
+            // List<StudentClassSemesterAcademicYear> distinClass = cls.GroupBy(a => a.classID).Select(g => g.First()).ToList();
+            foreach (StudentClassSemesterAcademicYear a in g)
+            {
+                string classes = studentBLL.getNameGrade(a.gradeID);
+                txtTraCuuKhoi.Items.Add(classes);
+                txtTraCuuKhoi.SelectedIndex = 0;
+            }
+        }
+
+        private void txtTraCuuKhoi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = txtTraCuuKhoi.SelectedItem.ToString();
+            int gradeID = studentBLL.getGradeID(selected);
+            List<StudentClassSemesterAcademicYear> cls = studentBLL.getClass(gradeID);
+            txtTraCuuLop.Items.Clear();
+            //List<StudentClassSemesterAcademicYear> distinctClass = cls.GroupBy(a => a.classID).Select(g => g.First()).ToList();
+            foreach (StudentClassSemesterAcademicYear c in cls)
+            {
+                string className = studentBLL.getClassName(c.classID);
+                txtTraCuuLop.Items.Add(className);
+                txtTraCuuLop.SelectedIndex = 0;
+            }
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            string selectedYear = txtTraCuuNH.SelectedItem.ToString();
+            string gradeSelected = txtTraCuuKhoi.SelectedItem.ToString();
+            string selected = txtTraCuuLop.SelectedItem.ToString();
+            string selectedSe = txtTraCuuHK.Text;
+            int yearID = studentBLL.getIdAca(selectedYear);
+            int gradeID = studentBLL.getGradeID(gradeSelected);
+            int classID = studentBLL.getClassID(selected);
+            int semesID = studentBLL.getIDSemester(selectedSe);
+            getListSTudentTraCuu(yearID, gradeID, classID, semesID);
+        }
+        //XuatDs-Lop
+        private void button9_Click(object sender, EventArgs e)
+        {
+            string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string folderPath = System.IO.Path.Combine(appDirectory, "excel", "DanhSachHS_Lop");
+
+            // Kiểm tra xem thư mục tồn tại chưa, nếu chưa thì tạo mới
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            // Tạo đường dẫn cho file Excel mặc định
+            string defaultExcelFilePath = System.IO.Path.Combine(folderPath, "");
+
+            // Hiển thị hộp thoại SaveFileDialog để cho phép người dùng chọn đường dẫn và đặt tên cho file
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+            saveFileDialog.FileName = "";
+            saveFileDialog.InitialDirectory = folderPath;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Gọi hàm xuất Excel với đường dẫn đã chọn
+                ExportToExcel(dataTraCuu, saveFileDialog.FileName);
+                MessageBox.Show("Dữ liệu đã được xuất thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                // Nếu người dùng không chọn đường dẫn, sử dụng đường dẫn mặc định
+                ExportToExcel(dataTraCuu, defaultExcelFilePath);
+            }
+        }
+        //Xuat pdf
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (dataTraCuu.Rows.Count > 0)
+            {
+                string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+                string folderPath = System.IO.Path.Combine(appDirectory, "excel", "DanhSachHS_Lop");
+                // Tạo đường dẫn cho file Excel mặc định
+                string defaultExcelFilePath = System.IO.Path.Combine(folderPath, "");
+                // Kiểm tra xem thư mục tồn tại chưa, nếu chưa thì tạo mới
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "PDF (*.pdf)|*.pdf";
+                saveFileDialog.FileName = "";
+                saveFileDialog.InitialDirectory = folderPath;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    ExportDataToPdf(saveFileDialog.FileName);
+                    MessageBox.Show("Dữ liệu Export thành công!!!", "Info");
+                }
+                else
+                {
+                    ExportDataToPdf(defaultExcelFilePath);
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu để xuất ra tệp PDF", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+        }
+        private void ExportDataToPdf(string filePath)
+        {
+            using (PdfWriter pdfWriter = new PdfWriter(filePath))
+            {
+                PdfDocument pdf = new PdfDocument(pdfWriter);
+                Document document = new Document(pdf);
+                // Sử dụng font mặc định của iText
+                // Set default font for the document
+                // Replace the line where you create the default font with the following code
+
+                PdfFont defaultFont = PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN,PdfEncodings.UTF8);
+
+                document.SetFont(defaultFont);
+                Table table = new Table(dataTraCuu.Columns.Count);
+                table.SetWidth(UnitValue.CreatePercentValue(100));
+                table.SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.CENTER);
+                // Thêm header
+                foreach (DataGridViewColumn column in dataTraCuu.Columns)
+                {
+                    Cell cell = new Cell();
+                    Paragraph headerParagraph = new Paragraph(column.HeaderText.ToString()).SetFont(defaultFont).SetFontSize(12).SetBold();
+                    cell.Add(headerParagraph);
+                    cell.SetBackgroundColor(iText.Kernel.Colors.ColorConstants.GREEN);
+                    table.AddCell(cell);
+                }
+
+                // Thêm dữ liệu
+                foreach (DataGridViewRow row in dataTraCuu.Rows)
+                {
+                    bool hasData = false; // Kiểm tra xem có dữ liệu trong hàng hay không
+
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        if (cell.Value != null && !string.IsNullOrEmpty(cell.Value.ToString()))
+                        {
+                            hasData = true;
+                            break;
+                        }
+                    }
+
+                    if (hasData)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            Cell pdfCell = new Cell();
+                            Paragraph cellParagraph = new Paragraph(cell.Value.ToString() ?? "").SetFont(defaultFont).SetFontSize(10);
+                            pdfCell.Add(cellParagraph);
+                            table.AddCell(pdfCell);
+                        }
+                    }
+                }
+
+                document.Add(table);
+                document.Close();
+            }
+        }
+
+
     }
 }

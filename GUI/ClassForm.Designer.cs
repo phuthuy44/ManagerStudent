@@ -40,7 +40,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnExcelClass = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.dgvClass = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -53,7 +53,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.dgvGrade = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
@@ -62,10 +61,8 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnExcelGrade = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnTimKiem = new System.Windows.Forms.Button();
-            this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtTenKhoi = new System.Windows.Forms.TextBox();
             this.txtMaKhoi = new System.Windows.Forms.TextBox();
@@ -82,7 +79,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvClass)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrade)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -163,7 +159,7 @@
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.btnXoa);
             this.panel2.Controls.Add(this.btnSua);
-            this.panel2.Controls.Add(this.button3);
+            this.panel2.Controls.Add(this.btnExcelClass);
             this.panel2.Controls.Add(this.btnThem);
             this.panel2.Location = new System.Drawing.Point(25, 298);
             this.panel2.Name = "panel2";
@@ -236,16 +232,17 @@
             this.btnSua.UseVisualStyleBackColor = false;
             this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
-            // button3
+            // btnExcelClass
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.button3.Location = new System.Drawing.Point(134, 14);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 45);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Nhập Excel";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnExcelClass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnExcelClass.Location = new System.Drawing.Point(134, 14);
+            this.btnExcelClass.Name = "btnExcelClass";
+            this.btnExcelClass.Size = new System.Drawing.Size(100, 45);
+            this.btnExcelClass.TabIndex = 6;
+            this.btnExcelClass.Text = "Nhập Excel";
+            this.btnExcelClass.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExcelClass.UseVisualStyleBackColor = false;
+            this.btnExcelClass.Click += new System.EventHandler(this.button3_Click);
             // 
             // btnThem
             // 
@@ -263,11 +260,11 @@
             // 
             this.dgvClass.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvClass.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvClass.Location = new System.Drawing.Point(308, 3);
+            this.dgvClass.Location = new System.Drawing.Point(308, 19);
             this.dgvClass.Name = "dgvClass";
             this.dgvClass.RowHeadersWidth = 51;
             this.dgvClass.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClass.Size = new System.Drawing.Size(481, 422);
+            this.dgvClass.Size = new System.Drawing.Size(505, 406);
             this.dgvClass.TabIndex = 1;
             this.dgvClass.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClass_CellClick);
             this.dgvClass.SelectionChanged += new System.EventHandler(this.dgvClass_SelectionChanged);
@@ -332,9 +329,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(13, 98);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 16);
+            this.label3.Size = new System.Drawing.Size(91, 16);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Max học sinh";
+            this.label3.Text = "Tổng học sinh";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
@@ -359,11 +356,8 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.pictureBox9);
             this.tabPage2.Controls.Add(this.dgvGrade);
             this.tabPage2.Controls.Add(this.panel4);
-            this.tabPage2.Controls.Add(this.btnTimKiem);
-            this.tabPage2.Controls.Add(this.txtTimKiem);
             this.tabPage2.Controls.Add(this.panel3);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -374,27 +368,15 @@
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
-            // pictureBox9
-            // 
-            this.pictureBox9.BackColor = System.Drawing.Color.MediumBlue;
-            this.pictureBox9.Image = global::ManagerStudent.Properties.Resources.icon__magnifying_glass_;
-            this.pictureBox9.Location = new System.Drawing.Point(202, 44);
-            this.pictureBox9.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(30, 20);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox9.TabIndex = 12;
-            this.pictureBox9.TabStop = false;
-            // 
             // dgvGrade
             // 
             this.dgvGrade.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvGrade.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvGrade.Location = new System.Drawing.Point(313, 9);
+            this.dgvGrade.Location = new System.Drawing.Point(313, 20);
             this.dgvGrade.Name = "dgvGrade";
             this.dgvGrade.RowHeadersWidth = 51;
             this.dgvGrade.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvGrade.Size = new System.Drawing.Size(503, 425);
+            this.dgvGrade.Size = new System.Drawing.Size(503, 414);
             this.dgvGrade.TabIndex = 8;
             this.dgvGrade.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrade_CellClick);
             this.dgvGrade.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGrade_CellContentClick);
@@ -409,7 +391,7 @@
             this.panel4.Controls.Add(this.pictureBox5);
             this.panel4.Controls.Add(this.btnDelete);
             this.panel4.Controls.Add(this.btnEdit);
-            this.panel4.Controls.Add(this.button9);
+            this.panel4.Controls.Add(this.btnExcelGrade);
             this.panel4.Controls.Add(this.btnAdd);
             this.panel4.Location = new System.Drawing.Point(16, 274);
             this.panel4.Name = "panel4";
@@ -420,7 +402,7 @@
             // 
             this.pictureBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.pictureBox8.Image = global::ManagerStudent.Properties.Resources.icon__x_letter_;
-            this.pictureBox8.Location = new System.Drawing.Point(171, 78);
+            this.pictureBox8.Location = new System.Drawing.Point(151, 78);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(25, 20);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -442,7 +424,7 @@
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.pictureBox6.Image = global::ManagerStudent.Properties.Resources.icon__arrow_left_;
-            this.pictureBox6.Location = new System.Drawing.Point(171, 27);
+            this.pictureBox6.Location = new System.Drawing.Point(151, 27);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(25, 20);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -463,7 +445,7 @@
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnDelete.Location = new System.Drawing.Point(160, 65);
+            this.btnDelete.Location = new System.Drawing.Point(141, 65);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(100, 45);
             this.btnDelete.TabIndex = 8;
@@ -482,16 +464,17 @@
             this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // button9
+            // btnExcelGrade
             // 
-            this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.button9.Location = new System.Drawing.Point(160, 14);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(100, 45);
-            this.button9.TabIndex = 6;
-            this.button9.Text = "Nhập Excel";
-            this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button9.UseVisualStyleBackColor = false;
+            this.btnExcelGrade.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnExcelGrade.Location = new System.Drawing.Point(141, 14);
+            this.btnExcelGrade.Name = "btnExcelGrade";
+            this.btnExcelGrade.Size = new System.Drawing.Size(100, 45);
+            this.btnExcelGrade.TabIndex = 6;
+            this.btnExcelGrade.Text = "Nhập Excel";
+            this.btnExcelGrade.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExcelGrade.UseVisualStyleBackColor = false;
+            this.btnExcelGrade.Click += new System.EventHandler(this.button9_Click);
             // 
             // btnAdd
             // 
@@ -504,28 +487,6 @@
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // btnTimKiem
-            // 
-            this.btnTimKiem.BackColor = System.Drawing.Color.MediumBlue;
-            this.btnTimKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTimKiem.ForeColor = System.Drawing.Color.White;
-            this.btnTimKiem.Location = new System.Drawing.Point(189, 34);
-            this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(106, 38);
-            this.btnTimKiem.TabIndex = 6;
-            this.btnTimKiem.Text = "Tìm Kiếm";
-            this.btnTimKiem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTimKiem.UseVisualStyleBackColor = false;
-            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
-            // 
-            // txtTimKiem
-            // 
-            this.txtTimKiem.Location = new System.Drawing.Point(16, 34);
-            this.txtTimKiem.Multiline = true;
-            this.txtTimKiem.Name = "txtTimKiem";
-            this.txtTimKiem.Size = new System.Drawing.Size(156, 38);
-            this.txtTimKiem.TabIndex = 5;
-            // 
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -533,7 +494,7 @@
             this.panel3.Controls.Add(this.txtMaKhoi);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label8);
-            this.panel3.Location = new System.Drawing.Point(16, 95);
+            this.panel3.Location = new System.Drawing.Point(16, 71);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(274, 97);
             this.panel3.TabIndex = 1;
@@ -547,7 +508,7 @@
             // 
             // txtMaKhoi
             // 
-            this.txtMaKhoi.Location = new System.Drawing.Point(131, 13);
+            this.txtMaKhoi.Location = new System.Drawing.Point(131, 14);
             this.txtMaKhoi.Name = "txtMaKhoi";
             this.txtMaKhoi.Size = new System.Drawing.Size(129, 20);
             this.txtMaKhoi.TabIndex = 4;
@@ -594,8 +555,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrade)).EndInit();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
@@ -626,16 +585,14 @@
         private System.Windows.Forms.TextBox txtMaLop;
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnSua;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnExcelClass;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.DataGridView dgvGrade;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btnExcelGrade;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnTimKiem;
-        private System.Windows.Forms.TextBox txtTimKiem;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtTenKhoi;
         private System.Windows.Forms.TextBox txtMaKhoi;
@@ -649,7 +606,6 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.TextBox txtSoLuongHocSinh;
         private System.Windows.Forms.Label label6;

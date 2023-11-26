@@ -10,12 +10,12 @@ namespace ManagerStudent.DAL {
     public class initConnect
     {
         // "Data Source=<tên_máy_chủ>;Initial Catalog=<tên_cơ_sở_dữ_liệu>;User ID=<tên_người_dùng>;Password=<mật_khẩu>;"
-        /*        static string connectionString = "Data Source=localhost;Initial Catalog=StudentManager;User ID=sa;Password=Admin0000;";
-        */
-        static string connectionString = "Data Source=localhost;Initial Catalog=demo" +
-            ";User ID=sa;Password=Admin0000;";
+                static string connectionString = "Data Source=localhost;Initial Catalog=StudentManager;User ID=sa;Password=Admin0000;";
+        
+        /*   static string connectionString = "Data Source=localhost;Initial Catalog=demo" +
+               ";User ID=sa;Password=Admin0000;";*/
         /*static string connectionString = "Data Source = DESKTOP-A4AI66N\\THLUC; Initial Catalog = StudentManager; Persist Security Info=True;User ID=sa; Password=123;";*/
-        /* static string connectionString = @"Data Source=DESKTOP-TSRRPEV\SQLEXPRESS;Initial Catalog=StudentManager;Integrated Security=True";*/
+        //static string connectionString = @"Data Source=DESKTOP-TSRRPEV\SQLEXPRESS;Initial Catalog=StudentManager;Integrated Security=True";
         //static string connectionString = "Data Source=LAPTOP-VRVBMT3M;Initial Catalog=StudentManager;Integrated Security=True";
         // static string connectionString = @"Data Source=DESKTOP-TSRRPEV\SQLEXPRESS;Initial Catalog=StudentManager;Integrated Security=True";
         private SqlDataAdapter myDataAdapter;

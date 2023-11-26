@@ -1,15 +1,12 @@
-﻿using System;
+﻿using ManagerStudent.DTO;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
-using ManagerStudent.DTO;
 
 namespace ManagerStudent.DAL
 {
-    public class GradeDAL:initConnect
+    public class GradeDAL : initConnect
     {
         DataTable dt;
         initConnect init = new initConnect();
@@ -44,7 +41,7 @@ namespace ManagerStudent.DAL
                 ConnectToDatabase();
                 int ma = grade.ID;
                 string name = grade.Name;
-                string sql = "insert into Grade(gradeName) values('" + name + "')";
+                string sql = "insert into Grade(gradeName) values(N'" + name + "')";
                 dt = init.Runquery(sql);
                 init.Update(dt);
             }
@@ -93,7 +90,7 @@ namespace ManagerStudent.DAL
                 int ma = grade.ID;
                 string name = grade.Name;
 
-                string sql = "UPDATE Grade SET gradeName = '" + name + "' WHERE ID = " + ma;
+                string sql = "UPDATE Grade SET gradeName = N'" + name + "' WHERE ID = " + ma;
                 dt = init.Runquery(sql);
                 init.Update(dt);
             }
@@ -109,8 +106,8 @@ namespace ManagerStudent.DAL
             try
             {
                 ConnectToDatabase();
-                string sql = "SELECT COUNT(*) FROM Grade WHERE LOWER(gradeName) = LOWER('" + Name + "') AND ID != " + ID;
-                 dt = init.Runquery(sql);
+                string sql = "SELECT COUNT(*) FROM Grade WHERE LOWER(gradeName) = LOWER(N'" + Name + "') AND ID != " + ID;
+                dt = init.Runquery(sql);
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     int count = Convert.ToInt32(dt.Rows[0][0]);
@@ -131,7 +128,7 @@ namespace ManagerStudent.DAL
         {
             try
             {
-                ConnectToDatabase();              
+                ConnectToDatabase();
                 string sql = "delete from Grade WHERE ID = " + ma;
                 dt = init.Runquery(sql);
                 init.Update(dt);

@@ -117,6 +117,10 @@ namespace ManagerStudent.BLL
         {
             return studentDAL.getListStudentInClass(yearID,gradeID,classID, idSe);
         }
+        public DataTable getListStudentInClassTraCuu(int yearID, int gradeID, int classID, int idSe)
+        {
+            return studentDAL.getListStudentInClassTraCuu(yearID,gradeID,classID, idSe);
+        }
         public List<StudentClassSemesterAcademicYear> getStudentIdFromPhanLop(int id1, int id2, int id3,int id)
         {
             return studentDAL.getIDStudentFromPhanLop(id1,id2,id3,id);

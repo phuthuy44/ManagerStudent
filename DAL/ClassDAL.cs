@@ -49,7 +49,7 @@ namespace ManagerStudent.DAL
                 string name = cls.Name;
                 int maxStudent = cls.maxStudent;
                 int realStudent = cls.realStudent;
-                string sql = "insert into Class(className,maxStudent,quantityStudent) values('" + name + "','" + maxStudent + "','" + realStudent + "')";
+                string sql = "insert into Class(className,maxStudent,quantityStudent) values(N'" + name + "','" + maxStudent + "','" + realStudent + "')";
                 dt = init.Runquery(sql);
                 init.Update(dt);
             }
@@ -98,7 +98,7 @@ namespace ManagerStudent.DAL
                 string name = cls.Name;
                 int maxStudent = cls.maxStudent;
                 int realStudent = cls.realStudent;
-                string sql = "Update Class SET className= '" + name + "', maxStudent = '" + maxStudent + "',quantityStudent = '" + realStudent + "' WHERE ID = " + ma;
+                string sql = "Update Class SET className= N'" + name + "', maxStudent = '" + maxStudent + "',quantityStudent = '" + realStudent + "' WHERE ID = " + ma;
                 dt = init.Runquery(sql);
                 init.Update(dt);
             }
@@ -113,7 +113,7 @@ namespace ManagerStudent.DAL
             try
             {
                 ConnectToDatabase();
-                string sql = "SELECT COUNT(*) FROM Class WHERE LOWER(className) = LOWER('" + Name + "') AND ID != " + ID;
+                string sql = "SELECT COUNT(*) FROM Class WHERE LOWER(className) = LOWER(N'" + Name + "') AND ID != " + ID;
 
                  dt = init.Runquery(sql);
                 if (dt != null && dt.Rows.Count > 0)
