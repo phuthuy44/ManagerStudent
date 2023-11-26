@@ -113,7 +113,7 @@ namespace ManagerStudent.DAL
             try
             {
                 ConnectToDatabase();
-                string sql = "SELECT COUNT(*) FROM Class WHERE LOWER(className) = LOWER('" + Name + "') AND ID != " + ID;
+                string sql = "SELECT COUNT(*) FROM Class WHERE LOWER(className) = LOWER(N'" + Name + "') AND ID != " + ID;
 
                  dt = init.Runquery(sql);
                 if (dt != null && dt.Rows.Count > 0)
