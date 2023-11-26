@@ -376,3 +376,9 @@ C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.
 C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\RecyclableMemoryStream.dll
 C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\DocumentFormat.OpenXml.Framework.xml
 C:\Users\Admin\Documents\GitHub\ManagerStudent\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\ExcelDataReader.DataSet.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\ExcelDataReader.dll
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\ExcelDataReader.pdb
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\ExcelDataReader.xml
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\ExcelDataReader.DataSet.pdb
+C:\Users\Minh Thao\Documents\GitHub\ManagerStudent\bin\Debug\ExcelDataReader.DataSet.xml
