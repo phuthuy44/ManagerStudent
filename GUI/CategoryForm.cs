@@ -805,12 +805,27 @@ namespace ManagerStudent.GUI
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            /*if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView2.Rows[e.RowIndex];
                 textBox4.Text = row.Cells[1].Value.ToString();
                 textBox3.Text = row.Cells[2].Value.ToString();
                 textBox1.Text = row.Cells[3].Value.ToString();
+            }*/
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView2.Rows.Count)
+            {
+                DataGridViewRow row = dataGridView2.Rows[e.RowIndex];
+                Console.WriteLine(row.Cells.Count);
+                if (row.Cells.Count >= 4)
+                {
+                    textBox4.Text = row.Cells[1].Value?.ToString();
+                    textBox3.Text = row.Cells[2].Value?.ToString();
+                    textBox1.Text = row.Cells[3].Value?.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể fill dữ liệu vào textBox", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -1163,23 +1178,53 @@ namespace ManagerStudent.GUI
 
         private void dataGridView4_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+/*            if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView4.Rows[e.RowIndex];
                 textBox15.Text = row.Cells[0].Value.ToString();
                 textBox14.Text = row.Cells[1].Value.ToString();
                 textBox8.Text = row.Cells[2].Value.ToString();
+            }*/
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView4.Rows.Count)
+            {
+                DataGridViewRow row = dataGridView4.Rows[e.RowIndex];
+
+                if (row.Cells.Count >= 3)
+                {
+                    textBox15.Text = row.Cells[0]?.Value.ToString();
+                    textBox14.Text = row.Cells[1]?.Value.ToString();
+                    textBox8.Text = row.Cells[2]?.Value.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể fill dữ liệu vào textBox", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void dataGridView5_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+/*            if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView5.Rows[e.RowIndex];
                 textBox18.Text = row.Cells[0].Value.ToString();
                 textBox17.Text = row.Cells[1].Value.ToString();
                 textBox9.Text = row.Cells[2].Value.ToString();
+            }*/
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView5.Rows.Count)
+            {
+                DataGridViewRow row = dataGridView5.Rows[e.RowIndex];
+
+                if (row.Cells.Count >= 3)
+                {
+                    textBox18.Text = row.Cells[0].Value?.ToString();
+                    textBox17.Text = row.Cells[1].Value?.ToString();
+                    textBox9.Text = row.Cells[2].Value?.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể fill dữ liệu vào textBox", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -1197,11 +1242,25 @@ namespace ManagerStudent.GUI
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+/*            if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
                 textBox21.Text = row.Cells[0].Value.ToString();
                 textBox20.Text = row.Cells[1].Value.ToString();
+            }*/
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView1.Rows.Count)
+            {
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                Console.WriteLine(row.Cells.Count);
+                if (row.Cells.Count >= 2)
+                {
+                    textBox21.Text = row.Cells[0]?.Value.ToString();
+                    textBox20.Text = row.Cells[1]?.Value.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể fill dữ liệu vào textBox", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
