@@ -1,5 +1,6 @@
 ﻿using Google.Apis.Sheets.v4.Data;
 using ManagerStudent.BLL;
+using ManagerStudent.DAL;
 using ManagerStudent.DTO;
 using System;
 using System.Collections.Generic;
@@ -162,7 +163,19 @@ namespace ManagerStudent.GUI
 
         private void button9_Click(object sender, EventArgs e)
         {
-            
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "C:\\";
+                openFileDialog.Filter = "Excel Files|*.xlsx;*.xls;";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show("Đường dẫn của tệp đã chọn: " + openFileDialog.FileName);
+                    dataGridView2.DataSource = ConnectExcel.ImportExcelToDataTable(openFileDialog.FileName);
+                }
+            }
         }
 
         private void FindConductData()
@@ -526,6 +539,10 @@ namespace ManagerStudent.GUI
                     {
                         // Xử lý khi không thêm được dữ liệu
                         MessageBox.Show("Không xóa được dữ liệu. Vui lòng thử lại.");
+                        textBox15.Clear();
+                        textBox14.Clear();
+                        textBox8.Clear();
+                        dataGridView4.ClearSelection();
                     }
                 }
             }
@@ -611,7 +628,7 @@ namespace ManagerStudent.GUI
         {
             
         
-            if (e.RowIndex>=0)
+/*            if (e.RowIndex>=0)
             {
                 DataGridViewRow row = dataGridView3.Rows[e.RowIndex];
                 textBox11.Text = row.Cells[0].Value.ToString();
@@ -619,6 +636,23 @@ namespace ManagerStudent.GUI
                 textBox7.Text = row.Cells[2].Value.ToString();
                 textBox6.Text = row.Cells[3].Value.ToString();
                 textBox12.Text = row.Cells[4].Value.ToString();
+            }*/
+            if (e.RowIndex >= 0 && e.RowIndex < dataGridView3.Rows.Count)
+            {
+                DataGridViewRow row = dataGridView3.Rows[e.RowIndex];
+
+                if (row.Cells.Count >= 5)
+                {
+                    textBox11.Text = row.Cells[0].Value?.ToString();
+                    textBox10.Text = row.Cells[1].Value?.ToString();
+                    textBox7.Text = row.Cells[2].Value?.ToString();
+                    textBox6.Text = row.Cells[3].Value?.ToString();
+                    textBox12.Text = row.Cells[4].Value?.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể fill dữ liệu vào textBox", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -1250,6 +1284,74 @@ namespace ManagerStudent.GUI
             string pointName = textBox17.Text;
             deleteTypeofPoint(pointName);
             dataGridView5.ClearSelection();
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "C:\\";
+                openFileDialog.Filter = "Excel Files|*.xlsx;*.xls;";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show("Đường dẫn của tệp đã chọn: " + openFileDialog.FileName);
+                    dataGridView3.DataSource = ConnectExcel.ImportExcelToDataTable(openFileDialog.FileName);
+                }
+            }
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "C:\\";
+                openFileDialog.Filter = "Excel Files|*.xlsx;*.xls;";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show("Đường dẫn của tệp đã chọn: " + openFileDialog.FileName);
+                    dataGridView4.DataSource = ConnectExcel.ImportExcelToDataTable(openFileDialog.FileName);
+                }
+            }
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "C:\\";
+                openFileDialog.Filter = "Excel Files|*.xlsx;*.xls;";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show("Đường dẫn của tệp đã chọn: " + openFileDialog.FileName);
+                    dataGridView5.DataSource = ConnectExcel.ImportExcelToDataTable(openFileDialog.FileName);
+                }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "C:\\";
+                openFileDialog.Filter = "Excel Files|*.xlsx;*.xls;";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show("Đường dẫn của tệp đã chọn: " + openFileDialog.FileName);
+                    dataGridView1.DataSource = ConnectExcel.ImportExcelToDataTable(openFileDialog.FileName);
+                }
+            }
         }
     }
 }
