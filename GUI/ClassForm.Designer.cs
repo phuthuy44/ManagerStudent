@@ -216,6 +216,8 @@
             // dgvClass
             // 
             this.dgvClass.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvClass.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dgvClass.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvClass.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvClass.Location = new System.Drawing.Point(308, 19);
             this.dgvClass.Name = "dgvClass";
@@ -228,6 +230,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.txtMaxHocSinh);
             this.panel1.Controls.Add(this.txtTenLop);
@@ -309,6 +312,8 @@
             // dgvGrade
             // 
             this.dgvGrade.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvGrade.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dgvGrade.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvGrade.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGrade.Location = new System.Drawing.Point(313, 20);
             this.dgvGrade.Name = "dgvGrade";
