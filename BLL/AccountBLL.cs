@@ -4,6 +4,7 @@ using ManagerStudent.GUI;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,14 +12,14 @@ using System.Windows.Forms;
 
 namespace ManagerStudent.BLL
 {
-    internal class AccountBLL
+    public class AccountBLL
     {
-        GetAccountData GetAccountData = new GetAccountData();
+        GetAccountData getAccountData = new GetAccountData();
         public string CheckAccount(string username, string password)
         {
             Response response = new Response();
 
-            var account = GetAccountData.GetAccountByUsername(username, password);
+            var account = getAccountData.GetAccountByUsername(username, password);
 
             if (account.userName == null)
             {
@@ -37,6 +38,10 @@ namespace ManagerStudent.BLL
             }
 
             return JsonConvert.SerializeObject(response);
+        }
+        public DataTable ListAccount()
+        {
+            return getAccountData.ListAccount();
         }
     }
 }

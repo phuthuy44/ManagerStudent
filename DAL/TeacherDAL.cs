@@ -954,5 +954,104 @@ namespace ManagerStudent.DAL
             }
             return dt;
         }
+        public DataTable TeacherNameID()
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                string sql = "SELECT t.ID , t.teacherName \r\n\t    FROM Teacher t \r\n\t    LEFT JOIN Account a ON a.teacherID = t.ID \r\n\t    WHERE a.teacherID IS NULL ";
+                SqlConnection sqlConnection = initConnect.ConnectToDatabase();
+                SqlCommand cmd = new SqlCommand(sql, sqlConnection);
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd);
+                sqlDataAdapter.Fill(dataTable);
+                sqlConnection.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return dataTable;
+        }
+        public DataTable TeacherAccount()
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                string sql = "SELECT t.teacherName AS N'Chủ Tài Khoản', a.username AS N'Tên Tài Khoản',\r\n\t    \ta.password AS N'Mật Khẩu', s.statusName N'Trạng Thái Tài Khoản' \r\n\t    FROM AccountStatus as2 \r\n\t   \tINNER JOIN Status s ON s.ID = as2.statusID \r\n\t    INNER JOIN Account a ON as2.accountID = a.username \r\n\t    INNER JOIN Teacher t ON t.ID = a.teacherID ";
+                SqlConnection sqlConnection = initConnect.ConnectToDatabase();
+                SqlCommand cmd = new SqlCommand(sql, sqlConnection);
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd);
+                sqlDataAdapter.Fill(dataTable);
+                sqlConnection.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return dataTable;
+        }
+
+        public bool ExistAccount(string teacherID, string username) {
+            string sql = "\r\n\t    SELECT COUNT(*)\r\n\t    FROM Account a \r\n\t    WHERE a.teacherID = @teacherID OR a.username = @username";
+            bool result = false;
+            try
+            {
+                SqlConnection sqlConnection = initConnect.ConnectToDatabase();
+                SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@teacherID", teacherID);
+                sqlCommand.Parameters.AddWithValue("@username", username);
+                int count = Convert.ToInt32(sqlCommand.ExecuteScalar());
+                result = (count > 0);
+                sqlConnection.Close();
+            }catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return result;
+        }
+        public bool CreateAccount(string teacherID, string username, string password, string statusName)
+        {
+            bool result = false;
+            try
+            {
+                using (SqlConnection sqlConnection = initConnect.ConnectToDatabase())
+                {
+
+                    // Thực hiện truy vấn INSERT INTO Account
+                    string insertAccountQuery = "INSERT INTO Account (username, password, teacherID, createDate) VALUES (@username, @password, @teacherID, GETDATE())";
+                    using (SqlCommand sqlCommand = new SqlCommand(insertAccountQuery, sqlConnection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@teacherID", teacherID);
+                        sqlCommand.Parameters.AddWithValue("@username", username);
+                        sqlCommand.Parameters.AddWithValue("@password", password);
+                        int accountInsertCount = sqlCommand.ExecuteNonQuery();
+
+                        // Thực hiện truy vấn INSERT INTO AccountStatus
+                        if (accountInsertCount > 0)
+                        {
+                            string insertAccountStatusQuery = "INSERT INTO AccountStatus (accountID, statusID) VALUES (@username, (SELECT TOP 1 Status.ID FROM Status WHERE Status.statusName = @statusName))";
+                            using (SqlCommand sqlCommandStatus = new SqlCommand(insertAccountStatusQuery, sqlConnection))
+                            {
+                                sqlCommandStatus.Parameters.AddWithValue("@username", username);
+                                sqlCommandStatus.Parameters.AddWithValue("@statusName", statusName);
+                                int statusInsertCount = sqlCommandStatus.ExecuteNonQuery();
+
+                                // Nếu cả hai truy vấn đều thành công, result sẽ là true
+                                result = (statusInsertCount > 0);
+                            }
+                        }
+                    }
+
+                    sqlConnection.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return result;
+        }
+
     }
 }
