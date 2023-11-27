@@ -439,6 +439,7 @@
     <None Include="DAL\CSV\Data - Student.csv" />
     <None Include="DAL\CSV\Data - Teacher.csv" />
     <None Include="DAL\CSV\Data - TypeOfSubject.csv" />
+    <None Include="excel\DanhSachGiaoVien\test.xlsx" />
     <None Include="file.log" />
     <None Include="ManagerStudentDataSet.xsc">
       <DependentUpon>ManagerStudentDataSet.xsd</DependentUpon>
@@ -739,6 +740,7 @@
     <Folder Include="bin\Release\" />
     <Folder Include="excel\DanhSachHocSinh\" />
     <Folder Include="excel\DanhSachHS_Lop\" />
+    <Folder Include="excel\DanhSachPhanCong\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

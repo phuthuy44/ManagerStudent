@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Data;
 using ManagerStudent.DTO;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Bibliography;
+using Org.BouncyCastle.Crypto;
 
 namespace ManagerStudent.BLL
 {
@@ -19,10 +21,6 @@ namespace ManagerStudent.BLL
         public DataTable GetDataTeacher()
         {
             return teacherDAL.GetListTeacher();
-        }
-        public DataTable SearchAllTeacher(string s)
-        {
-            return teacherDAL.SearchAllTeacher(s);
         }
         
         public DataTable GetAssignment()
@@ -58,14 +56,11 @@ namespace ManagerStudent.BLL
         }
         public bool InsertTeacher(Teacher teacher)
         {
-            bool rs = teacherDAL.insertTeacher(teacher);
-            if(rs)
-            {
-                return true;
-            }
-            else {
-                return false; 
-            }
+            return  teacherDAL.insertTeacher(teacher);
+        }
+        public bool InsertTeacherID(Teacher teacher)
+        {
+            return teacherDAL.insertTeacherID(teacher);
         }
         public int GetIdSubject(string sbname)
         {
@@ -121,6 +116,10 @@ namespace ManagerStudent.BLL
             return teacherDAL.InsertAssignment(idCls, idSb, idAy, idSe, idTea, idPos);
         }
 
+        public bool CheckTeacher(int id)
+        {
+            return teacherDAL.CheckTeacher(id);
+        }
         public bool CheckClass(int idCls, int idSb, int idAy, int idSe)
         {
             return teacherDAL.CheckClass(idCls, idSb, idAy, idSe);
@@ -128,6 +127,27 @@ namespace ManagerStudent.BLL
         public bool CheckPosition(int idCls, int idAy, int idSe)
         {
             return teacherDAL.CheckPosition(idCls, idAy, idSe);
+        }
+
+        public DataTable SearchAllTeacher(string s)
+        {
+            return teacherDAL.SearchAllTeacher(s);
+        }
+        public DataTable SearchIdTeacher(string s)
+        {
+            return teacherDAL.SearchIdTeacher(s);
+        }
+        public DataTable SearchNameTeacher(string s)
+        {
+            return teacherDAL.SearchNameTeacher(s);
+        }
+        public DataTable SearchSDTTeacher(string s)
+        {
+            return teacherDAL.SearchSDTTeacher(s);
+        }
+        public DataTable SearchTechnicalTeacher(string s)
+        {
+            return teacherDAL.SearchTechnicalTeacher(s);
         }
     }
 }
