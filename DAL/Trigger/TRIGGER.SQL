@@ -30,6 +30,29 @@ BEGIN
     END;
 END;
 
+CREATE TRIGGER INSERT_UPDATE_STU_CONDUCT
+     ON StudentConduct
+     AFTER  INSERT , UPDATE
+     AS 
+     BEGIN
+	     
+	     DECLARE @conductName NVARCHAR(255)
+	     DECLARE @semesterID INT
+	     DECLARE @academicyearID INT
+	     DECLARE @studentID INT
+	     
+	     
+	    SELECT @conductName = c.conductName ,  @semesterID =i.semesterID, 
+	    	@academicyearID = academicyearID, @studentID=i.studentID
+	    FROM Conduct c, inserted i 
+	    WHERE i.point BETWEEN c.upperLimit AND c.lowerLimit 
+     UPDATE StudentConduct 
+     SET conductName = @conductName
+     WHERE StudentConduct.academicyearID = @academicyearID
+     AND StudentConduct.studentID = @studentID
+     AND StudentConduct.semesterID = @semesterID
+	    END;
+
 CREATE  TRIGGER SET_FINAL_POINT
 ON Point
 AFTER INSERT, UPDATE

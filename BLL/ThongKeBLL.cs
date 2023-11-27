@@ -64,6 +64,13 @@ namespace ManagerStudent.BLL
         {
             return thongkeDAL.GetGradeASNumberStudent(ayName,seName);
         }
-
+        public DataTable StatisticalCapacity(string academicyearName, string semesterName)
+        {
+            return thongkeDAL.StatisticalCapacity(academicyearName, semesterName);
+        }
+        public DataTable StatisticalConduct(string academicyearName, string semesterName)
+        {
+            return thongkeDAL.StatisticalConduct(academicyearName, semesterName);
+        }
     }
 }
