@@ -8,6 +8,7 @@ using ManagerStudent.DTO;
 using System.Data;
 using System.Reflection.Emit;
 using ManagerStudent.DAL;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace ManagerStudent.GUI
 {
@@ -436,8 +437,11 @@ namespace ManagerStudent.GUI
             else
             {
                 UpdateDataGridView1();
-
-                originalData = ((DataTable)dataGridView1.DataSource).Copy();
+                if (dataGridView1.Rows.Count != 0)
+                {
+                    originalData = ((DataTable)dataGridView1.DataSource).Copy();
+                }
+                
                 
             }
         }
