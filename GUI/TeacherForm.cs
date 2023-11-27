@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Linq;
 using iText.Kernel.XMP.Impl;
 using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
 
 namespace ManagerStudent.GUI
 {
@@ -144,7 +145,8 @@ namespace ManagerStudent.GUI
 
                 cbPCL.Items.Add(clsName);
             }
-            
+            cbSearchTC.SelectedIndex = 0;
+
         }
 
 
@@ -215,7 +217,10 @@ namespace ManagerStudent.GUI
 
                 if (row.Cells[8].Value != null)
                 {
-                    cbTechnical.Text= row.Cells[8].Value.ToString();
+                    /*string[] cm = row.Cells[8].Value.ToString().Split(',');
+                    int idtea = teacherBLL.GetIdTeacherLast();
+                    foreach (string name in cm)*/
+                    cbTechnical.Text= row.Cells[8].Value.ToString().Split(',')[0];
                 }
             }
         }
@@ -230,7 +235,7 @@ namespace ManagerStudent.GUI
                 string email = txtEmailGV.Text;
                 string sdt = txtSDTGV.Text;
                 string gender = cbGender.SelectedItem?.ToString();
-                string image = "\\Image\\GiaoVien\\" + System.IO.Path.GetFileName(FileDialog.FileName);
+                string image;
                 string address = txtDiaChiGV.Text;
                 string technical = cbTechnical.SelectedItem?.ToString();
                 DateTime ngaySinh = BirthdayGV.Value.Date;
@@ -250,12 +255,18 @@ namespace ManagerStudent.GUI
                 {
                     MessageBox.Show("Số điện thoại không hợp lệ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else if (Age(BirthdayGV.Value)<= 22 || Age(BirthdayGV.Value) >= 55)
+                else if (Age(BirthdayGV.Value) <= 22 || Age(BirthdayGV.Value) >= 55)
                 {
                     MessageBox.Show("Tuổi phải lớn hơn 22 và nhỏ hơn 55", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
+                    if (picGV.Image != null){
+                        image = "\\Image\\GiaoVien\\" + System.IO.Path.GetFileName(FileDialog.FileName);
+                    }
+                    else {
+                        image = "";
+                    }
                     teacher = new Teacher(name, gender, address, ngaySinh, email, sdt, image);
                     bool result = teacherBLL.InsertTeacher(teacher);
                     if (result)
@@ -281,7 +292,7 @@ namespace ManagerStudent.GUI
                 DataGridViewRow selectedRow = TableTeacher.SelectedRows[0];
                 if (cbTechnical.SelectedItem?.ToString() == selectedRow.Cells[8].Value.ToString())
                 {
-                    MessageBox.Show("Lỗi! Không thêm được giáo viên cùng chuyên môn", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Lỗi! Không thể thêm chuyên môn đã có của giáo viên " + txtHoTenGV.Text, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -351,7 +362,7 @@ namespace ManagerStudent.GUI
                 string email = txtEmailGV.Text;
                 string sdt = txtSDTGV.Text;
                 string gender = cbGender.SelectedItem?.ToString();
-                string image = "\\Image\\GiaoVien\\" + System.IO.Path.GetFileName(FileDialog.FileName);
+                string image;
                 string address = txtDiaChiGV.Text;
                 //string technical = cbTechnical.SelectedItem?.ToString();
                 DateTime ngaySinh = BirthdayGV.Value.Date;
@@ -373,6 +384,14 @@ namespace ManagerStudent.GUI
                 }
                 else
                 {
+                    if (picGV.Image != null)
+                    {
+                        image = "\\Image\\GiaoVien\\" + System.IO.Path.GetFileName(FileDialog.FileName);
+                    }
+                    else
+                    {
+                        image = "";
+                    }
                     //DataGridViewRow selectedRow = TableTeacher.SelectedRows[0];
                     int id = int.Parse(txtMaGV.Text);
                     teacher = new Teacher(id,name, gender, address, ngaySinh, email, sdt, image);
@@ -427,7 +446,27 @@ namespace ManagerStudent.GUI
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string search =txtSearch.Text;
-            TableTeacher.DataSource= teacherBLL.SearchAllTeacher(search);
+            string cbSearch= cbSearchTC.SelectedItem?.ToString();
+            if (cbSearch == "Tất cả")
+            {
+                TableTeacher.DataSource = teacherBLL.SearchAllTeacher(search);
+            }
+            else if(cbSearch == "Chuyên môn"){
+                TableTeacher.DataSource = teacherBLL.SearchTechnicalTeacher(search);
+            }
+            else if (cbSearch == "Tên")
+            {
+                TableTeacher.DataSource = teacherBLL.SearchNameTeacher(search);
+            }
+            else if (cbSearch == "SĐT")
+            {
+                TableTeacher.DataSource = teacherBLL.SearchSDTTeacher(search);
+            }
+            else
+            {
+                TableTeacher.DataSource = teacherBLL.SearchIdTeacher(search);
+            }
+
         }
         private void button10_Click(object sender, EventArgs e)
         {
@@ -702,17 +741,12 @@ namespace ManagerStudent.GUI
             using (ExcelPackage excelPackage = new ExcelPackage())
             {
                 ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Sheet1");
-
-                // Write headers to Excel
                 for (int i = 1; i <= dataGridView.Columns.Count; i++)
                 {
                     worksheet.Cells[1, i].Value = dataGridView.Columns[i - 1].HeaderText;
                 }
-
-                // Write data from DataGridView to Excel
                 for (int i = 1; i <= dataGridView.Columns.Count; i++)
                 {
-                    // Check if the column contains DateTime values
                     if (dataGridView.Columns[i - 1].ValueType == typeof(DateTime))
                     {
                         for (int j = 1; j <= dataGridView.Rows.Count; j++)
@@ -735,8 +769,6 @@ namespace ManagerStudent.GUI
                         }
                     }
                 }
-
-                // Save the Excel file to the specified path
                 FileInfo excelFile = new FileInfo(filePath);
 
                 excelPackage.SaveAs(excelFile);
@@ -747,17 +779,11 @@ namespace ManagerStudent.GUI
         {
             string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
             string folderPath = System.IO.Path.Combine(appDirectory, "excel", "DanhSachGiaoVien");
-
-            // Kiểm tra xem thư mục tồn tại chưa, nếu chưa thì tạo mới
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
-
-            // Tạo đường dẫn cho file Excel mặc định
             string defaultExcelFilePath = System.IO.Path.Combine(folderPath, "");
-
-            // Hiển thị hộp thoại SaveFileDialog để cho phép người dùng chọn đường dẫn và đặt tên cho file
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
             saveFileDialog.FileName = "";
@@ -765,19 +791,17 @@ namespace ManagerStudent.GUI
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // Gọi hàm xuất Excel với đường dẫn đã chọn
                 ExportToExcel(TableTeacher, saveFileDialog.FileName);
                 MessageBox.Show("Dữ liệu đã được xuất thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                // Nếu người dùng không chọn đường dẫn, sử dụng đường dẫn mặc định
                 ExportToExcel(TableTeacher, defaultExcelFilePath);
             }
         }
         private void ImportFromExcel(string filePath)
         {
-            ExcelPackage.LicenseContext = LicenseContext.Commercial; // Set the license context
+            ExcelPackage.LicenseContext = LicenseContext.Commercial; 
             using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath)))
             {
                 List<Student> stu = new List<Student>();
@@ -787,13 +811,12 @@ namespace ManagerStudent.GUI
                 {
                     TeacherClone.ImportRow(row);
                 }
-                // Bắt đầu từ dòng thứ 2 để bỏ qua dòng đầu tiên
+
                 int startRow = 2;
                 if (package.Workbook.Worksheets.Count > 0)
                 {
                     ExcelWorksheets worksheets = package.Workbook.Worksheets;
-                    ExcelWorksheet worksheet = worksheets[0]; // Lấy sheet đầu tiên
-                                                              // Lấy dữ liệu từ Excel và thêm vào DataTable StudentClone
+                    ExcelWorksheet worksheet = worksheets[0];
                     for (int row = startRow; row <= worksheet.Dimension.End.Row; row++)
                     {
 
@@ -809,23 +832,26 @@ namespace ManagerStudent.GUI
                         Teacher teacherEx = new Teacher(namegv, gender, address, birthday, email, numberphone, image);
                         bool existsInDatabase = teacherBLL.CheckTeacher(idgv);
                         HashSet<int> existingIDs = new HashSet<int>(TeacherClone.AsEnumerable().Select(rows => rows.Field<int>("Mã GV")));
-
                         if (!existsInDatabase)
                         {
                             Teacher teacherEx2 = new Teacher(idgv,namegv, gender, address, birthday, email, numberphone, image);
                             teacherBLL.InsertTeacher(teacherEx2);
 
                             string[] cm = technical.Split(',');
+                            int idtea = teacherBLL.GetIdTeacherLast();
                             foreach (string name in cm)
                             {
-                                int idsub = teacherBLL.GetIdSubject(name);
-                                int idtea = teacherBLL.GetIdTeacherLast();
-                                bool result = teacherBLL.InsertSubTecher(idtea, idsub);
-                                if(result) {
-                                    Console.WriteLine("Thêm chuyên môn excel thành công");
+                                if (!string.IsNullOrWhiteSpace(name))
+                                {
+                                    int idsub = teacherBLL.GetIdSubject(name);
+                                    bool result = teacherBLL.InsertSubTecher(idtea, idsub);
+                                    if (result)
+                                    {
+                                        Console.WriteLine("Thêm chuyên môn excel thành công");
+                                    }
                                 }
+                                
                             }
-                            //idsub = teacherBLL.GetIdSubject(technical);
                             
                         }
                     }
@@ -859,6 +885,64 @@ namespace ManagerStudent.GUI
 
                 // Gọi hàm ImportFromExcel với đường dẫn tệp đã chọn
                 ImportFromExcel(filePath);
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string folderPath = System.IO.Path.Combine(appDirectory, "excel", "DanhSachPhanCong");
+
+            // Kiểm tra xem thư mục tồn tại chưa, nếu chưa thì tạo mới
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            // Tạo đường dẫn cho file Excel mặc định
+            string defaultExcelFilePath = System.IO.Path.Combine(folderPath, "");
+
+            // Hiển thị hộp thoại SaveFileDialog để cho phép người dùng chọn đường dẫn và đặt tên cho file
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+            saveFileDialog.FileName = "";
+            saveFileDialog.InitialDirectory = folderPath;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Gọi hàm xuất Excel với đường dẫn đã chọn
+                ExportToExcel(TableAssignment, saveFileDialog.FileName);
+                MessageBox.Show("Dữ liệu đã được xuất thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                ExportToExcel(TableAssignment, defaultExcelFilePath);
+            }
+        }
+
+        private void cbSearchTC_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string search = txtSearch.Text;
+            string cbSearch = cbSearchTC.SelectedItem?.ToString();
+            if (cbSearch == "Tất cả")
+            {
+                TableTeacher.DataSource = teacherBLL.SearchAllTeacher(search);
+            }
+            else if (cbSearch == "Chuyên môn")
+            {
+                TableTeacher.DataSource = teacherBLL.SearchTechnicalTeacher(search);
+            }
+            else if (cbSearch == "Tên")
+            {
+                TableTeacher.DataSource = teacherBLL.SearchNameTeacher(search);
+            }
+            else if (cbSearch == "SĐT")
+            {
+                TableTeacher.DataSource = teacherBLL.SearchSDTTeacher(search);
+            }
+            else
+            {
+                TableTeacher.DataSource = teacherBLL.SearchIdTeacher(search);
             }
         }
     }

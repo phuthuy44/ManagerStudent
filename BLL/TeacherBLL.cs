@@ -22,10 +22,6 @@ namespace ManagerStudent.BLL
         {
             return teacherDAL.GetListTeacher();
         }
-        public DataTable SearchAllTeacher(string s)
-        {
-            return teacherDAL.SearchAllTeacher(s);
-        }
         
         public DataTable GetAssignment()
         {
@@ -131,6 +127,27 @@ namespace ManagerStudent.BLL
         public bool CheckPosition(int idCls, int idAy, int idSe)
         {
             return teacherDAL.CheckPosition(idCls, idAy, idSe);
+        }
+
+        public DataTable SearchAllTeacher(string s)
+        {
+            return teacherDAL.SearchAllTeacher(s);
+        }
+        public DataTable SearchIdTeacher(string s)
+        {
+            return teacherDAL.SearchIdTeacher(s);
+        }
+        public DataTable SearchNameTeacher(string s)
+        {
+            return teacherDAL.SearchNameTeacher(s);
+        }
+        public DataTable SearchSDTTeacher(string s)
+        {
+            return teacherDAL.SearchSDTTeacher(s);
+        }
+        public DataTable SearchTechnicalTeacher(string s)
+        {
+            return teacherDAL.SearchTechnicalTeacher(s);
         }
     }
 }

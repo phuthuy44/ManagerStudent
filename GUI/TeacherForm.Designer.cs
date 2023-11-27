@@ -48,7 +48,7 @@
             this.btnAddTeacher = new System.Windows.Forms.Button();
             this.TableTeacher = new System.Windows.Forms.DataGridView();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbSearchTC = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cbGender = new System.Windows.Forms.ComboBox();
             this.cbTechnical = new System.Windows.Forms.ComboBox();
@@ -143,7 +143,7 @@
             this.tabPage1.Controls.Add(this.panel2);
             this.tabPage1.Controls.Add(this.TableTeacher);
             this.tabPage1.Controls.Add(this.txtSearch);
-            this.tabPage1.Controls.Add(this.comboBox1);
+            this.tabPage1.Controls.Add(this.cbSearchTC);
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -194,7 +194,7 @@
             // 
             this.pictureBox11.BackColor = System.Drawing.Color.MediumBlue;
             this.pictureBox11.Image = global::ManagerStudent.Properties.Resources.icon__magnifying_glass_;
-            this.pictureBox11.Location = new System.Drawing.Point(351, 194);
+            this.pictureBox11.Location = new System.Drawing.Point(351, 191);
             this.pictureBox11.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(29, 18);
@@ -375,18 +375,21 @@
             this.txtSearch.TabIndex = 10;
             this.txtSearch.TextChanged += new System.EventHandler(this.btnSearch_Click);
             // 
-            // comboBox1
+            // cbSearchTC
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbSearchTC.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSearchTC.FormattingEnabled = true;
+            this.cbSearchTC.Items.AddRange(new object[] {
+            "Tất cả",
             "Mã ",
             "Tên",
-            "SĐT"});
-            this.comboBox1.Location = new System.Drawing.Point(10, 188);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(110, 21);
-            this.comboBox1.TabIndex = 9;
+            "SĐT",
+            "Chuyên môn"});
+            this.cbSearchTC.Location = new System.Drawing.Point(10, 188);
+            this.cbSearchTC.Name = "cbSearchTC";
+            this.cbSearchTC.Size = new System.Drawing.Size(110, 21);
+            this.cbSearchTC.TabIndex = 9;
+            this.cbSearchTC.SelectedIndexChanged += new System.EventHandler(this.cbSearchTC_SelectedIndexChanged);
             // 
             // panel1
             // 
@@ -881,6 +884,7 @@
             this.button9.Text = "Xuất Excel";
             this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // btnSave
             // 
@@ -959,7 +963,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbSearchTC;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.DataGridView TableTeacher;
         private System.Windows.Forms.DataGridView TableAssignment;
@@ -968,9 +972,7 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnDeleteTeacher;
         private System.Windows.Forms.Button btnEditTeacher;
@@ -1009,5 +1011,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnDA;
         private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
