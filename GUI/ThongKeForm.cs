@@ -1,4 +1,5 @@
 ﻿using ManagerStudent.BLL;
+using ManagerStudent.DAL;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -26,8 +27,8 @@ namespace ManagerStudent.GUI
             cbHKds.Items.Add("Tất cả");
             cbHKhk.Items.Add("Tất cả");
             cbHKsl.Items.Add("Tất cả");
-            cbDS.SelectedIndex = 0;
-            cbHK.SelectedIndex = 0;
+            
+            
             cbSL.SelectedIndex = 0;
             cbNHds.SelectedIndex = 0;
             cbNHhk.SelectedIndex = 0;
@@ -54,6 +55,8 @@ namespace ManagerStudent.GUI
                 cbHKsl.Items.Add(smName);
             }
             FillAllNumberStudent();
+            dataGridView1.DataSource = thongkeBLL.StatisticalCapacity(cbNHds.Text, cbHKds.Text);
+            dataGridView2.DataSource = thongkeBLL.StatisticalConduct(cbNHhk.Text, cbHKhk.Text);
         }
 
         private void FillAllNumberStudent()
@@ -431,6 +434,97 @@ namespace ManagerStudent.GUI
                     else
                     {
                         FillGradeAyearNumberStudent(ayName);
+                    }
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = thongkeBLL.StatisticalCapacity(cbNHds.Text, cbHKds.Text);
+        }
+
+        private void cbNHds_SelectedValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = thongkeBLL.StatisticalCapacity(cbNHds.Text, cbHKds.Text);
+        }
+
+        private void cbHKds_SelectedValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = thongkeBLL.StatisticalCapacity(cbNHds.Text, cbHKds.Text);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.DataSource == null)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất!");
+            }
+            else
+            {
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Tệp Excel (*.xlsx)|*.xlsx|Tệp Excel cũ (*.xls)|*.xls";
+                    saveFileDialog.Title = "Lưu tệp tin";
+
+                    DialogResult result = saveFileDialog.ShowDialog();
+
+                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(saveFileDialog.FileName))
+                    {
+                        // Lưu tệp với đường dẫn đã chọn
+                        string filePath = saveFileDialog.FileName;
+                        //gọi phương thức
+                        //lưu với kiểu dữ liệu là datatable
+                        ConnectExcel.ExportDataToExcel(filePath, (DataTable)dataGridView1.DataSource);
+                        MessageBox.Show("Đã lưu tệp: " + filePath);
+                    }
+                }
+            }
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dataGridView2.DataSource = thongkeBLL.StatisticalConduct(cbNHds.Text, cbHKds.Text);
+        }
+
+        private void cbNHhk_SelectedValueChanged(object sender, EventArgs e)
+        {
+            dataGridView2.DataSource = thongkeBLL.StatisticalConduct(cbNHhk.Text, cbHKhk.Text);
+        }
+
+        private void cbHKhk_SelectedValueChanged(object sender, EventArgs e)
+        {
+            dataGridView2.DataSource = thongkeBLL.StatisticalConduct(cbNHhk.Text, cbHKhk.Text);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.DataSource == null)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất!");
+            }
+            else
+            {
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Tệp Excel (*.xlsx)|*.xlsx|Tệp Excel cũ (*.xls)|*.xls";
+                    saveFileDialog.Title = "Lưu tệp tin";
+
+                    DialogResult result = saveFileDialog.ShowDialog();
+
+                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(saveFileDialog.FileName))
+                    {
+                        // Lưu tệp với đường dẫn đã chọn
+                        string filePath = saveFileDialog.FileName;
+                        //gọi phương thức
+                        //lưu với kiểu dữ liệu là datatable
+                        ConnectExcel.ExportDataToExcel(filePath, (DataTable)dataGridView2.DataSource);
+                        MessageBox.Show("Đã lưu tệp: " + filePath);
                     }
                 }
             }

@@ -298,6 +298,149 @@ AS
 		SELECT * FROM TypeOfPoint top2 ;
 	END;
 
+CREATE   PROC STATISTICAL_CAPACITY
+     @academicyearName NVARCHAR(255),
+     @semesterName NVARCHAR(255)
+     AS
+     BEGIN
+	    
+ 		IF @academicyearName = N'Tất cả' AND @semesterName = N'Tất cả'
+ 		BEGIN 
+ 			 SELECT ay.academicyearName AS N'Năm Học', s.semesterName AS N'Học Kỳ' , 
+				c.capacityName AS N'Xếp Loại',  COUNT(c.capacityName) AS N'Số Lượng'
+			FROM Capacity c 
+			INNER JOIN StudentCapacity sc ON sc.capacityName = c.capacityName 
+			LEFT JOIN Semester s ON s.ID = sc.semesterID 
+			LEFT JOIN AcademicYear ay ON ay.ID = sc.academicyearID 
+			GROUP BY c.capacityName, s.semesterName  , ay.academicyearName 
+			ORDER BY c.capacityName DESC , s.semesterName DESC , ay.academicyearName 
+			 
+ 		END
+ 		ELSE 
+ 			DECLARE @academicyearID INT
+			DECLARE @semesterID INT
+			
+			SELECT @academicyearID = ay.ID 
+			FROM AcademicYear ay 
+			WHERE ay.academicyearName = @academicyearName
+			
+			SELECT @semesterID = s.ID 
+			FROM Semester s 
+			WHERE s.semesterName = @semesterName
+			
+ 			IF @academicyearName = N'Tất cả'
+ 			BEGIN 
+				SELECT ay.academicyearName AS N'Năm Học', s.semesterName AS N'Học Kỳ' , 
+					c.capacityName AS N'Xếp Loại',  COUNT(c.capacityName) AS N'Số Lượng'
+				FROM Capacity c 
+				INNER JOIN StudentCapacity sc ON sc.capacityName = c.capacityName
+					AND sc.semesterID = @semesterID
+				LEFT JOIN Semester s ON s.ID = sc.semesterID 
+				LEFT JOIN AcademicYear ay ON ay.ID = sc.academicyearID 
+				GROUP BY c.capacityName, s.semesterName  , ay.academicyearName 
+				ORDER BY c.capacityName DESC , s.semesterName DESC , ay.academicyearName
+ 			END
+ 			
+ 			ELSE 
+ 				IF @semesterName = N'Tất cả'
+ 				BEGIN
+			 		SELECT ay.academicyearName AS N'Năm Học', s.semesterName AS N'Học Kỳ' , 
+							c.capacityName AS N'Xếp Loại',  COUNT(c.capacityName) AS N'Số Lượng'
+						FROM Capacity c 
+						INNER JOIN StudentCapacity sc ON sc.capacityName = c.capacityName 
+							AND sc.academicyearID = @academicyearID
+						LEFT JOIN Semester s ON s.ID = sc.semesterID 
+						LEFT JOIN AcademicYear ay ON ay.ID = sc.academicyearID 
+						GROUP BY c.capacityName, s.semesterName  , ay.academicyearName 
+						ORDER BY c.capacityName DESC , s.semesterName DESC , ay.academicyearName 
+ 				END
+ 				ELSE
+			 		BEGIN 
+			 			SELECT ay.academicyearName AS N'Năm Học', s.semesterName AS N'Học Kỳ' , 
+							c.capacityName AS N'Xếp Loại',  COUNT(c.capacityName) AS N'Số Lượng'
+						FROM Capacity c 
+						INNER JOIN StudentCapacity sc ON sc.capacityName = c.capacityName 
+							AND sc.semesterID = @semesterID
+							AND  sc.academicyearID = @academicyearID
+						LEFT JOIN Semester s ON s.ID = sc.semesterID 
+						LEFT JOIN AcademicYear ay ON ay.ID = sc.academicyearID 
+						GROUP BY c.capacityName, s.semesterName  , ay.academicyearName 
+						ORDER BY c.capacityName DESC , s.semesterName DESC , ay.academicyearName 
+			 		END
+			 		
+     END;
+
+CREATE PROC STATISTICAL_CONDUCT
+	     @academicyearName NVARCHAR(255),
+	     @semesterName NVARCHAR(255)
+	    AS
+	    BEGIN
+		    	IF @academicyearName = N'Tất cả' AND @semesterName = N'Tất cả'
+ 		BEGIN 
+ 			  SELECT ay.academicyearName AS N'Năm Học' , s.semesterName AS N'Học Kỳ',
+		    	c.conductName AS N'Hạnh Kiểm' , COUNT(c.conductName) AS N'Số Lượng' 
+		    FROM Conduct c
+		    INNER JOIN StudentConduct sc2 ON sc2.conductName = c.conductName 
+		    LEFT JOIN Semester s ON s.ID = sc2.semesterID 
+		    LEFT JOIN AcademicYear ay  ON s.ID = ay.ID  
+		    GROUP BY ay.academicyearName , s.semesterName , c.conductName
+		    ORDER BY ay.academicyearName DESC , s.semesterName DESC , c.conductName
+			 
+ 		END
+ 		ELSE 
+ 			DECLARE @academicyearID INT
+			DECLARE @semesterID INT
+			
+			SELECT @academicyearID = ay.ID 
+			FROM AcademicYear ay 
+			WHERE ay.academicyearName = @academicyearName
+			
+			SELECT @semesterID = s.ID 
+			FROM Semester s 
+			WHERE s.semesterName = @semesterName
+			
+ 			IF @academicyearName = N'Tất cả'
+ 			BEGIN 
+				SELECT ay.academicyearName AS N'Năm Học' , s.semesterName AS N'Học Kỳ',
+		    	c.conductName AS N'Hạnh Kiểm' , COUNT(c.conductName) AS N'Số Lượng' 
+		    FROM Conduct c
+		    INNER JOIN StudentConduct sc2 ON sc2.conductName = c.conductName
+		    AND sc2.semesterID = @semesterID
+		    LEFT JOIN Semester s ON s.ID = sc2.semesterID 
+		    LEFT JOIN AcademicYear ay  ON s.ID = ay.ID  
+		    GROUP BY ay.academicyearName , s.semesterName , c.conductName
+		    ORDER BY ay.academicyearName DESC , s.semesterName DESC , c.conductName
+ 			END
+ 			
+ 			ELSE 
+ 				IF @semesterName = N'Tất cả'
+ 				BEGIN
+			 		SELECT ay.academicyearName AS N'Năm Học' , s.semesterName AS N'Học Kỳ',
+		    	c.conductName AS N'Hạnh Kiểm' , COUNT(c.conductName) AS N'Số Lượng' 
+		    FROM Conduct c
+		    INNER JOIN StudentConduct sc2 ON sc2.conductName = c.conductName
+		    AND sc2.academicyearID = @academicyearID
+		    LEFT JOIN Semester s ON s.ID = sc2.semesterID 
+		    LEFT JOIN AcademicYear ay  ON s.ID = ay.ID  
+		    GROUP BY ay.academicyearName , s.semesterName , c.conductName
+		    ORDER BY ay.academicyearName DESC , s.semesterName DESC , c.conductName
+ 				END
+ 				ELSE
+			 		BEGIN 
+			 			SELECT ay.academicyearName AS N'Năm Học' , s.semesterName AS N'Học Kỳ',
+		    	c.conductName AS N'Hạnh Kiểm' , COUNT(c.conductName) AS N'Số Lượng' 
+		    FROM Conduct c
+		    INNER JOIN StudentConduct sc2 ON sc2.conductName = c.conductName
+		    AND sc2.semesterID = @semesterID
+		    AND sc2.academicyearID = @academicyearID
+		    LEFT JOIN Semester s ON s.ID = sc2.semesterID 
+		    LEFT JOIN AcademicYear ay  ON s.ID = ay.ID  
+		    GROUP BY ay.academicyearName , s.semesterName , c.conductName
+		    ORDER BY ay.academicyearName DESC , s.semesterName DESC , c.conductName
+			 		END
+		   
+	    END;
+
 CREATE PROC SUMMARY_POINT_STUDENT
 	@academicyearName NVARCHAR(255),
     @semesterName NVARCHAR(255),

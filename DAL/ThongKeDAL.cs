@@ -565,5 +565,45 @@ namespace ManagerStudent.DAL
             return dt;
         }
 
+
+        public DataTable StatisticalCapacity(string academicyearName, string semesterName)
+        {
+            DataTable dataTable = new DataTable();
+            string sql = "EXEC STATISTICAL_CAPACITY @academicyearName, @semesterName";
+            try
+            {
+                SqlConnection sqlConnection = initConnect.ConnectToDatabase();
+                SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@academicyearName", academicyearName);
+                sqlCommand.Parameters.AddWithValue("@semesterName", semesterName);
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                sqlDataAdapter.Fill(dataTable);
+                sqlConnection.Close();
+            }catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return dataTable;
+        }
+        public DataTable StatisticalConduct(string academicyearName, string semesterName)
+        {
+            DataTable dataTable = new DataTable();
+            string sql = "EXEC STATISTICAL_CONDUCT @academicyearName, @semesterName";
+            try
+            {
+                SqlConnection sqlConnection = initConnect.ConnectToDatabase();
+                SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@academicyearName", academicyearName);
+                sqlCommand.Parameters.AddWithValue("@semesterName", semesterName);
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                sqlDataAdapter.Fill(dataTable);
+                sqlConnection.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return dataTable;
+        }
     }
 }
