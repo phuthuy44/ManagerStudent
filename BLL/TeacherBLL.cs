@@ -149,5 +149,21 @@ namespace ManagerStudent.BLL
         {
             return teacherDAL.SearchTechnicalTeacher(s);
         }
+        public DataTable TeacherNameID()
+        {
+            return teacherDAL.TeacherNameID();
+        }
+        public DataTable TeacherAccount()
+        {
+            return teacherDAL.TeacherAccount();
+        }
+        public bool ExistAccount(string teacherID, string username)
+        {
+            return teacherDAL.ExistAccount( teacherID,  username);
+        }
+        public bool CreateAccount(string teacherID, string username, string password, string statusName)
+        {
+            return teacherDAL.CreateAccount(teacherID, username, password, statusName);
+        }
     }
 }

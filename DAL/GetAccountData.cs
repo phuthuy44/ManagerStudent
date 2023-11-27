@@ -2,6 +2,7 @@
 using ManagerStudent.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -128,7 +129,25 @@ namespace ManagerStudent.DAL
             }
             return account;
         }
-        
-        
+
+        public DataTable ListAccount()
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                string sql = "\r\nSELECT t.ID, t.teacherName  \r\nFROM Teacher t , Account a \r\nWHERE t.ID <> a.teacherID  \r\n\t    ";
+                SqlConnection sqlConnection = initConnect.ConnectToDatabase();
+                SqlCommand cmd = new SqlCommand(sql, sqlConnection);
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd);
+                sqlDataAdapter.Fill(dataTable);
+                sqlConnection.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return dataTable;
+        }
+
     }
 }

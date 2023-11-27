@@ -14,6 +14,7 @@ namespace ManagerStudent.GUI
 
     public partial class CategoryForm : Form
     {
+        private TeacherBLL teacherBLL;
         private ConductBLL insertConductBLL;
         private ConductBLL deleteConductBLL;
         private ConductBLL updateConductBLL;
@@ -39,13 +40,15 @@ namespace ManagerStudent.GUI
         private SubjectBLL updateSubjectBLL;
         private SubjectBLL deleteSubjectBLL;
 
+        private AccountBLL accountBLL;
 
         public CategoryForm()
         {
             InitializeComponent();
             conductTab();
             Shown += (sender, e) => dataGridView2.ClearSelection();
-            /*tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;*/
+            teacherBLL = new TeacherBLL();
+            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -94,6 +97,12 @@ namespace ManagerStudent.GUI
         }
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DataTable dataTable = teacherBLL.TeacherNameID();
+            comboBox1.DataSource = dataTable;
+            comboBox1.DisplayMember = "ID";
+            textBox23.Text = dataTable.Rows[0][1].ToString();
+            /*tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;*/
+            dataGridView6.DataSource =teacherBLL.TeacherAccount();
             int index = tabControl1.SelectedIndex;
             switch (index)
             {
@@ -1409,6 +1418,44 @@ namespace ManagerStudent.GUI
                 {
                     MessageBox.Show("Đường dẫn của tệp đã chọn: " + openFileDialog.FileName);
                     dataGridView1.DataSource = ConnectExcel.ImportExcelToDataTable(openFileDialog.FileName);
+                }
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dataTable = teacherBLL.TeacherNameID();
+            if (comboBox1.SelectedIndex >= 0) // Kiểm tra xem đã chọn giá trị nào chưa
+            {
+                textBox23.Text = dataTable.Rows[comboBox1.SelectedIndex][1].ToString();
+            }
+        }
+
+        private void button26_Click(object sender, EventArgs e)
+        {
+            if (textBox19.Text.Trim()=="" || textBox24.Text.Trim()=="" || comboBox2.SelectedItem == null)
+            {
+                MessageBox.Show("Nhập đầy đủ thông tin trước khi thêm");
+            }
+            else
+            {
+                if (teacherBLL.ExistAccount(comboBox1.Text, textBox19.Text))
+                {
+                    MessageBox.Show("Tài khoản đã tồn tại hoặc người dùng này đã có tài khoản");
+                }
+                else
+                {
+                   if (teacherBLL.CreateAccount(comboBox1.Text, textBox19.Text, textBox24.Text, comboBox2.Text))
+                    {
+
+                        MessageBox.Show("Tạo tài khoản thành công!");
+                        dataGridView6.DataSource = teacherBLL.TeacherAccount();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tạo tài khoản thất bại!");
+                    }
+
                 }
             }
         }
