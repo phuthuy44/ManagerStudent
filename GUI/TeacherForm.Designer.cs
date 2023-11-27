@@ -355,10 +355,13 @@
             // 
             this.TableTeacher.AllowUserToAddRows = false;
             this.TableTeacher.AllowUserToResizeRows = false;
+            this.TableTeacher.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.TableTeacher.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TableTeacher.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TableTeacher.Location = new System.Drawing.Point(10, 224);
             this.TableTeacher.Name = "TableTeacher";
             this.TableTeacher.RowHeadersWidth = 51;
+            this.TableTeacher.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.TableTeacher.Size = new System.Drawing.Size(801, 213);
             this.TableTeacher.TabIndex = 12;
             this.TableTeacher.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TableTeacher_CellClick);
@@ -387,6 +390,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.cbGender);
             this.panel1.Controls.Add(this.cbTechnical);
@@ -580,6 +584,7 @@
             // 
             // panel4
             // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel4.Controls.Add(this.cbCV);
             this.panel4.Controls.Add(this.label14);
@@ -720,10 +725,13 @@
             // 
             this.TableAssignment.AllowUserToAddRows = false;
             this.TableAssignment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.TableAssignment.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.TableAssignment.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.TableAssignment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TableAssignment.Location = new System.Drawing.Point(331, 6);
             this.TableAssignment.Name = "TableAssignment";
             this.TableAssignment.RowHeadersWidth = 51;
+            this.TableAssignment.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.TableAssignment.Size = new System.Drawing.Size(483, 428);
             this.TableAssignment.TabIndex = 1;
             // 

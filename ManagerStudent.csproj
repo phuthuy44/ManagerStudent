@@ -324,7 +324,9 @@
     <Compile Include="GUI\TeacherForm.Designer.cs">
       <DependentUpon>TeacherForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\ThongKeForm.cs" />
+    <Compile Include="GUI\ThongKeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\ThongKeForm.Designer.cs">
       <DependentUpon>ThongKeForm.cs</DependentUpon>
     </Compile>

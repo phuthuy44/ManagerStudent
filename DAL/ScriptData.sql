@@ -197,7 +197,7 @@ CREATE TABLE Class(
 	quantityStudent INT,
 	PRIMARY KEY (ID)
 )
-
+--drop table assignment
 --	Tạo bảng phân công
 CREATE TABLE Assignment(
 	teacherID INT NOT NULL,
@@ -207,7 +207,7 @@ CREATE TABLE Assignment(
 	academicyearID INT,
 	subjectID INT,
 	PRIMARY KEY (teacherID, classID, semesterID, 
-	positionID, academicyearID, subjectID, statusID)
+	positionID, academicyearID, subjectID)
 )
 
 -- Thêm các khoá chính và khoá ngoại
