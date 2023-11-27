@@ -83,7 +83,8 @@ namespace ManagerStudent.DAL
                     CONVERT(NVARCHAR, t.birthday, 112) LIKE '%' + @s + '%' OR
                     t.email LIKE '%' + @s + '%' OR
                     CONVERT(NVARCHAR, t.phonenumber) LIKE '%' + @s + '%' OR
-                    t.address LIKE '%' + @s + '%'   
+                    t.address LIKE '%' + @s + '%' OR
+                    s.subjectName  LIKE '%' + @s + '%'
                 GROUP BY
                     t.ID, t.teacherName, t.gender, t.birthday, t.email, t.phonenumber, t.address, t.image";
 
@@ -334,7 +335,34 @@ namespace ManagerStudent.DAL
                 cmd.Parameters.AddWithValue("@diaChi", teacher.Address);
                 cmd.Parameters.AddWithValue("@email", teacher.Email);
                 cmd.Parameters.AddWithValue("@soDienThoai", teacher.Phone);
-                cmd.Parameters.AddWithValue("@image", "\\Image\\GiaoVien\\" + teacher.Image);
+                cmd.Parameters.AddWithValue("@image",teacher.Image);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine( "InsertTeacher"+ex.Message);
+                return false;
+            }
+            finally { conn.Close(); }
+        }
+        public bool insertTeacherID(Teacher teacher)
+        {
+
+            string sql = "INSERT INTO Teacher (ID,teacherName,birthday,gender,address,email, phonenumber, image) " +
+                         "Values(@id,@Hoten,@NgaySinh,@gioitinh,@diaChi,@email,@soDienThoai,@image)";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", teacher.ID);
+                cmd.Parameters.AddWithValue("@Hoten", teacher.Name);
+                cmd.Parameters.AddWithValue("@NgaySinh", teacher.Birthday);
+                cmd.Parameters.AddWithValue("@gioitinh", teacher.Gender);
+                cmd.Parameters.AddWithValue("@diaChi", teacher.Address);
+                cmd.Parameters.AddWithValue("@email", teacher.Email);
+                cmd.Parameters.AddWithValue("@soDienThoai", teacher.Phone);
+                cmd.Parameters.AddWithValue("@image", teacher.Image);
                 cmd.ExecuteNonQuery();
                 return true;
             }
@@ -360,7 +388,7 @@ namespace ManagerStudent.DAL
                 cmd.Parameters.AddWithValue("@address", teacher.Address);
                 cmd.Parameters.AddWithValue("@email", teacher.Email);
                 cmd.Parameters.AddWithValue("@phonenumber", teacher.Phone);
-                cmd.Parameters.AddWithValue("@image", "\\Image\\GiaoVien\\" + teacher.Image);
+                cmd.Parameters.AddWithValue("@image", teacher.Image);
                 cmd.ExecuteNonQuery();
                 return true;
             }
@@ -444,6 +472,7 @@ namespace ManagerStudent.DAL
             }
             finally { conn.Close(); }
         }
+        
 
 
         public int GetIdSubject(string sbname)
@@ -627,6 +656,32 @@ namespace ManagerStudent.DAL
                     return false;
                 }
                 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally { conn.Close(); }
+        }
+        public bool CheckTeacher(int id)
+        {
+            string sql = "SELECT * FROM Teacher WHERE ID = @id";
+            SqlConnection conn = initConnect.ConnectToDatabase();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@idCls", id);
+                SqlDataReader rd = cmd.ExecuteReader();
+                if (rd.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
             }
             catch (Exception ex)
             {

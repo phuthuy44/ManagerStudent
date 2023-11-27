@@ -1208,8 +1208,6 @@ namespace ManagerStudent.GUI
                             }
                             else
                             {
-                                // Handle the case where the value cannot be cast to DateTime
-                                // For example, you can set a default value or log an error
                             }
                         }
                     }
