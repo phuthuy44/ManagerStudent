@@ -289,6 +289,7 @@
             this.button5.Text = "Xuất Excel";
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // pictureBox2
             // 
@@ -312,6 +313,7 @@
             this.button4.Text = "Nhập Excel";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // btnDeleteTeacher
             // 
