@@ -49,7 +49,7 @@ namespace ManagerStudent.DAL
                 string name = cls.Name;
                 int maxStudent = cls.maxStudent;
            
-                string sql = "insert into Class(className,maxStudent,quantityStudent) values(N'" + name + "','" + maxStudent + "')";
+                string sql = "insert into Class(className,maxStudent) values(N'" + name + "','" + maxStudent + "')";
                 dt = init.Runquery(sql);
                 init.Update(dt);
             }

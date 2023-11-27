@@ -1,4 +1,4 @@
-﻿/*using ManagerStudent.BLL;
+﻿using ManagerStudent.BLL;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -13,7 +13,7 @@ namespace ManagerStudent.GUI
         {
             InitializeComponent();
             teacherBLL = new TeacherBLL();
-            thongkeBLL= new ThongKeBLL();
+            thongkeBLL = new ThongKeBLL();
         }
 
         private void ThongKeForm_Load(object sender, EventArgs e)
@@ -94,7 +94,7 @@ namespace ManagerStudent.GUI
         }
         private void FillNumberStudent(string ayName, string seName)
         {
-            TableSL.DataSource = thongkeBLL.GetNumberStudent(ayName,seName);
+            TableSL.DataSource = thongkeBLL.GetNumberStudent(ayName, seName);
         }
         private void FillClassASNumberStudent(string ayName, string seName)
         {
@@ -109,10 +109,11 @@ namespace ManagerStudent.GUI
             string sl = cbSL.SelectedItem?.ToString();
             string ayName = cbNHsl.SelectedItem?.ToString();
             string seName = cbHKsl.SelectedItem?.ToString();
-            if (sl == "Tất cả") {
-                if(ayName =="Tất cả")
+            if (sl == "Tất cả")
+            {
+                if (ayName == "Tất cả")
                 {
-                    if(seName=="Tất cả")
+                    if (seName == "Tất cả")
                     {
                         FillAllNumberStudent();
                     }
@@ -121,17 +122,17 @@ namespace ManagerStudent.GUI
                         FillAllSemesNumberStudent(seName);
                     }
                 }
-                else 
+                else
                 {
-                    if(seName!="Tất cả")
+                    if (seName != "Tất cả")
                     {
-                        FillNumberStudent(ayName,seName);
+                        FillNumberStudent(ayName, seName);
                     }
                     else
                     {
                         FillAllAyearNumberStudent(ayName);
                     }
-                    
+
                 }
             }
             else if (cbSL.SelectedItem?.ToString() == "Khối")
@@ -436,4 +437,3 @@ namespace ManagerStudent.GUI
         }
     }
 }
-*/

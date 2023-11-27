@@ -40,6 +40,9 @@ namespace ManagerStudent.GUI
         {
             dscls = clsBll.getAll();
             dgvClass.DataSource = dscls;
+            dgvClass.Columns[0].HeaderText = "Mã lớp";
+            dgvClass.Columns[1].HeaderText = "Tên lớp";
+            dgvClass.Columns[2].HeaderText = "Số lượng tối đa";
         }
 
         public void ResetGrade()
@@ -146,6 +149,8 @@ namespace ManagerStudent.GUI
 
         private void dgvGrade_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            dgvGrade.Columns[0].HeaderText = "Mã khối";
+            dgvGrade.Columns[1].HeaderText = "Tên khối";
             if (e.RowIndex == -1) return;
             DataGridViewRow row = dgvGrade.Rows[e.RowIndex];
             txtMaKhoi.Text = row.Cells[0].Value.ToString();
@@ -249,11 +254,11 @@ namespace ManagerStudent.GUI
             }
             else if (string.IsNullOrEmpty(txtMaxHocSinh.Text))
             {
-                MessageBox.Show("Vui lòng nhập max học sinh");
+                MessageBox.Show("Vui lòng nhập số lượng tối đa");
             }
             else if (!txtMaxHocSinh.Text.All(char.IsDigit))
             {
-                MessageBox.Show("Max hoc sinh chỉ nhập được số từ 0-9");
+                MessageBox.Show("Số lượng tối đa chỉ nhập được số từ 0-9");
             }
             else
             {
@@ -305,7 +310,7 @@ namespace ManagerStudent.GUI
                 string tenLop = txtTenLop.Text.Trim();
                 if (!regex.IsMatch(tenLop))
                 {
-                    MessageBox.Show("Tên lớp không đúng định dạng. Vui lòng nhập lại theo định dạng 'xAy' (với x và y là số từ 1 đến 12).");
+                    MessageBox.Show("Tên lớp không đúng định dạng. Vui lòng nhập lại theo định dạng 'xAy' (với x là số từ 1 đến 12 và y là từ số 1 đến 9).");
                     return;
                 }
 
@@ -315,12 +320,12 @@ namespace ManagerStudent.GUI
                 }
                 else if (string.IsNullOrEmpty(txtMaxHocSinh.Text))
                 {
-                    MessageBox.Show("Vui lòng nhập max học sinh");
+                    MessageBox.Show("Vui lòng nhập số lượng tối đa");
                 }
             
                 else if (!txtMaxHocSinh.Text.All(char.IsDigit))
                 {
-                    MessageBox.Show("Max hoc sinh chỉ nhập được số từ 0-9");
+                    MessageBox.Show("Số lượng tối đa chỉ nhập được số từ 0-9");
                 }
           
                 else if (clsBll.checkUpdateClass(txtTenLop.Text, Convert.ToInt32(txtMaLop.Text)))
@@ -373,6 +378,10 @@ namespace ManagerStudent.GUI
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            dgvGrade.Columns[0].HeaderText = "Mã khối";
+            dgvGrade.Columns[1].HeaderText = "Tên khối";
+
+
             int index = tabControl1.SelectedIndex;
             switch (index)
             {

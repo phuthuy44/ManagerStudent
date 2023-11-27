@@ -22,7 +22,7 @@ namespace ManagerStudent.BLL
             if (clsdal.HasNameClass(cls.Name))
                 return "Tên đã tồn tại";
             clsdal.InsertClass(cls);
-            return "Them thanh cong";
+            return "Thêm thành công";
         }
         public int getlastclassid()
         {
