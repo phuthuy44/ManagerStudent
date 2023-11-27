@@ -1,34 +1,4 @@
-﻿CREATE TRIGGER INSERT_NEW_PARENT
-ON Parent
-AFTER INSERT 
-AS
-BEGIN
-    UPDATE Parent 
-    SET createDate = DATEADD(HOUR, 7, GETUTCDATE())
-    FROM Parent
-    INNER JOIN inserted ON Parent.studentID = inserted.studentID;
-END;
-
-CREATE TRIGGER INSERT_NEW_STUDENT
-ON Student
-AFTER INSERT
-AS
-BEGIN
-    UPDATE Student 
-    SET createDate = DATEADD(HOUR, 7, GETUTCDATE()) 
-    WHERE ID IN (SELECT ID FROM inserted);
-
-    -- Kiểm tra tính hợp lệ của số điện thoại
-    IF EXISTS (
-        SELECT 1
-        FROM inserted
-        WHERE ISNUMERIC(numberPhone) = 0 OR LEN(numberPhone) <> 10
-    )
-    BEGIN
-        RAISERROR('Số điện thoại không hợp lệ', 16, 1);
-        ROLLBACK;
-    END;
-END;
+﻿
 
 CREATE TRIGGER INSERT_UPDATE_STU_CONDUCT
      ON StudentConduct
@@ -298,18 +268,15 @@ BEGIN
 	END
 	
 END;
-
-CREATE TRIGGER UPDATE_PARENT
-ON Parent
-AFTER UPDATE
+CREATE TRIGGER INSERT_NEW_STUDENT
+ON Student
+AFTER INSERT
 AS
 BEGIN
-    UPDATE Parent
-    SET updateDate = DATEADD(HOUR, 7, GETUTCDATE())
-    FROM Parent
-    INNER JOIN inserted ON Parent.studentID = inserted.studentID;
+    UPDATE Student 
+    SET createDate = DATEADD(HOUR, 7, GETUTCDATE()) 
+    WHERE ID IN (SELECT ID FROM inserted);
 END;
-
 CREATE TRIGGER UPDATE_STUDENT
 ON Student
 AFTER UPDATE
@@ -330,4 +297,26 @@ BEGIN
         RAISERROR('Số điện thoại không hợp lệ', 16, 1);
         ROLLBACK;
     END;
+END;
+
+CREATE TRIGGER INSERT_NEW_PARENT
+ON Parent
+AFTER INSERT 
+AS
+BEGIN
+    UPDATE Parent 
+    SET createDate = DATEADD(HOUR, 7, GETUTCDATE())
+    FROM Parent
+    INNER JOIN inserted ON Parent.studentID = inserted.studentID AND Parent.gender = inserted.gender;
+END;
+
+CREATE TRIGGER UPDATE_PARENT
+ON Parent
+AFTER UPDATE
+AS
+BEGIN
+    UPDATE Parent
+    SET createDate = DATEADD(HOUR, 7, GETUTCDATE())
+    FROM Parent
+    INNER JOIN inserted ON Parent.studentID = inserted.studentID AND Parent.gender = inserted.gender;
 END;

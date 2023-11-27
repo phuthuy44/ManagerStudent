@@ -24,7 +24,7 @@ CREATE TABLE Capacity(
 	--lowerLimit INT,
 	--paraPoint INT,
 	ID INT IDENTITY(1,1) NOT NULL,
-	capacitytName NVARCHAR(100),
+	capacityName NVARCHAR(100),
 	upperLimit FLOAT,
 	lowerLimit FLOAT,
 	paraPoint FLOAT,

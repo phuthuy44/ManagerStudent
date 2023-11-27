@@ -138,7 +138,7 @@ namespace ManagerStudent.GUI
 
                 }
             }
-            else if (cbSL.SelectedItem?.ToString() == "Khối")
+            else if (cbSL.SelectedItem?.ToString() == "Lớp")
             {
                 if (ayName == "Tất cả")
                 {
@@ -221,7 +221,7 @@ namespace ManagerStudent.GUI
 
                 }
             }
-            else if (cbSL.SelectedItem?.ToString() == "Khối")
+            else if (cbSL.SelectedItem?.ToString() == "Lớp")
             {
                 if (ayName == "Tất cả")
                 {
@@ -304,7 +304,7 @@ namespace ManagerStudent.GUI
 
                 }
             }
-            else if (cbSL.SelectedItem?.ToString() == "Khối")
+            else if (cbSL.SelectedItem?.ToString() == "Lớp")
             {
                 if (ayName == "Tất cả")
                 {
@@ -387,7 +387,7 @@ namespace ManagerStudent.GUI
 
                 }
             }
-            else if (cbSL.SelectedItem?.ToString() == "Khối")
+            else if (cbSL.SelectedItem?.ToString() == "Lớp")
             {
                 if (ayName == "Tất cả")
                 {
