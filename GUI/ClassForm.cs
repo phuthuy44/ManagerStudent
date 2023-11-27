@@ -65,7 +65,6 @@ namespace ManagerStudent.GUI
             txtTenKhoi.Enabled = true;
             btnAdd.Enabled = !edit;
             btnEdit.Enabled = edit;
-            btnDelete.Enabled = edit;
         }
         public void SetControlClass(bool edit)
         {
@@ -75,7 +74,6 @@ namespace ManagerStudent.GUI
        
             btnThem.Enabled = !edit;
             btnSua.Enabled = edit;
-            btnXoa.Enabled = edit;
 
 
         }
@@ -206,25 +204,9 @@ namespace ManagerStudent.GUI
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvGrade.SelectedRows.Count > 0)
-            {
-                int selectedIndex = dgvGrade.SelectedRows[0].Index;
-                Grade gradeDTO = grade[selectedIndex];
-                gradeDTO.Name = txtTenKhoi.Text;
-                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa khối này?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes)
-                {
-                    gradeBll.deleteGrade(gradeDTO.ID);
-                    MessageBox.Show("Bạn đã xóa thành công");
-                    loadDataGrade(); // Cập nhật dữ liệu trên DataGridView
-                    ResetGrade();
-                    dgvGrade.ClearSelection();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một khối để xóa");
-            }
+            txtMaKhoi.Text = string.Empty;
+            txtTenKhoi.Text= string.Empty;
+            dgvGrade.ClearSelection();
         }
 
         private void dgvGrade_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -475,6 +457,14 @@ namespace ManagerStudent.GUI
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            txtMaLop.Text = string.Empty;
+            txtTenLop.Text = string.Empty;
+            txtMaxHocSinh.Text = string.Empty;
+            dgvClass.ClearSelection();
         }
     }
 }

@@ -104,7 +104,7 @@ namespace ManagerStudent.GUI
             txtSDTGV.Text = string.Empty;
             picGV.Image = null;
             txtDiaChiGV.Text = string.Empty;
-            
+            txtSearch.Text = string.Empty;
         }
 
         private void TeacherForm_Load(object sender, System.EventArgs e)

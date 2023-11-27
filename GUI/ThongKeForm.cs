@@ -1,7 +1,9 @@
 ﻿using ManagerStudent.BLL;
 using ManagerStudent.DAL;
+using OfficeOpenXml;
 using System;
 using System.Data;
+using System.IO;
 using System.Windows.Forms;
 
 namespace ManagerStudent.GUI
@@ -527,6 +529,71 @@ namespace ManagerStudent.GUI
                         MessageBox.Show("Đã lưu tệp: " + filePath);
                     }
                 }
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string appDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string folderPath = System.IO.Path.Combine(appDirectory, "excel");
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+            string defaultExcelFilePath = System.IO.Path.Combine(folderPath, "");
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+            saveFileDialog.FileName = "";
+            saveFileDialog.InitialDirectory = folderPath;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ExportToExcel(TableSL, saveFileDialog.FileName);
+                MessageBox.Show("Dữ liệu đã được xuất thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                ExportToExcel(TableSL, defaultExcelFilePath);
+            }
+        }
+        private void ExportToExcel(DataGridView dataGridView, string filePath)
+        {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial; // Set the license context
+
+            using (ExcelPackage excelPackage = new ExcelPackage())
+            {
+                ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Sheet1");
+                for (int i = 1; i <= dataGridView.Columns.Count; i++)
+                {
+                    worksheet.Cells[1, i].Value = dataGridView.Columns[i - 1].HeaderText;
+                }
+                for (int i = 1; i <= dataGridView.Columns.Count; i++)
+                {
+                    if (dataGridView.Columns[i - 1].ValueType == typeof(DateTime))
+                    {
+                        for (int j = 1; j <= dataGridView.Rows.Count; j++)
+                        {
+                            if (dataGridView.Rows[j - 1].Cells[i - 1].Value is DateTime dateTimeValue)
+                            {
+                                string formattedDateTime = dateTimeValue.ToString("MM/dd/yyyy");
+                                worksheet.Cells[j + 1, i].Value = formattedDateTime;
+                            }
+                            else
+                            {
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int j = 1; j <= dataGridView.Rows.Count; j++)
+                        {
+                            worksheet.Cells[j + 1, i].Value = dataGridView.Rows[j - 1].Cells[i - 1].Value;
+                        }
+                    }
+                }
+                FileInfo excelFile = new FileInfo(filePath);
+
+                excelPackage.SaveAs(excelFile);
             }
         }
     }

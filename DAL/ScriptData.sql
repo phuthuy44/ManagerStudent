@@ -18,11 +18,7 @@ CREATE TABLE Conduct(
 
 -- Tạo bảng học lực 
 CREATE TABLE Capacity(
-	--ID VARCHAR(8) NOT NULL,
-	--capacitytName NVARCHAR(100),
-	--upperLimit INT,
-	--lowerLimit INT,
-	--paraPoint INT,
+
 	ID INT IDENTITY(1,1) NOT NULL,
 	capacityName NVARCHAR(100),
 	upperLimit FLOAT,
@@ -236,9 +232,6 @@ ALTER TABLE Assignment
 	ADD CONSTRAINT Assignment_subjectID_Subject_ID
 	FOREIGN KEY (subjectID) REFERENCES Subject(ID)
 	
---ALTER TABLE [Assignment] 
---	ADD CONSTRAINT Assignment_statusID_Status_ID
---	FOREIGN KEY (statusID) REFERENCES Status(ID)
 
 -- Tạo bảng điểm
 CREATE TABLE Point(
@@ -354,7 +347,7 @@ ALTER TABLE StudentCapacity
 	FOREIGN KEY (semesterID) REFERENCES Semester(ID)
 
 
--- Thêm các khoá chính và khoá ngoại
+
 ALTER TABLE Summary  
 	ADD CONSTRAINT Summary_studentID_Student_ID
 	FOREIGN KEY (studentID) REFERENCES Student(ID)
@@ -378,21 +371,15 @@ ALTER TABLE Summary
 	FOREIGN KEY (studentcapacityID, studentID, academicyearID, semesterID)
 	REFERENCES StudentCapacity(studentcapacityID, studentID, academicyearID, semesterID)
 
---drop table StudentClassSemesterAcademicYear
 CREATE TABLE StudentClassSemesterAcademicYear(
 	studentID INT NOT NULL,
 	classID INT NOT NULL,
 	semesterID INT NOT NULL,
 	academicyearID INT NOT NULL,
 	gradeID INT NOT NULL,
-	--statusID INT NOT NULL,
-	--PRIMARY KEY (studentID, classID, semesterID, academicyearID, gradeID, statusID)
 	PRIMARY KEY (studentID, classID, semesterID, academicyearID, gradeID)
 
 )
---ALTER TABLE StudentClassSemesterAcademicYear
---	ADD CONSTRAINT StudentClassSemesterAcademicYear_statusID_Status_ID
---	FOREIGN KEY (statusID) REFERENCES Status(ID)
 
 ALTER TABLE StudentClassSemesterAcademicYear
 	ADD CONSTRAINT StudentClassSemesterAcademicYear_studentID_Student_ID
@@ -427,23 +414,3 @@ ALTER TABLE ClassGrade
 ALTER TABLE ClassGrade 
 	ADD CONSTRAINT ClassGrade_gradeID_Grade_ID
 	FOREIGN KEY (gradeID) REFERENCES Grade(ID)
-	--DBCC CHECKIDENT('TypeOfSubject', RESEED, 0);
-	
-/*CREATE PROC GetDataSemester
-/*AS
-/*	BEGIN
-/*		SELECT * FROM Semester s ;
-/*	END
-	
-/*CREATE PROC GetDataTypeOfPoint
-/*AS 
-/*	Begin
-	/*	SELECT * FROM TypeOfPoint top2 ;
-/*	END
-	
-	
---	EXECUTE GetDataSemester
---	EXEC GetDataTypeOfPoint
-
---select * from student
---INSERT INTO Student (name, gender,birthday,address, email, numberPhone, image) VALUES ('Tran', 'Nu', '2009-02-11', 'HCM', null, null, null)

@@ -125,5 +125,11 @@ namespace ManagerStudent.GUI
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            OpenFormChild(new HocSinhForm());
+            btnChangeTabColor(panel2, null);
+        }
     }
 }

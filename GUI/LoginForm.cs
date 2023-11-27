@@ -78,5 +78,10 @@ namespace ManagerStudent.GUI
         {
             Application.Exit();
         }
+
+        private void pictureBox4_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }
